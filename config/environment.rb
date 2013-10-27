@@ -2,4 +2,4 @@
 require File.expand_path('../application', __FILE__)
 
 # Initialize the Rails application.
-Doubleunion2::Application.initialize!
+Doubleunion::Application.initialize!

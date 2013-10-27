@@ -11,7 +11,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-module Doubleunion2
+module Doubleunion
   class Application < Rails::Application
 
     # don't generate RSpec tests for views and helpers

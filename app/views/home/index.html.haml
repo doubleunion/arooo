@@ -1,19 +1,27 @@
-%p
-  We are a community workshop for women in San Francisco. Our mission is to
-  create a space where women can work on projects in a comfortable, welcoming
-  environment.
+.jumbotron
+  .container
+    %h2
+      Double Union is a hacker/maker space for women in San Francisco.
+    %p
+      Our mission is to
+      create a community workshop where women can work on projects in a comfortable, welcoming
+      environment.
+    %p.last
+      = link_to 'Join us', membership_path, :class => 'btn btn-default'
+      = link_to 'Support us', support_path, :class => 'btn btn-default'
 
-%p
-  Things women do in this space include sewing, programming, electronics,
-  woodworking, fiber arts of all kinds, and zine making.
+.container
+  %p
+    Things women do in this space include sewing, programming, electronics,
+    woodworking, fiber arts of all kinds, and zine making.
 
-%p
-  We are a supportive community for feminist activism. We are intersectional
-  feminists, women-centered, and queer and trans-inclusive.
+  %p
+    We are a supportive community for feminist activism. We are intersectional
+    feminists, women-centered, and queer and trans-inclusive.
 
-%p
-  You can learn more about us by reading our
-  = "#{link_to 'blog', blog_path},".html_safe
-  following us on Twitter at
-  = "#{link_to "@#{TWITTER_USERNAME}", TWITTER_URL, :target => '_blank'},".html_safe
-  or joining our general interest mailing list.
+  %p
+    You can learn more about us by reading our
+    = "#{link_to 'blog', blog_path},".html_safe
+    following us on Twitter at
+    = "#{link_to "@#{TWITTER_USERNAME}", TWITTER_URL, :target => '_blank'},".html_safe
+    or joining our general interest mailing list.

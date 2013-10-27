@@ -1,4 +1,4 @@
-Doubleunion2::Application.routes.draw do
+Doubleunion::Application.routes.draw do
   root :to => "home#index"
   resources :users, :only => [:index, :show, :edit, :update ]
   get '/auth/:provider/callback' => 'sessions#create'
@@ -6,5 +6,7 @@ Doubleunion2::Application.routes.draw do
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/auth/failure' => 'sessions#failure'
 
-  get 'blog', :to => 'blog#index'
+  get 'blog',       :to => 'blog#index'
+  get 'membership', :to => 'membership#index'
+  get 'support',    :to => 'support#index'
 end
