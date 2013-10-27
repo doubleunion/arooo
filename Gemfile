@@ -15,6 +15,7 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'pg'
 gem 'rolify'
+gem 'protected_attributes'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
