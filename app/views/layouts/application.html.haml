@@ -12,5 +12,8 @@
     = render 'layouts/navigation'
     #main{:role => "main"}
       = render 'layouts/messages'
-      = yield
+      - if use_container?
+        .container= yield
+      - else
+        = yield
       %footer
