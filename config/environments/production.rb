@@ -70,7 +70,15 @@ Doubleunion2::Application.configure do
   config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners.
-  config.active_support.deprecation = :notify
+  config.active_support.deprecation = :notify  
+
+    config.action_mailer.smtp_settings = {
+      :address   => "smtp.mandrillapp.com",
+      :port      => 25,
+      :user_name => ENV["MANDRILL_USERNAME"],
+      :password  => ENV["MANDRILL_API_KEY"]
+    }
+
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
