@@ -1,1 +1,12 @@
-= link_to "App_Name", root_path, :class => 'brand'
+= link_to "Double Union", root_path, :class => 'brand'
+%ul.nav
+  - if user_signed_in?
+    %li
+      = link_to 'Logout', signout_path
+  - else
+    %li
+      = link_to 'Login', signin_path
+  - if user_signed_in?
+    - if current_user.has_role? :admin
+      %li
+        = link_to 'Admin', users_path
