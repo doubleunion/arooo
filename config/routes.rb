@@ -1,9 +1,14 @@
 Doubleunion::Application.routes.draw do
   root :to => "home#index"
-  resources :users, :only => [:index, :show, :edit, :update ]
+
+  namespace :admin do
+    root :to => 'admin#index'
+    resources :users, :only => [:index, :show, :edit, :update]
+  end
+
   get '/auth/:provider/callback' => 'sessions#create'
-  get '/signin' => 'sessions#new', :as => :signin
-  get '/signout' => 'sessions#destroy', :as => :signout
+  get '/login' => 'sessions#new'
+  get '/logout' => 'sessions#destroy'
   get '/auth/failure' => 'sessions#failure'
 
   get 'blog',       :to => 'blog#index'

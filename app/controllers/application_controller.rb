@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user, :user_signed_in?, :correct_user?,
+  helper_method :current_user, :logged_in?, :correct_user?,
     :use_container?
 
   protected
@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def user_signed_in?
-    return true if current_user
+  def logged_in?
+    !!current_user
   end
 
   def correct_user?
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-    if !current_user
+    unless logged_in?
       redirect_to root_url, :alert => 'You need to sign in for access to this page.'
     end
   end
