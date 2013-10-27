@@ -6,5 +6,7 @@ Doubleunion2::Application.routes.draw do
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/auth/failure' => 'sessions#failure'
 
-  get 'blog', :to => 'blog#index'
+  get 'blog',       :to => 'blog#index'
+  get 'membership', :to => 'membership#index'
+  get 'support',    :to => 'support#index'
 end
