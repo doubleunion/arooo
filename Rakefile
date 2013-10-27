@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Doubleunion2::Application.load_tasks
+Doubleunion::Application.load_tasks
