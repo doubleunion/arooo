@@ -7,21 +7,92 @@
       create a community workshop where women can work on projects in a comfortable, welcoming
       environment.
     %p.last
-      = link_to 'Join us', membership_path, :class => 'btn btn-default'
-      = link_to 'Support us', support_path, :class => 'btn btn-default'
+      = link_to 'Join us', membership_path, :class => 'btn btn-primary btn-lg'
+      = link_to 'Support us', support_path, :class => 'btn btn-default btn-lg'
 
 .container
-  %p
-    Things women do in this space include sewing, programming, electronics,
-    woodworking, fiber arts of all kinds, and zine making.
+  .row
+    .col-md-12.text-center
+      %h3 Double Union is a space for your projects
+    .col-md-6
+      %p
+        Things women do in this space include sewing, programming, electronics,
+        woodworking, fiber arts of all kinds, and zine making.
+    .col-md-6.col-md-offset-6
+      %p 
+        Fast internet, shared tools, a carefully curated library of books and zines, and discussion spaces make this a great space for working on your projects, learning skills, and meeting new friends. 
+        
 
-  %p
-    We are a supportive community for feminist activism. We are intersectional
-    feminists, women-centered, and queer and trans-inclusive.
+  .row
+    .col-md-6
+      %p
+        Double Uniion is a supportive community for feminist activism. We are intersectional
+        feminists, women-centered, and queer and trans-inclusive.
 
-  %p
-    You can learn more about us by reading our
-    = "#{link_to 'blog', blog_path},".html_safe
-    following us on Twitter at
-    = "#{link_to "@#{TWITTER_USERNAME}", TWITTER_URL, :target => '_blank'},".html_safe
-    or joining our general interest mailing list.
+        
+  .row
+    .col-md-12.text-center
+      %h3 Visiting Double Union: Classes, Open Houses and Events
+    .col-md-6
+      %p
+        Double Union is in the heart of San Francisco, located on Valencia Street between 14th Street and 15th Street, between Four Barrel Coffee and Zeitgeist. 
+    .col-md-6.col-md-offset-6
+      %p 
+        Other than during events open to the public, Double Union visitors must be the invited guest of a member. Please do not visit without the express invitation of a member. Please do not invite guests unless you are a member. Guests may be any gender or age.
+    .col-md-6 
+      %p 
+        Open house events are open to the general public. Visitors do not need an invitation from a member to attend an open house, and may be any gender or age. We will announce when we start having open houses.
+        
+  .row
+    .col-md-6.col-md-offset-6
+      %p
+        You can learn more about us by reading our
+        = "#{link_to 'blog', blog_path},".html_safe
+        following us on Twitter at
+        = "#{link_to "@#{TWITTER_USERNAME}", TWITTER_URL, :target => '_blank'},".html_safe
+        or joining our general interest mailing list.      
+
+
+        
+
+        
+  .row
+    .col-md-12.text-center
+      %h3 
+        Want to Support Double Union? 
+    .col-md-6
+
+      %p 
+        Double Union is a non-profit supported entirely by donations, membership dues, donations, and volunteers. 
+        
+      %p 
+        We would love your support in creating a women-friendly makerspace in San Francisco! We hope to serve as a role model and resource for other makerspaces and hackerspaces around the world.
+    
+    .col-md-6.col-md-6-offset-6.well
+    
+      %h4 
+        Want to make a one time donation? 
+      %p
+        Sending money via Paypal to paypal@doubleunion.org is the easiest way for you to help us build an amazing space for women.
+      
+      %h4 
+        Can you support our work each month? 
+        
+        %form{action: "https://www.paypal.com/cgi-bin/webscr", method: "post", target: "_top"}
+          %input{name: "cmd", type: "hidden", value: "_s-xclick"}/
+          %input{name: "hosted_button_id", type: "hidden", value: "ZNG2B28SA9WM6"}/
+          = succeed " " do
+            %input{name: "on0", type: "hidden", value: ""}/
+          %select{name: "os0"}
+            %option{value: "Support us - $5"} Support us - $5 : $5.00 USD - monthly
+            %option{value: "Support us - $10"} Support us - $10 : $10.00 USD - monthly
+            %option{value: "Support us - $25", selected: "selected"} Support us - $25 : $25.00 USD - monthly
+            %option{value: "Support us - $50"} Support us - $50 : $50.00 USD - monthly
+            %option{value: "Support us - $100"} Support us - $100 : $100.00 USD - monthly
+          %input{name: "currency_code", type: "hidden", value: "USD"}/
+          %input{alt: "PayPal - The safer, easier way to pay online!", name: "submit", src: "https://www.paypalobjects.com/en_US/i/btn/btn_subscribe_LG.gif", type: "image"}/
+          %img{alt: "", border: "0", height: "1", src: "https://www.paypalobjects.com/en_US/i/scr/pixel.gif", width: "1"}/
+        
+          = link_to 'Support us', support_path, :class => 'btn btn-default'
+
+
