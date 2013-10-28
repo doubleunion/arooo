@@ -2,20 +2,16 @@
 %table.table
   %thead
     %tr
+      %th Name
       %th Username
       %th Email
       %th Registered
       %th Role
-      %th
-      %th
   %tbody
     - @users.each do |user|
       %tr
-        %td= link_to user.name, admin_user_path(user)
+        %td= user.name
+        %td= user.username
         %td= user.email
         %td= user.created_at.to_date
         %td= user.roles.first.name.titleize unless user.roles.first.nil?
-        %td
-          %a.btn.btn-mini{"data-toggle" => "modal", :href => "#role-options-#{user.id}", :type => "button"} Change role
-          = render user
-        %td= link_to("Delete user", admin_user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user

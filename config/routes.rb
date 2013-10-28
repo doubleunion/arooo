@@ -3,7 +3,7 @@ Doubleunion::Application.routes.draw do
 
   namespace :admin do
     root :to => 'admin#index'
-    resources :users, :only => [:index, :show, :edit, :update]
+    resources :users, :only => :index
   end
 
   get '/auth/:provider/callback' => 'sessions#create'
