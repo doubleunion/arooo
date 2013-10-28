@@ -1,0 +1,18 @@
+%h2 Users
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Username
+      %th Email
+      %th Registered
+      %th Role
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.username
+        %td= user.email
+        %td= user.created_at.to_date
+        %td= user.roles.first.name.titleize unless user.roles.first.nil?

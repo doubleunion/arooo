@@ -1,31 +1,26 @@
 class SessionsController < ApplicationController
-
   def new
     redirect_to '/auth/github'
   end
 
-
   def create
-    auth = request.env["omniauth.auth"]
-    user = User.where(:provider => auth['provider'], 
-                      :uid => auth['uid'].to_s).first || User.create_with_omniauth(auth)
-# Reset the session after successful login, per
-# 2.8 Session Fixation – Countermeasures:
-# http://guides.rubyonrails.org/security.html#session-fixation-countermeasures
+    auth = request.env['omniauth.auth']
+    conditions = { :provider => auth['provider'],
+                   :uid      => auth['uid'].to_s }
+
+    user = User.where(conditions).first || User.create_with_omniauth(auth)
+
+    # Reset the session after successful login, per
+    # 2.8 Session Fixation – Countermeasures:
+    # http://guides.rubyonrails.org/security.html#session-fixation-countermeasures
     reset_session
     session[:user_id] = user.id
-    user.add_role :admin if User.count == 1 # make the first user an admin
-    if user.email.blank?
-      redirect_to edit_user_path(user), :alert => "Please enter your email address."
-    else
-      redirect_to root_url, :notice => 'Signed in!'
-    end
-
+    redirect_to root_url, :notice => 'You are now logged in'
   end
 
   def destroy
     reset_session
-    redirect_to root_url, :notice => 'Signed out!'
+    redirect_to root_url, :notice => 'Logged out'
   end
 
   def failure
