@@ -21,4 +21,11 @@ describe StaticController do
       response.should be_success
     end
   end
+
+  describe 'GET supporters' do
+    it 'returns http success' do
+      get :supporters
+      response.should be_success
+    end
+  end
 end
