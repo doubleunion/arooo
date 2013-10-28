@@ -7,4 +7,7 @@ class StaticController < ApplicationController
 
   def support
   end
+
+  def supporters
+  end
 end

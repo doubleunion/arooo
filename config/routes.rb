@@ -14,7 +14,8 @@ Doubleunion::Application.routes.draw do
   get 'blog',       :to => 'blog#index'
   get 'membership', :to => 'membership#index'
 
-  get 'support',  :to => 'static#support'
-  get 'press',    :to => 'static#press'
-  get 'policies', :to => 'static#policies'
+  get 'support',    :to => 'static#support'
+  get 'press',      :to => 'static#press'
+  get 'policies',   :to => 'static#policies'
+  get 'supporters', :to => 'static#supporters'
 end
