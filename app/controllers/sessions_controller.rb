@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     auth = request.env['omniauth.auth']
     conditions = { :provider => auth['provider'],
-                   :uid      => auth['uid'].to_s)
+                   :uid      => auth['uid'].to_s }
 
     user = User.where(conditions).first || User.create_with_omniauth(auth)
 
