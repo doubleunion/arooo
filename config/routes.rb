@@ -6,12 +6,13 @@ Doubleunion::Application.routes.draw do
     resources :users, :only => :index
   end
 
+  resources :tumblr_posts, :only => [:index, :show], :path => 'blog'
+
   get '/auth/:provider/callback' => 'sessions#create'
   get '/login' => 'sessions#new'
   get '/logout' => 'sessions#destroy'
   get '/auth/failure' => 'sessions#failure'
 
-  get 'blog',       :to => 'blog#index'
   get 'membership', :to => 'membership#index'
 
   get 'support',    :to => 'static#support'

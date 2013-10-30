@@ -1,0 +1,5 @@
+.tumblr-post
+  - if post.title.present?
+    %h2= link_to post.title, post
+  - if post.body.present?
+    .tumblr-post-body= post.body.html_safe

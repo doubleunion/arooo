@@ -15,3 +15,4 @@ ADMIN_PASSWORD: changeme
 OMNIAUTH_PROVIDER_KEY: Your_OmniAuth_Provider_Key
 OMNIAUTH_PROVIDER_SECRET: Your_OmniAuth_Provider_Secret
 ROLES: [admin, user, VIP]
+TUMBLR_CONSUMER_KEY: changeme
