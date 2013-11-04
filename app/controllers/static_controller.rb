@@ -1,4 +1,8 @@
 class StaticController < ApplicationController
+  def index
+    set_use_container(false)
+  end
+
   def press
   end
 

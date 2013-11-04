@@ -1,5 +1,5 @@
 Doubleunion::Application.routes.draw do
-  root :to => "home#index"
+  root :to => 'static#index'
 
   namespace :admin do
     root :to => 'admin#index'
