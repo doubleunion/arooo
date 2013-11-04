@@ -16,6 +16,7 @@
         %ul.nav.navbar-nav.pull-right
           %li
             %span.non-link= "Hi, #{current_user.username}"
+          %li= link_to 'Settings', settings_path
           - if current_user.member_or_key_member?
             %li= link_to 'Admin', admin_root_path
           %li= link_to 'Log out', logout_path

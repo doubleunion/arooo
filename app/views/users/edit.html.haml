@@ -1,0 +1,12 @@
+%h2 Settings
+
+= form_for @user do |f|
+  %fieldset
+    %legend= f.label :name
+    = f.text_field :name
+  %fieldset
+    %legend= f.label :email
+    = f.text_field :email
+
+  %fieldset
+    = f.submit 'Save settings'

@@ -15,7 +15,13 @@ class SessionsController < ApplicationController
     # http://guides.rubyonrails.org/security.html#session-fixation-countermeasures
     reset_session
     session[:user_id] = user.id
-    redirect_to root_url, :notice => 'You are now logged in'
+
+    if user.email.present?
+      redirect_to :root
+    else
+      flash[:notice] = 'Please update your email address'
+      redirect_to settings_path
+    end
   end
 
   def destroy

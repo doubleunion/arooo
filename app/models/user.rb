@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
 
   validates :username, :presence => true
 
+  validates :email, :allow_blank => true, :format => {
+    :with    => /@/, # more is probably overkill
+    :message => 'Invalid email address' }
+
   state_machine :state, :initial => :visitor do
     event :make_applicant do
       transition :visitor => :applicant

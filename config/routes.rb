@@ -8,10 +8,13 @@ Doubleunion::Application.routes.draw do
 
   resources :tumblr_posts, :only => [:index, :show], :path => 'blog'
 
-  get '/auth/:provider/callback' => 'sessions#create'
-  get '/login' => 'sessions#new'
-  get '/logout' => 'sessions#destroy'
-  get '/auth/failure' => 'sessions#failure'
+  get 'settings', :to => 'users#edit'
+  resources :users, :only => :update
+
+  get 'auth/:provider/callback' => 'sessions#create'
+  get 'login' => 'sessions#new'
+  get 'logout' => 'sessions#destroy'
+  get 'auth/failure' => 'sessions#failure'
 
   get 'membership', :to => 'membership#index'
 

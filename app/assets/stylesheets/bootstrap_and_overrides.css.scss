@@ -2,3 +2,12 @@
 @import "mixins";
 body { padding-top: 0px; }
 .navbar { margin-bottom: 0; }
+
+fieldset {
+  margin-bottom: 10px;
+  legend {
+    font-size: inherit;
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+}
