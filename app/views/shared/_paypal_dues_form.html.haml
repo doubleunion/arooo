@@ -1,4 +1,14 @@
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_s-xclick" /><input type="hidden" name="hosted_button_id" value="3VEARKJV6DDUC" /><input type="hidden" name="on0" value="Pay what you can" />Pay what you can:
-<select name="os0"><option value="Dues - $100">Dues - $100 : $100.00 USD - monthly</option><option value="Dues - $50">Dues - $50 : $50.00 USD - monthly</option><option value="Dues - $25">Dues - $25 : $25.00 USD - monthly</option><option value="Dues - $10">Dues - $10 : $10.00 USD - monthly</option></select><input type="hidden" name="currency_code" value="USD" />
-<input type="image" alt="PayPal - The safer, easier way to pay online!" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribe_LG.gif" />
-<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" border="0" />
+%form{:action => "https://www.paypal.com/cgi-bin/webscr", :method => "post", :target => "_top"}
+  %input{:name => "cmd", :type => "hidden", :value => "_s-xclick"}/
+  %input{:name => "hosted_button_id", :type => "hidden", :value => "3VEARKJV6DDUC"}/
+  = succeed "Pay" do
+    %input{:name => "on0", :type => "hidden", :value => "Pay what you can"}/
+  what you can:
+  %select{:name => "os0"}
+    %option{:value => "Dues - $100"} Dues - $100 : $100.00 USD - monthly
+    %option{:value => "Dues - $50"} Dues - $50 : $50.00 USD - monthly
+    %option{:value => "Dues - $25"} Dues - $25 : $25.00 USD - monthly
+    %option{:value => "Dues - $10"} Dues - $10 : $10.00 USD - monthly
+  %input{:name => "currency_code", :type => "hidden", :value => "USD"}/
+  %button{type: "submit", name: "Support us", class: "btn btn-default"} Support us
+  %img{:alt => "", :border => "0", :height => "1", :src => "https://www.paypalobjects.com/en_US/i/scr/pixel.gif", :width => "1"}/
