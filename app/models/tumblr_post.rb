@@ -65,6 +65,11 @@ class TumblrPost < ActiveRecord::Base
     def get_posts
       uri = URI.parse(request_url)
       response = Net::HTTP.get_response(uri)
+
+      unless response.code == '200'
+        raise "Invalid Tumblr API response: #{response.code}"
+      end
+
       JSON.parse(response.body).fetch('response').fetch('posts')
     end
 
