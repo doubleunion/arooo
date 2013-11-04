@@ -1,6 +1,7 @@
 class TumblrPostsController < ApplicationController
   def index
-    @posts = TumblrPost.all.limit(10)
+    @posts = TumblrPost.page(params[:page])
+    @posts_for_sidebar = TumblrPost.limit(10)
   end
 
   def show

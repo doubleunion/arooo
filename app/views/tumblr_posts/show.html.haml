@@ -1,3 +1,2 @@
-= link_to 'Back to blog', tumblr_posts_path
-
-%h1= @post.title
+%p= link_to 'Back to blog', tumblr_posts_path
+= render :partial => 'post', :locals => { :post => @post }

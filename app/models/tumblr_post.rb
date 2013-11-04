@@ -1,8 +1,9 @@
 require 'net/http'
 require 'uri'
-require 'json'
 
 class TumblrPost < ActiveRecord::Base
+  paginates_per 5
+
   API_BASE = 'http://api.tumblr.com/v2'
 
   validates :tumblr_id, :note_count, :blog_name, :post_url, :slug,
@@ -15,6 +16,14 @@ class TumblrPost < ActiveRecord::Base
   serialize :photos
 
   default_scope { order('published_at DESC') }
+
+  def display_title
+    title || tumblr_type.capitalize
+  end
+
+  def photo?
+    tumblr_type == 'photo'
+  end
 
   def api_repr
     JSON.parse(read_attribute(:api_repr))

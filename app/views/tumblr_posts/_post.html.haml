@@ -1,5 +1,12 @@
 .tumblr-post
-  - if post.title.present?
-    %h2= link_to post.title, post
+  %h2= link_to_unless_current post.display_title, post
+
+  - if post.photo?
+    = render :partial => 'photos', :locals => { :photos => post.photos }
+
+  %p
+    Published to Tumblr
+    = link_to post.published_at, post.post_url
+
   - if post.body.present?
     .tumblr-post-body= post.body.html_safe

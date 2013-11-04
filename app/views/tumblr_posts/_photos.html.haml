@@ -1,0 +1,6 @@
+- photos.each do |photo|
+  - image = photo['alt_sizes'].first
+  = image_tag image['url'], :style => tumblr_photo_style(image)
+
+  - if photo['caption'].present?
+    %p= photo['caption']

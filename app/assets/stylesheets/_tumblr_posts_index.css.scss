@@ -1,0 +1,17 @@
+body.tumblr_posts.index {
+  .tumblr-posts-main {
+    padding-left: 0;
+  }
+  .tumblr-post {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+  .tumblr-recent-posts {
+    padding-left: 0;
+    list-style: none;
+    li {
+      margin: 5px 0;
+    }
+  }
+}
