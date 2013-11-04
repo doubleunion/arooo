@@ -1,3 +1,33 @@
-%h2 Support
+%h2 Support us
 
-%p TODO
+%p
+  Double Union is supported entirely by donations, membership dues, and
+  volunteers. We would love your support in creating a women-friendly
+  makerspace in San Francisco! We hope to serve as a role model and resource
+  for other makerspaces and hackerspaces around the world.
+
+%h3 Make a monthly donation
+= render 'shared/donate_monthly'
+
+%h3 Make a one-time donation
+
+%p
+  Send money via PayPal to
+  = mail_to PAYPAL_EMAIL, PAYPAL_EMAIL
+  and thank you in advance!
+
+%h3 Pay membership dues
+= render 'shared/paypal_dues_form'
+
+%h3 Donate stuff
+%p
+  We will soon have a list of physical items we would like donated. If you'd
+  like to make a donation of stuff on that (soon to be existent) list, email
+  = "#{mail_to CONTACT_EMAIL, CONTACT_EMAIL}.".html_safe
+
+%h3 Volunteer
+%p
+  We are happy to have volunteers help with moving furniture, event setup and
+  teardown, teaching classes, and similar tasks. If you would like to volunteer,
+  please email
+  = "#{mail_to(CONTACT_EMAIL, CONTACT_EMAIL).html_safe}.".html_safe
