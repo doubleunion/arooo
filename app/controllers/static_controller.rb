@@ -10,4 +10,7 @@ class StaticController < ApplicationController
 
   def supporters
   end
+
+  def visit
+  end
 end

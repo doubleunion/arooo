@@ -28,4 +28,11 @@ describe StaticController do
       response.should be_success
     end
   end
+
+  describe 'GET visit' do
+    it 'returns http success' do
+      get :visit
+      response.should be_success
+    end
+  end
 end

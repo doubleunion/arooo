@@ -19,4 +19,5 @@ Doubleunion::Application.routes.draw do
   get 'press',      :to => 'static#press'
   get 'policies',   :to => 'static#policies'
   get 'supporters', :to => 'static#supporters'
+  get 'visit',      :to => 'static#visit'
 end
