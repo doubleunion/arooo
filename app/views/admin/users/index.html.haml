@@ -7,7 +7,7 @@
       %th Username
       %th Email
       %th Registered
-      %th Role
+      %th State
   %tbody
     - @users.each do |user|
       %tr
@@ -15,4 +15,4 @@
         %td= user.username
         %td= user.email
         %td= user.created_at.to_date
-        %td= user.roles.first.name.titleize unless user.roles.first.nil?
+        %td= user.state

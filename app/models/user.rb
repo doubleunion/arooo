@@ -1,10 +1,25 @@
 class User < ActiveRecord::Base
-  rolify
-
-  attr_accessible :role_ids, :as => :admin
   attr_accessible :provider, :uid, :name, :email
 
   validates :username, :presence => true
+
+  state_machine :state, :initial => :visitor do
+    event :make_applicant do
+      transition :visitor => :applicant
+    end
+
+    event :make_member do
+      transition :applicant => :member
+    end
+
+    event :make_key_member do
+      transition :member => :key_member
+    end
+  end
+
+  def member_or_key_member?
+    member? || key_member?
+  end
 
   def self.create_with_omniauth(auth)
     user = User.new

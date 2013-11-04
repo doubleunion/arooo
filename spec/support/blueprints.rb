@@ -9,5 +9,6 @@ require 'machinist/active_record'
 #   end
 
 User.blueprint do
+  username { "user#{sn}" }
   # Attributes here
 end
