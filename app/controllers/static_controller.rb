@@ -13,4 +13,7 @@ class StaticController < ApplicationController
 
   def visit
   end
+
+  def base_assumptions
+  end
 end
