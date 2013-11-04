@@ -20,4 +20,5 @@ Doubleunion::Application.routes.draw do
   get 'policies',   :to => 'static#policies'
   get 'supporters', :to => 'static#supporters'
   get 'visit',      :to => 'static#visit'
+  get 'base_assumptions', :to => 'static#base_assumptions'
 end
