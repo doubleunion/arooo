@@ -1,16 +1,16 @@
 !!!
 %html
   %head
-    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-      %title= content_for?(:title) ? yield(:title) : "Double Union"
-      %meta{:content => content_for?(:description) ? yield(:description) : "Double Union", :name => "description"}
-        = stylesheet_link_tag "application", :media => "all"
+    %meta{ :content => 'width=device-width, initial-scale=1.0', :name => 'viewport' }
+      %title= html_title
+      %meta{ :content => html_description, :name => 'description' }
+        = stylesheet_link_tag 'application', :media => 'all'
         = csrf_meta_tags
         = yield(:head)
-  %body{:class => "#{controller_name} #{action_name}"}
+  %body{ :class => "#{controller_name} #{action_name}" }
     .wrapper
       = render 'layouts/navigation'
-      #main{:role => "main"}
+      #main{ :role => 'main' }
         = render 'layouts/messages'
         - if use_container?
           .container= yield
@@ -18,5 +18,5 @@
           = yield
     %footer
       .container= render 'layouts/footer'
-    = javascript_include_tag "application"
+    = javascript_include_tag 'application'
     = google_analytics

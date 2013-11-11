@@ -3,6 +3,22 @@ module ApplicationHelper
     link_to(label, url, { :target => '_blank' }.merge(opts))
   end
 
+  def html_title
+    if content_for?(:title)
+      yield(:title)
+    else
+      "Double Union | A hacker/maker space for women in San Francisco"
+    end
+  end
+
+  def html_description
+    if content_for?(:description)
+      yield(:description)
+    else
+      "A hacker/maker space for women in San Francisco"
+    end
+  end
+
   def pretty_timestamp(timestamp)
     format = '%b %e'
     format << ', %Y' unless timestamp.year == Time.now.year
