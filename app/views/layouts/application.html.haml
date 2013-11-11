@@ -5,7 +5,6 @@
       %title= content_for?(:title) ? yield(:title) : "Double Union"
       %meta{:content => content_for?(:description) ? yield(:description) : "Double Union", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
-        = javascript_include_tag "application"
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
@@ -19,4 +18,5 @@
           = yield
     %footer
       .container= render 'layouts/footer'
+    = javascript_include_tag "application"
     = google_analytics
