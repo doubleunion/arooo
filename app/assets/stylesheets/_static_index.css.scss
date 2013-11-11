@@ -41,7 +41,7 @@ body.static.index {
   }
 
   .jumbotron {
-    background-image: image-url('jumbotron.png');
+    background-image: url('https://s3-us-west-1.amazonaws.com/doubleunion/jumbotron.png');
     background-position: center;
     .jumbotron-content {
       background-color: rgba(255, 255, 255, 0.8);

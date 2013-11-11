@@ -3,6 +3,10 @@ module ApplicationHelper
     link_to(label, url, { :target => '_blank' }.merge(opts))
   end
 
+  def s3_url(name)
+    "#{S3_BUCKET}/#{name}"
+  end
+
   def html_title
     if content_for?(:title)
       yield(:title)
