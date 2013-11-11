@@ -45,6 +45,7 @@ describe StaticController do
 
   describe 'GET base_assumptions' do
     it 'returns http success' do
+      pending 'not yet public'
       get :base_assumptions
       response.should be_success
     end
