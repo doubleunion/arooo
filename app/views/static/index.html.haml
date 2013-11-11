@@ -1,68 +1,59 @@
 .jumbotron
   .container
-    %h2
-      Double Union is a hacker/maker space for women in San Francisco.
-    %p
-      Our mission is to create a community workshop where women can work on
-      projects in a comfortable, welcoming environment.
-    %p.last
+    .jumbotron-content
+      %h2
+        Double Union is a hacker/maker space for women in San Francisco.
+      %p
+        Our mission is to create a community workshop where women can work on
+        projects in a comfortable, welcoming environment.
       = link_to 'Join us', membership_path, :class => 'btn btn-primary btn-lg'
       = link_to 'Support us', support_path, :class => 'btn btn-default btn-lg'
 
 .container
-  .row
-    %h3 Double Union is a space for your projects
-    %p
-      Things women do in this space include sewing, programming, electronics,
-      woodworking, fiber arts of all kinds, and zine making.
-    .thumbnail= image_tag 'tools/lightbox-and-dremel.jpg'
-    .thumbnail= image_tag 'tools/yarn-and-screenprinting-supplies.jpg'
-    .thumbnail= image_tag 'tools/tools-table.jpg'
-    .thumbnail= image_tag 'tools/paper-cutter.jpg'
-    %p
-      Fast internet, shared tools, a carefully curated library of books and
-      zines, and discussion spaces make this a great space for working on your
-      projects, learning skills, and meeting new friends.
+  %h3 Double Union is a space for your projects
+  %p
+    Things women do in this space include sewing, programming, electronics,
+    woodworking, fiber arts of all kinds, and zine making.
+  %p
+    Fast internet, shared tools, a carefully curated library of books and
+    zines, and discussion spaces make this a great space for working on your
+    projects, learning skills, and meeting new friends.
+  %p
+    Double Union is a supportive community for feminist activism. We are intersectional
+    feminists, women-centered, and queer and trans-inclusive.
 
-  .row
-    %p
-      Double Union is a supportive community for feminist activism. We are intersectional
-      feminists, women-centered, and queer and trans-inclusive.
+  %h3 Visiting Double Union: Classes, Open Houses and Events
+  %p
+    Double Union is in the heart of San Francisco, located on Valencia Street
+    between 14th Street and 15th Street, between Four Barrel Coffee and
+    Zeitgeist.
+  %p
+    Other than during events open to the public, Double Union visitors must
+    be the invited guest of a member. Please do not visit without the express
+    invitation of a member. Please do not invite guests unless you are a
+    member. Guests may be any gender or age.
+  %p
+    Open house events are open to the general public. Visitors do not need an
+    invitation from a member to attend an open house, and may be any gender
+    or age. We will announce when we start having open houses.
+  %p
+    You can learn more about us by reading our
+    = "#{link_to 'blog', tumblr_posts_path},".html_safe
+    following us on Twitter at
+    = "#{link_to "@#{TWITTER_USERNAME}", TWITTER_URL, :target => '_blank'},".html_safe
+    or joining our #{ link_to "general interest mailing list", MAILING_LIST_GENERAL }.
 
-  .row
-    %h3 Visiting Double Union: Classes, Open Houses and Events
-    %p
-      Double Union is in the heart of San Francisco, located on Valencia Street
-      between 14th Street and 15th Street, between Four Barrel Coffee and
-      Zeitgeist.
-    %p
-      Other than during events open to the public, Double Union visitors must
-      be the invited guest of a member. Please do not visit without the express
-      invitation of a member. Please do not invite guests unless you are a
-      member. Guests may be any gender or age.
-    %p
-      Open house events are open to the general public. Visitors do not need an
-      invitation from a member to attend an open house, and may be any gender
-      or age. We will announce when we start having open houses.
-    %p
-      You can learn more about us by reading our
-      = "#{link_to 'blog', tumblr_posts_path},".html_safe
-      following us on Twitter at
-      = "#{link_to "@#{TWITTER_USERNAME}", TWITTER_URL, :target => '_blank'},".html_safe
-      or joining our #{ link_to "general interest mailing list", MAILING_LIST_GENERAL }.
+  %h3 Want to Support Double Union?
+  %p
+    Double Union is a non-profit supported entirely by donations, membership
+    dues, donations, and volunteers.
 
-  .row
-    %h3 Want to Support Double Union?
-    %p
-      Double Union is a non-profit supported entirely by donations, membership
-      dues, donations, and volunteers.
+  %p
+    We would love your support in creating a women-friendly makerspace in San
+    Francisco! We hope to serve as a role model and resource for other
+    makerspaces and hackerspaces around the world.
 
-    %p
-      We would love your support in creating a women-friendly makerspace in San
-      Francisco! We hope to serve as a role model and resource for other
-      makerspaces and hackerspaces around the world.
-
-    %p We are so grateful to #{link_to "our supporters", supporters_path} for helping us thrive!
+  %p We are so grateful to #{link_to "our supporters", supporters_path} for helping us thrive!
 
   .row
     .col-md-6.col-first
@@ -72,7 +63,7 @@
         %strong= PAYPAL_EMAIL
         is the easiest way for you to help us build an amazing space for women.
 
-    .col-md-6.col-last
+    .col-md-6
       %h4 Can you support our work each month?
 
       = render "shared/donate_monthly"

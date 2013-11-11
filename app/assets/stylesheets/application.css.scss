@@ -10,10 +10,12 @@
  *
  *= require_self
  *= require mixins
+ *= require sticky-footer
  *= require_tree .
 */
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,600);
+@import url(http://fonts.googleapis.com/css?family=Bree+Serif:400);
 
 .container {
   max-width: 680px !important;
@@ -36,22 +38,22 @@
 }
 
 footer ul {
+  text-align: center;
   margin-top: 50px;
   margin-left: 0;
   padding-left: 0;
+  padding-bottom: 50px;
+  font-size: 14px;
+  color: #999;
   li {
     display: inline;
     margin-right: 12px;
   }
 }
 
-.navbar ul li span.non-link {
-  display: block;
-  padding: 15px 10px;
-}
-.col-first {
-  padding-left: 0 !important;
-}
-.col-last {
-  padding-right: 0 !important;
+.navbar {
+  ul li span.non-link {
+    display: block;
+    padding: 15px 10px;
+  }
 }

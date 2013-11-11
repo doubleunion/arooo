@@ -1,10 +1,47 @@
 body.static.index {
-  .jumbotron {
-    h2 {
-      margin-top: 0;
+
+  /* Narrow display jumbotron */
+  @media (max-width: 599px) {
+    .jumbotron-content {
+      width: 100%;
+      padding: 30px;
+      h2 {
+        font-size: 30px;
+      }
     }
-    p.last {
-      margin-bottom: 0;
+  }
+
+  /* Medium display jumbotron */
+  @media (min-width: 600px) and (max-width: 959px) {
+    .jumbotron-content {
+      width: 100%;
+      padding: 40px;
+      h2 {
+        font-size: 40px;
+      }
+    }
+  }
+
+  /* Wide display jumbotron */
+  @media (min-width: 960px) {
+    .jumbotron-content {
+      width: 960px;
+      margin-left: -155px;
+      padding: 40px 155px;
+      h2 {
+        font-size: 40px;
+      }
+    }
+  }
+
+  .jumbotron {
+    background-image: image-url('jumbotron.png');
+    background-position: center;
+    .jumbotron-content {
+      background-color: rgba(255, 255, 255, 0.8);
+      h2 {
+        margin-top: 0;
+      }
     }
   }
   .thumbnail {
@@ -16,5 +53,18 @@ body.static.index {
   }
   h3 {
     text-align: center;
+    font-size: 32px;
+  }
+  h4 {
+    font-size: 22px;
+  }
+  .row.donations {
+    .col-md-6 {
+      padding-left: 0;
+      padding-right: 0;
+      &.col-first {
+        padding-right: 20px;
+      }
+    }
   }
 }

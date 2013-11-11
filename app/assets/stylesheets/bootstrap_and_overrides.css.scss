@@ -3,13 +3,14 @@
 body {
   padding-top: 0px;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 26px;
   color: #000;
+  font-family: "Open Sans", sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Bree Serif", sans-serif;
   font-weight: 800;
   line-height: 1.4;
 }
@@ -30,5 +31,14 @@ fieldset {
     font-size: inherit;
     border-bottom: 0;
     margin-bottom: 0;
+  }
+}
+
+.btn-primary {
+  background-color: #d23876;
+  border-color: #be2361;
+  &:hover {
+    border-color: #be2361;
+    background-color: #be2361;
   }
 }
