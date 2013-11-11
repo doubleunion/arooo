@@ -4,9 +4,9 @@
   - if post.photo?
     = render :partial => 'photos', :locals => { :photos => post.photos }
 
-  %p
+  %small
     Published to Tumblr
-    = link_to post.published_at, post.post_url
+    = link_to "#{time_ago_in_words(post.published_at)} ago", post.post_url, :alt => post.published_at, :title => post.published_at
 
   - if post.body.present?
     .tumblr-post-body= post.body.html_safe
