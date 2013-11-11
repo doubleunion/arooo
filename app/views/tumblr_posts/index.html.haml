@@ -4,7 +4,7 @@
     - @recent_posts.each do |post|
       %li
         = link_to post.display_title, tumblr_post_path(post)
-        %small= "#{time_ago_in_words(post.published_at)} ago"
+        %small= pretty_timestamp(post.published_at)
 
   - if @posts.any?
     - @posts.each do |post|

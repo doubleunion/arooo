@@ -3,6 +3,14 @@ module ApplicationHelper
     link_to(label, url, { :target => '_blank' }.merge(opts))
   end
 
+  def pretty_timestamp(timestamp)
+    format = '%b %e'
+    format << ', %Y' unless timestamp.year == Time.now.year
+    format << ' at %l:%M%P'
+
+    timestamp.strftime(format)
+  end
+
   def google_analytics
     return unless Rails.env.production?
 

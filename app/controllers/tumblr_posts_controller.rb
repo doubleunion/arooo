@@ -1,4 +1,7 @@
 class TumblrPostsController < ApplicationController
+  caches_action :index, :layout => false, :expires_in => 12.hours
+  caches_action :show,  :layout => false
+
   def index
     @posts = TumblrPost.page(params[:page])
     @recent_posts = TumblrPost.limit(10)

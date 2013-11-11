@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/rails/actionpack-action_caching.git
+  revision: c701ad9a2e2fa58513981bf0a75c946b71b1f5f7
+  specs:
+    actionpack-action_caching (1.1.0)
+      actionpack (>= 4.0.0, < 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -217,6 +224,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack-action_caching!
   better_errors
   binding_of_caller
   capybara
