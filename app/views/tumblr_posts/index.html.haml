@@ -1,15 +1,14 @@
 .container
   .row
-    .col-md-8.tumblr-posts-main
-      - if @posts.any?
-        - @posts.each do |post|
-          = render :partial => 'post', :locals => { :post => post }
-        = paginate @posts
-    .col-md-4
-      - if @posts_for_sidebar.any?
-        %h3 Latest posts
-        %ul.tumblr-recent-posts
-          - @posts_for_sidebar.each do |post|
-            %li
-              = link_to post.display_title, tumblr_post_path(post)
-              %small= "#{time_ago_in_words(post.published_at)} ago"
+    - if @posts.any?
+      - @posts.each do |post|
+        = render :partial => 'post', :locals => { :post => post }
+      = paginate @posts
+
+    - if @posts_for_sidebar.any?
+      %h3 Latest posts
+      %ul.tumblr-recent-posts
+        - @posts_for_sidebar.each do |post|
+          %li
+            = link_to post.display_title, tumblr_post_path(post)
+            %small= "#{time_ago_in_words(post.published_at)} ago"

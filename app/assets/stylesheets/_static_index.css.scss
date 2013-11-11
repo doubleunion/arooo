@@ -1,8 +1,20 @@
-.jumbotron {
-  h2 {
-    margin-top: 0;
+body.static.index {
+  .jumbotron {
+    h2 {
+      margin-top: 0;
+    }
+    p.last {
+      margin-bottom: 0;
+    }
   }
-  p.last {
-    margin-bottom: 0;
+  .thumbnail {
+    display: inline-block;
+    img {
+      width: 156px;
+      height: 156px;
+    }
+  }
+  h3 {
+    text-align: center;
   }
 }
