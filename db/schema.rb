@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20131104012127) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "tumblr_posts", force: true do |t|
     t.integer  "tumblr_id",       limit: 8,                 null: false
     t.integer  "note_count",                    default: 0, null: false
