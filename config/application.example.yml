@@ -7,12 +7,8 @@
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
 # Add application configuration variables here, as shown below.
 #
-MANDRILL_USERNAME: Your_Username
-MANDRILL_API_KEY: Your_API_Key
-ADMIN_NAME: First User
-ADMIN_EMAIL: user@example.com
-ADMIN_PASSWORD: changeme
-OMNIAUTH_PROVIDER_KEY: Your_OmniAuth_Provider_Key
-OMNIAUTH_PROVIDER_SECRET: Your_OmniAuth_Provider_Secret
-ROLES: [admin, user, VIP]
-TUMBLR_CONSUMER_KEY: changeme
+MANDRILL_USERNAME:
+MANDRILL_API_KEY:
+GITHUB_CLIENT_KEY:
+GITHUB_CLIENT_SECRET:
+TUMBLR_CONSUMER_KEY:
