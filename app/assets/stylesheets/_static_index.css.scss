@@ -2,12 +2,18 @@ body.static.index {
 
   /* Narrow display jumbotron */
   @media (max-width: 599px) {
+    .jumbotron .container {
+      padding: 0;
+    }
     .jumbotron-content {
       width: 100%;
       padding: 30px;
       h2 {
-        font-size: 30px;
+        font-size: 24px;
       }
+    }
+    h3 {
+      font-size: 24px !important;
     }
   }
 
