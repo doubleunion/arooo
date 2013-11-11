@@ -1,5 +1,5 @@
 class TumblrPostsController < ApplicationController
-  caches_action :index, :layout => false, :expires_in => 12.hours
+  caches_action :index, :layout => false
   caches_action :show,  :layout => false
 
   def index
