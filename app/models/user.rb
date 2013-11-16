@@ -1,7 +1,13 @@
 class User < ActiveRecord::Base
   attr_accessible :provider, :uid, :name, :email
 
+  validates :provider, :allow_blank => true, :inclusion => {
+    :in      => %w(github),
+    :message => "%{value} is not a valid provider" }
+
   validates :username, :presence => true
+
+  validates :state, :presence => true
 
   validates :email, :allow_blank => true, :format => {
     :with    => /@/, # more is probably overkill
@@ -25,17 +31,39 @@ class User < ActiveRecord::Base
     member? || key_member?
   end
 
-  def self.create_with_omniauth(auth)
-    user = User.new
+  class << self
+    def create_with_omniauth(auth)
+      new.tap do |user|
+        auth = GithubAuth.new(auth)
 
-    user.provider = auth['provider']
-    user.uid      = auth['uid']
-    user.name     = auth['info']['name']
-    user.username = auth['extra']['raw_info']['login']
-    user.email    = auth['info']['email']
+        user.provider = auth.provider
+        user.uid      = auth.uid
+        user.username = auth.username
+        user.name     = auth.name
+        user.email    = auth.email
 
-    user.save!
-    user
+        user.save!
+      end
+    end
+
+    def find_provisioned(auth)
+      auth = GithubAuth.new(auth)
+
+      where(:provider => auth.provider, :username => auth.username).first
+    end
+
+    def provision_with_state(username, state, attrs = {})
+      new.tap do |user|
+        user.provider = DEFAULT_PROVIDER
+        user.username = username
+        user.state    = state
+
+        user.save!
+      end
+    end
   end
 
+  private
+
+  DEFAULT_PROVIDER = 'github'
 end

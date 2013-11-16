@@ -8,29 +8,22 @@ class SessionsController < ApplicationController
     conditions = { :provider => auth['provider'],
                    :uid      => auth['uid'].to_s }
 
-    user = User.where(conditions).first || User.create_with_omniauth(auth)
+    user   = User.where(conditions).first
+    user ||= User.find_provisioned(auth)
+    user ||= User.create_with_omniauth(auth)
 
-    # Reset the session after successful login, per
-    # 2.8 Session Fixation – Countermeasures:
-    # http://guides.rubyonrails.org/security.html#session-fixation-countermeasures
-    reset_session
-    session[:user_id] = user.id
+    set_current_user(user)
 
-    if user.email.present?
-      redirect_to :root
-    else
-      flash[:notice] = 'Please update your email address'
-      redirect_to settings_path
-    end
+    flash[:notice] = "Welcome, #{user.username}!"
+    redirect_to :root
   end
 
   def destroy
     reset_session
-    redirect_to root_url, :notice => 'Logged out'
+    redirect_to root_url, :notice => 'You have logged out'
   end
 
   def failure
     redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
   end
-
 end

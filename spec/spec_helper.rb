@@ -9,6 +9,14 @@ require 'rspec/autorun'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+OmniAuth.config.test_mode = true
+
+OmniAuth.config.add_mock(:github, {
+  :uid   => '12345',
+  :extra => { :raw_info => { :login => 'someone' } },
+  :info  => { :name => 'Some One', :email => 'someone@foo.bar' }
+})
+
 RSpec.configure do |config|
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
@@ -38,7 +46,7 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
-  
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
   end

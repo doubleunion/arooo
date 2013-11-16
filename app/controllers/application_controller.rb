@@ -27,10 +27,19 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  def require_non_visitor_user
-    unless logged_in? && !current_user.visitor?
+  def require_user
+    unless logged_in?
       redirect_to :root and return
     end
+  end
+
+  def set_current_user(user)
+    # Reset the session after successful login, per
+    # 2.8 Session Fixation – Countermeasures:
+    # http://guides.rubyonrails.org/security.html#session-fixation-countermeasures
+    reset_session
+
+    session[:user_id] = user.id
   end
 
   def use_container?

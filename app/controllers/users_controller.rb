@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_non_visitor_user
+  before_filter :require_user
   before_filter :set_user, :only => [:edit, :update]
 
   def edit

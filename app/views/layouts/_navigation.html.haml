@@ -12,7 +12,7 @@
         %li= link_to 'Blog', tumblr_posts_path
         %li= external_link_to 'Twitter', TWITTER_URL
 
-      - if logged_in? && !current_user.visitor?
+      - if logged_in?
         %ul.nav.navbar-nav.pull-right
           %li.dropdown
             %a{ :href => '#', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' }
