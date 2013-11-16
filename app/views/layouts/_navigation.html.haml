@@ -16,6 +16,7 @@
         %ul.nav.navbar-nav.pull-right
           %li.dropdown
             %a{ :href => '#', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' }
+              = user_gravatar(current_user)
               = current_user.username
               <b class="caret"></b>
             %ul.dropdown-menu

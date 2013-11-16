@@ -5,8 +5,9 @@
     %legend= f.label :name
     = f.text_field :name
   %fieldset
-    %legend= f.label :email
+    %legend= f.label :email, 'Email*'
     = f.text_field :email
+    %small * used for #{link_to 'Gravatar', 'http://gravatar.com'} image
 
   %fieldset
     = f.submit 'Save settings'

@@ -2,7 +2,7 @@ Doubleunion::Application.routes.draw do
   root :to => 'static#index'
 
   namespace :admin do
-    root :to => 'admin#index'
+    root :to => 'users#index'
     resources :users, :only => :index
   end
 

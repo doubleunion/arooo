@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user, :logged_in?, :correct_user?,
-    :use_container?
+    :use_container?, :admin_page?
 
   protected
 
@@ -45,5 +45,9 @@ class ApplicationController < ActionController::Base
   def use_container?
     return @_use_container if defined?(@_use_container)
     @_use_container = true
+  end
+
+  def admin_page?
+    false
   end
 end

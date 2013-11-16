@@ -1,18 +1,17 @@
-%h2 Users
+%h2 Admin
 
-%table.table
-  %thead
-    %tr
-      %th Name
-      %th Username
-      %th Email
-      %th Registered
-      %th State
-  %tbody
-    - @users.each do |user|
-      %tr
-        %td= user.name
-        %td= user.username
-        %td= user.email
-        %td= user.created_at.to_date
-        %td= user.state
+- if @key_members.any?
+  %h3 Key members
+  = render :partial => 'list', :locals => { :users => @key_members }
+
+- if @members.any?
+  %h3 Members
+  = render :partial => 'list', :locals => { :users => @members }
+
+- if @applicants.any?
+  %h3 Applicants
+  = render :partial => 'list', :locals => { :users => @applicants }
+
+- if @visitors.any?
+  %h3 Visitors
+  = render :partial => 'list', :locals => { :users => @visitors }

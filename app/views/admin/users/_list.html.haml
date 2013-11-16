@@ -1,0 +1,14 @@
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Username
+      %th Email
+  %tbody
+    - users.each do |user|
+      %tr
+        %td
+          = user_gravatar(user, 20)
+          = user.name
+        %td= user.username
+        %td= user.email

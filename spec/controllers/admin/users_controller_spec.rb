@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::AdminController do
+describe Admin::UsersController do
 
   describe 'GET index' do
     it 'redirects if not logged in' do
@@ -36,5 +36,4 @@ describe Admin::AdminController do
       response.should be_success
     end
   end
-
 end
