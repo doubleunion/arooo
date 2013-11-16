@@ -61,10 +61,18 @@ class User < ActiveRecord::Base
       end
     end
 
-    def find_provisioned(auth)
+    def find_and_update_provisioned(auth)
       auth = GithubAuth.new(auth)
 
-      where(:provider => auth.provider, :username => auth.username).first
+      if user = find_provisioned(auth)
+        user.provider ||= auth.provider
+        user.uid      ||= auth.uid
+        user.name     ||= auth.name
+        user.email    ||= auth.email
+        user.save!
+      end
+
+      user
     end
 
     def provision_with_state(username, state, attrs = {})
@@ -75,6 +83,12 @@ class User < ActiveRecord::Base
 
         user.save!
       end
+    end
+
+    private
+
+    def find_provisioned(auth)
+      where(:provider => auth.provider, :username => auth.username).first
     end
   end
 
