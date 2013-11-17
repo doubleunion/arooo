@@ -44,10 +44,15 @@
   %li Nominate and vote on new members
   %li Come to weekly meetings
 
-%h3 Membership process
+%h3 Apply
 
 %p
-  New members join through a nomination and voting process. At the moment, we are nominating members from people we know. As we grow, we will develop a more open membership process. If you know one of the current members, please contact them and ask to learn more about the space!
+  New members join through a nomination and voting process. To apply for Double
+  Union membership, start by authenticating with Github. If you don't have a
+  Github account, you will be able to create one for free.
+
+%p= link_to 'Sign in with Github', "/auth/github?return_to=#{new_application_path}", :class => 'btn btn-primary btn-lg'
+
 
 %h3 Current members
 

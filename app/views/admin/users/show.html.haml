@@ -5,7 +5,7 @@
   %h3= @user.name
 
 - if logged_in_as?(@user)
-  %p= link_to 'Edit profile', settings_path
+  %p= link_to 'Edit profile', edit_admin_user_path(@user)
 
 %table.table
 

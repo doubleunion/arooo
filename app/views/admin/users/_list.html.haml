@@ -3,7 +3,6 @@
     %tr
       %th Name
       %th Username
-      %th Email
       %th Status
   %tbody
     - users.each do |user|
@@ -13,5 +12,4 @@
           - if user.name.present?
             = link_to user.name, admin_user_path(user)
         %td= link_to user.username, admin_user_path(user)
-        %td= user.email
         %td= user.display_state

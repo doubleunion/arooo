@@ -3,15 +3,12 @@ Doubleunion::Application.routes.draw do
 
   namespace :admin do
     root :to => 'users#index'
-    resources :users,        :only => [:index, :show]
+    resources :users,        :only => [:index, :show, :edit, :update]
     resources :applications, :only => :show
     resources :votes,        :only => :create
   end
 
   resources :tumblr_posts, :only => [:index, :show], :path => 'blog'
-
-  get 'settings', :to => 'users#edit'
-  resources :users, :only => :update
 
   resources :applications, :only => [:new, :show, :edit, :update]
 
@@ -20,12 +17,12 @@ Doubleunion::Application.routes.draw do
   get 'logout' => 'sessions#destroy'
   get 'auth/failure' => 'sessions#failure'
 
-  get 'membership', :to => 'membership#index'
-
-  get 'support',    :to => 'static#support'
-  get 'press',      :to => 'static#press'
+  get 'membership', :to => 'static#membership'
   get 'policies',   :to => 'static#policies'
+  get 'press',      :to => 'static#press'
+  get 'support',    :to => 'static#support'
   get 'supporters', :to => 'static#supporters'
   get 'visit',      :to => 'static#visit'
+
   #get 'base_assumptions', :to => 'static#base_assumptions'
 end

@@ -15,10 +15,11 @@ class SessionsController < ApplicationController
     set_current_user(user)
     user.logged_in!
 
-    if omniauth_return_to
-      if user.visitor? && omniauth_return_to == new_application_path
-        # User came from application link
+    if omniauth_return_to == new_application_path
+      if user.visitor?
         user.make_applicant!
+      elsif user.member_or_key_member?
+        flash[:error] = 'You must be an applicant to view this page.'
       end
       redirect_to omniauth_return_to
     else

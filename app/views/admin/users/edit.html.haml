@@ -1,11 +1,10 @@
-%h2 Settings
+%h2 Edit profile
 
 %p Profile fields are only visible to members and are totally optional.
 
-- if @user.member_or_key_member?
-  %p= link_to 'View profile', admin_user_path(@user)
-
-= form_for @user do |f|
+= form_for @user, :url => admin_user_path(@user) do |f|
+  %fieldset
+    = f.submit 'Save profile'
 
   %fieldset
     %legend= f.label :name
@@ -44,4 +43,4 @@
       = fields.text_area :bio, :rows => 6
 
   %fieldset
-    = f.submit 'Save settings'
+    = f.submit 'Save profile'
