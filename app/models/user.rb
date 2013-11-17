@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :provider, :uid, :name, :email
+  attr_accessible :provider, :uid, :name, :email, :profile_attributes
 
   validates :provider, :allow_blank => true, :inclusion => {
     :in      => %w(github),
@@ -12,6 +12,12 @@ class User < ActiveRecord::Base
   validates :email, :allow_blank => true, :format => {
     :with    => /@/, # more is probably overkill
     :message => 'Invalid email address' }
+
+  has_one :profile
+
+  after_create :create_profile
+
+  accepts_nested_attributes_for :profile
 
   scope :visitors,    -> { where(:state => 'visitor') }
   scope :applicants,  -> { where(:state => 'applicant') }
@@ -44,6 +50,10 @@ class User < ActiveRecord::Base
   def gravatar_url(size = 200)
     hash = email ? Digest::MD5.hexdigest(email.downcase) : nil
     "http://www.gravatar.com/avatar/#{hash}?s=#{size}"
+  end
+
+  def create_profile
+    self.profile = Profile.create(:user_id => id)
   end
 
   class << self

@@ -1,4 +1,10 @@
 module ApplicationHelper
+  def body_classes
+    classes = [controller_name, action_name]
+    classes << 'admin' if admin_page?
+    classes
+  end
+
   def external_link_to(label, url, opts = {})
     link_to(label, url, { :target => '_blank' }.merge(opts))
   end

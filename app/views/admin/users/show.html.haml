@@ -1,0 +1,40 @@
+- profile = @user.profile
+
+%h2= @user.username
+- if @user.name.present?
+  %h3= @user.name
+
+- if logged_in_as?(@user)
+  %p= link_to 'Edit profile', settings_path
+
+%table.table
+
+  - if profile.twitter.present?
+    %tr
+      %td Twitter url
+      %td= auto_link(profile.twitter_url)
+
+  - if profile.facebook.present?
+    %tr
+      %td Facebook url
+      %td= auto_link(profile.facebook)
+
+  - if profile.website.present?
+    %tr
+      %td Website url
+      %td= auto_link(profile.website)
+
+  - if profile.linkedin.present?
+    %tr
+      %td LinkedIn url
+      %td= auto_link(profile.linkedin)
+
+  - if profile.blog.present?
+    %tr
+      %td Blog url
+      %td= auto_link(profile.blog)
+
+  - if profile.bio.present?
+    %tr
+      %td Bio
+      %td= profile.bio

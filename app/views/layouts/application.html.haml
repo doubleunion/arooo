@@ -8,7 +8,7 @@
         = stylesheet_link_tag 'admin', :media => 'all' if admin_page?
         = csrf_meta_tags
         = yield(:head)
-  %body{ :class => "#{controller_name} #{action_name}" }
+  %body{ :class => body_classes.join(' ') }
     .wrapper
       = render 'layouts/navigation'
       #main{ :role => 'main' }

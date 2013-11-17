@@ -1,13 +1,47 @@
 %h2 Settings
 
+%p Profile fields are only visible to members and are totally optional.
+
+- if @user.member_or_key_member?
+  %p= link_to 'View profile', admin_user_path(@user)
+
 = form_for @user do |f|
+
   %fieldset
     %legend= f.label :name
     = f.text_field :name
+
   %fieldset
     %legend= f.label :email, 'Email*'
     = f.text_field :email
     %small * used for #{link_to 'Gravatar', 'http://gravatar.com'} image
+
+  = f.fields_for :profile do |fields|
+    = fields.hidden_field :id
+
+    %fieldset
+      %legend= fields.label :twitter, 'Twitter username'
+      = fields.text_field :twitter
+
+    %fieldset
+      %legend= fields.label :facebook, 'Facebook url'
+      = fields.text_field :facebook
+
+    %fieldset
+      %legend= fields.label :website, 'Website url'
+      = fields.text_field :website
+
+    %fieldset
+      %legend= fields.label :linkedin, 'LinkedIn url'
+      = fields.text_field :linkedin
+
+    %fieldset
+      %legend= fields.label :blog, 'Blog url'
+      = fields.text_field :blog
+
+    %fieldset
+      %legend= fields.label :bio, 'Short bio'
+      = fields.text_area :bio, :rows => 6
 
   %fieldset
     = f.submit 'Save settings'

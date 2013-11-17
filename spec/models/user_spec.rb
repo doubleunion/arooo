@@ -15,6 +15,20 @@ describe User do
     User.new.state.should == 'visitor'
   end
 
+  it 'should have profile after created' do
+    User.new.profile.should be_nil
+    User.make!.profile.should be_an_instance_of(Profile)
+  end
+
+  it 'should accept nested attributes for profile' do
+    user = User.make!
+    user.profile.twitter.should be_nil
+    user.update_attributes!(:profile_attributes => {
+      :id      => user.profile.id,
+      :twitter => 'Horse_ebooks' })
+    user.profile.twitter.should eq('Horse_ebooks')
+  end
+
   it 'should transition from visitor to applicant' do
     user = User.new
     user.username = 'sallyride'

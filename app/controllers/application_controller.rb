@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user, :logged_in?, :correct_user?,
+  helper_method :current_user, :logged_in?, :logged_in_as?, :correct_user?,
     :use_container?, :admin_page?
 
   protected
@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     !!current_user
+  end
+
+  def logged_in_as?(user)
+    logged_in? && user && current_user.id == user.id
   end
 
   def require_user

@@ -6,4 +6,8 @@ class Admin::UsersController < Admin::AdminController
     @applicants  = User.applicants.limit(100)
     @visitors    = User.visitors.limit(100)
   end
+
+  def show
+    @user = User.find(params.require(:id))
+  end
 end

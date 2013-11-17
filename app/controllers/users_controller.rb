@@ -6,8 +6,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    attrs = params.require(:user).permit(:name, :email)
-    if @user.update_attributes(attrs)
+    if @user.update_attributes(user_params)
       flash[:notice] = 'Settings updated'
       redirect_to :action => :edit
     else
@@ -17,6 +16,15 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def user_params
+    params.require(:user).permit(:name, :email, {
+      :profile_attributes => profile_attributes })
+  end
+
+  def profile_attributes
+    [:id, :twitter, :facebook, :website, :linkedin, :blog, :bio]
+  end
 
   def set_user
     @user = current_user

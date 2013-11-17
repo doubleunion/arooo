@@ -3,7 +3,7 @@ Doubleunion::Application.routes.draw do
 
   namespace :admin do
     root :to => 'users#index'
-    resources :users, :only => :index
+    resources :users, :only => [:index, :show]
   end
 
   resources :tumblr_posts, :only => [:index, :show], :path => 'blog'
