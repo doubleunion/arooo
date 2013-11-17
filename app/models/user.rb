@@ -98,7 +98,9 @@ class User < ActiveRecord::Base
     private
 
     def find_provisioned(auth)
-      where(:provider => auth.provider, :username => auth.username).first
+      where(:provider => auth.provider)
+        .where(['LOWER(username) = ?', auth.username.downcase])
+        .first
     end
   end
 
