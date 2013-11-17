@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :require_user
-  before_filter :set_user, :only => [:edit, :update]
+  before_action :require_member_or_key_member_user
+  before_action :set_user, :only => [:edit, :update]
 
   def edit
   end
@@ -18,8 +18,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, {
-      :profile_attributes => profile_attributes })
+    params.require(:user).permit(:name, :email,
+      :profile_attributes => profile_attributes)
   end
 
   def profile_attributes

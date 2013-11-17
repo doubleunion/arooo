@@ -57,3 +57,11 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
+
+module AuthHelper
+  def login_as(state, attrs = {})
+    User.make!(state, attrs).tap do |user|
+      controller.stub(:current_user).and_return(user)
+    end
+  end
+end

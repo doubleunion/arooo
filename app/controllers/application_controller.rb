@@ -37,6 +37,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_applicant_user
+    require_user_with_state('applicant')
+  end
+
+  def require_member_or_key_member_user
+    require_user_with_state(['member', 'key_member'])
+  end
+
+  def require_user_with_state(states)
+    unless logged_in? && states.include?(current_user.state)
+      redirect_to :root and return
+    end
+  end
+
   def set_current_user(user)
     # Reset the session after successful login, per
     # 2.8 Session Fixation – Countermeasures:

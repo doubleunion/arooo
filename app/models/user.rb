@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def create_profile
-    self.profile = Profile.create(:user_id => id)
+    self.profile ||= Profile.create(:user_id => id)
   end
 
   class << self
