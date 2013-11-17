@@ -37,6 +37,10 @@ module ApplicationHelper
     timestamp.strftime(format)
   end
 
+  def preserve_newlines(text)
+    text.split("\n").map { |p| h(p) }.join("<br />").html_safe
+  end
+
   def google_analytics
     return unless Rails.env.production?
 

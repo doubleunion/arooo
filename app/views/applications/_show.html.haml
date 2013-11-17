@@ -1,0 +1,51 @@
+%table.table
+
+  %tr
+    %td.left
+      Full name
+      %small (required)
+    %td= @user.name
+
+  %tr
+    %td.left
+      Email
+      %small (required)
+    %td= @user.email
+
+  %tr
+    %td.left Twitter url
+    %td= auto_link(@user.profile.twitter_url)
+
+  %tr
+    %td.left Facebook url
+    %td= auto_link(@user.profile.facebook)
+
+  %tr
+    %td.left Website url
+    %td= auto_link(@user.profile.website)
+
+  %tr
+    %td.left LinkedIn url
+    %td= auto_link(@user.profile.linkedin)
+
+  %tr
+    %td.left Blog url
+    %td= auto_link(@user.profile.blog)
+
+  %tr
+    %td.left Tell us a little about yourself!
+    %td= preserve_newlines(@user.application.summary)
+
+  %tr
+    %td.left Why are you interested in joining Double Union?
+    %td= preserve_newlines(@user.application.reasons)
+
+  %tr
+    %td.left What would you like to work on in the space?
+    %td= preserve_newlines(@user.application.projects)
+
+  %tr
+    %td.left
+      What skills are you most interested in learning, improving, and/or
+      teaching?
+    %td= preserve_newlines(@user.application.skills)

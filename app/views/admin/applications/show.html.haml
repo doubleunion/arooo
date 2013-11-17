@@ -1,0 +1,51 @@
+- unless logged_in_as?(@user)
+  %h3 Your vote
+
+  - if current_user.voted_on?(@application)
+    - vote = current_user.vote_for(@application)
+    %p
+      You voted <strong>#{vote.display_value}</strong>
+      #{time_ago_in_words(vote.created_at)} ago
+
+  = form_for @vote, :url => admin_votes_path, :method => :post do |f|
+    = f.hidden_field :application_id, :value => @application.id
+    = f.submit 'Yes', :name => 'vote_yes'
+    = f.submit 'No',  :name => 'vote_no'
+
+%h3 Status
+
+%table.table
+  %tr
+    %td Application status
+    %td= @application.state
+  %tr
+    %td Application created
+    %td= @application.created_at
+  %tr
+    %td Application submitted
+    %td= @application.submitted_at
+  %tr
+    %td Applicant status
+    %td= @user.display_state
+  %tr
+    %td Votes <strong>for</strong> membership (#{@application.yes_votes.size})
+    %td
+      - if @application.yes_votes.any?
+        - @application.yes_votes.each do |vote|
+          = link_to vote.user.username, admin_user_path(vote.user)
+          <br />
+      - else
+        \--
+  %tr
+    %td Votes <strong>against</strong> membership (#{@application.no_votes.size})
+    %td= @application.no_votes.any? ? 'hidden' : '--'
+  %tr
+    %td Not yet voted (#{@application.not_voted_count})
+    %td
+      - if @application.not_voted_count > 0
+        hidden
+      - else
+        \--
+
+%h3 Application
+= render :partial => 'applications/show', :locals => { :user => @user }

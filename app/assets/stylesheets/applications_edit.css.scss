@@ -1,0 +1,32 @@
+body.applications.edit, body.applications.update {
+  form {
+    input[type="text"], textarea {
+      width: 400px;
+    }
+  }
+
+  tr.nested-table {
+    > td {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    table td {
+      border: 0;
+    }
+  }
+  .checkbox-label {
+    cursor: pointer;
+    font-weight: normal;
+  }
+}
+
+body.applications.show {
+  td.left {
+    width: 30%;
+    font-weight: bold;
+    small {
+      font-weight: normal;
+      display: block;
+    }
+  }
+}

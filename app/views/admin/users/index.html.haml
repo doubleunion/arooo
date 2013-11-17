@@ -1,17 +1,34 @@
 %h2 Admin
 
-- if @key_members.any?
-  %h3 Key members
-  = render :partial => 'list', :locals => { :users => @key_members }
+- if @open_applications.any?
+  %h3 Applications
+  %table.table
+    %tr
+      %th Name
+      %th Username
+      %th Submitted
+      %th You
+      %th Yes
+      %th No
+      %th ?
+    - @open_applications.each do |application|
+      %tr
+        %td
+          - if application.user.name.present?
+            = link_to application.user.name, admin_application_path(application)
+        %td= application.user.username
+        %td= "#{time_ago_in_words(application.submitted_at)} ago"
+        %td
+          - if current_user.voted_on?(application)
+            = current_user.vote_for(application).display_value
+          - else
+            none
+        %td= application.yes_votes.size
+        %td= application.no_votes.size
+        %td= application.not_voted_count
 
-- if @members.any?
-  %h3 Members
-  = render :partial => 'list', :locals => { :users => @members }
-
-- if @applicants.any?
-  %h3 Applicants
-  = render :partial => 'list', :locals => { :users => @applicants }
-
-- if @visitors.any?
-  %h3 Visitors
-  = render :partial => 'list', :locals => { :users => @visitors }
+- if @users.any?
+  %h3 Users
+  = paginate @users
+  = render :partial => 'list', :locals => { :users => @users }
+  = paginate @users

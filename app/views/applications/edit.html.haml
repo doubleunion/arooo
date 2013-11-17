@@ -1,0 +1,117 @@
+%h2 Membership application
+
+%p
+  Hi, #{current_user.username}! We're happy you're interested in becoming a
+  member of Double Union.
+
+%p
+  You can save this application at any time before you submit it. Once
+  submitted, it will only be visible to Double Union members.  No part of this
+  application will ever be public.
+
+%p
+  All fields are optional unless otherwise indicated.
+
+= form_for @user, :url => application_path(@user.application) do |f|
+
+  %fieldset
+    - if @user.application.submitted?
+      = f.submit 'Update application', :name => 'save'
+    - else
+      = f.submit 'Save without submitting', :name => 'save'
+
+  %table.table
+
+    %tr
+      %td
+        = f.label :name, 'Full name'
+        %small (required)
+      %td= f.text_field :name
+
+    %tr
+      %td
+        = f.label :email
+        %small (required)
+      %td= f.text_field :email
+
+    = f.fields_for :profile do |profile_fields|
+      = profile_fields.hidden_field :id
+
+      %tr
+        %td= profile_fields.label :twitter, 'Twitter username'
+        %td= profile_fields.text_field :twitter
+
+      %tr
+        %td= profile_fields.label :facebook, 'Facebook url'
+        %td= profile_fields.text_field :facebook
+
+      %tr
+        %td= profile_fields.label :website, 'Website url'
+        %td= profile_fields.text_field :website
+
+      %tr
+        %td= profile_fields.label :linkedin, 'LinkedIn url'
+        %td= profile_fields.text_field :linkedin
+
+      %tr
+        %td= profile_fields.label :blog, 'Blog url'
+        %td= profile_fields.text_field :blog
+
+    = f.fields_for :application do |app_fields|
+      = app_fields.hidden_field :id
+
+      %tr
+        %td
+          = app_fields.label :summary, 'Tell us a little about yourself!'
+          %small (2000 character maximum)
+        %td= app_fields.text_area :summary, :rows => 10
+
+      %tr
+        %td
+          = app_fields.label :reasons, 'Why are you interested in joining Double Union?'
+          %small (2000 character maximum)
+        %td= app_fields.text_area :reasons, :rows => 10
+
+      %tr
+        %td
+          = app_fields.label :projects, 'What would you like to work on in the space?'
+          %small (2000 character maximum)
+        %td= app_fields.text_area :projects, :rows => 10
+
+      %tr
+        %td
+          = app_fields.label :skills, 'What skills are you most interested in learning, improving, and/or teaching?'
+          %small (2000 character maximum)
+        %td= app_fields.text_area :skills, :rows => 10
+
+
+      %tr.nested-table
+        %td{ :colspan => 2 }
+          %table
+            %tr
+              %td= app_fields.check_box :agreement_terms
+              %td= app_fields.label :agreement_terms, "I understand the #{link_to 'privileges and responsibilities', membership_path} that come with Double Union membership".html_safe, :class => 'checkbox-label'
+
+            %tr
+              %td= app_fields.check_box :agreement_policies
+              %td= app_fields.label :agreement_policies, "I agree to all posted #{link_to 'Double Union policies', policies_path}".html_safe, :class => 'checkbox-label'
+
+            %tr
+              %td= app_fields.check_box :agreement_female
+              %td= app_fields.label :agreement_female, "I am significantly female-identified", :class => 'checkbox-label'
+
+  - if @user.application.submitted?
+    = f.submit 'Update application', :name => 'save'
+  - else
+    = f.submit 'Save without submitting', :name => 'save'
+
+  %h3 Submit
+  - if @user.application.submitted?
+    %p Application submitted #{time_ago_in_words(@user.application.submitted_at)} ago
+    %p= link_to 'View application', application_path(@user.application)
+  - else
+    %p
+      When you're done with your application, submit it with the button below.
+      You will be able to edit it at any time.
+    %fieldset
+      = f.submit 'Submit application', :name => 'submit'

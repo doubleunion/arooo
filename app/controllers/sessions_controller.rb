@@ -13,9 +13,25 @@ class SessionsController < ApplicationController
     user ||= User.create_with_omniauth(auth)
 
     set_current_user(user)
+    user.logged_in!
 
-    flash[:notice] = "Welcome, #{user.username}!"
-    redirect_to :root
+    if omniauth_return_to
+      if user.visitor? && omniauth_return_to == new_application_path
+        # User came from application link
+        user.make_applicant!
+      end
+      redirect_to omniauth_return_to
+    else
+      # Non-application signup/login
+      flash[:notice] = "Welcome, #{user.username}!"
+      redirect_to :root
+    end
+  end
+
+  def omniauth_return_to
+    if request.env['omniauth.params']
+      request.env['omniauth.params']['return_to']
+    end
   end
 
   def destroy

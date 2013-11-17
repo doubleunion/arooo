@@ -1,10 +1,7 @@
 class Admin::UsersController < Admin::AdminController
   def index
-    # TODO: paginate
-    @members     = User.members.limit(100)
-    @key_members = User.key_members.limit(100)
-    @applicants  = User.applicants.limit(100)
-    @visitors    = User.visitors.limit(100)
+    @users = User.order_by_state.page(params[:page]).per(50)
+    @open_applications = Application.submitted.page(params[:page]).per(50)
   end
 
   def show

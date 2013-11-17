@@ -17,3 +17,10 @@ User.blueprint(:visitor)    { state { 'visitor'    } }
 User.blueprint(:applicant)  { state { 'applicant'  } }
 User.blueprint(:member)     { state { 'member'     } }
 User.blueprint(:key_member) { state { 'key_member' } }
+
+Application.blueprint do
+end
+
+Vote.blueprint do
+  value { true }
+end

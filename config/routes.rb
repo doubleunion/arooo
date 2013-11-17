@@ -3,13 +3,17 @@ Doubleunion::Application.routes.draw do
 
   namespace :admin do
     root :to => 'users#index'
-    resources :users, :only => [:index, :show]
+    resources :users,        :only => [:index, :show]
+    resources :applications, :only => :show
+    resources :votes,        :only => :create
   end
 
   resources :tumblr_posts, :only => [:index, :show], :path => 'blog'
 
   get 'settings', :to => 'users#edit'
   resources :users, :only => :update
+
+  resources :applications, :only => [:new, :show, :edit, :update]
 
   get 'auth/:provider/callback' => 'sessions#create'
   get 'login' => 'sessions#new'

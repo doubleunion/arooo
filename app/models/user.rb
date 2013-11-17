@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  attr_accessible :provider, :uid, :name, :email, :profile_attributes
+  attr_accessible :provider, :uid, :name, :email, :profile_attributes,
+    :application_attributes
 
   validates :provider, :allow_blank => true, :inclusion => {
     :in      => %w(github),
@@ -14,15 +15,30 @@ class User < ActiveRecord::Base
     :message => 'Invalid email address' }
 
   has_one :profile
+  has_one :application
 
-  after_create :create_profile
+  has_many :votes
 
-  accepts_nested_attributes_for :profile
+  after_create :create_profile, :create_application
+  accepts_nested_attributes_for :profile, :application
 
   scope :visitors,    -> { where(:state => 'visitor') }
   scope :applicants,  -> { where(:state => 'applicant') }
   scope :members,     -> { where(:state => 'member') }
   scope :key_members, -> { where(:state => 'key_member') }
+
+  scope :members_and_key_members, -> { where(:state => %w(member key_member)) }
+
+  scope :order_by_state, -> { order(<<-eos
+    CASE state
+    WHEN 'key_member' THEN 1
+    WHEN 'member'     THEN 2
+    WHEN 'applicant'  THEN 3
+    WHEN 'visitor'    THEN 4
+    ELSE                   5
+    END
+    eos
+    .squish)}
 
   state_machine :state, :initial => :visitor do
     event :make_applicant do
@@ -54,6 +70,26 @@ class User < ActiveRecord::Base
 
   def create_profile
     self.profile ||= Profile.create(:user_id => id)
+  end
+
+  def create_application
+    self.application ||= Application.create(:user_id => id)
+  end
+
+  def display_state
+    state.gsub(/_/, ' ')
+  end
+
+  def logged_in!
+    touch :last_logged_in_at
+  end
+
+  def voted_on?(application)
+    !!vote_for(application)
+  end
+
+  def vote_for(application)
+    Vote.where(:application => application, :user => self).first
   end
 
   class << self

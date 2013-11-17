@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131116231543) do
+ActiveRecord::Schema.define(version: 20131117183236) do
+
+  create_table "applications", force: true do |t|
+    t.integer  "user_id"
+    t.string   "state",                                           null: false
+    t.string   "summary",            limit: 2000
+    t.string   "reasons",            limit: 2000
+    t.string   "projects",           limit: 2000
+    t.string   "skills",             limit: 2000
+    t.boolean  "agreement_terms",                 default: false, null: false
+    t.boolean  "agreement_policies",              default: false, null: false
+    t.boolean  "agreement_female",                default: false, null: false
+    t.datetime "submitted_at"
+    t.datetime "processed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "applications", ["state"], name: "index_applications_on_state", using: :btree
+  add_index "applications", ["user_id"], name: "index_applications_on_user_id", using: :btree
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id",                 null: false
@@ -57,8 +76,22 @@ ActiveRecord::Schema.define(version: 20131116231543) do
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username",   null: false
-    t.string   "state",      null: false
+    t.string   "username",          null: false
+    t.string   "state",             null: false
+    t.datetime "last_logged_in_at"
   end
+
+  create_table "votes", force: true do |t|
+    t.integer  "user_id",        null: false
+    t.integer  "application_id", null: false
+    t.boolean  "value",          null: false
+    t.string   "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["application_id"], name: "index_votes_on_application_id", using: :btree
+  add_index "votes", ["user_id", "application_id"], name: "index_votes_on_user_id_and_application_id", using: :btree
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
 end
