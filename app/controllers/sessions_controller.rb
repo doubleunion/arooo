@@ -18,10 +18,10 @@ class SessionsController < ApplicationController
     if omniauth_return_to == new_application_path
       if user.visitor?
         user.make_applicant!
+        redirect_to omniauth_return_to and return
       elsif user.member_or_key_member?
-        flash[:error] = 'You must be an applicant to view this page.'
+        redirect_to admin_root_path and return
       end
-      redirect_to omniauth_return_to
     else
       # Non-application signup/login
       flash[:notice] = "Welcome, #{user.username}!"

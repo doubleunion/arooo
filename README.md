@@ -32,3 +32,9 @@ Make sure `bundle exec rspec` passes before pushing your changes.
 
 To add a bunch of users to your dev database, you can use `bundle exec rake
 populate:users`. They will have random states.
+
+## TODO
+
+* RSS feed
+* Commenting
+* Move Paypal membership dues form to admin
