@@ -19,7 +19,7 @@ class Application < ActiveRecord::Base
   scope :submitted, -> { where(:state => 'submitted').order('submitted_at DESC') }
 
   def yes_votes
-    @_yes_votes ||= votes.select(&:no?)
+    @_yes_votes ||= votes.select(&:yes?)
   end
 
   def no_votes
