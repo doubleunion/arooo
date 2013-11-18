@@ -13,8 +13,8 @@ class Vote < ActiveRecord::Base
   validate :user_is_not_applicant
 
   def user_is_voting_member
-    unless user && user.member_or_key_member?
-      errors.add(:user, 'is not a member')
+    unless user && user.key_member?
+      errors.add(:user, 'is not a key member')
     end
   end
 

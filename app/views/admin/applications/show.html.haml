@@ -1,4 +1,4 @@
-- unless logged_in_as?(@user)
+- if !logged_in_as?(@user) && current_user.key_member?
   %h3 Your vote
 
   - if current_user.voted_on?(@application)

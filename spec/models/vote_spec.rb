@@ -13,10 +13,20 @@ describe Vote do
     Vote.new.tap(&:valid?).should have_at_least(1).errors_on(:value)
   end
 
-  it 'should be valid' do
+  it 'should be invalid if voter is member' do
     vote = Vote.new
 
     vote.user = User.make!(:member)
+    vote.application = Application.make!(:user => User.make!(:applicant))
+    vote.value = true
+    vote.valid?.should be_false
+    vote.should have_at_least(1).errors_on(:user)
+  end
+
+  it 'should be valid if voter is key member' do
+    vote = Vote.new
+
+    vote.user = User.make!(:key_member)
     vote.application = Application.make!(:user => User.make!(:applicant))
     vote.value = true
     vote.valid?.should be_true
@@ -25,7 +35,7 @@ describe Vote do
   it 'should validate uniqueness per user and application' do
     applicant   = User.make!(:applicant)
     application = Application.make!(:user => applicant)
-    voter       = User.make!(:member)
+    voter       = User.make!(:key_member)
     vote        = Vote.make!(:application => application, :user => voter)
 
     invalid = Vote.new(:application => application,

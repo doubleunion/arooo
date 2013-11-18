@@ -28,7 +28,7 @@ class Application < ActiveRecord::Base
 
   def not_voted_count
     @_not_voted_count ||= begin
-      User.members_and_key_members.count - votes.size
+      User.key_members.count - votes.size
     end
   end
 
