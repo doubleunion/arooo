@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::AdminController
-  before_action :set_user, :only => [:edit, :show, :update]
+  before_action :set_user, :only => [:edit, :update]
 
   def index
     @users = User.order_by_state.page(params[:page]).per(50)
@@ -7,6 +7,7 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def show
+    @user = User.find(params.require(:id))
   end
 
   def edit
