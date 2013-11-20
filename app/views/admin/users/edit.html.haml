@@ -3,20 +3,25 @@
 %p Profile fields are only visible to members and are totally optional.
 
 = form_for @user, :url => admin_user_path(@user) do |f|
-  %fieldset
-    = f.submit 'Save profile'
-
-  %fieldset
-    %legend= f.label :name
-    = f.text_field :name
-
-  %fieldset
-    %legend= f.label :email, 'Email*'
-    = f.text_field :email
-    %small * used for #{link_to 'Gravatar', 'http://gravatar.com'} image
 
   = f.fields_for :profile do |fields|
     = fields.hidden_field :id
+
+    %fieldset
+      = f.submit 'Save profile'
+
+    %fieldset
+      = fields.check_box :show_name_on_site
+      = fields.label :show_name_on_site, 'Show name/website/gravatar on public site?', :class => 'checkbox-label'
+
+    %fieldset
+      %legend= f.label :name
+      = f.text_field :name
+
+    %fieldset
+      %legend= f.label :email, 'Email*'
+      = f.text_field :email
+      %small * used for #{link_to 'Gravatar', 'http://gravatar.com'} image
 
     %fieldset
       %legend= fields.label :twitter, 'Twitter username'

@@ -1,3 +1,10 @@
+body.admin {
+  .checkbox-label {
+    font-weight: normal;
+    cursor: pointer;
+  }
+}
+
 body.admin.applications.show {
   td.left {
     width: 30%;

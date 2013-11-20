@@ -31,7 +31,8 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def profile_attributes
-    [:id, :twitter, :facebook, :website, :linkedin, :blog, :bio]
+    [:id, :twitter, :facebook, :website, :linkedin, :blog, :bio,
+     :show_name_on_site]
   end
 
   def set_user

@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131117183236) do
+ActiveRecord::Schema.define(version: 20131120033529) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "applications", force: true do |t|
     t.integer  "user_id"
@@ -33,15 +36,16 @@ ActiveRecord::Schema.define(version: 20131117183236) do
   add_index "applications", ["user_id"], name: "index_applications_on_user_id", using: :btree
 
   create_table "profiles", force: true do |t|
-    t.integer  "user_id",                 null: false
+    t.integer  "user_id",                                        null: false
     t.string   "twitter"
     t.string   "facebook"
     t.string   "website"
     t.string   "linkedin"
     t.string   "blog"
-    t.string   "bio",        limit: 2000
+    t.string   "bio",               limit: 2000
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "show_name_on_site",              default: false, null: false
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
