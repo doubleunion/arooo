@@ -1,6 +1,6 @@
 class TumblrPostsController < ApplicationController
-  caches_action :index, :layout => false
-  caches_action :show,  :layout => false
+  #caches_action :index, :layout => false
+  #caches_action :show,  :layout => false
 
   def index
     @posts = TumblrPost.page(params[:page])
