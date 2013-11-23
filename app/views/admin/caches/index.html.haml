@@ -1,0 +1,11 @@
+%h2 Site cache controls
+
+= form_tag expire_admin_caches_path do
+  %fieldset
+    %legend= label_tag :controller_name
+    = text_field_tag :controller_name
+  %fieldset
+    %legend= label_tag :action_name
+    = text_field_tag :action_name
+  %fieldset
+    = submit_tag 'Expire action cache'

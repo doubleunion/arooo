@@ -6,6 +6,10 @@ Doubleunion::Application.routes.draw do
     resources :users,        :only => [:index, :show, :edit, :update]
     resources :applications, :only => :show
     resources :votes,        :only => :create
+
+    resources :caches, :only => :index do
+      post :expire, :on => :collection
+    end
   end
 
   resources :tumblr_posts, :only => [:index, :show], :path => 'blog'

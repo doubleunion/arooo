@@ -26,6 +26,14 @@ class User < ActiveRecord::Base
 
   scope :members_and_key_members, -> { where(:state => %w(member key_member)) }
 
+  scope :show_public, -> {
+    members_and_key_members
+    .includes(:profile)
+    .where(:'profiles.show_name_on_site' => true)
+    .where('name IS NOT NULL')
+    .order_by_state
+  }
+
   scope :order_by_state, -> { order(<<-eos
     CASE state
     WHEN 'key_member' THEN 1

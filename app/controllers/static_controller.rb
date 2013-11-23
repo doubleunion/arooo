@@ -1,12 +1,24 @@
 class StaticController < ApplicationController
+  caches_action :index,      :layout => false
+  caches_action :membership, :layout => false
+  caches_action :policies,   :layout => false
+  caches_action :press,      :layout => false
+  caches_action :support,    :layout => false
+  caches_action :supporters, :layout => false
+  caches_action :visit,      :layout => false
+
   def index
     set_use_container(false)
   end
 
-  def press
+  def membership
+    @users = User.show_public.order(:name).limit(100)
   end
 
   def policies
+  end
+
+  def press
   end
 
   def support

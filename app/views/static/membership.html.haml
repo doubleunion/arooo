@@ -53,18 +53,20 @@
 
 %p= link_to 'Sign in with Github', "/auth/github?return_to=#{new_application_path}", :class => 'btn btn-primary btn-lg'
 
-
 %h3 Current members
 
-%ul
-  %li #{ link_to "Amelia Greenhall", "http://www.ameliagreenhall.com" } (Executive Director)
-  %li #{ link_to "Liz Henry", "http://bookmaniac.org/" } (Secretary)
-  %li #{ link_to "Valerie Aurora", "http://valerieaurora.org/" } (Treasurer)
-  %li Lukas Blakk (Key member)
-  %li Alice Boxhall (Membership coordinator)
-  %li Rachel Chalmers (Key member)
-  %li #{ link_to "Lillie Chilen", "http://lilliechilen.com/" } (Key member)
-  %li Hannah Grimm (Key member)
-  %li #{ link_to "Heather Rivers", "http://heatherrivers.com/" } (Key member)
-  %li #{ link_to "Judy Tuan", "http://judytuna.com/" } (Key member)
-  %li #{ link_to "Rose White", "http://yarnivore.com/" } (Librarian)
+.current-members
+  - @users.in_groups_of(2, false).each do |group|
+    .current-members-row
+      - group.each do |user|
+        .current-member
+          .member-image
+            - if user.email
+              = image_tag user.gravatar_url(50), :alt => user.name, :title => user.name, :class => 'icon-50'
+          .member-info
+            %span.member-name
+              - if user.profile.website
+                = link_to user.name, user.profile.website
+              - else
+                = user.name
+            %span.member-status= user.display_state
