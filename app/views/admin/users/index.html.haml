@@ -18,7 +18,11 @@
           - if application.user.name.present?
             = link_to application.user.name, admin_application_path(application)
         %td= application.user.username
-        %td= "#{time_ago_in_words(application.submitted_at)} ago"
+        %td
+          - if application.submitted_at
+            = "#{time_ago_in_words(application.submitted_at)} ago"
+          - else
+            \--
         - if current_user.key_member?
           %td
             - if current_user.voted_on?(application)

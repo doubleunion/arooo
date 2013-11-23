@@ -38,7 +38,7 @@ module ApplicationHelper
   end
 
   def preserve_newlines(text)
-    text.split("\n").map { |p| h(p) }.join("<br />").html_safe
+    text ? text.split("\n").map { |p| h(p) }.join("<br />").html_safe : nil
   end
 
   def google_analytics

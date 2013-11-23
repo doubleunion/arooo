@@ -42,7 +42,7 @@ describe Admin::UsersController do
 
     it 'redirects if logged in as visitor' do
       login_as(:visitor)
-      get :index
+      get :show, :id => User.make!.id
       response.should redirect_to :root
     end
   end

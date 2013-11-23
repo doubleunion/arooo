@@ -59,9 +59,10 @@ RSpec.configure do |config|
 end
 
 module AuthHelper
-  def login_as(state, attrs = {})
-    User.make!(state, attrs).tap do |user|
-      controller.stub(:current_user).and_return(user)
+  def login_as(user_or_state, attrs = {})
+    unless user_or_state.is_a?(User)
+      user = User.make!(user_or_state, attrs)
     end
+    controller.stub(:current_user).and_return(user)
   end
 end
