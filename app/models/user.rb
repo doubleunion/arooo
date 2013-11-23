@@ -6,18 +6,15 @@ class User < ActiveRecord::Base
     :in      => %w(github),
     :message => "%{value} is not a valid provider" }
 
-  validates :username, :presence => true
-
-  validates :state, :presence => true
+  validates :username, :state, :presence => true
 
   validates :email, :allow_blank => true, :format => {
     :with    => /@/, # more is probably overkill
     :message => 'Invalid email address' }
 
-  has_one :profile
-  has_one :application
-
-  has_many :votes
+  has_one  :profile,     :dependent => :destroy
+  has_one  :application, :dependent => :destroy
+  has_many :votes,       :dependent => :destroy
 
   after_create :create_profile, :create_application
   accepts_nested_attributes_for :profile, :application
@@ -64,6 +61,7 @@ class User < ActiveRecord::Base
   end
 
   def gravatar_url(size = 200)
+    email = gravatar_email || self.email
     hash = email ? Digest::MD5.hexdigest(email.downcase) : nil
     "http://www.gravatar.com/avatar/#{hash}?s=#{size}"
   end
@@ -141,6 +139,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def gravatar_email
+    profile.gravatar_email if profile.gravatar_email.present?
+  end
 
   DEFAULT_PROVIDER = 'github'
 end

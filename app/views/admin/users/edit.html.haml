@@ -1,6 +1,8 @@
 %h2 Edit profile
 
-%p Profile fields are only visible to members and are totally optional.
+%p
+  Profile fields are only visible to members by default and are totally
+  optional.
 
 = form_for @user, :url => admin_user_path(@user) do |f|
 
@@ -12,16 +14,17 @@
 
     %fieldset
       = fields.check_box :show_name_on_site
-      = fields.label :show_name_on_site, 'Show name/website/gravatar on public site?', :class => 'checkbox-label'
+      = fields.label :show_name_on_site,
+        "Show name/website/gravatar on #{link_to 'public site', membership_path}?".html_safe,
+        :class => 'checkbox-label'
 
     %fieldset
       %legend= f.label :name
       = f.text_field :name
 
     %fieldset
-      %legend= f.label :email, 'Email*'
+      %legend= f.label :email, 'Email'
       = f.text_field :email
-      %small * used for #{link_to 'Gravatar', 'http://gravatar.com'} image
 
     %fieldset
       %legend= fields.label :twitter, 'Twitter username'
@@ -44,8 +47,14 @@
       = fields.text_field :blog
 
     %fieldset
-      %legend= fields.label :bio, 'Short bio'
+      %legend= fields.label :bio, 'Short bio*'
       = fields.text_area :bio, :rows => 6
+      %small * introduce yourself :)
+
+    %fieldset
+      %legend= fields.label :gravatar_email, 'Gravatar email*'
+      = fields.text_field :gravatar_email
+      %small * override email for #{link_to 'Gravatar', 'http://gravatar.com'}
 
   %fieldset
     = f.submit 'Save profile'
