@@ -1,11 +1,5 @@
 class StaticController < ApplicationController
-  caches_action :index,      :layout => false
   caches_action :membership, :layout => false
-  caches_action :policies,   :layout => false
-  caches_action :press,      :layout => false
-  caches_action :support,    :layout => false
-  caches_action :supporters, :layout => false
-  caches_action :visit,      :layout => false
 
   def index
     set_use_container(false)
