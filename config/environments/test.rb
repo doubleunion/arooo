@@ -33,4 +33,8 @@ Doubleunion::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # using rack_session_access gem for auth in integration tests
+  # see: http://pivotallabs.com/faking-authentication-for-capybara-tests-within-a-rails-engine/
+  config.middleware.use RackSessionAccess::Middleware
 end

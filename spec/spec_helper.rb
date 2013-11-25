@@ -4,6 +4,8 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'email_spec'
 require 'rspec/autorun'
+require 'capybara/rails'
+require 'rack_session_access/capybara'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -20,6 +22,7 @@ OmniAuth.config.add_mock(:github, {
 RSpec.configure do |config|
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
+  config.include FactoryGirl::Syntax::Methods
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -64,5 +67,6 @@ module AuthHelper
       user = User.make!(user_or_state, attrs)
     end
     controller.stub(:current_user).and_return(user)
+    user
   end
 end

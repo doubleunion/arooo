@@ -23,12 +23,14 @@ group :development do
   gem 'better_errors'
   gem 'html2haml'
   gem 'quiet_assets'
-  gem 'faker'
+  gem 'awesome_print'
 end
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'thin'
+  gem 'faker'
+  gem "rack_session_access"
 end
 
 group :production do
@@ -42,4 +44,5 @@ group :test do
   gem 'email_spec'
   gem 'launchy'
   gem 'machinist'
+  gem 'factory_girl_rails'
 end

@@ -35,6 +35,7 @@ GEM
     addressable (2.3.5)
     arel (4.0.1)
     atomic (1.1.14)
+    awesome_print (1.1.0)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -73,6 +74,11 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
+    factory_girl (4.3.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
+      railties (>= 3.0.0)
     faker (1.2.0)
       i18n (~> 0.5)
     faraday (0.8.8)
@@ -150,6 +156,9 @@ GEM
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
+    rack_session_access (0.1.1)
+      builder (>= 2.0.0)
+      rack (>= 1.0.0)
     rails (4.0.0)
       actionmailer (= 4.0.0)
       actionpack (= 4.0.0)
@@ -225,12 +234,14 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-action_caching!
+  awesome_print
   better_errors
   capybara
   coffee-rails (~> 4.0.0)
   cucumber-rails
   database_cleaner (= 1.0.1)
   email_spec
+  factory_girl_rails
   faker
   figaro
   haml-rails
@@ -245,6 +256,7 @@ DEPENDENCIES
   pg
   protected_attributes
   quiet_assets
+  rack_session_access
   rails (= 4.0.0)
   rails_autolink
   rspec-rails
