@@ -49,3 +49,11 @@
 
 %h3 Application
 = render :partial => 'applications/show', :locals => { :user => @user }
+
+%h3 Comments
+- @application.comments.each do |comment|
+  %p= comment.comment
+  %small by #{User.find(comment.user_id).name} at #{comment.created_at.strftime("%-I:%M%P on %b %-d, %Y")}
+  %hr
+%h4 Add Comment
+= render "comment_form"

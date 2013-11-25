@@ -2,6 +2,7 @@ class Application < ActiveRecord::Base
   belongs_to :user
 
   has_many :votes
+  has_many :comments
 
   validates :user_id, :presence => true
 

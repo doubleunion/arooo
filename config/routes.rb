@@ -4,7 +4,9 @@ Doubleunion::Application.routes.draw do
   namespace :admin do
     root :to => 'users#index'
     resources :users,        :only => [:index, :show, :edit, :update]
-    resources :applications, :only => :show
+    resources :applications, :only => :show do
+      resources :comments,   :only => :create
+    end
     resources :votes,        :only => :create
 
     resources :caches, :only => :index do
