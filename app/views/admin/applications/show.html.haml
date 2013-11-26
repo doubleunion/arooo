@@ -16,17 +16,11 @@
 
 %table.table
   %tr
-    %td Application status
-    %td= @application.state
-  %tr
-    %td Application created
-    %td= @application.created_at
-  %tr
-    %td Application submitted
-    %td= @application.submitted_at
-  %tr
-    %td Applicant status
-    %td= @user.display_state
+    %td Submitted
+    %td
+      - if @application.submitted_at
+        = pretty_timestamp(@application.submitted_at)
+        %small= "(#{time_ago_in_words(@application.submitted_at)} ago)"
   %tr
     %td Votes <strong>for</strong> membership (#{@application.yes_votes.size})
     %td
