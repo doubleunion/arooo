@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   has_one  :profile,     :dependent => :destroy
   has_one  :application, :dependent => :destroy
   has_many :votes,       :dependent => :destroy
-  has_many :comments
 
   after_create :create_profile, :create_application
   accepts_nested_attributes_for :profile, :application

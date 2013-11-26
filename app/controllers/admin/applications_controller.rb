@@ -9,6 +9,5 @@ class Admin::ApplicationsController < Admin::AdminController
 
     @user = @application.user
     @vote = current_user.vote_for(@application) || Vote.new
-    @comment = Comment.new
   end
 end
