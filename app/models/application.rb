@@ -1,7 +1,8 @@
 class Application < ActiveRecord::Base
   belongs_to :user
 
-  has_many :votes
+  has_many :votes,    :dependent => :destroy
+  has_many :comments, :dependent => :destroy
 
   validates :user_id, :presence => true
 
@@ -16,7 +17,22 @@ class Application < ActiveRecord::Base
 
   validate :validate_agreed, :if => :submitted?
 
-  scope :submitted, -> { where(:state => 'submitted').order('submitted_at DESC') }
+  scope :for_applicant, -> {
+    includes(:user)
+    .where(:'users.state' => 'applicant')
+  }
+
+  scope :submitted, -> {
+    for_applicant
+    .where(:state => 'submitted')
+    .order('applications.submitted_at DESC')
+  }
+
+  scope :started,   -> {
+    for_applicant
+    .where(:state => 'started')
+    .order('applications.created_at DESC')
+  }
 
   def yes_votes
     @_yes_votes ||= votes.select(&:yes?)

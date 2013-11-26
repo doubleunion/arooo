@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_one  :profile,     :dependent => :destroy
   has_one  :application, :dependent => :destroy
   has_many :votes,       :dependent => :destroy
+  has_many :comments,    :dependent => :destroy
 
   after_create :create_profile, :create_application
   accepts_nested_attributes_for :profile, :application
@@ -32,6 +33,22 @@ class User < ActiveRecord::Base
     .where(:'profiles.show_name_on_site' => true)
     .where('name IS NOT NULL')
     .order_by_state
+  }
+
+  scope :with_submitted_application, -> {
+    applicants
+    .includes(:profile)
+    .includes(:application)
+    .where(:'applications.state' => 'submitted')
+    .order('applications.submitted_at DESC')
+  }
+
+  scope :with_started_application, -> {
+    applicants
+    .includes(:profile)
+    .includes(:application)
+    .where(:'applications.state' => 'started')
+    .order('applications.submitted_at DESC')
   }
 
   scope :order_by_state, -> { order(<<-eos

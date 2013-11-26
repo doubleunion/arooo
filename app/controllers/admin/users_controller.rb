@@ -2,8 +2,13 @@ class Admin::UsersController < Admin::AdminController
   before_action :set_user, :only => [:edit, :update]
 
   def index
-    @users = User.order_by_state.page(params[:page]).per(50)
-    @open_applications = Application.submitted.limit(50)
+    @members_and_key_members = User.members_and_key_members
+      .includes(:profile)
+      .order_by_state
+      .limit(100)
+
+    @applicants_submitted = User.with_submitted_application.limit(50)
+    @applicants_started   = User.with_started_application.limit(50)
   end
 
   def show

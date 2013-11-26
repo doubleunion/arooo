@@ -1,6 +1,7 @@
 class Admin::ApplicationsController < Admin::AdminController
   def show
     @application = Application.find(params.require(:id))
+    @comments = @application.comments
 
     unless @application.submitted?
       flash[:error] = 'This application is not currently visible.'

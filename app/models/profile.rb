@@ -8,6 +8,6 @@ class Profile < ActiveRecord::Base
   attr_protected :id
 
   def twitter_url
-    twitter ? "https://twitter.com/#{twitter.gsub(/@/, '')}" : nil
+    twitter.present? ? "https://twitter.com/#{twitter.gsub(/@/, '')}" : nil
   end
 end

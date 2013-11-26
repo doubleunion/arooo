@@ -21,6 +21,12 @@ User.blueprint(:key_member) { state { 'key_member' } }
 Application.blueprint do
 end
 
+Application.blueprint(:with_user) { user { User.make!(:applicant) } }
+
 Vote.blueprint do
   value { true }
+end
+
+Comment.blueprint do
+  # Attributes here
 end

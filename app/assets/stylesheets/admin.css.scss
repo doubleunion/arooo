@@ -14,4 +14,18 @@ body.admin.applications.show {
       display: block;
     }
   }
+  .comment {
+    border-bottom: 1px solid #eee;
+    padding: 3px 0;
+    small {
+      color: #999;
+      font-size: 12px;
+    }
+    form, textarea {
+      display: inline;
+    }
+    textarea {
+      width: 400px;
+    }
+  }
 }
