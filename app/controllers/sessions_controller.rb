@@ -24,8 +24,12 @@ class SessionsController < ApplicationController
       end
     else
       # Non-application signup/login
-      flash[:notice] = "Welcome, #{user.username}!"
-      redirect_to :root
+      if user.member_or_key_member?
+        flash[:notice] = "Welcome, #{user.username}!"
+        redirect_to admin_root_path
+      else
+        redirect_to :root
+      end
     end
   end
 
