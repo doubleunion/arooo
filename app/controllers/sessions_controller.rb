@@ -15,29 +15,13 @@ class SessionsController < ApplicationController
     set_current_user(user)
     user.logged_in!
 
-    if omniauth_return_to == new_application_path
-      if user.visitor?
-        user.make_applicant!
-        redirect_to omniauth_return_to and return
-      elsif user.applicant?
-        redirect_to edit_application_path(user.application)
-      elsif user.member_or_key_member?
-        redirect_to admin_root_path and return
-      end
-    else
-      # Non-application signup/login
-      if user.member_or_key_member?
-        flash[:notice] = "Welcome, #{user.username}!"
-        redirect_to admin_root_path
-      else
-        redirect_to :root
-      end
-    end
-  end
-
-  def omniauth_return_to
-    if request.env['omniauth.params']
-      request.env['omniauth.params']['return_to']
+    if user.visitor?
+      user.make_applicant!
+      redirect_to edit_application_path(user.application) and return
+    elsif user.applicant?
+      redirect_to edit_application_path(user.application) and return
+    elsif user.member_or_key_member?
+      redirect_to admin_root_path and return
     end
   end
 
