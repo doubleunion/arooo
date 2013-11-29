@@ -11,6 +11,15 @@ class ApplicationController < ActionController::Base
 
   private
 
+  rescue_from Exception do |exception|
+    email = AdminMailer.exception_email(exception,
+      :session      => session,
+      :current_user => current_user)
+    email.deliver
+
+    raise exception
+  end
+
   def current_user
     return @current_user if defined?(@current_user)
 

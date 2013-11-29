@@ -1,0 +1,15 @@
+%h3 Exception
+%pre= "#{@exception.class}: #{@exception.message}"
+
+- if @current_user
+  %h3 User
+  %pre
+    - attrs = %w(id provider name username email)
+    = attrs.map { |a| "#{a}: #{@current_user.send(a)}" }.join("\n")
+
+- if @session_hash
+  %h3 Session
+  %pre= @session_hash.map { |k, v| "#{k}: #{v}" }.join("\n")
+
+%h3 Backtrace
+%pre= @exception.backtrace.join("\n")
