@@ -19,6 +19,8 @@ class SessionsController < ApplicationController
       if user.visitor?
         user.make_applicant!
         redirect_to omniauth_return_to and return
+      elsif user.applicant?
+        redirect_to edit_application_path(user.application)
       elsif user.member_or_key_member?
         redirect_to admin_root_path and return
       end
