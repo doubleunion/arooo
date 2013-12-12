@@ -11,21 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126073648) do
+ActiveRecord::Schema.define(version: 20131212060434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "applications", force: true do |t|
     t.integer  "user_id"
-    t.string   "state",                                           null: false
-    t.string   "summary",            limit: 2000
-    t.string   "reasons",            limit: 2000
-    t.string   "projects",           limit: 2000
-    t.string   "skills",             limit: 2000
-    t.boolean  "agreement_terms",                 default: false, null: false
-    t.boolean  "agreement_policies",              default: false, null: false
-    t.boolean  "agreement_female",                default: false, null: false
+    t.string   "state",                              null: false
+    t.boolean  "agreement_terms",    default: false, null: false
+    t.boolean  "agreement_policies", default: false, null: false
+    t.boolean  "agreement_female",   default: false, null: false
     t.datetime "submitted_at"
     t.datetime "processed_at"
     t.datetime "created_at"
@@ -57,6 +53,10 @@ ActiveRecord::Schema.define(version: 20131126073648) do
     t.datetime "updated_at"
     t.boolean  "show_name_on_site",              default: false, null: false
     t.string   "gravatar_email"
+    t.string   "summary",           limit: 2000
+    t.string   "reasons",           limit: 2000
+    t.string   "projects",          limit: 2000
+    t.string   "skills",            limit: 2000
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree

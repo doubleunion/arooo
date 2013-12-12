@@ -118,18 +118,18 @@ describe ApplicationsController do
     describe 'if logged in as applicant' do
       it 'should update own application' do
         user = login_as(:applicant)
-        user.application.summary.should be_nil
+        user.application.agreement_terms.should be_false
 
         params = { :id => user.application.id, :user => {
           :application_attributes => {
             :id      => user.application.id,
-            :summary => 'Testing' }}}
+            :agreement_terms => true }}}
 
         post :update, params
 
         response.should redirect_to edit_application_path(user.application)
 
-        user.application.summary.should eq('Testing')
+        user.application.agreement_terms.should be_true
       end
     end
   end

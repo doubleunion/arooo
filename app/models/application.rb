@@ -10,11 +10,6 @@ class Application < ActiveRecord::Base
 
   validates :state, :presence => true
 
-  validates :summary,  :length => { :maximum => 2000 }
-  validates :reasons,  :length => { :maximum => 2000 }
-  validates :projects, :length => { :maximum => 2000 }
-  validates :skills,   :length => { :maximum => 2000 }
-
   validate :validate_agreed, :if => :submitted?
 
   scope :for_applicant, -> {

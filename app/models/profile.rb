@@ -5,6 +5,11 @@ class Profile < ActiveRecord::Base
 
   validates :bio, :length => { :maximum => 2000 }
 
+  validates :summary,  :length => { :maximum => 2000 }
+  validates :reasons,  :length => { :maximum => 2000 }
+  validates :projects, :length => { :maximum => 2000 }
+  validates :skills,   :length => { :maximum => 2000 }
+
   attr_protected :id
 
   def twitter_url
