@@ -26,12 +26,18 @@
 
 Write specs! Yay! Especially for anything involving authorization walls.
 
+Run `rake db:test:prepare` after you pull or make any changes to the app, generally
+
 Make sure `bundle exec rspec` passes before pushing your changes.
 
 ## Populate development database
 
 To add a bunch of users to your dev database, you can use `bundle exec rake
 populate:users`. They will have random states.
+
+If your user is not an admin (eg, your state is applicant), change it by using the state machine (controlling user states, which defines which state transitions are valid)
+`u.make_applicant!`, `u.make_member!`,` u.make_key_member!`
+... these will work if it's a valid transition. But if you want to bypass an invalid state transition error, for instance to transition a user directly from applicant to key member, you can do u.update_attribute(:state, 'key_member')
 
 ## TODO
 
