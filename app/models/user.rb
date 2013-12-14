@@ -119,7 +119,7 @@ class User < ActiveRecord::Base
   
   def number_applications_needing_vote
     if self.key_member?
-      n = Application.where(state: 'submitted').count - Application.where(state: 'submitted').joins(:votes).where(user_id: self.id).count
+      n = Application.where(state: 'submitted').count - Application.joins("JOIN votes ON votes.application_id = applications.id AND applications.state = 'submitted' AND votes.user_id = #{self.id}").count
       n==0 ? nil : n
     else
       nil
