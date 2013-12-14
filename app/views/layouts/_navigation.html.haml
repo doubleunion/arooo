@@ -14,7 +14,12 @@
 
       - if logged_in?
         %ul.nav.navbar-nav.pull-right
+          %li.vote-alert-badge
+            %a{ :href => admin_root_path }
+              %span.badge= current_user.number_applications_needing_vote
+        %ul.nav.navbar-nav.pull-right
           %li.dropdown
+            / %span.badge 5
             %a{ :href => '#', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' }
               = user_gravatar(current_user)
               = current_user.username

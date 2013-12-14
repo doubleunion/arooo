@@ -116,6 +116,15 @@ class User < ActiveRecord::Base
   def vote_for(application)
     Vote.where(:application => application, :user => self).first
   end
+  
+  def number_applications_needing_vote
+    if self.key_member?
+      n = Application.where(state: 'submitted').count - Application.where(state: 'submitted').joins(:votes).where(user_id: self.id).count
+      n==0 ? nil : n
+    else
+      nil
+    end
+  end
 
   def sponsor(application)
     Sponsorship.where(:application => application, :user => self).first
