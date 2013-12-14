@@ -3,6 +3,8 @@ class Application < ActiveRecord::Base
 
   has_many :votes,    :dependent => :destroy
   has_many :comments, :dependent => :destroy
+  has_many :sponsorships
+  has_many :users, :through => :sponsorships
 
   validates :user_id, :presence => true
 

@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_one  :application, :dependent => :destroy
   has_many :votes,       :dependent => :destroy
   has_many :comments,    :dependent => :destroy
+  has_many :sponsorships
+  has_many :applications, :through => :sponsorships
 
   after_create :create_profile, :create_application
   accepts_nested_attributes_for :profile, :application
@@ -113,6 +115,10 @@ class User < ActiveRecord::Base
 
   def vote_for(application)
     Vote.where(:application => application, :user => self).first
+  end
+
+  def sponsor(application)
+    Sponsorship.where(:application => application, :user => self).first
   end
 
   class << self

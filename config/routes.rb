@@ -8,6 +8,7 @@ Doubleunion::Application.routes.draw do
 
     resources :applications, :only => :show do
       resources :comments, :only => :create
+      post 'sponsor' => "applications#sponsor"
     end
 
     resources :caches, :only => :index do

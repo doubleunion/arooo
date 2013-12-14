@@ -12,6 +12,14 @@
     = f.submit 'Yes', :name => 'vote_yes', :disabled => vote && vote.value
     = f.submit 'No',  :name => 'vote_no',  :disabled => vote && !vote.value
 
+%h3 Sponsorship
+
+= form_for :sponsorship, :url => admin_application_sponsor_path(@application), :method => :post do |f|
+  = f.label :user_id do
+    = f.check_box :user_id
+    I've met this person and think they would be a great fit for Double Union
+  = f.submit "Sponsor"
+
 %h3 Status
 
 %table.table
@@ -21,6 +29,14 @@
       - if @application.submitted_at
         = pretty_timestamp(@application.submitted_at)
         %small= "(#{time_ago_in_words(@application.submitted_at)} ago)"
+  %tr
+    %td Sponsors (who have met this person and recommend them)
+    %td
+      - if @application.sponsorships.any?
+        - @application.sponsorships.each do |sponsor|
+          = link_to sponsor.user.username, admin_user_path(sponsor.user)
+      - else
+        none, yet
   %tr
     %td Votes <strong>for</strong> membership (#{@application.yes_votes.size})
     %td
