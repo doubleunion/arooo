@@ -1,5 +1,5 @@
 - if !logged_in_as?(@user) && current_user.key_member?
-  %h3 Your vote
+  %h3= @user.name
 
   - if current_user.voted_on?(@application)
     - vote = current_user.vote_for(@application)
