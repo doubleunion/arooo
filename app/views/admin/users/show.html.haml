@@ -12,27 +12,27 @@
   - if profile.twitter.present?
     %tr
       %td Twitter url
-      %td= auto_link(profile.twitter_url)
+      %td= external_auto_link(profile.twitter_url)
 
   - if profile.facebook.present?
     %tr
       %td Facebook url
-      %td= auto_link(profile.facebook)
+      %td= external_auto_link(profile.facebook)
 
   - if profile.website.present?
     %tr
       %td Website url
-      %td= auto_link(profile.website)
+      %td= external_auto_link(profile.website)
 
   - if profile.linkedin.present?
     %tr
       %td LinkedIn url
-      %td= auto_link(profile.linkedin)
+      %td= external_auto_link(profile.linkedin)
 
   - if profile.blog.present?
     %tr
       %td Blog url
-      %td= auto_link(profile.blog)
+      %td= external_auto_link(profile.blog)
 
   - if profile.bio.present?
     %tr

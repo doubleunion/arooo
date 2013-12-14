@@ -14,23 +14,23 @@
 
   %tr
     %td.left Twitter url
-    %td= auto_link(@user.profile.twitter_url)
+    %td= external_auto_link(@user.profile.twitter_url)
 
   %tr
     %td.left Facebook url
-    %td= auto_link(@user.profile.facebook)
+    %td= external_auto_link(@user.profile.facebook)
 
   %tr
     %td.left Website url
-    %td= auto_link(@user.profile.website)
+    %td= external_auto_link(@user.profile.website)
 
   %tr
     %td.left LinkedIn url
-    %td= auto_link(@user.profile.linkedin)
+    %td= external_auto_link(@user.profile.linkedin)
 
   %tr
     %td.left Blog url
-    %td= auto_link(@user.profile.blog)
+    %td= external_auto_link(@user.profile.blog)
 
   %tr
     %td.left Tell us a little about yourself!
