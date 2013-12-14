@@ -54,7 +54,7 @@
 %p= link_to 'Sign in with Github', '/auth/github', :class => 'btn btn-primary btn-lg'
 
 %h3 Current members
-
+%p There are #{@total_members} current members, including:
 .current-members
   - @users.in_groups_of(2, false).each do |group|
     .current-members-row
