@@ -35,20 +35,22 @@
         %td= application.not_voted_count
 
 - if @applicants_started.any?
-  %h3 Pending applications
-  %table.table
-    %tr
-      %th Name
-      %th Username
-      %th Started
-    - @applicants_started.each do |applicant|
-      - application = applicant.application
+  %h3.pending-applications-header
+    %a{"data-toggle" => "collapse" , "href" => "#collapsePending"} Pending  applications <b class="caret"></b>
+  %div.collapse.out#collapsePending
+    %table.table
       %tr
-        %td
-          = user_gravatar(applicant, 20)
-          = applicant.name
-        %td= applicant.username
-        %td= "#{time_ago_in_words(application.created_at)} ago"
+        %th Name
+        %th Username
+        %th Started
+      - @applicants_started.each do |applicant|
+        - application = applicant.application
+        %tr
+          %td
+            = user_gravatar(applicant, 20)
+            = applicant.name
+          %td= applicant.username
+          %td= "#{time_ago_in_words(application.created_at)} ago"
 
 - if @members_and_key_members.any?
   %h3 Members
