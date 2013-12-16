@@ -3,6 +3,9 @@ body.admin {
     font-weight: normal;
     cursor: pointer;
   }
+  .container {
+    max-width: 800px !important;
+  }
 }
 
 body.admin.applications.show {

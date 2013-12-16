@@ -7,6 +7,7 @@
       %th Name
       %th Username
       %th Submitted
+      %th Sponsors
       - if current_user.key_member?
         %th You
       %th Yes
@@ -24,6 +25,8 @@
             = "#{time_ago_in_words(application.submitted_at)} ago"
           - else
             \--
+        %td
+          = application.sponsorships.count
         - if current_user.key_member?
           %td
             - if current_user.voted_on?(application)
