@@ -10,20 +10,20 @@ class Admin::ApplicationsController < Admin::AdminController
 
     @user = @application.user
     @vote = current_user.vote_for(@application) || Vote.new
-    @sponsorship = current_user.sponsor(@application) || Sponsorship.new
+    @sponsorship = current_user.sponsor(@application)
   end
 
   def sponsor
     application = Application.find(application_params)
 
-    if sponsorship_params[:user_id] == "0"
-      Sponsorship.where(user_id: current_user, application_id: application).first.destroy
-    else
+    if sponsorship_params[:is_sponsor] == "1"
       sponsorship = Sponsorship.new(user_id: current_user.id, application_id: application.id)
 
       unless sponsorship.save
         flash[:error] = "Sorry, something went wrong!"
       end
+    else
+      Sponsorship.where(user_id: current_user, application_id: application).destroy_all
     end
 
     redirect_to admin_application_path(application)
@@ -32,7 +32,7 @@ class Admin::ApplicationsController < Admin::AdminController
   private
 
   def sponsorship_params
-    params.require(:sponsorship).permit(:user_id)
+    params.permit(:is_sponsor)
   end
 
   def application_params

@@ -15,8 +15,8 @@
 %h3 Sponsorship
 
 = form_for :sponsorship, :url => admin_application_sponsor_path(@application), :method => :post do |f|
-  = f.label :user_id do
-    = f.check_box :user_id
+  = label_tag :is_sponsor do
+    = check_box_tag :is_sponsor, 1, @sponsorship.present?
     I've met this person and think they would be a great fit for Double Union
   = f.submit "Sponsor"
 
