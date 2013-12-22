@@ -10,6 +10,10 @@ FactoryGirl.define do
       state "member"
     end
 
+    factory :key_member do
+      state "key_member"
+    end
+
     factory :applicant do
       state "applicant"
     end

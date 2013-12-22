@@ -103,4 +103,61 @@ describe Admin::UsersController do
       user.email.should eq('someone2@foo.bar')
     end
   end
+
+  describe 'GET setup' do
+    it 'redirects to root if logged out' do
+      get :setup, :user_id => 1
+      response.should redirect_to root_path
+    end
+
+    it 'redirects to root if logged in as visitor' do
+      user = login_as(:visitor)
+      get :setup, :user_id => user.id
+      response.should redirect_to root_path
+    end
+
+    it 'redirects to root if logged in as applicant' do
+      user = login_as(:applicant)
+      get :setup, :user_id => user.id
+      response.should redirect_to root_path
+    end
+
+    it 'renders if logged in as member' do
+      user = login_as(:member)
+      get :setup, :user_id => user.id
+      response.should render_template :setup
+    end
+  end
+
+  describe 'PATCH finalize' do
+    it 'redirects to root if logged out' do
+      post :update, :id => User.make!.id
+      response.should redirect_to root_path
+    end
+
+    it 'redirects to root if logged in as visitor' do
+      user = login_as(:visitor)
+      post :update, :id => user.id
+      response.should redirect_to root_path
+    end
+
+    it 'redirects to root if logged in as applicant' do
+      user = login_as(:applicant)
+      post :update, :id => user.id
+      response.should redirect_to root_path
+    end
+
+    it 'updates Google email and dues pledge if logged in' do
+      user = login_as(:member, :name => 'Foo Bar', :email => 'someone@foo.bar')
+
+      patch :finalize, :user_id => user.id, :user => {
+        :dues_pledge  => 25,
+        :email_for_google => 'googly-eyes@example.com' }
+
+      response.should render_template "setup"
+
+      user.dues_pledge.should eq(25)
+      user.email_for_google.should eq('googly-eyes@example.com')
+    end
+  end
 end

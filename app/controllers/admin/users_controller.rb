@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::AdminController
-  before_action :set_user, :only => [:edit, :update]
+  before_action :set_user, :except => [:index, :show]
 
   def index
     @members_and_key_members = User.members_and_key_members
@@ -28,10 +28,24 @@ class Admin::UsersController < Admin::AdminController
     end
   end
 
+  def setup
+  end
+
+  def finalize
+    if @user.update_attributes(user_params)
+      flash.now[:notice] = 'Account details set'
+      render :action => :setup
+    else
+      flash.now[:error] = "Whoops, something went wrong: #{@user.errors.full_messages}"
+      render :action => :setup
+    end
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:name, :email,
+      :email_for_google, :dues_pledge,
       :profile_attributes => profile_attributes)
   end
 

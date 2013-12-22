@@ -3,7 +3,10 @@ Doubleunion::Application.routes.draw do
 
   namespace :admin do
     root :to => 'users#index'
-    resources :users, :only => [:index, :show, :edit, :update]
+    resources :users, :only => [:index, :show, :edit, :update] do
+      get 'setup' => "users#setup"
+      patch 'setup' => "users#finalize"
+    end
     resources :votes, :only => :create
 
     resources :applications, :only => :show do

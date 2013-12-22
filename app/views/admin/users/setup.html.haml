@@ -1,0 +1,35 @@
+%h1 Double Union Account Setup
+
+%h3 Email & dues pledge
+
+%p
+  We use Google docs and calendar to share information.
+  Let us know what email address we should share those things with and
+  how much you're able to contribute as dues ($10, $25, $50, or $100 per month).
+
+%p
+  If you ever need to update your Google docs/calendar email address, please email
+  #{mail_to "membership@doubleunion.org"} and we'll get those updated, too.
+
+.form
+  = form_for @user, url: admin_user_setup_path(@user) do |f|
+    .form-group
+      = f.label "Google-friendly email"
+      = f.text_field :email_for_google, size: 40
+    .form-group
+      = f.label "Dues pledge"
+      = f.number_field :dues_pledge, min: "10", max: "100"
+    .form-group
+      = f.submit "Submit", class: "btn btn-primary"
+
+%h3 Set up monthly dues via PayPal
+%p Email membership@doubleunion.org if you have any questions or concerns!
+= render 'shared/paypal_dues_form'
+
+%h3 Sign up for the mailing list
+%p
+  =link_to "Join the DU Members Mailing List.", "http://lists.doubleunion.org/listinfo.cgi/members-doubleunion.org", target: "_blank"
+  We'll get you approved quickly, and then you can introduce yourself!
+
+%p
+  =button_to "Back to members home", admin_root_path, class: "btn btn-default", method: "get"

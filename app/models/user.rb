@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :provider, :uid, :name, :email, :profile_attributes,
-    :application_attributes
+    :application_attributes, :email_for_google, :dues_pledge
 
   validates :provider, :allow_blank => true, :inclusion => {
     :in      => %w(github),
@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   validates :email, :allow_blank => true, :format => {
     :with    => /@/, # more is probably overkill
     :message => 'Invalid email address' }
+
+  validates :dues_pledge, numericality: true, allow_blank: true
 
   has_one  :profile,     :dependent => :destroy
   has_one  :application, :dependent => :destroy
