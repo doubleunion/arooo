@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::ApplicationsController do
+describe Members::ApplicationsController do
   include AuthHelper
 
   render_views
@@ -32,7 +32,7 @@ describe Admin::ApplicationsController do
         login_as(:member)
         get :show, :id => @applicant.application.id
         flash[:error].should match /not currently visible/
-        response.should redirect_to admin_root_path
+        response.should redirect_to members_root_path
       end
 
       it 'renders if application is in submitted state' do
@@ -54,7 +54,7 @@ describe Admin::ApplicationsController do
         application.update_attribute(:state, 'approved')
 
         get :show, :id => application.id
-        response.should redirect_to admin_root_path
+        response.should redirect_to members_root_path
       end
 
       it 'redirects if application is in rejected state' do
@@ -65,7 +65,7 @@ describe Admin::ApplicationsController do
         application.update_attribute(:state, 'rejected')
 
         get :show, :id => application.id
-        response.should redirect_to admin_root_path
+        response.should redirect_to members_root_path
       end
     end
 

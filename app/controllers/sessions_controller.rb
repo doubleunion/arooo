@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
     elsif user.applicant?
       redirect_to edit_application_path(user.application) and return
     elsif user.member_or_key_member?
-      redirect_to admin_root_path and return
+      redirect_to members_root_path and return
     end
   end
 

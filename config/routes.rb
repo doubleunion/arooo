@@ -1,7 +1,7 @@
 Doubleunion::Application.routes.draw do
   root :to => 'static#index'
 
-  namespace :admin do
+  namespace :members do
     root :to => 'users#index'
     resources :users, :only => [:index, :show, :edit, :update] do
       get 'setup' => "users#setup"

@@ -1,4 +1,4 @@
-class Admin::UsersController < Admin::AdminController
+class Members::UsersController < Members::MembersController
   before_action :set_user, :except => [:index, :show]
 
   def index

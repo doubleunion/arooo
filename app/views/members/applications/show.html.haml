@@ -7,14 +7,14 @@
       You voted <strong>#{vote.display_value}</strong>
       #{time_ago_in_words(vote.created_at)} ago
 
-  = form_for @vote, :url => admin_votes_path, :method => :post do |f|
+  = form_for @vote, :url => members_votes_path, :method => :post do |f|
     = f.hidden_field :application_id, :value => @application.id
     = f.submit 'Yes', :name => 'vote_yes', :disabled => vote && vote.value
     = f.submit 'No',  :name => 'vote_no',  :disabled => vote && !vote.value
 
 %h3 Sponsorship
 
-= form_for :sponsorship, :url => admin_application_sponsor_path(@application), :method => :post do |f|
+= form_for :sponsorship, :url => members_application_sponsor_path(@application), :method => :post do |f|
   = label_tag :is_sponsor do
     = check_box_tag :is_sponsor, 1, @sponsorship.present?
     I've met this person and think they would be a great fit for Double Union
@@ -34,7 +34,7 @@
     %td
       - if @application.sponsorships.any?
         - @application.sponsorships.each do |sponsor|
-          = link_to sponsor.user.username, admin_user_path(sponsor.user)
+          = link_to sponsor.user.username, members_user_path(sponsor.user)
       - else
         none, yet
   %tr
@@ -42,7 +42,7 @@
     %td
       - if @application.yes_votes.any?
         - @application.yes_votes.each do |vote|
-          = link_to vote.user.username, admin_user_path(vote.user)
+          = link_to vote.user.username, members_user_path(vote.user)
           <br />
       - else
         \--
@@ -57,16 +57,16 @@
 - @comments.each do |comment|
   - commenter = comment.user
   .comment
-    = link_to user_gravatar(commenter, 20), admin_user_path(commenter)
-    = "#{link_to commenter.username, admin_user_path(commenter), :title => commenter.name}:".html_safe
+    = link_to user_gravatar(commenter, 20), members_user_path(commenter)
+    = "#{link_to commenter.username, members_user_path(commenter), :title => commenter.name}:".html_safe
     = comment.body
     %small{ :title => comment.created_at }
       = "#{time_ago_in_words(comment.created_at)} ago"
 
-= form_for [:admin, @application, Comment.new] do |f|
+= form_for [:members, @application, Comment.new] do |f|
   .comment
-    = link_to user_gravatar(current_user, 20), admin_user_path(current_user)
-    = "#{link_to current_user.username, admin_user_path(current_user)}:".html_safe
+    = link_to user_gravatar(current_user, 20), members_user_path(current_user)
+    = "#{link_to current_user.username, members_user_path(current_user)}:".html_safe
     = f.hidden_field :application_id, :value => @application.id
     = f.text_area :body, :rows => 3
     %fieldset= f.submit 'Add comment'

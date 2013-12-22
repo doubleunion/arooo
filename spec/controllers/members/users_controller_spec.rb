@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::UsersController do
+describe Members::UsersController do
   include AuthHelper
 
   describe 'GET index' do
@@ -97,7 +97,7 @@ describe Admin::UsersController do
         :name  => 'Foo2 Bar2',
         :email => 'someone2@foo.bar' }
 
-      response.should redirect_to edit_admin_user_path(user)
+      response.should redirect_to edit_members_user_path(user)
 
       user.name.should eq('Foo2 Bar2')
       user.email.should eq('someone2@foo.bar')

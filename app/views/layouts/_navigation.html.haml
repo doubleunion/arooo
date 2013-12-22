@@ -15,7 +15,7 @@
       - if logged_in?
         %ul.nav.navbar-nav.pull-right
           %li.vote-alert-badge
-            %a{ :href => admin_root_path }
+            %a{ :href => members_root_path }
               %span.badge= current_user.number_applications_needing_vote
         %ul.nav.navbar-nav.pull-right
           %li.dropdown
@@ -30,7 +30,7 @@
               - elsif current_user.applicant?
                 %li= link_to 'Application', new_application_path
               - elsif current_user.member_or_key_member?
-                %li= link_to 'Edit profile', edit_admin_user_path(current_user)
-                %li= link_to 'Member admin', admin_root_path
+                %li= link_to 'Edit profile', edit_members_user_path(current_user)
+                %li= link_to 'Member console', members_root_path
               %li.divider
               %li= link_to 'Sign out', logout_path

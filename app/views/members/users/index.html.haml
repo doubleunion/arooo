@@ -1,4 +1,4 @@
-%h2 Member admin
+%h2 Member Console
 
 - if @applicants_submitted.any?
   %h3 Submitted applications
@@ -18,8 +18,8 @@
       %tr
         %td
           = user_gravatar(applicant, 20)
-          = link_to applicant.name, admin_application_path(application)
-        %td= link_to applicant.username, admin_application_path(application)
+          = link_to applicant.name, members_application_path(application)
+        %td= link_to applicant.username, members_application_path(application)
         %td
           - if application.submitted_at
             = "#{time_ago_in_words(application.submitted_at)} ago"

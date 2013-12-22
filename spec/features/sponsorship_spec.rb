@@ -9,13 +9,13 @@ describe 'sponsoring an applicant' do
   end
 
   it 'allows a member to sponsor an application' do
-    visit admin_application_path(application)
+    visit members_application_path(application)
     check "is_sponsor"
     expect { click_button "Sponsor" }.to change(Sponsorship, :count).from(0).to(1)
   end
 
   it 'allows a member to remove their sponsorship of an application' do
-    visit admin_application_path(application)
+    visit members_application_path(application)
     check "is_sponsor"
     expect { click_button "Sponsor" }.to change(Sponsorship, :count).from(0).to(1)
     uncheck "is_sponsor"

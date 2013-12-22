@@ -12,7 +12,7 @@
   #{mail_to "membership@doubleunion.org"} and we'll get those updated, too.
 
 .form
-  = form_for @user, url: admin_user_setup_path(@user) do |f|
+  = form_for @user, url: members_user_setup_path(@user) do |f|
     .form-group
       = f.label "Google-friendly email"
       = f.text_field :email_for_google, size: 40
@@ -32,4 +32,4 @@
   We'll get you approved quickly, and then you can introduce yourself!
 
 %p
-  =button_to "Back to members home", admin_root_path, class: "btn btn-default", method: "get"
+  =button_to "Back to members home", members_root_path, class: "btn btn-default", method: "get"

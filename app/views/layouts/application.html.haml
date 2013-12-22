@@ -5,7 +5,7 @@
       %title= html_title
       %meta{ :content => html_description, :name => 'description' }
         = stylesheet_link_tag 'application', :media => 'all'
-        = stylesheet_link_tag 'admin', :media => 'all' if admin_page?
+        = stylesheet_link_tag 'admin', :media => 'all' if members_page?
         = csrf_meta_tags
         = yield(:head)
   %body{ :class => body_classes.join(' ') }

@@ -1,11 +1,11 @@
-class Admin::ApplicationsController < Admin::AdminController
+class Members::ApplicationsController < Members::MembersController
   def show
     @application = Application.find(params.require(:id))
     @comments = @application.comments
 
     unless @application.submitted?
       flash[:error] = 'This application is not currently visible.'
-      redirect_to admin_root_path and return
+      redirect_to members_root_path and return
     end
 
     @user = @application.user
@@ -26,7 +26,7 @@ class Admin::ApplicationsController < Admin::AdminController
       Sponsorship.where(user_id: current_user, application_id: application).destroy_all
     end
 
-    redirect_to admin_application_path(application)
+    redirect_to members_application_path(application)
   end
 
   private

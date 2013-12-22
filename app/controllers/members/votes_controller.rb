@@ -1,4 +1,4 @@
-class Admin::VotesController < Admin::AdminController
+class Members::VotesController < Members::MembersController
   def create
     application = Application.find(application_id_param)
 
@@ -10,7 +10,7 @@ class Admin::VotesController < Admin::AdminController
 
     vote.save!
 
-    redirect_to admin_application_path(application)
+    redirect_to members_application_path(application)
   end
 
   private

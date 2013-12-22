@@ -10,6 +10,6 @@
         %td
           = user_gravatar(user, 20)
           - if user.name.present?
-            = link_to user.name, admin_user_path(user)
-        %td= link_to user.username, admin_user_path(user)
+            = link_to user.name, members_user_path(user)
+        %td= link_to user.username, members_user_path(user)
         %td= user.display_state
