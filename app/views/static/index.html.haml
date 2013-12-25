@@ -59,15 +59,4 @@
 
   %p We are so grateful to #{link_to "our supporters", supporters_path} for helping us thrive!
 
-  .row
-    .col-md-6.col-first
-      %h4 Want to make a one time donation?
-      %p
-        Sending money via Paypal to
-        %strong= PAYPAL_EMAIL
-        is the easiest way for you to help us build an amazing space for women.
-
-    .col-md-6
-      %h4 Can you support our work each month?
-
-      = render "shared/donate_monthly"
+  = render "shared/donate"
