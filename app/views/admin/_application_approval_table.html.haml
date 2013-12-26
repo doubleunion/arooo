@@ -1,0 +1,26 @@
+%table.table.admin-console
+  %tr
+    %th Name
+    %th Submitted
+    %th Sponsors
+    %th Yes
+    %th No
+    %th ?
+    %th
+  - applications.each do |application|
+    %tr
+      %td.name
+        = user_gravatar(application.user, 20)
+        = link_to application.user.name, members_application_path(application)
+      %td= application.submitted_at.strftime("%b %-d")
+      %td= application.sponsorships.count
+      %td= application.yes_votes.size
+      %td= application.no_votes.size
+      %td= application.not_voted_count
+      %td.buttons
+        = form_for application, url: admin_approve_path do |f|
+          = f.hidden_field(:id)
+          = f.submit "Accept", class: "btn accept-btn", confirm: "Are you sure?"
+        = form_for application, url: admin_reject_path do |f|
+          = f.hidden_field(:id)
+          = f.submit "Reject", class: "btn reject-btn", confirm: "Are you sure?"

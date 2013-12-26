@@ -40,3 +40,36 @@ body.admin.applications.show {
     color: #a09d9d
   }
 }
+
+.admin-console {
+  form {
+    display: inline;
+  }
+
+  .buttons {
+    padding: 0 0 0 10px;
+    width: 170px;
+  }
+
+  .btn {
+    width: 70px;
+  }
+
+  .accept-btn {
+    background: #AEFF94;
+    &:hover {
+      background: #48FF0D;
+    }
+  }
+
+  .reject-btn {
+    background: #ffabab;
+    &:hover {
+      background: #FF5252;
+    }
+  }
+
+  .name {
+    width: 200px;
+  }
+}

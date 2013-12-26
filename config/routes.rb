@@ -19,6 +19,10 @@ Doubleunion::Application.routes.draw do
     end
   end
 
+  get 'admin/applications' => 'admin#applications'
+  patch 'admin/approve' => 'admin#approve'
+  patch 'admin/reject' => 'admin#reject'
+
   resources :tumblr_posts, :only => [:index, :show], :path => 'blog'
 
   resources :applications, :only => [:new, :show, :edit, :update]

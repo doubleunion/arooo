@@ -17,6 +17,11 @@ FactoryGirl.define do
     factory :applicant do
       state "applicant"
     end
+
+    factory :admin do
+      is_admin true
+      state "key_member"
+    end
   end
 
   factory :application do

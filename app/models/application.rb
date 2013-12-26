@@ -6,6 +6,10 @@ class Application < ActiveRecord::Base
   has_many :sponsorships
   has_many :users, :through => :sponsorships
 
+  MINIMUM_YES = 5
+  MAXIMUM_NO = 1
+  MINIMUM_SPONSORS = 1
+
   validates :user_id, :presence => true
 
   attr_protected :id
@@ -72,6 +76,26 @@ class Application < ActiveRecord::Base
     state :rejected
   end
 
+  def approvable?
+    enough_yes && few_nos && sponsored
+  end
+
+  def rejectable?
+    !few_nos
+  end
+
+  def self.to_approve
+    self.all.map { |x| x if x.approvable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
+  end
+
+  def self.to_reject
+    self.all.map { |x| x if x.rejectable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
+  end
+
+  def self.not_enough_info
+    self.all.map { |x| x if !x.rejectable? && !x.approvable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
+  end
+
   private
 
   def validate_agreed
@@ -82,5 +106,17 @@ class Application < ActiveRecord::Base
 
   def agreed_to_all?
     agreement_terms && agreement_policies && agreement_female
+  end
+
+  def enough_yes
+    yes_votes.count >= MINIMUM_YES
+  end
+
+  def few_nos
+    no_votes.count <= MAXIMUM_NO
+  end
+
+  def sponsored
+    sponsorships.count >= MINIMUM_SPONSORS
   end
 end

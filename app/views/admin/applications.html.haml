@@ -1,0 +1,8 @@
+%h3 Applications to Approve
+= render 'application_approval_table', applications: @to_approve
+
+%h3 Applications to Reject
+= render 'application_approval_table', applications: @to_reject
+
+%h3 Applications that need more votes or a sponsor
+= render 'application_approval_table', applications: @unknown

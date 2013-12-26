@@ -32,5 +32,7 @@
               - elsif current_user.member_or_key_member?
                 %li= link_to 'Edit profile', edit_members_user_path(current_user)
                 %li= link_to 'Member console', members_root_path
+              - if current_user.is_admin?
+                %li= link_to 'Manage Applications', admin_applications_path
               %li.divider
               %li= link_to 'Sign out', logout_path
