@@ -58,6 +58,10 @@ class Application < ActiveRecord::Base
       application.touch :processed_at
     end
 
+    after_transition submitted: :approved do |application|
+      application.user.make_member
+    end
+
     event :submit do
       transition :started => :submitted
     end
