@@ -30,5 +30,9 @@ FactoryGirl.define do
     agreement_terms true
     agreement_policies true
     agreement_female true
+
+    factory :unsubmitted_application do
+      state "started"
+    end
   end
 end

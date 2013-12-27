@@ -11,6 +11,16 @@ describe Application do
     application.valid?.should be_true
   end
 
+  describe '#submit' do
+    let(:application) { create(:unsubmitted_application) }
+
+    it 'sends an email to the applicant' do
+      expect {
+        application.submit
+      }.to change(ActionMailer::Base.deliveries, :count).by(1)
+    end
+  end
+
   describe 'with an approvable application' do
     let(:application) { create(:application) }
 
