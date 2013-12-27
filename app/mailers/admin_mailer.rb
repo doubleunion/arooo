@@ -1,5 +1,5 @@
 class AdminMailer < ActionMailer::Base
-  ADMIN_EMAILS = %w(hrivers@gmail.com) # add as desired!
+  ADMIN_EMAILS = %w(hrivers@gmail.com, lillie.chilen@gmail.com) # add as desired!
 
   default :from => 'noreply@doubleunion.org'
 
