@@ -63,7 +63,7 @@ class ApplicationsController < ApplicationController
   end
 
   def profile_attributes
-    [:id, :twitter, :facebook, :website, :linkedin, :blog, :bio,
+    [:id, :twitter, :facebook, :website, :linkedin, :blog,
      :summary, :reasons, :projects, :skills ]
   end
 

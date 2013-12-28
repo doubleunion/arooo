@@ -50,7 +50,7 @@ class Members::UsersController < Members::MembersController
   end
 
   def profile_attributes
-    [:id, :twitter, :facebook, :website, :linkedin, :blog, :bio,
+    [:id, :twitter, :facebook, :website, :linkedin, :blog,
      :show_name_on_site, :gravatar_email]
   end
 

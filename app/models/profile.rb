@@ -3,8 +3,6 @@ class Profile < ActiveRecord::Base
 
   validates :user_id, :presence => true
 
-  validates :bio, :length => { :maximum => 2000 }
-
   validates :summary,  :length => { :maximum => 2000 }
   validates :reasons,  :length => { :maximum => 2000 }
   validates :projects, :length => { :maximum => 2000 }

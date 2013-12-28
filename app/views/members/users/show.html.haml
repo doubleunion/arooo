@@ -34,11 +34,6 @@
       %td Blog url
       %td= external_auto_link(profile.blog)
 
-  - if profile.bio.present?
-    %tr
-      %td Bio
-      %td= profile.bio
-
 - if profile.summary.present?
   %h4 Tell us a little about yourself!
   %p= profile.summary
