@@ -14,10 +14,10 @@ describe Application do
   describe '#submit' do
     let(:application) { create(:unsubmitted_application) }
 
-    it 'sends an email to the applicant' do
+    it 'sends an email to the applicant & members' do
       expect {
         application.submit
-      }.to change(ActionMailer::Base.deliveries, :count).by(1)
+      }.to change(ActionMailer::Base.deliveries, :count).by(2)
     end
   end
 

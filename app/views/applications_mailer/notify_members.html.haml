@@ -1,0 +1,11 @@
+%p There's a new application!
+
+%h3 Name: #{link_to @applicant.name, members_application_path(@applicant.application)}
+%ul
+  %li Twitter: #{@applicant.profile.twitter}
+  %li Website: #{@applicant.profile.website}
+  %li LinkedIn: #{@applicant.profile.linkedin}
+  %li Facebook: #{@applicant.profile.facebook}
+  %li Blog #{@applicant.profile.blog}
+
+= link_to "Head over to their application", members_application_path(@applicant.application)
