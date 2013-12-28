@@ -95,12 +95,15 @@ describe Members::UsersController do
 
       post :update, :id => user.id, :user => {
         :name  => 'Foo2 Bar2',
-        :email => 'someone2@foo.bar' }
+        :email => 'someone2@foo.bar',
+        profile_attributes: { skills: 'writing awesome tests' }
+      }
 
       response.should redirect_to edit_members_user_path(user)
 
       user.name.should eq('Foo2 Bar2')
       user.email.should eq('someone2@foo.bar')
+      user.profile.skills.should eq('writing awesome tests')
     end
   end
 

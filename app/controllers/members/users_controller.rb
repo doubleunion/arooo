@@ -51,6 +51,7 @@ class Members::UsersController < Members::MembersController
 
   def profile_attributes
     [:id, :twitter, :facebook, :website, :linkedin, :blog,
+     :summary, :reasons, :projects, :skills,
      :show_name_on_site, :gravatar_email]
   end
 
