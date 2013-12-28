@@ -79,6 +79,7 @@ Doubleunion::Application.configure do
       :password  => ENV["MANDRILL_API_KEY"]
     }
 
+  config.action_mailer.default_url_options = { :host => ENV['HOST_URL'] }
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false

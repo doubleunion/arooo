@@ -33,7 +33,9 @@ Doubleunion::Application.configure do
       :user_name => ENV["MANDRILL_USERNAME"],
       :password  => ENV["MANDRILL_API_KEY"]
     }
-  # Send email in development mode.
+
+  # Send email in development mode using MailCatcher: http://mailcatcher.me/.
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
