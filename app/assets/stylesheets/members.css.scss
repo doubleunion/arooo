@@ -1,0 +1,15 @@
+/* User show page styles */
+
+.profile-pic {
+  float: left;
+  margin: 20px 20px 20px 0;
+}
+
+/* User edit page styles */
+body.users.edit {
+  form {
+    input[type="text"], textarea {
+      width: 400px;
+    }
+  }
+}

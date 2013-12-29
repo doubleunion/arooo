@@ -1,5 +1,8 @@
 - profile = @user.profile
 
+.profile-pic
+  = user_gravatar(@user, 150)
+
 %h2= @user.username
 - if @user.name.present?
   %h3= @user.name
