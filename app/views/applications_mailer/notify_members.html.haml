@@ -1,11 +1,26 @@
-%p There's a new application!
+%table{style: "width: 600px;"}
+  %tr
+    %td
+      %p There's a new Double Union application!
 
-%h3 Name: #{link_to @applicant.name, members_application_url(@applicant.application)}
-%ul
-  %li Twitter: #{@applicant.profile.twitter}
-  %li Website: #{@applicant.profile.website}
-  %li LinkedIn: #{@applicant.profile.linkedin}
-  %li Facebook: #{@applicant.profile.facebook}
-  %li Blog: #{@applicant.profile.blog}
+      %h3 #{link_to @applicant.name, members_application_url(@applicant.application)}
+      %ul
+        %li Twitter: #{@applicant.profile.twitter}
+        %li Website: #{@applicant.profile.website}
+        %li LinkedIn: #{@applicant.profile.linkedin}
+        %li Facebook: #{@applicant.profile.facebook}
+        %li Blog: #{@applicant.profile.blog}
 
-= link_to "Head over to their application", members_application_url(@applicant.application)
+      %b Tell us a little about yourself!
+      %p= @applicant.profile.summary
+
+      %b Why are you interested in joining Double Union?
+      %p= @applicant.profile.reasons
+
+      %b What would you like to work on in the space?
+      %p= @applicant.profile.projects
+
+      %b What skills are you most interested in learning, improving, and/or teaching?
+      %p= @applicant.profile.skills
+
+      = link_to "Comment on, vote, or sponsor this application.", members_application_url(@applicant.application)
