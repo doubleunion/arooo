@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131228012311) do
+ActiveRecord::Schema.define(version: 20131229225142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20131228012311) do
     t.string   "email_for_google"
     t.integer  "dues_pledge"
     t.boolean  "is_admin",          default: false
+    t.boolean  "setup_complete"
   end
 
   create_table "votes", force: true do |t|

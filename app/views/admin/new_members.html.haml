@@ -1,0 +1,24 @@
+%h1 New DU Members
+.instructions
+  %p Setup is complete when:
+  %ul
+    %li The member has access to the DU Members Google #{ link_to "drive folder", "https://drive.google.com/#folders/0B6a_aDP-2fOVV2FQLW5FVTZ2Mjg", target: "_blank" } & #{ link_to "calendar", "https://www.google.com/calendar/render", target: "_blank" }
+    %li The member's dues have appeared in the #{link_to "DU PayPal account", "http://paypal.com/"}
+
+%table.table
+  %tr
+    %th Name
+    %th Username
+    %th Date Approved
+    %th Email for Google
+    %th Dues Pledge
+    %th Button
+  - @new_members.each do |member|
+    %tr
+      %td= member.name
+      %td= member.username
+      %td= member.application.processed_at.strftime("%b %-d") if member.application.processed_at
+      %td= member.email_for_google
+      %td= member.dues_pledge
+      %td
+        = button_to "Setup Finished", action: "setup_complete", id: member.id

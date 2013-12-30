@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
 
   validates :dues_pledge, numericality: true, allow_blank: true
 
+  validates :email_for_google, presence: true, if: -> (user) { user.setup_complete }
+  validates :dues_pledge, presence: true, if: -> (user) { user.setup_complete }
+
   has_one  :profile,     :dependent => :destroy
   has_one  :application, :dependent => :destroy
   has_many :votes,       :dependent => :destroy
@@ -53,6 +56,12 @@ class User < ActiveRecord::Base
     .includes(:application)
     .where(:'applications.state' => 'started')
     .order('applications.submitted_at DESC')
+  }
+
+  scope :new_members, -> {
+    members_and_key_members
+    .where('setup_complete IS NULL or setup_complete = ?', false)
+    .order('created_at DESC')
   }
 
   scope :order_by_state, -> { order(<<-eos

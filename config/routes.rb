@@ -19,6 +19,8 @@ Doubleunion::Application.routes.draw do
     end
   end
 
+  get 'admin/new_members' => 'admin#new_members'
+  post 'admin/setup_complete' => 'admin#setup_complete'
   get 'admin/applications' => 'admin#applications'
   patch 'admin/approve' => 'admin#approve'
   patch 'admin/reject' => 'admin#reject'

@@ -37,6 +37,25 @@ describe AdminController do
         end.to change { an_application.reload.state }.from("submitted").to("rejected")
       end
     end
+
+    describe 'GET new_members' do
+      it 'allows admin to view admin new members index' do
+        login_as(:key_member, is_admin: true)
+        get :new_members
+        response.should render_template :new_members
+      end
+    end
+
+    describe 'POST setup_complete' do
+      let!(:member) { create(:member) }
+      let(:params) {{ id: member.id }}
+
+      it 'allows the admin to mark user setup as complete' do
+        login_as(:key_member, is_admin: true)
+        post :setup_complete, params
+        expect {member.reload.setup_complete}.to be_true
+      end
+    end
   end
 
   describe 'as a non-admin user' do

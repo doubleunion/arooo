@@ -14,7 +14,7 @@ class AdminController < ApplicationController
       flash[:message] = "Successfully approved #{application.user.name}!"
       redirect_to admin_applications_path
     else
-      flash[:error] = "Whoops, something went wrong: #{application.errors.full_messages.to_sentences}"
+      flash[:error] = "Whoops! #{application.errors.full_messages.to_sentence}"
       render :applications
     end
   end
@@ -26,8 +26,23 @@ class AdminController < ApplicationController
       flash[:message] = "Successfully rejected #{application.user.name}."
       redirect_to admin_applications_path
     else
-      flash[:error] = "Whoops, something went wrong: #{application.errors.full_messages.to_sentences}"
+      flash[:error] = "Whoops! #{application.errors.full_messages.to_sentence}"
       render :applications
+    end
+  end
+
+  def new_members
+    @new_members = User.new_members
+  end
+
+  def setup_complete
+    user = User.find(user_params)
+    user.setup_complete = true
+    if user.save
+      redirect_to admin_new_members_path
+    else
+      flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
+      redirect_to admin_new_members_path
     end
   end
 
@@ -47,6 +62,10 @@ class AdminController < ApplicationController
 
   def application_params
     params.require(:application).permit(:id)
+  end
+
+  def user_params
+    params.require(:id)
   end
 
 end
