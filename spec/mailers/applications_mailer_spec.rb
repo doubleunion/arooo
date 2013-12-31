@@ -3,10 +3,11 @@ require 'spec_helper'
 describe ApplicationsMailer do
   let(:application) { create(:application) }
 
+  before do
+    application.submit
+  end
+
   describe 'when someone submits their application' do
-    before do
-      application.submit
-    end
 
     describe 'confirmation email' do
       let(:mail) { ApplicationsMailer.confirmation(application) }
@@ -37,6 +38,18 @@ describe ApplicationsMailer do
       it "includes the applicant's deets" do
         expect(mail.body).to include(application.user.name)
       end
+    end
+  end
+
+  describe 'when someone is accepted' do
+    before do
+      application.approve
+    end
+
+    let(:mail) { ApplicationsMailer.approved(application) }
+
+    it 'is sent to the applicant' do
+      expect(mail.to).to include(application.user.email)
     end
   end
 end

@@ -1,0 +1,49 @@
+%table{style: "width: 700px;"}
+  %tr
+    %td
+      %p Hi #{@user.name}!
+
+      %p Votes have been cast, and we'd like to offer you membership to Double Union! YAY!
+
+      %p
+        First off, here's the DU address, which is still semi-secret, so please keep private:
+        %br/
+        Double Union
+        %br/
+        333 Valencia, Suite 445
+        %br/
+        SF, CA 94103
+
+      %p There's so much to do now that you're a member :D
+
+      %p
+        As soon as possible, confirm your membership #{ link_to "on this page", members_user_setup_url(@user.id) } (you'll need to login with GitHub like you did to apply). We need to know what email address to share our Google Drive & calendar with, and how much you'll be paying for monthly dues.
+
+      %p
+        That page also has links to the PayPal page for setting up dues and joining the members' mailing list. Both are important.
+
+      %p
+        After you're done with that, check out the current applications to DU & let us know if you know any of the applicants! Only key members vote, but everyone can (and should) comment on applications: #{ link_to "doubleunion.org/login", login_url }
+
+      %p The weekly members' meeting is on Tuesday nights from 7-8:30pm. It'd be great to see you there or the Thursday night semi-open house.
+
+      %p Things the membership coordinator will do for you:
+
+      %ul
+        %li Give you access to the Double Union Google Docs folder
+        %li Give you access to the DU calendar
+        %li Remind you to fill out #{ link_to "that form", members_user_setup_url(@user.id) } & set up dues :D
+
+      %p If you have any questions, email the membership coordinator at membership@doubleunion.org.
+
+      %p
+        All the best,
+        %br/
+        Double Union
+        %br/
+        @doubleunionsf
+        %br/
+        = link_to "www.doubleunion.org", "http://www.doubleunion.org"
+
+      %p PS: Go do #{ link_to "all the things", members_user_setup_url(@user.id) } to get your membership finalized!
+

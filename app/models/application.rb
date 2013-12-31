@@ -62,6 +62,7 @@ class Application < ActiveRecord::Base
 
     after_transition submitted: :approved do |application|
       application.user.make_member
+      ApplicationsMailer.approved(application).deliver
     end
 
     event :submit do

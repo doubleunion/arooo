@@ -19,4 +19,12 @@ class ApplicationsMailer < ActionMailer::Base
       subject: "New Double Union application submitted"
     )
   end
+
+  def approved(application)
+    @user = application.user
+    mail(
+      to: @user.email,
+      subject: "Welcome to Double Union!!!"
+    )
+  end
 end
