@@ -1,9 +1,13 @@
-TWITTER_URL          = 'https://twitter.com/doubleunionsf'
 TWITTER_USERNAME     = 'doubleunionsf'
+TWITTER_URL          = "https://twitter.com/#{TWITTER_USERNAME}"
+
 PRESS_EMAIL          = 'press@doubleunion.org'
-TUMBLR_BASE          = 'doubleunion.tumblr.com'
 PAYPAL_EMAIL         = 'paypal@doubleunion.org'
 CONTACT_EMAIL        = 'doubleunionsf@gmail.com'
+
+TUMBLR_BASE          = 'doubleunion.tumblr.com'
+TUMBLR_URL           = "http://#{TUMBLR_BASE}"
+
 MAILING_LIST_GENERAL = "http://lists.doubleunion.org/listinfo.cgi/doubleunion-doubleunion.org"
 GOOGLE_ANALYTICS_ID  = 'UA-371951-49'
 S3_BUCKET            = "https://s3-us-west-1.amazonaws.com/doubleunion"

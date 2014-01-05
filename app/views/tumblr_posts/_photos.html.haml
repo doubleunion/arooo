@@ -1,6 +1,0 @@
-- photos.each do |photo|
-  - image = photo['alt_sizes'].first
-  = image_tag image['url'], :class => 'img-responsive'
-
-  - if photo['caption'].present?
-    %p= photo['caption']

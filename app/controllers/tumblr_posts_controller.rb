@@ -1,16 +1,13 @@
 class TumblrPostsController < ApplicationController
-  caches_action :index, :layout => false
-  caches_action :show,  :layout => false
-
   def index
-    @posts = TumblrPost.page(params[:page])
-    @recent_posts = TumblrPost.limit(10)
+    redirect_to TUMBLR_URL
   end
 
   def show
-    unless @post = TumblrPost.find_by_tumblr_id(params[:id])
-      flash[:error] = 'Sorry, that post could not be found'
-      redirect_to :root and return
+    if @post = TumblrPost.find_by_tumblr_id(params[:id])
+      redirect_to @post.post_url
+    else
+      redirect_to TUMBLR_URL
     end
   end
 end

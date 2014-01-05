@@ -43,11 +43,12 @@ describe StaticController do
     end
   end
 
-  describe 'GET base_assumptions' do
-    it 'returns http success' do
-      pending 'not yet public'
-      get :base_assumptions
-      response.should be_success
-    end
-  end
+  # Not yet public
+  #
+  # describe 'GET base_assumptions' do
+  #   it 'returns http success' do
+  #     get :base_assumptions
+  #     response.should be_success
+  #   end
+  # end
 end

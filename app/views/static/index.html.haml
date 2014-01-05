@@ -41,11 +41,10 @@
     invitation from a member to attend an open house, and may be any gender
     or age. We will announce when we start having open houses.
   %p
-    You can learn more about us by reading our
-    = "#{link_to 'blog', tumblr_posts_path},".html_safe
+    You can learn more about us by reading our #{link_to 'blog', TUMBLR_URL},
     following us on Twitter at
-    = "#{link_to "@#{TWITTER_USERNAME}", TWITTER_URL, :target => '_blank'},".html_safe
-    or joining our #{ link_to "general interest mailing list", MAILING_LIST_GENERAL }.
+    #{external_link_to "@#{TWITTER_USERNAME}", TWITTER_URL},
+    or joining our #{link_to "general interest mailing list", MAILING_LIST_GENERAL}.
 
   %h3 Want to Support Double Union?
   %p

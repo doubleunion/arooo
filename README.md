@@ -19,8 +19,6 @@
 4. Edit config/application.yml
     * set `GITHUB_CLIENT_KEY` and `GITHUB_CLIENT_SECRET` to the Client ID and
       Client Secret from your Github application
-    * set `TUMBLR_CONSUMER_KEY` to the key in the Google Doc "Accounts and
-      passwords" (or set up your own Tumblr application if you prefer)
 
 ## Specs
 
