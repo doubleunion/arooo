@@ -71,6 +71,12 @@
 
       %tr
         %td
+          = profile_fields.label :reasons, 'Tell us about your feminism!'
+          %small (2000 character maximum)
+        %td= profile_fields.text_area :feminism, :rows => 10
+
+      %tr
+        %td
           = profile_fields.label :projects, 'What would you like to work on in the space?'
           %small (2000 character maximum)
         %td= profile_fields.text_area :projects, :rows => 10

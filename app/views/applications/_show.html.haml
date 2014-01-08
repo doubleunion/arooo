@@ -41,6 +41,10 @@
     %td= preserve_newlines(@user.profile.reasons)
 
   %tr
+    %td.left Tell us about your feminism!
+    %td= preserve_newlines(@user.profile.feminism)
+
+  %tr
     %td.left What would you like to work on in the space?
     %td= preserve_newlines(@user.profile.projects)
 
