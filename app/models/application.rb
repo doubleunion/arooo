@@ -84,7 +84,7 @@ class Application < ActiveRecord::Base
   end
 
   def approvable?
-    enough_yes && few_nos && sponsored
+    enough_yes && few_nos && sponsored && submitted_at < 3.days.ago
   end
 
   def rejectable?
