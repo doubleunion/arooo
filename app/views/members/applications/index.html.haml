@@ -37,6 +37,15 @@
         %td= application.no_votes.size
         %td= application.not_voted_count
 
+  %h3
+    %a{"data-toggle" => "collapse" , "href" => "#collapseEmails"} Applicant Email Addresses <b class="caret"></b>
+  %div.collapse.out#collapseEmails
+    %p Don't spam people! Just invite them to DU things :D
+    %ul.list-unstyled
+      - @applicants_started.each do |applicant|
+        - if applicant.email.present?
+          %li= applicant.email
+
 - if @applicants_started.any?
   %h3.pending-applications-header
     %a{"data-toggle" => "collapse" , "href" => "#collapsePending"} Pending  applications <b class="caret"></b>

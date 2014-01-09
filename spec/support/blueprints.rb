@@ -10,6 +10,7 @@ require 'machinist/active_record'
 
 User.blueprint do
   username { "user#{sn}" }
+  email { "sn@example.com" }
   # Attributes here
 end
 
