@@ -1,4 +1,10 @@
 class Members::ApplicationsController < Members::MembersController
+
+  def index
+    @applicants_submitted = User.with_submitted_application.limit(50)
+    @applicants_started   = User.with_started_application.limit(50)
+  end
+
   def show
     @application = Application.find(params.require(:id))
     @comments = @application.comments
