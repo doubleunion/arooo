@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140110073528) do
     t.string   "reasons",           limit: 2000
     t.string   "projects",          limit: 2000
     t.string   "skills",            limit: 2000
+    t.string   "feminism",          limit: 2000
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree

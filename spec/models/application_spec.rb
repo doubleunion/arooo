@@ -25,6 +25,7 @@ describe Application do
     let(:application) { create(:application) }
 
     before do
+      application.submitted_at = Time.now - 1.weeks
       application.stub_chain(:yes_votes, :count).and_return 6
       application.stub_chain(:no_votes, :count).and_return 0
       application.stub_chain(:sponsorships, :count).and_return 1
@@ -32,6 +33,16 @@ describe Application do
 
     it "should be approvable" do
       expect(application.approvable?).to be_true
+    end
+
+    context "with an approvable application that's too new" do
+      before do
+        application.submitted_at = Time.now
+      end
+
+      it "should not be approvable" do
+        expect(application.approvable?).to be_false
+      end
     end
   end
 

@@ -2,14 +2,14 @@ Doubleunion::Application.routes.draw do
   root :to => 'static#index'
 
   namespace :members do
-    root :to => 'users#index'
+    root :to => 'applications#index'
     resources :users, :only => [:index, :show, :edit, :update] do
       get 'setup' => "users#setup"
       patch 'setup' => "users#finalize"
     end
     resources :votes, :only => :create
 
-    resources :applications, :only => :show do
+    resources :applications, :only => [:index, :show] do
       resources :comments, :only => :create
       post 'sponsor' => "applications#sponsor"
     end

@@ -26,13 +26,13 @@
       %td
         = f.label :name, 'Full name'
         %small (required)
-      %td= f.text_field :name
+      %td= f.text_field :name, required: true
 
     %tr
       %td
         = f.label :email
         %small (required)
-      %td= f.text_field :email
+      %td= f.text_field :email, required: true
 
     = f.fields_for :profile do |profile_fields|
       = profile_fields.hidden_field :id
@@ -68,6 +68,12 @@
           = profile_fields.label :reasons, 'Why are you interested in joining Double Union?'
           %small (2000 character maximum)
         %td= profile_fields.text_area :reasons, :rows => 10
+
+      %tr
+        %td
+          = profile_fields.label :reasons, 'Tell us about your feminism!'
+          %small (2000 character maximum)
+        %td= profile_fields.text_area :feminism, :rows => 10
 
       %tr
         %td

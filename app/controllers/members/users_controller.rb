@@ -6,9 +6,6 @@ class Members::UsersController < Members::MembersController
       .includes(:profile)
       .order_by_state
       .limit(100)
-
-    @applicants_submitted = User.with_submitted_application.limit(50)
-    @applicants_started   = User.with_started_application.limit(50)
   end
 
   def show
