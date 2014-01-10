@@ -42,7 +42,7 @@
   %div.collapse.out#collapseEmails
     %p Don't spam people! Just invite them to DU things :D
     %ul.list-unstyled
-      - @applicants_started.each do |applicant|
+      - @applicants_submitted.each do |applicant|
         - if applicant.email.present?
           %li= applicant.email
 
