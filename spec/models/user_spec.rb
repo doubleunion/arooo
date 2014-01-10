@@ -65,6 +65,16 @@ describe User do
     User.new.tap(&:valid?).should have(0).errors_on(:provider)
   end
 
+  it 'should validate uniqueness of username and uid' do
+    User.make!(:username => 'username', :uid => '123')
+
+    user = User.new
+    user.username = 'username'
+    user.uid = '123'
+
+    user.tap(&:valid?).should have_at_least(1).errors_on(:username)
+  end
+
   describe '.create_with_omniauth' do
     it 'should raise exception with invalid auth hash' do
       expect {

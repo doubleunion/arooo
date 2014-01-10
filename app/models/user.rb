@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  EMAIL_PATTERN = /\A.+@.+\Z/
+
   attr_accessible :provider, :uid, :name, :email, :profile_attributes,
     :application_attributes, :email_for_google, :dues_pledge
 
@@ -6,16 +8,24 @@ class User < ActiveRecord::Base
     :in      => %w(github),
     :message => "%{value} is not a valid provider" }
 
-  validates :username, :state, :presence => true
+  validates :username, :presence => true, :uniqueness => { :scope => :uid }
+
+  validates :state, :presence => true
 
   validates :email, :allow_blank => true, :format => {
-    :with    => /@/, # more is probably overkill
+    :with    => EMAIL_PATTERN,
     :message => 'Invalid email address' }
 
   validates :dues_pledge, numericality: true, allow_blank: true
 
-  validates :email_for_google, presence: true, if: -> (user) { user.setup_complete }
-  validates :dues_pledge, presence: true, if: -> (user) { user.setup_complete }
+  validates :email_for_google,
+    :presence => true,
+    :if       => :setup_complete,
+    :format   => { :with => EMAIL_PATTERN }
+
+  validates :dues_pledge,
+    :presence => true,
+    :if       => :setup_complete
 
   has_one  :profile,     :dependent => :destroy
   has_one  :application, :dependent => :destroy
