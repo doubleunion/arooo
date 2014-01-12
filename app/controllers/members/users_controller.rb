@@ -9,7 +9,7 @@ class Members::UsersController < Members::MembersController
   end
 
   def show
-    @user = User.find(params.require(:id))
+    @user = User.members_and_key_members.find(params.require(:id))
   end
 
   def edit
