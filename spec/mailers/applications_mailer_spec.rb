@@ -52,4 +52,15 @@ describe ApplicationsMailer do
       expect(mail.to).to include(application.user.email)
     end
   end
+
+  describe 'when someone does not have a sponsor after 2 weeks' do
+    describe 'no sponsor email' do
+      let(:stale_application) { create(:stale_application) }
+      let(:mail) { stale_application.no_sponsor_email }
+
+      it 'is sent if application is stale' do
+        mail.should deliver_to(stale_application.user.email)
+      end
+    end
+  end
 end

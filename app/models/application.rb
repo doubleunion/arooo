@@ -49,6 +49,18 @@ class Application < ActiveRecord::Base
     end
   end
 
+  def stale?
+    submitted_at <= 14.days.ago && !rejectable? && !sponsored
+  end
+
+  def no_sponsor_email
+    if stale? && stale_email_sent_at.nil?
+      ApplicationsMailer.no_sponsor(self).deliver.tap do |message|
+        touch :stale_email_sent_at
+      end
+    end
+  end
+
   state_machine :state, :initial => :started do
     after_transition :started => :submitted do |application, transition|
       ApplicationsMailer.confirmation(application).deliver

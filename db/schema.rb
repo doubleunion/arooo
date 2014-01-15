@@ -11,18 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140110073528) do
+ActiveRecord::Schema.define(version: 20140116002630) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "applications", force: true do |t|
     t.integer  "user_id"
-    t.string   "state",                              null: false
-    t.boolean  "agreement_terms",    default: false, null: false
-    t.boolean  "agreement_policies", default: false, null: false
-    t.boolean  "agreement_female",   default: false, null: false
+    t.string   "state",                               null: false
+    t.boolean  "agreement_terms",     default: false, null: false
+    t.boolean  "agreement_policies",  default: false, null: false
+    t.boolean  "agreement_female",    default: false, null: false
     t.datetime "submitted_at"
     t.datetime "processed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "stale_email_sent_at"
   end
 
   add_index "applications", ["state"], name: "index_applications_on_state", using: :btree
