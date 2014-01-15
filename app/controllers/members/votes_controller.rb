@@ -1,14 +1,7 @@
 class Members::VotesController < Members::MembersController
   def create
     application = Application.find(application_id_param)
-
-    vote = current_user.vote_for(application) || Vote.new
-
-    vote.application ||= application
-    vote.user        ||= current_user
-    vote.value         = !!params[:vote_yes]
-
-    vote.save!
+    vote(application_id_param, !!params[:vote_yes])
 
     redirect_to members_application_path(application)
   end
