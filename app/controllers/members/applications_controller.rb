@@ -25,7 +25,9 @@ class Members::ApplicationsController < Members::MembersController
     if sponsorship_params[:is_sponsor] == "1"
       sponsorship = Sponsorship.new(user_id: current_user.id, application_id: application.id)
 
-      unless sponsorship.save
+      if sponsorship.save
+        vote(application_params, true)
+      else
         flash[:error] = "Sorry, something went wrong!"
       end
     else
