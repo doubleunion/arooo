@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user, :logged_in?, :logged_in_as?, :correct_user?,
-    :use_container?, :members_page?
+    :use_container?, :members_page?, :vote
 
   protected
 
@@ -76,5 +76,17 @@ class ApplicationController < ActionController::Base
 
   def members_page?
     false
+  end
+
+  def vote(application_id_param, vote_value)
+    application = Application.find(application_id_param)
+
+    vote = current_user.vote_for(application) || Vote.new
+
+    vote.application ||= application
+    vote.user        ||= current_user
+    vote.value         = vote_value
+
+    vote.save!
   end
 end
