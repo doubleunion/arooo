@@ -9,14 +9,14 @@
     * `rake db:test:prepare`
     * etc, etc
 
-2. Go here and set up an application: http://github.com/settings/applications/new
+1. Go here and set up an application: http://github.com/settings/applications/new
     * Application name: Whatever you want
     * Homepage URL: http://localhost:3000
     * Authorization callback URL: http://localhost:3000/auth/github/callback
 
-3. `cp config/application.example.yml config/application.yml`
+1. `cp config/application.example.yml config/application.yml`
 
-4. Edit config/application.yml
+1. Edit config/application.yml
     * set `GITHUB_CLIENT_KEY` and `GITHUB_CLIENT_SECRET` to the Client ID and
       Client Secret from your Github application
 
@@ -65,3 +65,14 @@ Manually changing a user's state from the rails console:
 
 > user.update_attribute(:state, 'applicant') # bypasses normal checks & succeeds
 ```
+
+## Contributing
+
+1. Fork it
+1. Get it running
+1. Create your feature branch (git checkout -b my-new-feature)
+1. Write your code and specs
+1. Commit your changes (git commit -am 'Add some feature')
+1. Push to the branch (git push origin my-new-feature)
+1. Create new Pull Request
+1. If you find bugs, have feature requests or questions, please file an issue.
