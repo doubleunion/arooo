@@ -14,6 +14,11 @@
     = f.submit 'Yes', :name => 'vote_yes', :disabled => vote && vote.value
     = f.submit 'No',  :name => 'vote_no',  :disabled => vote && !vote.value
 
+- elsif !logged_in_as?(@user) && current_user.member?
+  %h3= @user.name
+  %button{ :disabled => true }
+    Only Key Members Can Vote
+
 %h3 Sponsorship
 
 = form_for :sponsorship, :url => members_application_sponsor_path(@application), :method => :post do |f|
