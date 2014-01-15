@@ -7,7 +7,7 @@ class Members::ApplicationsController < Members::MembersController
 
   def show
     @application = Application.find(params.require(:id))
-    @comments = @application.comments
+    @comments = @application.comments.order(:created_at)
 
     unless @application.submitted?
       flash[:error] = 'This application is not currently visible.'
