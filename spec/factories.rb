@@ -8,6 +8,13 @@ FactoryGirl.define do
 
     factory :member do
       state "member"
+
+      factory :mature_member do
+        after(:create) do |user|
+          user.application.processed_at = 14.days.ago
+          user.application.save!
+        end
+      end
     end
 
     factory :key_member do
@@ -37,7 +44,7 @@ FactoryGirl.define do
 
     factory :stale_application do
       stale_email_sent_at nil
-      submitted_at 14.days.ago
+      submitted_at { 14.days.ago }
     end
   end
 end

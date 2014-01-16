@@ -152,7 +152,7 @@ class User < ActiveRecord::Base
   end
 
   def mature?
-    member? && application.processed_at <= 14.days.ago
+    member? && application.processed_at.present? && application.processed_at <= 14.days.ago
   end
 
   class << self
