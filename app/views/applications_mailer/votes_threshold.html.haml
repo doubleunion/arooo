@@ -1,0 +1,16 @@
+%HTML
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+  %body
+    - if @application.approvable?
+      %p
+        #{@user.name} has hit the votes threshold for being approved.
+    - elsif @application.rejectable?
+      %p
+        #{@user.name} has hit the votes threshold for being rejected.
+    %p
+      Review their application here:
+      = link_to @user.name, members_application_url(@user.application)
+    %p
+      Approve or reject their application here:
+      = link_to "All Applications", admin_applications_url

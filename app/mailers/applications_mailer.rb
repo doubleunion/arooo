@@ -35,4 +35,13 @@ class ApplicationsMailer < ActionMailer::Base
       subject: "Your Double Union application is awaiting a sponsor"
     )
   end
+
+  def votes_threshold(application)
+    @user = application.user
+    @application = application
+    mail(
+      to: MEMBERSHIP_EMAIL,
+      subject: "A Double Union application hit the votes threshold!"
+    )
+  end
 end
