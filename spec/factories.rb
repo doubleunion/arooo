@@ -34,5 +34,10 @@ FactoryGirl.define do
     factory :unsubmitted_application do
       state "started"
     end
+
+    factory :stale_application do
+      stale_email_sent_at nil
+      submitted_at 14.days.ago
+    end
   end
 end

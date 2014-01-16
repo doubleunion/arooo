@@ -27,4 +27,12 @@ class ApplicationsMailer < ActionMailer::Base
       subject: "Welcome to Double Union!!!"
     )
   end
+
+  def no_sponsor(application)
+    @user = application.user
+    mail(
+      to: @user.email,
+      subject: "Your Double Union application is awaiting a sponsor"
+    )
+  end
 end
