@@ -151,6 +151,10 @@ class User < ActiveRecord::Base
     Sponsorship.where(:application => application, :user => self).first
   end
 
+  def mature?
+    member? && application.processed_at <= 14.days.ago
+  end
+
   class << self
     def create_with_omniauth(auth)
       new.tap do |user|
