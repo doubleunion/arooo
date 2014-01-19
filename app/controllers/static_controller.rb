@@ -25,7 +25,6 @@ class StaticController < ApplicationController
   def visit
   end
 
-  # Not yet public
-  #def base_assumptions
-  #end
+  def base_assumptions
+  end
 end
