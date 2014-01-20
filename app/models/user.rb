@@ -137,7 +137,7 @@ class User < ActiveRecord::Base
   def vote_for(application)
     Vote.where(:application => application, :user => self).first
   end
-  
+
   def number_applications_needing_vote
     if self.key_member?
       n = Application.where(state: 'submitted').count - Application.joins("JOIN votes ON votes.application_id = applications.id AND applications.state = 'submitted' AND votes.user_id = #{self.id}").count
@@ -152,7 +152,7 @@ class User < ActiveRecord::Base
   end
 
   def mature?
-    member? && application.processed_at.present? && application.processed_at <= 14.days.ago
+    member_or_key_member? && application.processed_at.present? && application.processed_at <= 14.days.ago
   end
 
   class << self
