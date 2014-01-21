@@ -61,6 +61,12 @@ class Application < ActiveRecord::Base
     end
   end
 
+  def votes_threshold_email
+    if rejectable? || approvable?
+      ApplicationsMailer.votes_threshold(self).deliver
+    end
+  end
+
   state_machine :state, :initial => :started do
     after_transition :started => :submitted do |application, transition|
       ApplicationsMailer.confirmation(application).deliver

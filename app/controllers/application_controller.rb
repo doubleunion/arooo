@@ -88,5 +88,7 @@ class ApplicationController < ActionController::Base
     vote.value         = vote_value
 
     vote.save!
+
+    application.votes_threshold_email
   end
 end
