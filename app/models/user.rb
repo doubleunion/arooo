@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   scope :new_members, -> {
     members_and_key_members
     .where('setup_complete IS NULL or setup_complete = ?', false)
-    .order('created_at DESC')
+    .order('updated_at DESC')
   }
 
   scope :order_by_state, -> { order(<<-eos

@@ -8,16 +8,16 @@
 %table.table
   %tr
     %th Name
-    %th Username
+    %th Email
     %th Date Approved
     %th Email for Google
     %th Dues Pledge
     %th Button
   - @new_members.each do |member|
     %tr
-      %td= member.name
-      %td= member.username
-      %td= member.application.processed_at.strftime("%b %-d") if member.application.processed_at
+      %td= link_to member.name, members_user_path(member)
+      %td= member.email
+      %td= member.application.processed_at.strftime("%b %-d")
       %td= member.email_for_google
       %td= member.dues_pledge
       %td
