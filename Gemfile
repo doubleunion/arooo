@@ -17,12 +17,15 @@ gem 'state_machine'
 gem 'kaminari'
 gem 'actionpack-action_caching', :github => 'rails/actionpack-action_caching'
 gem 'rails_autolink'
+gem 'redcarpet'
 
 group :development do
   gem 'better_errors'
   gem 'html2haml'
   gem 'quiet_assets'
   gem 'awesome_print'
+  gem 'execjs'
+  gem 'therubyracer'
 end
 
 group :development, :test do
