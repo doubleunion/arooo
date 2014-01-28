@@ -44,4 +44,13 @@ class ApplicationsMailer < ActionMailer::Base
       subject: "A Double Union application hit the votes threshold!"
     )
   end
+
+  def member_access(application)
+    @user = application.user
+    @application = application
+    mail(
+      to: @user.email,
+      subject: "You now have Double Union access!"
+    )
+  end
 end

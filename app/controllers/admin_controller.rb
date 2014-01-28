@@ -39,6 +39,7 @@ class AdminController < ApplicationController
     user = User.find(user_params)
     user.setup_complete = true
     if user.save
+      ApplicationsMailer.member_access(user.application).deliver
       redirect_to admin_new_members_path
     else
       flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
