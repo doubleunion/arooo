@@ -13,21 +13,21 @@ describe 'sponsoring an applicant' do
     it 'allows a mature member to sponsor an application' do
       visit members_application_path(application)
       check "is_sponsor"
-      expect { click_button "Sponsor" }.to change(Sponsorship, :count).from(0).to(1)
+      expect { click_button "Submit" }.to change(Sponsorship, :count).from(0).to(1)
     end
 
     it 'allows a mature member to sponsor an application' do
       visit members_application_path(application)
       check "is_sponsor"
-      expect { click_button "Sponsor" }.to change(Sponsorship, :count).from(0).to(1)
+      expect { click_button "Submit" }.to change(Sponsorship, :count).from(0).to(1)
     end
 
     it 'allows a mature member to remove their sponsorship of an application' do
       visit members_application_path(application)
       check "is_sponsor"
-      expect { click_button "Sponsor" }.to change(Sponsorship, :count).from(0).to(1)
+      expect { click_button "Submit" }.to change(Sponsorship, :count).from(0).to(1)
       uncheck "is_sponsor"
-      expect { click_button "Sponsor" }.to change(Sponsorship, :count).from(1).to(0)
+      expect { click_button "Submit" }.to change(Sponsorship, :count).from(1).to(0)
     end
   end
 
