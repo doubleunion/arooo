@@ -13,4 +13,8 @@ class Profile < ActiveRecord::Base
   def twitter_url
     twitter.present? ? "https://twitter.com/#{twitter.gsub(/@/, '')}" : nil
   end
+
+  def github_url
+    "https://github.com/#{self.user.username}"
+  end
 end

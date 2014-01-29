@@ -3,14 +3,18 @@
 .profile-pic
   = user_gravatar(@user, 150)
 
-%h2= @user.username
-- if @user.name.present?
-  %h3= @user.name
+%h2= @user.name if @user.name.present?
+
+- if @user.email.present?
+  %h4= @user.email
 
 - if logged_in_as?(@user)
   %p= link_to 'Edit profile', edit_members_user_path(@user)
 
 %table.table
+  %tr
+    %td GitHub url
+    %td= external_auto_link(profile.github_url)
 
   - if profile.twitter.present?
     %tr
