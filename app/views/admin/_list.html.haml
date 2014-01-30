@@ -1,0 +1,26 @@
+%table.table.admin-console
+  %thead
+    %tr
+      %th Name
+      %th Username
+      %th Status
+      %th Manage Status
+  %tbody
+    - users.each do |user|
+      %tr
+        %td
+          = user_gravatar(user, 20)
+          - if user.name.present?
+            = link_to user.name, members_user_path(user)
+        %td= link_to user.username, members_user_path(user)
+        %td= user.display_state
+
+        %td.buttons
+          - if user.key_member?
+            = form_for user, url: admin_revoke_key_member_path do |f|
+              = f.hidden_field(:id)
+              = f.submit "Revoke Key Member", class: "btn reject-btn", confirm: "Are you sure?"
+          - else
+            = form_for user, url: admin_add_key_member_path do |f|
+              = f.hidden_field(:id)
+              = f.submit "Make Key Member", class: "btn accept-btn", confirm: "Are you sure?"

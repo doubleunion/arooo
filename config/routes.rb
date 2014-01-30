@@ -20,10 +20,16 @@ Doubleunion::Application.routes.draw do
   end
 
   get 'admin/new_members' => 'admin#new_members'
-  post 'admin/setup_complete' => 'admin#setup_complete'
   get 'admin/applications' => 'admin#applications'
+  get 'admin/members' => 'admin#members'
+
   patch 'admin/approve' => 'admin#approve'
   patch 'admin/reject' => 'admin#reject'
+
+  post 'admin/setup_complete' => 'admin#setup_complete'
+
+  patch 'admin/add_key_member' => 'admin#add_key_member'
+  patch 'admin/revoke_key_member' => 'admin#revoke_key_member'
 
   resources :tumblr_posts, :only => [:index, :show], :path => 'blog'
 

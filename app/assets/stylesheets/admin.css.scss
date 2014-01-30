@@ -51,11 +51,8 @@ body.admin.applications.show {
     width: 170px;
   }
 
-  .btn {
-    width: 70px;
-  }
-
   .accept-btn {
+    color: #000;
     background: #AEFF94;
     &:hover {
       background: #48FF0D;
@@ -63,6 +60,7 @@ body.admin.applications.show {
   }
 
   .reject-btn {
+    color: #000;
     background: #ffabab;
     &:hover {
       background: #FF5252;
