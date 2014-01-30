@@ -56,6 +56,38 @@ describe AdminController do
         expect {member.reload.setup_complete}.to be_true
       end
     end
+
+    describe 'GET members' do
+      it 'allows admin to view admin members index' do
+        login_as(:key_member, is_admin: true)
+        get :members
+        response.should render_template :members
+      end
+    end
+
+    describe 'PATCH add_key_member' do
+      let(:user) { create(:member) }
+      let(:params) { { user: { id: user.id} } }
+
+      it 'allows admin to add key_member access' do
+        login_as(:key_member, is_admin: true)
+        expect do
+          patch :add_key_member, params
+        end.to change { user.reload.state }.from("member").to("key_member")
+      end
+    end
+
+    describe 'PATCH revoke_key_member' do
+      let(:user) { create(:key_member) }
+      let(:params) { { user: { id: user.id} } }
+
+      it 'allows admin to revoke key_member access' do
+        login_as(:key_member, is_admin: true)
+        expect do
+          patch :revoke_key_member, params
+        end.to change { user.reload.state }.from("key_member").to("member")
+      end
+    end
   end
 
   describe 'as a non-admin user' do
@@ -63,6 +95,14 @@ describe AdminController do
       it 'should redirect to root if logged in as member' do
         login_as(:member)
         get :applications
+        response.should redirect_to :root
+      end
+    end
+
+    describe 'GET members' do
+      it 'should redirect to root if logged in as member' do
+        login_as(:member)
+        get :members
         response.should redirect_to :root
       end
     end

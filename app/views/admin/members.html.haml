@@ -1,0 +1,3 @@
+- if @members_and_key_members.any?
+  %h3 Members
+  = render :partial => 'list', :locals => { :users => @members_and_key_members }

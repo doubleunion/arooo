@@ -7,6 +7,13 @@ class AdminController < ApplicationController
     @unknown = Application.not_enough_info
   end
 
+  def members
+    @members_and_key_members = User.members_and_key_members
+      .includes(:profile)
+      .order_by_state
+      .limit(100)
+  end
+
   def approve
     application = Application.find(application_params[:id])
     application.approve
@@ -28,6 +35,30 @@ class AdminController < ApplicationController
     else
       flash[:error] = "Whoops! #{application.errors.full_messages.to_sentence}"
       render :applications
+    end
+  end
+
+  def add_key_member
+    user = User.find(params[:user][:id])
+    user.state = "key_member"
+    if user.save
+      flash[:message] = "#{user.name} was added as a key member."
+      redirect_to admin_members_path
+    else
+      flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
+      redirect_to admin_members_path
+    end
+  end
+
+  def revoke_key_member
+    user = User.find(params[:user][:id])
+    user.state = "member"
+    if user.save
+      flash[:message] = "#{user.name} was revoked as a key member."
+      redirect_to admin_members_path
+    else
+      flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
+      redirect_to admin_members_path
     end
   end
 
