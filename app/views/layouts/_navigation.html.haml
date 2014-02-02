@@ -39,3 +39,6 @@
                 %li= link_to 'New Members', admin_new_members_path
               %li.divider
               %li= link_to 'Sign out', logout_path
+      - else
+        %ul.nav.navbar-nav.pull-right
+          %li= link_to 'Log In', login_path
