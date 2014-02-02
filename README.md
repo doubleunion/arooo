@@ -19,6 +19,7 @@
 1. Edit config/application.yml
     * set `GITHUB_CLIENT_KEY` and `GITHUB_CLIENT_SECRET` to the Client ID and
       Client Secret from your Github application
+    * don't forget to restart your Rails server so it can see your shiny new GitHub key & secret
 
 ## Specs
 
