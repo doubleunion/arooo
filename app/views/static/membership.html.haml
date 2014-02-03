@@ -1,12 +1,16 @@
 %h2 Membership
 
-%h3 Join us!
+- if Configurable[:accepting_applications]
+  %h3 Join us!
 
-%p
-  We are looking for new members! Keep reading to learn more about becoming a member and joining our awesome feminist community workshop.
+  %p
+    We are looking for new members! Keep reading to learn more about becoming a member and joining our awesome feminist community workshop.
 
-%p
-  The main reason to become a member is to be able to visit the space without a host. Non-members are welcome in the space if they are accompanied by a key member, to come to an open house night, to take a class, or to attend an open event.
+  %p
+    The main reason to become a member is to be able to visit the space without a host. Non-members are welcome in the space if they are accompanied by a key member, to come to an open house night, to take a class, or to attend an open event.
+- else
+  %p We aren't currently accepting applications. Join our #{ link_to "general interest mailing list", "http://lists.doubleunion.org/listinfo.cgi/doubleunion-doubleunion.org"} to be notified when applications are open again!
+
 
 %h3 Membership qualifications
 
@@ -48,17 +52,18 @@
   %li Nominate and vote on new members
   %li Come to weekly meetings
 
-%h3 Apply
+- if Configurable[:accepting_applications]
+  %h3 Apply
 
-%p
-  New members join through a nomination and voting process. To apply for Double
-  Union membership, start by authenticating with GitHub. If you don't have a
-  GitHub account, you will be able to create one for free. (And don't worry if you have an empty or sparse GitHub account, it's just for authentication!)
+  %p
+    New members join through a nomination and voting process. To apply for Double
+    Union membership, start by authenticating with GitHub. If you don't have a
+    GitHub account, you will be able to create one for free. (And don't worry if you have an empty or sparse GitHub account, it's just for authentication!)
 
-%p
-  Before you apply, though, please read through our #{ link_to "Base Assumptions", base_assumptions_path }. They are very important to us and we want all members to be comfortable with them.
+  %p
+    Before you apply, though, please read through our #{ link_to "Base Assumptions", base_assumptions_path }. They are very important to us and we want all members to be comfortable with them.
 
-%p= link_to 'Sign in with GitHub', login_path, :class => 'btn btn-primary btn-lg'
+  %p= link_to 'Sign in with GitHub', login_path, :class => 'btn btn-primary btn-lg'
 
 %h3 Current members
 %p There are #{@total_members} current members, including:

@@ -1,4 +1,5 @@
 class ApplicationsController < ApplicationController
+  before_action :ensure_accepting_applications
   before_action :require_applicant_user
 
   before_action :set_user,               :only => [:show, :edit, :update]
@@ -69,5 +70,12 @@ class ApplicationsController < ApplicationController
 
   def application_attributes
     [:id, :agreement_terms, :agreement_policies, :agreement_female]
+  end
+
+  def ensure_accepting_applications
+    unless Configurable[:accepting_applications]
+      flash['notice'] = "Double Union isn't currently accepting applications. Join our general interest mailing list to be notified when applications are open again."
+      redirect_to membership_path
+    end
   end
 end
