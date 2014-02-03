@@ -1,6 +1,4 @@
 class StaticController < ApplicationController
-  caches_action :membership, :layout => false
-
   def index
     set_use_container(false)
   end
