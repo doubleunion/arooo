@@ -2,6 +2,8 @@
 
 ## Development setup
 
+If you are new to Rails, follow the [RailsBridge Installfest instructions](http://installfest.railsbridge.org/installfest/) for getting your environment set up.
+
 1. Standard Rails app setup
     * `cp config/database.example.yml config/database.yml`
     * set configuration in config/database.yml
@@ -68,6 +70,8 @@ Manually changing a user's state from the rails console:
 ```
 
 ## Contributing
+
+If you are new to GitHub, you can [use this guide](http://installfest.railsbridge.org/installfest/) for help making a pull request.
 
 1. Fork it
 1. Get it running
