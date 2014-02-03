@@ -60,6 +60,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def ensure_admin
+    unless logged_in? && current_user.is_admin?
+      redirect_to :root and return
+    end
+  end
+
   def set_current_user(user)
     # Reset the session after successful login, per
     # 2.8 Session Fixation – Countermeasures:

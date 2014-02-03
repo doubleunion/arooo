@@ -86,12 +86,6 @@ class AdminController < ApplicationController
 
   private
 
-  def ensure_admin
-    unless logged_in? && current_user.is_admin?
-      redirect_to :root and return
-    end
-  end
-
   def application_params
     params.require(:application).permit(:id)
   end
