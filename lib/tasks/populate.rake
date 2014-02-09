@@ -17,4 +17,24 @@ namespace :populate do
       user.save
     end
   end
+  task :user, [:username, :name, :email, :state] => :environment do |t, args|
+    raise 'username not provided' unless !!args.username && !args.username.empty?
+
+    raise 'development only' unless Rails.env.development?
+
+    states = User.state_machine.states.map(&:name).map(&:to_s)
+    raise 'invalid state' unless states.include? args.state
+
+    user = User.find_by username: args.username
+    if !user
+      user = User.new
+      user.provider = 'github'
+      user.username = args.username
+    end
+    user.name = args.name
+    user.email = args.email
+    user.state = args.state
+    
+    user.save
+  end
 end
