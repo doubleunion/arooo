@@ -8,6 +8,7 @@
       %th Username
       %th Submitted
       %th Sponsors
+      %th Comments
       - if current_user.key_member?
         %th You
       %th Yes
@@ -27,6 +28,7 @@
             \--
         %td
           = application.sponsorships.count
+        %td= application.comments.size
         - if current_user.key_member?
           %td
             - if current_user.voted_on?(application)
