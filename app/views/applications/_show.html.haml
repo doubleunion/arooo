@@ -38,18 +38,18 @@
 
   %tr
     %td.left Why are you interested in joining Double Union?
-    %td= preserve_newlines(@user.profile.reasons)
+    %td= markdown(@user.profile.reasons)
 
   %tr
     %td.left Tell us about your feminism!
-    %td= preserve_newlines(@user.profile.feminism)
+    %td= markdown(@user.profile.feminism)
 
   %tr
     %td.left What would you like to work on in the space?
-    %td= preserve_newlines(@user.profile.projects)
+    %td= markdown(@user.profile.projects)
 
   %tr
     %td.left
       What skills are you most interested in learning, improving, and/or
       teaching?
-    %td= preserve_newlines(@user.profile.skills)
+    %td= markdown(@user.profile.skills)

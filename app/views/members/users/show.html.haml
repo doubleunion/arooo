@@ -43,16 +43,16 @@
 
 - if profile.summary.present?
   %h4 Tell us a little about yourself!
-  %p= profile.summary
+  %div= markdown(profile.summary)
 
 - if profile.reasons.present?
   %h4 Why are you interested in joining Double Union?
-  %p= profile.reasons
+  %div= markdown(profile.reasons)
 
 - if profile.projects.present?
   %h4 What would you like to work on in the space?
-  %p= profile.projects
+  %div= markdown(profile.projects)
 
 - if profile.skills.present?
   %h4 What skills are you most interested in learning, improving, and/or teaching?
-  %p= profile.skills
+  %div= markdown(profile.skills)

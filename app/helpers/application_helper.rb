@@ -41,9 +41,10 @@ module ApplicationHelper
     timestamp.strftime(format)
   end
 
-  def preserve_newlines(text)
-    text ? text.split("\n").map { |p| h(p) }.join("<br />").html_safe : nil
-  end
+  # now unused in favor of redcarpet markdown
+  #def preserve_newlines(text)
+  #  text ? text.split("\n").map { |p| h(p) }.join("<br />").html_safe : nil
+  #end
 
   def google_analytics
     return unless Rails.env.production?
