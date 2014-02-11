@@ -79,6 +79,7 @@ module ApplicationHelper
                                        :quote => true)
 
   def markdown(text)
+    return nil unless text
     @@markdown.render(text).html_safe
   end
 end
