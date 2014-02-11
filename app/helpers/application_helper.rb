@@ -41,9 +41,10 @@ module ApplicationHelper
     timestamp.strftime(format)
   end
 
-  def preserve_newlines(text)
-    text ? text.split("\n").map { |p| h(p) }.join("<br />").html_safe : nil
-  end
+  # now unused in favor of redcarpet markdown
+  #def preserve_newlines(text)
+  #  text ? text.split("\n").map { |p| h(p) }.join("<br />").html_safe : nil
+  #end
 
   def google_analytics
     return unless Rails.env.production?
@@ -61,5 +62,24 @@ module ApplicationHelper
       </script>
     eos
     code.html_safe
+  end
+
+  @@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(:hard_wrap => true,
+                                                                   :prettify => true),
+                                       :no_intra_emphasis => true,
+                                       :tables => true,
+                                       :fenced_code_blocks => true,
+                                       :autolink => true,
+                                       :strikethrough => true,
+                                       :lax_spacing => true,
+                                       :space_after_headers => true,
+                                       :superscript => true,
+                                       :underline => true,
+                                       :highlight => true,
+                                       :quote => true)
+
+  def markdown(text)
+    return nil unless text
+    @@markdown.render(text).html_safe
   end
 end
