@@ -1,11 +1,17 @@
 %h1 Double Union Account Setup
 
-%h3 Email & dues pledge
+%h3 Please do ALL of these things:
+%ol
+  %li Tell us your Google email + dues amount
+  %li Set up your dues via PayPal using the form on THIS page
+  %li Join the members mailing list
+
+%h3 Step one: email & dues pledge
 
 %p
   We use Google docs and calendar to share information.
   Let us know what email address we should share those things with and
-  how much you're able to contribute as dues ($10, $25, $50, or $100 per month).
+  how much you're able to contribute as dues ($10, $25, or $50 per month).
 
 %p
   If you ever need to update your Google docs/calendar email address, please email
@@ -18,18 +24,22 @@
       = f.text_field :email_for_google, size: 40
     .form-group
       = f.label "Dues pledge"
-      = f.number_field :dues_pledge, min: "10", max: "100"
+      = f.number_field :dues_pledge, min: "10", max: "50"
     .form-group
       = f.submit "Submit", class: "btn btn-primary"
 
-%h3 Set up monthly dues via PayPal
-%p Email membership@doubleunion.org if you have any questions or concerns!
+%h3 Step two: set up monthly dues via PayPal
+%b If your PayPal account has a name other than the one you joined Double Union with, please email the new members coordinators at #{ mail_to 'membership@doubleunion.org' } to let them know, so they can identify your dues payment as yours.
+
+%p You can also email membership@doubleunion.org if you have any questions or concerns about dues!
 = render 'shared/paypal_dues_form'
 
-%h3 Sign up for the mailing list
+%h3 Step three: sign up for the mailing list
+
 %p
-  =link_to "Join the DU Members Mailing List.", "http://lists.doubleunion.org/listinfo.cgi/members-doubleunion.org", target: "_blank"
-  We'll get you approved quickly, and then you can introduce yourself!
+  We'll get you approved quickly, and then you can introduce yourself! This is our main method of communication, so it's important you're on it. We highly recommend using filters/labels in your mail client to keep your inbox from being overwhelmed.
+
+%h4=link_to "Click here to join the DU members mailing list!", "http://lists.doubleunion.org/listinfo.cgi/members-doubleunion.org", target: "_blank"
 
 %p
   =button_to "Back to members home", members_root_path, class: "btn btn-default", method: "get"
