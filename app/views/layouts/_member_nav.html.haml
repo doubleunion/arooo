@@ -1,0 +1,25 @@
+%nav.navbar#member-nav{ :role => 'navigation' }
+  .container
+    .navbar-header
+      %button.navbar-toggle{:type => 'button', :'data-toggle' => 'collapse', :'data-target' => '.navbar-ex1-collapse'}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+    .collapse.navbar-collapse.navbar-ex1-collapse
+      %ul.nav.navbar-nav
+        %li.no-padding= link_to 'Members', members_users_path
+        %li= link_to 'Applications', members_applications_path
+        %li= link_to 'Edit profile', edit_members_user_path(current_user)
+        - if current_user.is_admin?
+          %li.dropdown
+            %a{ :href => '#', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' }
+              Admin Tools
+              <b class="caret"></b>
+            %ul.dropdown-menu
+              %li= link_to 'Manage Applications', admin_applications_path
+              %li= link_to 'Manage Members', admin_members_path
+              %li= link_to 'New Members', admin_new_members_path
+              %li= link_to 'Configure app', admin_configurable_path
+      %ul.nav.navbar-nav.pull-right
+        %li= link_to 'Sign out', logout_path

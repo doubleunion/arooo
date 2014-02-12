@@ -11,6 +11,7 @@
   %body{ :class => body_classes.join(' ') }
     .wrapper
       = render 'layouts/navigation'
+      = render 'layouts/member_nav' if current_user && current_user.member_or_key_member?
       #main{ :role => 'main' }
         = render 'layouts/messages'
         - if use_container?

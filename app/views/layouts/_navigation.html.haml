@@ -18,28 +18,25 @@
             %a{ :href => members_root_path }
               %span.badge= current_user.number_applications_needing_vote
         %ul.nav.navbar-nav.pull-right
-          %li.dropdown
-            / %span.badge 5
-            %a{ :href => '#', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' }
-              = user_gravatar(current_user)
-              = current_user.username
-              <b class="caret"></b>
-            %ul.dropdown-menu
-              - if current_user.visitor?
-                %li= link_to 'Apply', membership_path
-              - elsif current_user.applicant?
-                %li= link_to 'Application', new_application_path
-              - elsif current_user.member_or_key_member?
-                %li= link_to 'Edit profile', edit_members_user_path(current_user)
-                %li= link_to 'Members', members_users_path
-                %li= link_to 'Applications', members_applications_path
-              - if current_user.is_admin?
-                %li= link_to 'Manage Applications', admin_applications_path
-                %li= link_to 'Manage Members', admin_members_path
-                %li= link_to 'New Members', admin_new_members_path
-                %li= link_to 'Configure app', admin_configurable_path
-              %li.divider
-              %li= link_to 'Sign out', logout_path
+          - unless current_user.member_or_key_member?
+            %li.dropdown
+              / %span.badge 5
+              %a{ :href => '#', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' }
+                = user_gravatar(current_user)
+                = current_user.username
+                <b class="caret"></b>
+              %ul.dropdown-menu
+                - if current_user.visitor?
+                  %li= link_to 'Apply', membership_path
+                - elsif current_user.applicant?
+                  %li= link_to 'Application', new_application_path
+                %li.divider
+                %li= link_to 'Sign out', logout_path
+          - if current_user.member_or_key_member?
+            %li
+              = link_to edit_members_user_path(current_user) do
+                = user_gravatar(current_user)
+                = current_user.username
       - else
         %ul.nav.navbar-nav.pull-right
           %li= link_to 'Log In', login_path

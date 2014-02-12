@@ -68,3 +68,49 @@ footer ul {
   width: 20px;
   height: 20px;
 }
+
+#member-nav {
+  background: #be2361;
+  border-radius: 0px;
+
+  li {
+    a {
+      &:focus, &:hover {
+        background: #be2361;
+      }
+    }
+  }
+
+  a {
+    color: white;
+    &:hover {
+      color: black;
+    }
+  }
+
+  .caret {
+    border-top-color: #FFFFFF;
+  }
+
+  .icon-bar {
+    background: white;
+  }
+
+  .dropdown {
+    li {
+      a {
+        color: black;
+      }
+    }
+  }
+
+  li.no-padding {
+    a {
+      padding-left: 0;
+    }
+  }
+
+  .navbar-collapse {
+    padding-left: 0;
+  }
+}
