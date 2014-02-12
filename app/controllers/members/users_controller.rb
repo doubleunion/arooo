@@ -5,7 +5,7 @@ class Members::UsersController < Members::MembersController
     @members_and_key_members = User.members_and_key_members
       .includes(:profile)
       .order_by_state
-      .limit(100)
+      .limit(120)
   end
 
   def show

@@ -4,7 +4,7 @@ class StaticController < ApplicationController
   end
 
   def membership
-    @users = User.show_public.order(:name).limit(100)
+    @users = User.show_public.order(:name).limit(120)
     @total_members = User.members_and_key_members.count
   end
 
