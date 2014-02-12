@@ -1,5 +1,5 @@
 # Double Union
-
+[![Build Status](https://magnum.travis-ci.com/doubleunion/doubleunion.png?token=c7mAxBaDB8Dq7B1Hxwxj&branch=master)](https://magnum.travis-ci.com/doubleunion/doubleunion)
 ## Development setup
 
 If you are new to Rails, follow the [RailsBridge Installfest instructions](http://installfest.railsbridge.org/installfest/) for getting your environment set up.
