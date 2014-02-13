@@ -115,6 +115,8 @@ This section only pertains if you have Heroku & Deployment access
 
 1. If needed, perform rake tasks or set ENV variable settings on `staging`
 
+1. Test [staging](http://doubleunion-staging.herokuapp.com/)! username: doubleunion, password: meritocracyisajoke
+
 1. After confirming that the code works on `staging`, push it to `production`!
 
    ```
