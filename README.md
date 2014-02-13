@@ -81,3 +81,46 @@ If you are new to GitHub, you can [use this guide](http://installfest.railsbridg
 1. Push to the branch (git push origin my-new-feature)
 1. Create new Pull Request
 1. If you find bugs, have feature requests or questions, please file an issue.
+
+
+## Deploying
+
+This section only pertains if you have Heroku & Deployment access
+
+1. Add Heroku remotes to your `.git/config`
+
+   ```
+   [remote "production"]
+      url = git@heroku.com:doubleunion.git
+      fetch = +refs/heads/*:refs/remotes/heroku/*
+   [remote "staging"]
+      url = git@heroku.com:doubleunion-staging.git
+      fetch = +refs/heads/*:refs/remotes/heroku/*
+   ```
+
+1. Pull down the latest code from `master`
+
+   ```
+   git checkout master
+   git pull --rebase origin master
+   ```
+
+1. If Travis CI tests are passing, push to the `staging` environment
+
+   ```
+   git checkout master
+   git pull --rebase origin master
+   git push staging master
+   ```
+
+1. If needed, perform rake tasks or set ENV variable settings on `staging`
+
+1. After confirming that the code works on `staging`, push it to `production`!
+
+   ```
+   git checkout master
+   git pull --rebase origin master
+   git push production master
+   ```
+
+1. If needed, perform rake tasks or set ENV variable settings on `production`
