@@ -74,9 +74,7 @@ Manually changing a user's state from the rails console:
 If you are new to GitHub, you can [use this guide](http://installfest.railsbridge.org/installfest/) for help making a pull request.
 
 1. Fork it
-
 1. Get it running
-
 1. Create your feature branch
 
   ```
@@ -84,7 +82,6 @@ If you are new to GitHub, you can [use this guide](http://installfest.railsbridg
   ```
 
 1. Write your code and specs
-
 1. Commit your changes
 
   ```
@@ -98,7 +95,6 @@ If you are new to GitHub, you can [use this guide](http://installfest.railsbridg
   ```
 
 1. Create a new Pull Request, linking to the GitHub issue url the Pull Request is fixing in the description
-
 1. If you find bugs, have feature requests or questions, please file an issue.
 
 
@@ -107,13 +103,9 @@ If you are new to GitHub, you can [use this guide](http://installfest.railsbridg
 This section only pertains if you have doubleunion/doubleunion write/push access.
 
 1. Read through the GitHub issue that the Pull Request is fixing
-
 1. Code review the Pull Request, commenting on any potential issues, improvements, or telling the person how awesome their code is
-
 1. After the Pull Request is reviewed & fixed (if necessary) and the Travis CI build is passing, merge the Pull Request into `master`
-
 1. Delete the branch, and close the relevant issue if not referenced in the Pull Request already
-
 1. Deploy! (see below)
 
 
@@ -148,8 +140,12 @@ This section only pertains if you have Heroku & Deployment access.
   ```
 
 1. If needed, perform rake tasks or set ENV variable settings on `staging`
+1. Test [staging](http://doubleunion-staging.herokuapp.com/)!
 
-1. Test [staging](http://doubleunion-staging.herokuapp.com/)! username: doubleunion, password: meritocracyisajoke
+  ```
+  username: doubleunion
+  password: meritocracyisajoke
+  ```
 
 1. After confirming that the code works on `staging`, push it to `production`!
 
