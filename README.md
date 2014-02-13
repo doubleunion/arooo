@@ -74,44 +74,78 @@ Manually changing a user's state from the rails console:
 If you are new to GitHub, you can [use this guide](http://installfest.railsbridge.org/installfest/) for help making a pull request.
 
 1. Fork it
+
 1. Get it running
-1. Create your feature branch (git checkout -b my-new-feature)
+
+1. Create your feature branch
+
+  ```
+  git checkout -b my-new-feature
+  ```
+
 1. Write your code and specs
-1. Commit your changes (git commit -am 'Add some feature')
-1. Push to the branch (git push origin my-new-feature)
-1. Create new Pull Request
+
+1. Commit your changes
+
+  ```
+  git commit -am 'Add some feature'
+  ```
+
+1. Push to the branch
+
+  ```
+  git push origin my-new-feature
+  ```
+
+1. Create a new Pull Request, linking to the GitHub issue url the Pull Request is fixing in the description
+
 1. If you find bugs, have feature requests or questions, please file an issue.
+
+
+## Reviewing
+
+This section only pertains if you have doubleunion/doubleunion write/push access.
+
+1. Read through the GitHub issue that the Pull Request is fixing
+
+1. Code review the Pull Request, commenting on any potential issues, improvements, or telling the person how awesome their code is
+
+1. After the Pull Request is reviewed & fixed (if necessary) and the Travis CI build is passing, merge the Pull Request into `master`
+
+1. Delete the branch, and close the relevant issue if not referenced in the Pull Request already
+
+1. Deploy! (see below)
 
 
 ## Deploying
 
-This section only pertains if you have Heroku & Deployment access
+This section only pertains if you have Heroku & Deployment access.
 
 1. Add Heroku remotes to your `.git/config`
 
-   ```
-   [remote "production"]
-      url = git@heroku.com:doubleunion.git
-      fetch = +refs/heads/*:refs/remotes/heroku/*
-   [remote "staging"]
-      url = git@heroku.com:doubleunion-staging.git
-      fetch = +refs/heads/*:refs/remotes/heroku/*
-   ```
+  ```
+  [remote "production"]
+     url = git@heroku.com:doubleunion.git
+     fetch = +refs/heads/*:refs/remotes/heroku/*
+  [remote "staging"]
+     url = git@heroku.com:doubleunion-staging.git
+     fetch = +refs/heads/*:refs/remotes/heroku/*
+  ```
 
 1. Pull down the latest code from `master`
 
-   ```
-   git checkout master
-   git pull --rebase origin master
-   ```
+  ```
+  git checkout master
+  git pull --rebase origin master
+  ```
 
 1. If Travis CI tests are passing, push to the `staging` environment
 
-   ```
-   git checkout master
-   git pull --rebase origin master
-   git push staging master
-   ```
+  ```
+  git checkout master
+  git pull --rebase origin master
+  git push staging master
+  ```
 
 1. If needed, perform rake tasks or set ENV variable settings on `staging`
 
@@ -119,10 +153,10 @@ This section only pertains if you have Heroku & Deployment access
 
 1. After confirming that the code works on `staging`, push it to `production`!
 
-   ```
-   git checkout master
-   git pull --rebase origin master
-   git push production master
-   ```
+  ```
+  git checkout master
+  git pull --rebase origin master
+  git push production master
+  ```
 
 1. If needed, perform rake tasks or set ENV variable settings on `production`
