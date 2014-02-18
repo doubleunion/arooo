@@ -163,4 +163,35 @@ describe Members::UsersController do
       user.email_for_google.should eq('googly-eyes@example.com')
     end
   end
+
+  describe 'GET dues' do
+    it 'redirects if not logged in' do
+      get :index
+      response.should redirect_to :root
+    end
+
+    it 'redirects if logged in as visitor' do
+      login_as(:visitor)
+      get :index
+      response.should redirect_to :root
+    end
+
+    it 'redirects if logged in as applicant' do
+      login_as(:applicant)
+      get :index
+      response.should redirect_to :root
+    end
+
+    it 'renders if logged in as member' do
+      login_as(:member)
+      get :index
+      response.should be_success
+    end
+
+    it 'renders if logged in as key member' do
+      login_as(:key_member)
+      get :index
+      response.should be_success
+    end
+  end
 end

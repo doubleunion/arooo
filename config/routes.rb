@@ -6,6 +6,7 @@ Doubleunion::Application.routes.draw do
     resources :users, :only => [:index, :show, :edit, :update] do
       get 'setup' => "users#setup"
       patch 'setup' => "users#finalize"
+      get 'dues' => "users#dues"
     end
     resources :votes, :only => :create
 

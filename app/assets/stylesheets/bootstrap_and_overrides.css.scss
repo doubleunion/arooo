@@ -51,3 +51,7 @@ h4 {
   font-size: 20px;
   margin: 20px 0 0 0;
 }
+
+.modal-backdrop, .modal-backdrop.fade.in {
+  opacity: .7;
+}

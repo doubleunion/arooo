@@ -38,6 +38,9 @@ class Members::UsersController < Members::MembersController
     end
   end
 
+  def dues
+  end
+
   private
 
   def user_params

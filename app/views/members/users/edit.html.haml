@@ -4,8 +4,6 @@
   Profile fields are only visible to members by default and are totally
   optional.
 
-%p= link_to "Click here to update your dues pledge or Google docs email", members_user_setup_path(current_user)
-
 = form_for @user, :url => members_user_path(@user) do |f|
 
   = f.fields_for :profile do |fields|
