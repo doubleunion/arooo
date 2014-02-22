@@ -48,6 +48,24 @@ describe User do
     expect { user.make_member! }.to raise_error(StateMachine::InvalidTransition)
   end
 
+  describe "#remove_key_membership" do
+    let(:key_member) { create(:key_member) }
+
+    it 'should transition from member or key_member to former_member' do
+      expect do
+        key_member.remove_key_membership
+      end.to change{key_member.state}.from("key_member").to("member")
+    end
+  end
+
+  describe "#remove_membership" do
+    let(:member) { create(:member) }
+
+    it 'should transition from member or key_member to former_member' do
+      expect {member.remove_membership}.to change{member.state}.from("member").to("former_member")
+    end
+  end
+
   it 'should be invalid with invalid provider' do
     user = User.new
     user.provider = 'nope'

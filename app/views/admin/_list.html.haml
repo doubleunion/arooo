@@ -16,6 +16,9 @@
         %td= user.display_state
 
         %td.buttons
+          = form_for user, url: admin_revoke_membership_path do |f|
+            = f.hidden_field(:id)
+            = f.submit "Revoke DU Membership", class: "btn reject-btn", confirm: "Are you sure?"
           - if user.key_member?
             = form_for user, url: admin_revoke_key_member_path do |f|
               = f.hidden_field(:id)

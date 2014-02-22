@@ -31,6 +31,7 @@ Doubleunion::Application.routes.draw do
 
   patch 'admin/add_key_member' => 'admin#add_key_member'
   patch 'admin/revoke_key_member' => 'admin#revoke_key_member'
+  patch 'admin/revoke_membership' => 'admin#revoke_membership'
 
   resources :tumblr_posts, :only => [:index, :show], :path => 'blog'
 

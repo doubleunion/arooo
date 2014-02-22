@@ -88,6 +88,18 @@ describe AdminController do
         end.to change { user.reload.state }.from("key_member").to("member")
       end
     end
+
+    describe 'PATCH revoke_membership' do
+      let(:user) { create(:member) }
+      let(:params) { { user: { id: user.id } } }
+
+      it 'allows admin to revoke membership' do
+        login_as(:key_member, is_admin: true)
+        expect do
+          patch :revoke_membership, params
+        end.to change { user.reload.state }.from("member").to("former_member")
+      end
+    end
   end
 
   describe 'as a non-admin user' do

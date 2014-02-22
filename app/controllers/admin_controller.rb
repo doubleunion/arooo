@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   before_filter :ensure_admin
+  before_filter :find_member, only: [:add_key_member, :revoke_key_member, :revoke_membership]
 
   def applications
     @to_approve = Application.to_approve
@@ -39,27 +40,30 @@ class AdminController < ApplicationController
   end
 
   def add_key_member
-    user = User.find(params[:user][:id])
-    user.state = "key_member"
-    if user.save
-      flash[:message] = "#{user.name} was added as a key member."
-      redirect_to admin_members_path
+    if @user.make_key_member
+      flash[:message] = "#{@user.name} was added as a key member."
     else
-      flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
-      redirect_to admin_members_path
+      flash[:message] = "Whoops! #{@user.errors.full_messages.to_sentence}"
     end
+    redirect_to admin_members_path
   end
 
   def revoke_key_member
-    user = User.find(params[:user][:id])
-    user.state = "member"
-    if user.save
-      flash[:message] = "#{user.name} was revoked as a key member."
-      redirect_to admin_members_path
+    if @user.remove_key_membership
+      flash[:message] = "#{@user.name} was revoked as a key member."
     else
-      flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
-      redirect_to admin_members_path
+      flash[:message] = "Whoops! #{@user.errors.full_messages.to_sentence}"
     end
+    redirect_to admin_members_path
+  end
+
+  def revoke_membership
+    if @user.remove_membership
+      flash[:message] = "#{@user.name} was revoked as a member."
+    else
+      flash[:message] = "Whoops! #{@user.errors.full_messages.to_sentence}"
+    end
+    redirect_to admin_members_path
   end
 
   def new_members
@@ -92,6 +96,10 @@ class AdminController < ApplicationController
 
   def user_params
     params.require(:id)
+  end
+
+  def find_member
+    @user = User.find(params[:user][:id])
   end
 
 end
