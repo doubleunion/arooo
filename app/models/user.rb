@@ -99,10 +99,19 @@ class User < ActiveRecord::Base
       transition :member => :key_member
     end
 
+    event :remove_key_membership do
+      transition :key_member => :member
+    end
+
+    event :remove_membership do
+      transition [:member, :key_member] => :former_member
+    end
+
     state :visitor
     state :applicant
     state :member
     state :key_member
+    state :former_member
   end
 
   def member_or_key_member?
