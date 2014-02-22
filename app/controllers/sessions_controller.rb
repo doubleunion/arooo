@@ -20,6 +20,9 @@ class SessionsController < ApplicationController
       redirect_to edit_application_path(user.application) and return
     elsif user.applicant?
       redirect_to edit_application_path(user.application) and return
+    elsif user.former_member?
+      flash[:message] = "As a former member, you can no longer access the members sections."
+      redirect_to root_path and return
     elsif user.member_or_key_member?
       redirect_to members_root_path and return
     end
