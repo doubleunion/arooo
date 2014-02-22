@@ -71,15 +71,25 @@ class AdminController < ApplicationController
   end
 
   def setup_complete
-    user = User.find(user_params)
+    user = User.find(user_params[:id])
     user.setup_complete = true
     if user.save
       ApplicationsMailer.member_access(user.application).deliver
-      redirect_to admin_new_members_path
     else
       flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
-      redirect_to admin_new_members_path
     end
+    redirect_to admin_new_members_path
+  end
+
+  def save_membership_note
+    user = User.find(user_params[:id])
+    user.membership_note = user_params[:membership_note]
+    if user.save
+      flash[:message] = "Note saved!"
+    else
+      flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
+    end
+    redirect_to admin_new_members_path
   end
 
   protected
@@ -95,7 +105,7 @@ class AdminController < ApplicationController
   end
 
   def user_params
-    params.require(:id)
+    params.require(:user).permit(:id, :membership_note)
   end
 
   def find_member

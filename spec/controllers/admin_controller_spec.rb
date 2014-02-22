@@ -48,13 +48,26 @@ describe AdminController do
 
     describe 'POST setup_complete' do
       let!(:member) { create(:member) }
-      let(:params) {{ id: member.id }}
+      let(:params) { { user: { id: member.id} } }
 
       it 'allows the admin to mark user setup as complete' do
         login_as(:key_member, is_admin: true)
         post :setup_complete, params
         expect {member.reload.setup_complete}.to be_true
       end
+    end
+
+    describe 'POST add_membership_note' do
+      let!(:member) { create(:member) }
+      let(:params) { { user: { id: member.id, membership_note: "beeeep"} } }
+
+      it 'allows the admin to make notes on the new user' do
+        login_as(:key_member, is_admin: true)
+        expect do
+          post :save_membership_note, params
+        end.to change{member.reload.membership_note}.from(nil).to("beeeep")
+      end
+
     end
 
     describe 'GET members' do

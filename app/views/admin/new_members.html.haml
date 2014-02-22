@@ -7,20 +7,4 @@
 
     %li Follow up with people!
 
-%table.table
-  %tr
-    %th Name
-    %th Email
-    %th Date Approved
-    %th Email for Google
-    %th Dues Pledge
-    %th Button
-  - @new_members.each do |member|
-    %tr
-      %td= link_to member.name, members_user_path(member)
-      %td= member.email
-      %td= member.application.processed_at.strftime("%b %-d")
-      %td= member.email_for_google
-      %td= member.dues_pledge
-      %td
-        = button_to "Setup Finished", action: "setup_complete", id: member.id
+= render partial: 'new_member', collection: @new_members
