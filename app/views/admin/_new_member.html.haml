@@ -1,0 +1,25 @@
+%hr
+.row
+  .col-md-3
+    %ul.list-unstyled
+      %li
+        %b #{ link_to new_member.name, members_user_path(new_member) }
+      %li Approved #{ new_member.application.processed_at.strftime("%b %-d") }
+      %li= new_member.email
+      %li
+        = form_for :user, url: admin_setup_complete_path do |f|
+          = f.hidden_field :id, value: new_member.id
+          = f.submit "Setup Finished", class: "btn btn-primary"
+  .col-md-4
+    %ul.list-unstyled
+      %li
+        %b Google email:
+      %li #{ new_member.email_for_google }
+      %li
+        %b Dues pledge:
+        #{ new_member.dues_pledge }
+  .col-md-5
+    = form_for :user, url: admin_save_membership_note_path do |f|
+      = f.hidden_field :id, value: new_member.id
+      = f.text_area :membership_note, rows: 4, cols: 35, value: new_member.membership_note
+      = f.submit "Save Comment", class: "btn"
