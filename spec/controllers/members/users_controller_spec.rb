@@ -3,152 +3,123 @@ require 'spec_helper'
 describe Members::UsersController do
   include AuthHelper
 
+  let(:someone_cool) { create(:member) }
+
+  shared_examples "deny non-members" do |folks|
+    folks.each do |folk|
+      it "should deny non-members" do
+        login_as(folk)
+        subject
+        expect(response).to redirect_to :root
+      end
+    end
+  end
+
+  shared_examples "allow members" do |folks|
+    folks.each do |folk|
+      it "should allow members" do
+        login_as(folk)
+        subject
+        expect(response).to be_success
+      end
+    end
+  end
+
   describe 'GET index' do
+    subject { get :index }
+
+    it_should_behave_like "deny non-members", [:visitor, :applicant]
+    it_should_behave_like "allow members", [:member, :key_member]
+
     it 'redirects if not logged in' do
-      get :index
+      subject
       response.should redirect_to :root
-    end
-
-    it 'redirects if logged in as visitor' do
-      login_as(:visitor)
-      get :index
-      response.should redirect_to :root
-    end
-
-    it 'redirects if logged in as applicant' do
-      login_as(:applicant)
-      get :index
-      response.should redirect_to :root
-    end
-
-    it 'renders if logged in as member' do
-      login_as(:member)
-      get :index
-      response.should be_success
-    end
-
-    it 'renders if logged in as key member' do
-      login_as(:key_member)
-      get :index
-      response.should be_success
     end
   end
 
   describe 'GET show' do
-    it 'redirects if not logged in' do
-      get :show, :id => User.make!.id
-      response.should redirect_to :root
-    end
+    subject { get :show, id: someone_cool.id }
 
-    it 'redirects if logged in as visitor' do
-      login_as(:visitor)
-      get :show, :id => User.make!.id
+    it_should_behave_like "deny non-members", [:visitor, :applicant]
+    it_should_behave_like "allow members", [:member, :key_member]
+
+    it 'redirects if not logged in' do
+      subject
       response.should redirect_to :root
     end
   end
 
   describe 'GET edit' do
-    it 'redirects to root if logged out' do
-      get :edit, :id => 1
-      response.should redirect_to root_path
-    end
+    subject { get :edit, id: someone_cool.id }
 
-    it 'redirects to root if logged in as visitor' do
-      user = login_as(:visitor)
-      get :edit, :id => user.id
-      response.should redirect_to root_path
-    end
+    it_should_behave_like "deny non-members", [:visitor, :applicant]
+    it_should_behave_like "allow members", [:member, :key_member]
 
-    it 'redirects to root if logged in as applicant' do
-      user = login_as(:applicant)
-      get :edit, :id => user.id
-      response.should redirect_to root_path
-    end
-
-    it 'renders if logged in as member' do
-      user = login_as(:member)
-      get :edit, :id => user.id
-      response.should render_template :edit
+    it 'redirects if not logged in' do
+      subject
+      response.should redirect_to :root
     end
   end
 
   describe 'POST update' do
-    it 'redirects to root if logged out' do
-      post :update, :id => User.make!.id
-      response.should redirect_to root_path
+    subject { post :update, id: someone_cool.id, user: {id: someone_cool.id} }
+
+    it_should_behave_like "deny non-members", [:visitor, :applicant]
+    it_should_behave_like "allow members", [:member, :key_member]
+
+    it 'redirects if not logged in' do
+      subject
+      response.should redirect_to :root
     end
 
-    it 'redirects to root if logged in as visitor' do
-      user = login_as(:visitor)
-      post :update, :id => user.id
-      response.should redirect_to root_path
-    end
+    describe "updating stuff" do
+      context "when logged in" do
+        it 'updates name and email' do
+          user = login_as(:member, :name => 'Foo Bar', :email => 'someone@foo.bar')
 
-    it 'redirects to root if logged in as applicant' do
-      user = login_as(:applicant)
-      post :update, :id => user.id
-      response.should redirect_to root_path
-    end
+          post :update, :id => user.id, :user => {
+            name: 'FooBar TooBar',
+            email: 'someone2@foo.bar',
+            profile_attributes: { skills: 'writing awesome tests' }
+          }
 
-    it 'updates name and email if logged in' do
-      user = login_as(:member, :name => 'Foo Bar', :email => 'someone@foo.bar')
+          response.should render_template :edit
 
-      post :update, :id => user.id, :user => {
-        :name  => 'Foo2 Bar2',
-        :email => 'someone2@foo.bar',
-        profile_attributes: { skills: 'writing awesome tests' }
-      }
+          user.name.should eq('FooBar TooBar')
+          user.email.should eq('someone2@foo.bar')
+          user.profile.skills.should eq('writing awesome tests')
+        end
+      end
 
-      response.should redirect_to edit_members_user_path(user)
+      context "when not logged in as particular user" do
+        it "updates your own info instead of theirs" do
+          member = login_as(:member)
 
-      user.name.should eq('Foo2 Bar2')
-      user.email.should eq('someone2@foo.bar')
-      user.profile.skills.should eq('writing awesome tests')
+          post :update, id: someone_cool.id, user: { name: 'Little Bobby Tables Was Here' }
+
+          expect(someone_cool.name).to eq(someone_cool.reload.name)
+          expect(member.name).to eq("Little Bobby Tables Was Here")
+        end
+      end
     end
   end
 
   describe 'GET setup' do
-    it 'redirects to root if logged out' do
-      get :setup, :user_id => 1
-      response.should redirect_to root_path
-    end
+    subject { get :setup, user_id: someone_cool.id }
 
-    it 'redirects to root if logged in as visitor' do
-      user = login_as(:visitor)
-      get :setup, :user_id => user.id
-      response.should redirect_to root_path
-    end
+    it_should_behave_like "deny non-members", [:visitor, :applicant]
+    it_should_behave_like "allow members", [:member, :key_member]
 
-    it 'redirects to root if logged in as applicant' do
-      user = login_as(:applicant)
-      get :setup, :user_id => user.id
-      response.should redirect_to root_path
-    end
-
-    it 'renders if logged in as member' do
-      user = login_as(:member)
-      get :setup, :user_id => user.id
-      response.should render_template :setup
+    it 'redirects if not logged in' do
+      subject
+      response.should redirect_to :root
     end
   end
 
   describe 'PATCH finalize' do
-    it 'redirects to root if logged out' do
-      post :update, :id => User.make!.id
-      response.should redirect_to root_path
-    end
+    subject {  patch :finalize, user_id: someone_cool.id, user: {dues_pledge: 25} }
 
-    it 'redirects to root if logged in as visitor' do
-      user = login_as(:visitor)
-      post :update, :id => user.id
-      response.should redirect_to root_path
-    end
-
-    it 'redirects to root if logged in as applicant' do
-      user = login_as(:applicant)
-      post :update, :id => user.id
-      response.should redirect_to root_path
-    end
+    it_should_behave_like "deny non-members", [:visitor, :applicant]
 
     it 'updates Google email and dues pledge if logged in' do
       user = login_as(:member, :name => 'Foo Bar', :email => 'someone@foo.bar')
@@ -165,33 +136,14 @@ describe Members::UsersController do
   end
 
   describe 'GET dues' do
+    subject { get :dues, user_id: someone_cool.id }
+
+    it_should_behave_like "deny non-members", [:visitor, :applicant]
+    it_should_behave_like "allow members", [:member, :key_member]
+
     it 'redirects if not logged in' do
-      get :index
+      subject
       response.should redirect_to :root
-    end
-
-    it 'redirects if logged in as visitor' do
-      login_as(:visitor)
-      get :index
-      response.should redirect_to :root
-    end
-
-    it 'redirects if logged in as applicant' do
-      login_as(:applicant)
-      get :index
-      response.should redirect_to :root
-    end
-
-    it 'renders if logged in as member' do
-      login_as(:member)
-      get :index
-      response.should be_success
-    end
-
-    it 'renders if logged in as key member' do
-      login_as(:key_member)
-      get :index
-      response.should be_success
     end
   end
 end
