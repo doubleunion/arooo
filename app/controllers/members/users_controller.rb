@@ -16,32 +16,35 @@ class Members::UsersController < Members::MembersController
   end
 
   def update
-    if @user.update_attributes(user_params)
-      flash[:notice] = 'Profile updated'
-      redirect_to :action => :edit
-    else
-      flash[:error] = 'Could not update profile'
-      render :action => :edit
-    end
+    update_things_and_set_flash
+    render action: :edit
   end
 
   def setup
   end
 
   def finalize
-    if @user.update_attributes(user_params)
-      flash.now[:notice] = 'Account details set'
-      render :action => :setup
-    else
-      flash.now[:error] = "Whoops, something went wrong: #{@user.errors.full_messages}"
-      render :action => :setup
-    end
+    update_things_and_set_flash
+    render action: :setup
   end
 
   def dues
   end
 
+  def update_dues
+    update_things_and_set_flash
+    render action: :dues
+  end
+
   private
+
+  def update_things_and_set_flash
+    if @user.update_attributes(user_params)
+      flash[:notice] = 'Successfully updated!'
+    else
+      flash[:error] = "Whoops, something went wrong: #{@user.errors.full_messages}"
+    end
+  end
 
   def user_params
     params.require(:user).permit(:name, :email,
