@@ -1,4 +1,4 @@
-%p= link_to "Back to Applications Overview", members_root_path
+%p= link_to "Back to Applications Overview", members_applications_path
 
 - if !logged_in_as?(@user) && current_user.key_member?
   %h3= @user.name
