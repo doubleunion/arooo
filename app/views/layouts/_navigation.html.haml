@@ -15,7 +15,7 @@
       - if logged_in?
         %ul.nav.navbar-nav.pull-right
           %li.vote-alert-badge
-            %a{ :href => members_root_path }
+            %a{ :href => members_applications_path }
               %span.badge= current_user.number_applications_needing_vote
         %ul.nav.navbar-nav.pull-right
           - unless current_user.member_or_key_member?
