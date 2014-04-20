@@ -1,4 +1,6 @@
 Doubleunion::Application.configure do
+  config.time_zone = "Pacific Time (US & Canada)"
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
