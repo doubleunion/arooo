@@ -24,6 +24,7 @@ Doubleunion::Application.configure do
 
   # We're in San Francisco, forever!
   config.time_zone = "Pacific Time (US & Canada)"
+  config.active_record.default_timezone = :local
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
