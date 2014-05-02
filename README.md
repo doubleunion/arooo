@@ -1,4 +1,4 @@
-# Double Union
+# Double Union VALERIE
 [![Build Status](https://magnum.travis-ci.com/doubleunion/doubleunion.png?token=c7mAxBaDB8Dq7B1Hxwxj&branch=master)](https://magnum.travis-ci.com/doubleunion/doubleunion)
 ## Development setup
 
@@ -6,10 +6,10 @@ If you are new to Rails, follow the [RailsBridge Installfest instructions](http:
 
 1. Standard Rails app setup
     * `cp config/database.example.yml config/database.yml`
-    * set configuration in config/database.yml
+    * Optional: edit database.yml if you want to change advanced things
     * `rake db:create`
+    * `rake db:migrate`
     * `rake db:test:prepare`
-    * etc, etc
 
 1. Go here and set up an application: http://github.com/settings/applications/new
     * Application name: Whatever you want
