@@ -19,6 +19,7 @@ gem 'actionpack-action_caching', :github => 'rails/actionpack-action_caching'
 gem 'rails_autolink'
 gem 'redcarpet'
 gem 'configurable_engine'
+gem 'bugsnag'
 
 group :development do
   gem 'better_errors'
