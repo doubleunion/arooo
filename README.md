@@ -1,4 +1,4 @@
-# Double Union VALERIE
+# Double Union
 [![Build Status](https://magnum.travis-ci.com/doubleunion/doubleunion.png?token=c7mAxBaDB8Dq7B1Hxwxj&branch=master)](https://magnum.travis-ci.com/doubleunion/doubleunion)
 ## Development setup
 
