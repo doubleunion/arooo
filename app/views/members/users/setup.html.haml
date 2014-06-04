@@ -2,16 +2,15 @@
 
 %h3 Please do ALL of these things:
 %ol
-  %li Tell us your Google email + dues amount
-  %li Set up your dues via PayPal using the form on THIS page
+  %li Tell us your Google email
+  %li Set up your dues via Stripe
   %li Join the members mailing list
 
-%h3 Step one: email & dues pledge
+%h3 Step One: Email
 
 %p
   We use Google docs and calendar to share information.
-  Let us know what email address we should share those things with and
-  how much you're able to contribute as dues ($10, $25, or $50 per month).
+  Let us know what email address we should share those things with.
 
 %p
   If you ever need to update your Google docs/calendar email address, please email
@@ -23,18 +22,13 @@
       = f.label "Google-friendly email"
       = f.text_field :email_for_google, size: 40
     .form-group
-      = f.label "Dues pledge"
-      = f.number_field :dues_pledge, min: "10", max: "50"
-    .form-group
       = f.submit "Submit", class: "btn btn-primary"
 
-%h3 Step two: set up monthly dues via PayPal
-%b If your PayPal account has a name other than the one you joined Double Union with, please email the new members coordinators at #{ mail_to t('du.membership_email') } to let them know, so they can identify your dues payment as yours.
+%h3 Step Two: Set Up Monthly Dues
+%p Email <a href="mailto:membership@doubleunion.org">membership@doubleunion.org</a> if you have any questions or concerns about dues!
+= render 'dues_form', action: "Set Up"
 
-%p You can also email #{t('du.membership_email')} if you have any questions or concerns about dues!
-= render 'shared/paypal_dues_form'
-
-%h3 Step three: sign up for the mailing list
+%h3 Step Three: Sign Up for the Mailing List
 
 %p
   We'll get you approved quickly, and then you can introduce yourself! This is our main method of communication, so it's important you're on it. We highly recommend using filters/labels in your mail client to keep your inbox from being overwhelmed.

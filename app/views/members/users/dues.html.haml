@@ -1,27 +1,15 @@
 %h2 Manage Your Double Union Dues
 
-%h3 Changing dues amount
-
-%h4 Step One: Cancel your recurring payment via PayPal
+%h4 Members Using Paypal: Cancel your recurring PayPal payment
 %ol
   %li= link_to "Sign into PayPal", "https://www.paypal.com/login", target: "_blank"
   %li Visit #{ link_to "My preapproved payments", "https://www.paypal.com/us/cgi-bin/webscr?cmd=_manage-paylist", target: "_blank" } (or navigate via My Account → Profile → My Money → My preapproved payments)
   %li
     Pick the Double Union membership dues item (#{ link_to "screenshot", "#", data: { target: "#recurringPaymentModal", toggle: "modal" } }), and cancel it (#{ link_to "screenshot", "#", data: { target: "#cancelPaymentModal", toggle: "modal" } }).
 
-%h4 Step Two: Tell DU what you're paying
-%p This helps us keep track of dues totals.
-.form.form-inline
-  = form_for @user, url: members_user_dues_path(@user) do |f|
-    .form-group
-      = f.label "Dues pledge"
-      = f.number_field :dues_pledge, min: "10", max: "50"
-    .form-group
-      = f.submit "Update", class: "btn btn-primary"
-
-%h4 Step Three: Set up your new dues payment
-%p Pick your amount, click the pink button, and off you go to PayPal to finish the setup.
-= render 'shared/paypal_dues_form'
+%h4 Update Stripe Subscription
+%p Membership dues payments are handled via Stripe, which will charge your credit or debit card on the same date each month. If you need to change your dues payment, just fill in the form again and it will be updated.
+= render 'dues_form', action: "Update"
 
 #recurringPaymentModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "recurringPaymentModal", role: "dialog", tabindex: "-1"}
   .modal-dialog.wide-modal

@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 20140622024438) do
     t.boolean  "is_admin",          default: false
     t.boolean  "setup_complete"
     t.text     "membership_note"
+    t.string   "stripe_customer_id"
   end
 
   create_table "votes", force: true do |t|
