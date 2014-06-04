@@ -20,7 +20,6 @@ gem 'rails_autolink'
 gem 'redcarpet'
 gem 'configurable_engine'
 gem 'bugsnag'
-gem 'newrelic_rpm'
 
 group :development do
   gem 'better_errors'
