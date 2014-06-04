@@ -10,5 +10,6 @@
 MANDRILL_USERNAME:
 MANDRILL_API_KEY:
 
-GITHUB_CLIENT_KEY:
-GITHUB_CLIENT_SECRET:
+# Be sure to include a space between the colon and the key/secret!
+GITHUB_CLIENT_KEY: 
+GITHUB_CLIENT_SECRET: 
