@@ -59,6 +59,3 @@ production:
   username: postgres
   password:
   template: template0
-
-cucumber:
-  <<: *test
