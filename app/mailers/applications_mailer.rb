@@ -1,6 +1,6 @@
 class ApplicationsMailer < ActionMailer::Base
-  MEMBERSHIP_EMAIL = 'Double Union <membership@doubleunion.org>'
-  default from: MEMBERSHIP_EMAIL
+  JOIN_EMAIL =  "Double Union #{I18n.t 'du.join_email'}"
+  default from: JOIN_EMAIL
 
   def confirmation(application)
     @user = application.user
@@ -14,7 +14,7 @@ class ApplicationsMailer < ActionMailer::Base
     member_emails = User.members_and_key_members.pluck(:email).compact
     @applicant = application.user
     mail(
-      to: MEMBERSHIP_EMAIL,
+      to: JOIN_EMAIL,
       bcc: member_emails,
       subject: "New Double Union application submitted"
     )
@@ -40,7 +40,7 @@ class ApplicationsMailer < ActionMailer::Base
     @user = application.user
     @application = application
     mail(
-      to: MEMBERSHIP_EMAIL,
+      to: JOIN_EMAIL,
       subject: "A Double Union application hit the votes threshold!"
     )
   end

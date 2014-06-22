@@ -15,7 +15,7 @@
 
 %p
   If you ever need to update your Google docs/calendar email address, please email
-  #{mail_to "membership@doubleunion.org"} and we'll get those updated, too.
+  #{mail_to t('du.membership_email')} and we'll get those updated, too.
 
 .form
   = form_for @user, url: members_user_setup_path(@user) do |f|
@@ -29,9 +29,9 @@
       = f.submit "Submit", class: "btn btn-primary"
 
 %h3 Step two: set up monthly dues via PayPal
-%b If your PayPal account has a name other than the one you joined Double Union with, please email the new members coordinators at #{ mail_to 'membership@doubleunion.org' } to let them know, so they can identify your dues payment as yours.
+%b If your PayPal account has a name other than the one you joined Double Union with, please email the new members coordinators at #{ mail_to t('du.membership_email') } to let them know, so they can identify your dues payment as yours.
 
-%p You can also email membership@doubleunion.org if you have any questions or concerns about dues!
+%p You can also email #{t('du.membership_email')} if you have any questions or concerns about dues!
 = render 'shared/paypal_dues_form'
 
 %h3 Step three: sign up for the mailing list
