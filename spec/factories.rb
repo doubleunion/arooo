@@ -3,8 +3,6 @@ FactoryGirl.define do
     name { "#{Faker::Name.first_name.gsub("'", "")} #{Faker::Name.last_name.gsub("'", "")}" }
     sequence(:email) { |n| "example#{n}@example.com" }
     username { "#{name[0..3]}_#{Faker::Internet.domain_word}"}
-    uid { rand(100000...999999).to_s }
-    provider { "github" }
 
     factory :member do
       state "member"
@@ -72,5 +70,11 @@ FactoryGirl.define do
         create_list(:vote, Application::MAXIMUM_NO + 1, application: application, value: false)
       end
     end
+  end
+
+  factory :authentication do
+    uid { rand(100000...999999).to_s }
+    provider { "github" }
+    association :user, factory: :member
   end
 end

@@ -194,6 +194,8 @@ GEM
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
     sexp_processor (4.4.0)
+    shoulda-matchers (2.3.0)
+      activesupport (>= 3.0.0)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -266,6 +268,7 @@ DEPENDENCIES
   redcarpet
   rspec-rails
   sass-rails (~> 4.0.0)
+  shoulda-matchers
   state_machine
   therubyracer
   thin

@@ -22,9 +22,9 @@ describe SessionsController do
         user = User.last
         user.applicant?.should be_true
 
-        user.uid.should      be_present
+        user.authentications.first.uid.should      be_present
         user.username.should be_present
-        user.provider.should be_present
+        user.authentications.first.provider.should be_present
 
         session[:user_id].should eq(user.id)
       end

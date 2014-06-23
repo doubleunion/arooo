@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe User do
-  it 'should be invalid without username' do
-    User.new.tap(&:valid?).should have_at_least(1).errors_on(:username)
-  end
-
   it 'should be saved if valid' do
     user = User.new
     user.username = 'some_valid_username'
@@ -64,33 +60,6 @@ describe User do
     it 'should transition from member or key_member to former_member' do
       expect {member.remove_membership}.to change{member.state}.from("member").to("former_member")
     end
-  end
-
-  it 'should be invalid with invalid provider' do
-    user = User.new
-    user.provider = 'nope'
-    user.valid?.should be_false
-    user.should have_at_least(1).error_on(:provider)
-  end
-
-  it 'should allow valid provider' do
-    user = User.new
-    user.provider = 'github'
-    user.tap(&:valid?).should have(0).errors_on(:provider)
-  end
-
-  it 'should allow blank provider' do
-    User.new.tap(&:valid?).should have(0).errors_on(:provider)
-  end
-
-  it 'should validate uniqueness of username and uid' do
-    User.make!(:username => 'username', :uid => '123')
-
-    user = User.new
-    user.username = 'username'
-    user.uid = '123'
-
-    user.tap(&:valid?).should have_at_least(1).errors_on(:username)
   end
 
   describe '.create_with_omniauth' do

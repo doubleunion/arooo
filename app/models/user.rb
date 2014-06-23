@@ -1,16 +1,12 @@
 class User < ActiveRecord::Base
   EMAIL_PATTERN = /\A.+@.+\Z/
 
-  attr_accessible :provider, :uid, :name, :email, :profile_attributes,
+  attr_accessible :name, :email, :profile_attributes,
     :application_attributes, :email_for_google, :dues_pledge
 
-  validates :provider, :allow_blank => true, :inclusion => {
-    :in      => %w(github),
-    :message => "%{value} is not a valid provider" }
-
-  validates :username, :presence => true, :uniqueness => { :scope => :uid }
-
   validates :state, :presence => true
+
+  validates :username, presence: true
 
   validates :email, :allow_blank => true, :format => {
     :with    => EMAIL_PATTERN,
@@ -29,6 +25,7 @@ class User < ActiveRecord::Base
 
   has_one  :profile,     :dependent => :destroy
   has_one  :application, :dependent => :destroy
+  has_many :authentications, dependent: :destroy
   has_many :votes,       :dependent => :destroy
   has_many :comments,    :dependent => :destroy
   has_many :sponsorships
@@ -168,15 +165,19 @@ class User < ActiveRecord::Base
   class << self
     def create_with_omniauth(auth)
       new.tap do |user|
-        auth = GithubAuth.new(auth)
+        omniauth = GithubAuth.new(auth)
+        authentication = Authentication.new
 
-        user.provider = auth.provider
-        user.uid      = auth.uid
-        user.username = auth.username
-        user.name     = auth.name
-        user.email    = auth.email
+        user.username = omniauth.username
+        user.name     = omniauth.name
+        user.email    = omniauth.email
+
+        authentication.user = user
+        authentication.provider = omniauth.provider
+        authentication.uid      = omniauth.uid
 
         user.save!
+        authentication.save!
       end
     end
   end

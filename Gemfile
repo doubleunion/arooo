@@ -48,4 +48,5 @@ group :test do
   gem 'launchy'
   gem 'machinist'
   gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140222221432) do
+ActiveRecord::Schema.define(version: 20140622024438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 20140222221432) do
 
   add_index "applications", ["state"], name: "index_applications_on_state", using: :btree
   add_index "applications", ["user_id"], name: "index_applications_on_user_id", using: :btree
+
+  create_table "authentications", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.integer  "user_id",                     null: false
@@ -104,8 +112,6 @@ ActiveRecord::Schema.define(version: 20140222221432) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "provider"
-    t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username",                          null: false
@@ -117,8 +123,6 @@ ActiveRecord::Schema.define(version: 20140222221432) do
     t.boolean  "setup_complete"
     t.text     "membership_note"
   end
-
-  add_index "users", ["username", "uid"], name: "index_users_on_username_and_uid", unique: true, using: :btree
 
   create_table "votes", force: true do |t|
     t.integer  "user_id",        null: false

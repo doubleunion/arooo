@@ -4,12 +4,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    auth = request.env['omniauth.auth']
-    conditions = { :provider => auth['provider'],
-                   :uid      => auth['uid'].to_s }
+    omniauth = request.env['omniauth.auth']
+    conditions = { :provider => omniauth['provider'],
+                   :uid      => omniauth['uid'].to_s }
 
-    user   = User.where(conditions).first
-    user ||= User.create_with_omniauth(auth)
+    authentication = Authentication.where(conditions).first
+
+    user = authentication.try(:user)
+    user ||= User.create_with_omniauth(omniauth)
 
     set_current_user(user)
     user.logged_in!
