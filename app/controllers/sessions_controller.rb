@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
                    :uid      => auth['uid'].to_s }
 
     user   = User.where(conditions).first
-    user ||= User.find_and_update_provisioned(auth)
     user ||= User.create_with_omniauth(auth)
 
     set_current_user(user)

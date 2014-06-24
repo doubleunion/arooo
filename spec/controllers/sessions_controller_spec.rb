@@ -70,22 +70,6 @@ describe SessionsController do
 
         session[:user_id].should eq(user.id)
       end
-
-      it 'creates session for provisioned member' do
-        username = OmniAuth.config.mock_auth[:github][:extra][:raw_info][:login]
-        user = nil
-        expect {
-          user = User.provision_with_state(username, 'member')
-        }.to change { User.count }.from(0).to(1)
-
-        expect {
-          get :create, :provider => 'github'
-        }.to_not change { User.count }
-
-        user.member?.should be_true
-
-        session[:user_id].should eq(user.id)
-      end
     end
   end
 end

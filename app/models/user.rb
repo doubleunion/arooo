@@ -179,38 +179,6 @@ class User < ActiveRecord::Base
         user.save!
       end
     end
-
-    def find_and_update_provisioned(auth)
-      auth = GithubAuth.new(auth)
-
-      if user = find_provisioned(auth)
-        user.provider ||= auth.provider
-        user.uid      ||= auth.uid
-        user.name     ||= auth.name
-        user.email    ||= auth.email
-        user.save!
-      end
-
-      user
-    end
-
-    def provision_with_state(username, state, attrs = {})
-      new.tap do |user|
-        user.provider = DEFAULT_PROVIDER
-        user.username = username
-        user.state    = state
-
-        user.save!
-      end
-    end
-
-    private
-
-    def find_provisioned(auth)
-      where(:provider => auth.provider)
-        .where(['LOWER(username) = ?', auth.username.downcase])
-        .first
-    end
   end
 
   private
