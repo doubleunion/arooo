@@ -108,33 +108,4 @@ describe User do
       })
     end
   end
-
-  describe '.provision_with_state' do
-    it 'should raise exception with invalid state' do
-      expect {
-        User.provision_with_state('someone', 'nope')
-      }.to raise_error(ActiveRecord::RecordInvalid)
-    end
-
-    it 'should create user with visitor state' do
-      User.provision_with_state('someone', 'visitor').state.should eq('visitor')
-    end
-
-    it 'should create user with applicant state' do
-      User.provision_with_state('someone', 'applicant').state.should eq('applicant')
-    end
-
-    it 'should create user with member state' do
-      User.provision_with_state('someone', 'member').state.should eq('member')
-    end
-
-    it 'should create user with key member state' do
-      User.provision_with_state('someone', 'key_member').state.should eq('key_member')
-    end
-
-    it 'should assign username' do
-      user = User.provision_with_state('someone', 'visitor')
-      user.username.should eq('someone')
-    end
-  end
 end
