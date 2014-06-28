@@ -14,4 +14,3 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require dues
-//= require stripe-checkout.min

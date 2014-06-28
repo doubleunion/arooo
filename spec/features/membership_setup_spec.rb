@@ -12,11 +12,9 @@ describe 'members can finish their account setup' do
     visit members_user_setup_path(member)
 
     fill_in "user_email_for_google", with: "cat@example.com"
-    fill_in "user_dues_pledge", with: "25"
     click_button "Submit"
 
     expect(member.reload.email_for_google).to eq("cat@example.com")
-    expect(member.reload.dues_pledge).to eq(25)
   end
 
   it "does not allow users to edit others' information" do

@@ -31,11 +31,6 @@ class Members::UsersController < Members::MembersController
   def dues
   end
 
-  def update_dues
-    update_attrs_and_set_flash
-    render action: :dues
-  end
-
   def submit_dues_to_stripe
     if current_user.stripe_customer_id
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
@@ -57,7 +52,7 @@ class Members::UsersController < Members::MembersController
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to dues_path
+    redirect_to members_user_dues_path
   end
 
   private

@@ -146,4 +146,51 @@ describe Members::UsersController do
       response.should redirect_to :root
     end
   end
+
+  describe 'POST submit_dues_to_stripe' do
+    let(:params) do
+      {
+        user_id: user.id,
+        email: 'user@example.com',
+        plan: 5,
+        token: 'abcdefg'
+      }
+    end
+
+    let!(:user) { login_as(:member, :name => 'Foo Bar', :email => 'someone@foo.bar') }
+
+    subject { post :submit_dues_to_stripe, params }
+
+    context "when the user already has a Stripe ID" do
+      before do
+        @subscription = double(:subscription, plan: 999)
+
+        user.update_column(:stripe_customer_id, 123)
+        Stripe::Customer.should_receive(:retrieve).with(123) do
+          double(:customer, subscriptions: [@subscription])
+        end
+      end
+
+      it "updates their plan" do
+        expect(@subscription).to receive(:'plan=').with("5")
+        expect(@subscription).to receive(:save)
+        subject
+      end
+    end
+
+    context "when the user doesn't have a Stripe ID" do
+      let(:stripe_customer_id) { 5 }
+
+      before do
+        Stripe::Customer.should_receive(:create) do
+          double(:customer, id: stripe_customer_id)
+        end
+      end
+
+      it "updates their stripe customer ID in the database" do
+        subject
+        expect(user.stripe_customer_id).to eq(stripe_customer_id)
+      end
+    end
+  end
 end

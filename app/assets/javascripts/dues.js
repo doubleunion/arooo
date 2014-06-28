@@ -1,11 +1,11 @@
 $(document).ready(function(){
 
   var handler = StripeCheckout.configure({
-    key: $("#dues").data("key"),
+    key: $("#js-dues").data("key"),
 
     token: function(token, args) {
       $.ajax({
-        url: $("#dues").data("dues-path"),
+        url: $("#js-dues").data("dues-path"),
         type: "POST",
         data: {
           "token": token.id,
@@ -19,8 +19,10 @@ $(document).ready(function(){
     }
   });
 
-  $('#dues').on('click', function(e) {
-    handler.open();
+  $('#js-dues').on('click', function(e) {
+    handler.open({
+      name: "Double Union Dues"
+    });
     e.preventDefault();
   });
 });

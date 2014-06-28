@@ -2,4 +2,6 @@
   %option{ value: "large_monthly" } $50.00 USD Monthly
   %option{ value: "medium_monthly" } $25.00 USD Monthly
   %option{ value: "small_monthly" } $10.00 USD Monthly
-%a#dues.btn.btn-primary{ href: "#", data: { key: "#{ENV['STRIPE_PUBLISHABLE_KEY']}", dues_path: "#{members_user_dues_path(@user)}" } } #{action} Dues
+%a#js-dues.btn.btn-primary{ href: "#", data: { key: "#{ENV['STRIPE_PUBLISHABLE_KEY']}", dues_path: "#{members_user_dues_path(@user)}" } } #{action} Dues
+
+%script{src: 'https://checkout.stripe.com/checkout.js'}

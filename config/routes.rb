@@ -8,7 +8,6 @@ Doubleunion::Application.routes.draw do
       patch 'setup' => "users#finalize"
       get 'dues' => "users#dues"
       post 'dues' => "users#submit_dues_to_stripe"
-      patch 'dues' => "users#update_dues"
     end
     resources :votes, :only => :create
 
