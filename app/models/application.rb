@@ -10,12 +10,11 @@ class Application < ActiveRecord::Base
   MAXIMUM_NO = 1
   MINIMUM_SPONSORS = 1
 
-  validates :user_id, :presence => true
 
   attr_protected :id
 
+  validates :user_id, :presence => true
   validates :state, :presence => true
-
   validate :validate_agreed, :if => :submitted?
 
   scope :for_applicant, -> {

@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
-  def new
+  def github
     redirect_to '/auth/github'
+  end
+
+  def google
+    redirect_to '/auth/google_oauth2'
   end
 
   def create
@@ -38,7 +42,7 @@ class SessionsController < ApplicationController
 
       redirect_to edit_application_path(user.application)
     else
-      redirect_to root_path, alert: "It looks like you've already logged in with a different authentication provider. Email admin@doubleunion.org for help if that isn't the case!"
+      redirect_to root_path, alert: "It looks like you've previously logged in with a different authentication provider, so try logging in with a different one. Email admin@doubleunion.org for help if that isn't the case!"
     end
   end
 
@@ -75,10 +79,15 @@ class SessionsController < ApplicationController
     end
 
     def set_auth_session_vars(omniauth)
-      omniauth = GithubAuth.new(omniauth)
+      if omniauth['provider'] == "github"
+        omniauth = GithubAuth.new(omniauth)
+      elsif omniauth['provider'] == "google_oauth2"
+        omniauth = GoogleAuth.new(omniauth)
+      end
+
       session[:provider] = omniauth.provider
       session[:uid] = omniauth.uid
-      session[:username] = omniauth.username
+      session[:username] = omniauth.try(:username) || omniauth.try(:email)
     end
 
     def set_user_session(user)

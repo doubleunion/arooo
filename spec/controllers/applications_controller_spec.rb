@@ -47,15 +47,17 @@ describe ApplicationsController do
     end
 
     describe 'if logged in as applicant' do
+      let(:user) { create :applicant }
+      let(:other_user) { create :applicant }
+
+      before { log_in(user) }
+
       it 'should render own application' do
-        user = login_as(:applicant)
         get :show, :id => user.application.id
         response.should render_template :show
       end
 
       it 'should not render application of another user' do
-        user = login_as(:applicant)
-        other_user = User.make!(:applicant)
         get :show, :id => other_user.application.id
         response.should redirect_to :root
       end
@@ -81,16 +83,17 @@ describe ApplicationsController do
     end
 
     describe 'if logged in as applicant' do
+      let(:user) { create :applicant }
+      let(:other_user) { create :applicant }
+
+      before { log_in(user) }
+
       it 'should render edit for own application' do
-        user = login_as(:applicant)
         get :edit, :id => user.application.id
         response.should render_template :edit
       end
 
       it "should redirect to root for another user's application" do
-        user       = login_as(:applicant)
-        other_user = User.make!(:applicant)
-
         get :edit, :id => other_user.application.id
         response.should redirect_to :root
       end

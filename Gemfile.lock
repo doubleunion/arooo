@@ -144,6 +144,9 @@ GEM
     omniauth-github (1.1.1)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.1)
+    omniauth-google-oauth2 (0.2.4)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
@@ -272,6 +275,7 @@ DEPENDENCIES
   machinist
   omniauth
   omniauth-github
+  omniauth-google-oauth2
   pg
   protected_attributes
   quiet_assets

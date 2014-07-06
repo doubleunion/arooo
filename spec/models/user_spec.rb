@@ -1,10 +1,25 @@
 require 'spec_helper'
 
 describe User do
-  it 'should be saved if valid' do
-    user = User.new
-    user.username = 'some_valid_username'
-    user.save.should == true
+  describe "validations" do
+    it { should validate_presence_of :username }
+
+    describe "email address" do
+      let(:existing_user) { create :user }
+      let(:new_user) { create :user }
+
+      subject { new_user.update_attributes(email: existing_user.email) }
+
+      it "doesn't allow duplication email addresses" do
+        subject
+        expect(new_user.valid?).to be_false
+      end
+
+      it "returns the correct error" do
+        subject
+        expect(new_user.errors.messages[:email].first).to include("has been taken.")
+      end
+    end
   end
 
   it 'should be in visitor state by default' do
@@ -59,22 +74,6 @@ describe User do
 
     it 'should transition from member or key_member to former_member' do
       expect {member.remove_membership}.to change{member.state}.from("member").to("former_member")
-    end
-  end
-
-  describe '.create_with_omniauth' do
-    it 'should raise exception with invalid auth hash' do
-      expect {
-        User.create_with_omniauth({'provider' => 'github'})
-      }.to raise_error(KeyError)
-    end
-
-    it 'should create user with valid auth hash' do
-      user = User.create_with_omniauth({
-        'provider' => 'github',
-        'uid'      => '12345',
-        'extra'    => { 'raw_info' => { 'login' => 'someone' } }
-      })
     end
   end
 end

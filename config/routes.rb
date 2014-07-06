@@ -40,7 +40,9 @@ Doubleunion::Application.routes.draw do
   resources :applications, :only => [:new, :show, :edit, :update]
 
   get 'auth/:provider/callback' => 'sessions#create'
-  get 'login' => 'sessions#new'
+  get 'github_login' => 'sessions#github'
+  get 'google_login' => 'sessions#google'
+  get 'login' => 'static#index'
   get 'logout' => 'sessions#destroy'
   get 'auth/failure' => 'sessions#failure'
   get 'get_email' => 'sessions#get_email'

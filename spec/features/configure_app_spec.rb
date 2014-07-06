@@ -54,7 +54,7 @@ describe 'opening and closing applications' do
       end
 
       it 'should show me my application' do
-        expect(page).to have_content "Hi, #{applicant.username}! We're glad you're"
+        expect(page).to have_content "Hello! We're glad you're interested in becoming a member of Double Union."
       end
     end
   end

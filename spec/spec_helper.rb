@@ -69,4 +69,8 @@ module AuthHelper
     controller.stub(:current_user).and_return(user)
     user
   end
+
+  def log_in(user)
+    controller.stub(:current_user).and_return(user)
+  end
 end

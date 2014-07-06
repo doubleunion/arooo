@@ -28,7 +28,7 @@ describe "applying to double union" do
 
   it "allows the user to save her application without submitting it" do
     visit new_application_path
-    expect(page).to have_content "Hi, #{cool_lady.username}"
+    expect(page).to have_content "We're glad you're interested"
 
     fill_in "Twitter username", with: "@beepboopbeep"
     fill_in "Tell us a little about yourself!", with: "I am definitely not a cat!"
@@ -42,7 +42,7 @@ describe "applying to double union" do
 
   it "allows the user to update her application" do
     visit new_application_path
-    expect(page).to have_content "Hi, #{cool_lady.username}"
+    expect(page).to have_content "We're glad you're interested"
 
     fill_in "Twitter username", with: "@beepboopbeep"
     fill_in "Blog url", with: "http://blog.awesome.com"

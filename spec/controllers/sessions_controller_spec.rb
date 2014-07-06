@@ -1,9 +1,17 @@
 require 'spec_helper'
 
 describe SessionsController do
-  describe 'GET new' do
+  include UserWithOmniauth
+
+  describe 'GET github' do
     it 'redirects to github' do
-      expect(get :new).to redirect_to '/auth/github'
+      expect(get :github).to redirect_to '/auth/github'
+    end
+  end
+
+  describe 'GET google' do
+    it 'redirects to github' do
+      expect(get :google).to redirect_to '/auth/google_oauth2'
     end
   end
 
@@ -28,7 +36,7 @@ describe SessionsController do
     end
 
     describe "with an existing user" do
-      let(:user) { User.create_with_omniauth(OmniAuth.config.mock_auth[:github]) }
+      let(:user) { create_with_omniauth(OmniAuth.config.mock_auth[:github]) }
 
       context "who is a visitor" do
         it "doesn't make a new user" do
@@ -129,7 +137,7 @@ describe SessionsController do
     end
 
     context 'with an existing user' do
-      let(:user) { User.create_with_omniauth(OmniAuth.config.mock_auth[:github]) }
+      let(:user) { create_with_omniauth(OmniAuth.config.mock_auth[:github]) }
 
       before do
         user.update_attribute(:state, 'member')
@@ -150,7 +158,7 @@ describe SessionsController do
 
       it 'sets the flash message' do
         subject
-        expect(flash[:alert]).to include "It looks like you've already logged in"
+        expect(flash[:alert]).to include "It looks like you've previously logged in"
       end
     end
   end

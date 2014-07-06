@@ -1,8 +1,13 @@
 %h2 Membership application
 
 %p
-  Hi, #{current_user.username}! We're glad you're interested in becoming a
-  member of Double Union.
+  Hello! We're glad you're interested in becoming a member of Double Union.
+
+%p
+  If you have any questions about the application or application process, please email our membership coordinators at #{mail_to t('du.join_email')}.
+
+%p
+  If this application looks blanker than you left it, double check that you logged in with the same service as before by logging out and trying the other one (GitHub or Google).
 
 %p
   You can save this application at any time before you submit it. Once
@@ -16,9 +21,9 @@
 
   %fieldset
     - if @user.application.submitted?
-      = f.submit 'Update application', :name => 'save'
+      = f.submit 'Update application', :name => 'save', class: "btn"
     - else
-      = f.submit 'Save without submitting', :name => 'save'
+      = f.submit 'Save without submitting', :name => 'save', class: "btn"
 
   %table.table
 
@@ -106,9 +111,9 @@
                 %td= app_fields.label :agreement_female, "I am significantly female-identified", :class => 'checkbox-label'
 
   - if @user.application.submitted?
-    = f.submit 'Update application', :name => 'save'
+    = f.submit 'Update application', :name => 'save', class: "btn"
   - else
-    = f.submit 'Save without submitting', :name => 'save'
+    = f.submit 'Save without submitting', :name => 'save', class: "btn"
 
   %h3 Submit
   - if @user.application.submitted?
@@ -119,4 +124,4 @@
       When you're done with your application, submit it with the button below.
       You will be able to edit it at any time.
     %fieldset
-      = f.submit 'Submit application', :name => 'submit'
+      = f.submit 'Submit application', :name => 'submit', class: "btn btn-primary"

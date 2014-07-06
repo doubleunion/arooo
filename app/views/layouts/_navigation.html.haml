@@ -39,4 +39,13 @@
                 = current_user.username
       - else
         %ul.nav.navbar-nav.pull-right
-          %li= link_to 'Log In', login_path
+          %li{'data-toggle' => 'modal', 'data-target' => '#log_in'}
+            = link_to "Log In", "#"
+
+.modal#log_in
+  .modal-dialog
+    .modal-content
+      .modal-body
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+        = link_to "Log In with GitHub", github_login_path, class: "btn btn-primary"
+        = link_to "Log In with Google", google_login_path, class: "btn btn-primary"

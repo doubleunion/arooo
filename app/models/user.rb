@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true
 
-  validates :email, :allow_blank => true, :format => {
+  validates :email, :allow_blank => true, uniqueness: true, :format => {
     :with    => EMAIL_PATTERN,
     :message => 'Invalid email address' }
 
@@ -160,26 +160,6 @@ class User < ActiveRecord::Base
 
   def mature?
     member_or_key_member? && application.processed_at.present? && application.processed_at <= 14.days.ago
-  end
-
-  class << self
-    def create_with_omniauth(auth)
-      new.tap do |user|
-        omniauth = GithubAuth.new(auth)
-        authentication = Authentication.new
-
-        user.username = omniauth.username
-        user.name     = omniauth.name
-        user.email    = omniauth.email
-
-        authentication.user = user
-        authentication.provider = omniauth.provider
-        authentication.uid      = omniauth.uid
-
-        user.save!
-        authentication.save!
-      end
-    end
   end
 
   private
