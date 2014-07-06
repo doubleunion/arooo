@@ -43,6 +43,8 @@ Doubleunion::Application.routes.draw do
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
   get 'auth/failure' => 'sessions#failure'
+  get 'get_email' => 'sessions#get_email'
+  post 'confirm_email' => 'sessions#confirm_email'
 
   get 'membership', :to => 'static#membership'
   get 'policies',   :to => 'static#policies'

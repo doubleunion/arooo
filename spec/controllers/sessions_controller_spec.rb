@@ -3,72 +3,154 @@ require 'spec_helper'
 describe SessionsController do
   describe 'GET new' do
     it 'redirects to github' do
-      get :new
-      response.should redirect_to('/auth/github')
+      expect(get :new).to redirect_to '/auth/github'
     end
   end
 
   describe 'GET create' do
-    before :each do
+    before do
       request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:github]
     end
 
-    describe 'for new user' do
-      it 'creates user and makes applicant' do
-        expect {
-          get :create, :provider => 'github'
-        }.to change { User.count }.from(0).to(1)
+    subject { get :create, provider: 'github' }
 
-        user = User.last
-        user.applicant?.should be_true
+    describe 'for a new user' do
+      it "redirects to email confirmation step" do
+        expect(subject).to redirect_to get_email_path
+      end
 
-        user.authentications.first.uid.should      be_present
-        user.username.should be_present
-        user.authentications.first.provider.should be_present
-
-        session[:user_id].should eq(user.id)
+      it "sets omniauth info in cookies" do
+        subject
+        expect(session['uid']).to eq("12345")
+        expect(session['username']).to eq("someone")
+        expect(session['provider']).to eq("github")
       end
     end
 
-    describe 'for existing user' do
-      it 'creates session for visitor and makes applicant' do
-        user = User.create_with_omniauth(OmniAuth.config.mock_auth[:github])
+    describe "with an existing user" do
+      let(:user) { User.create_with_omniauth(OmniAuth.config.mock_auth[:github]) }
 
-        expect {
-          get :create, :provider => 'github'
-        }.to_not change { User.count }
+      context "who is a visitor" do
+        it "doesn't make a new user" do
+          expect { subject }.to_not change { User.count }
+        end
 
-        user.reload.applicant?.should be_true
+        it "makes the visitor an applicant" do
+          subject
+          expect { user.reload.applicant? }.to be_true
+        end
 
-        session[:user_id].should eq(user.id)
-        response.should redirect_to edit_application_path(user.application)
+        it "redirects to confirm their email address" do
+          subject
+          expect { response }.to redirect_to get_email_path
+        end
+
+        it "does not create a session for them" do
+          expect { subject }.not_to change { session[:user_id] }
+        end
       end
 
-      it 'creates session for applicant' do
-        user = User.create_with_omniauth(OmniAuth.config.mock_auth[:github])
-        user.update_attribute(:state, 'applicant')
+      context "who is an applicant" do
+        before { user.update_attribute(:state, 'applicant') }
 
-        expect {
-          get :create, :provider => 'github'
-        }.to_not change { User.count }
+        it "doesn't make a new user" do
+          expect { subject }.to_not change { User.count }
+        end
 
-        user.applicant?.should be_true
+        it "creates a session" do
+          subject
+          expect(session[:user_id]).to eq(user.id)
+        end
 
-        session[:user_id].should eq(user.id)
-        response.should redirect_to edit_application_path(user.application)
+        it 'redirects to the application edit page' do
+          subject
+          expect { response }.to redirect_to edit_application_path(user.application)
+        end
       end
 
-      it 'creates session for member' do
-        user = User.create_with_omniauth(OmniAuth.config.mock_auth[:github])
+      context "who is a member" do
+        before { user.update_attribute(:state, 'member') }
+
+        it "doesn't make a new user" do
+          expect { subject }.to_not change { User.count }
+        end
+
+        it "creates a session" do
+          subject
+          expect(session[:user_id]).to eq(user.id)
+        end
+
+        it "redirects to the member root path" do
+          subject
+          expect { response }.to redirect_to members_root_path
+        end
+
+        it 'creates session for member' do
+          expect { subject }.to_not change { User.count }
+          expect(session[:user_id]).to eq(user.id)
+        end
+      end
+    end
+  end
+
+  describe 'GET get_email' do
+    it "renders the get_email page" do
+      expect(get :get_email).to render_template :get_email
+    end
+  end
+
+  describe 'POST confirm_email' do
+    before do
+      session[:username] = "coolcat423"
+      session[:provider] = "github"
+      session[:uid] = "12345"
+    end
+
+    subject { post :confirm_email, email: "someone@foo.bar" }
+
+    context 'with a new user' do
+      let(:user) { User.last }
+      let(:authentication) { user.authentications.first }
+
+      it 'creates user and makes applicant' do
+        expect { subject }.to change { User.count }.from(0).to(1)
+
+        expect(user.applicant?).to be_true
+
+        expect(user.username).to be_present
+        expect(authentication.provider).to be_present
+        expect(authentication.uid).to be_present
+      end
+
+      it 'sets the session with the newly-created user' do
+        subject
+        expect(session[:user_id]).to eq(user.id)
+      end
+    end
+
+    context 'with an existing user' do
+      let(:user) { User.create_with_omniauth(OmniAuth.config.mock_auth[:github]) }
+
+      before do
         user.update_attribute(:state, 'member')
+      end
 
-        expect {
-          get :create, :provider => 'github'
-        }.to_not change { User.count }
+      it 'does not create a user' do
+        expect { subject }.not_to change { User.count }
+      end
 
-        user.member?.should be_true
+      it 'does not set the session' do
+        subject
+        expect(session[:user_id]).to be_nil
+      end
 
-        session[:user_id].should eq(user.id)
+      it 'redirects to the root path' do
+        expect(subject).to redirect_to :root
+      end
+
+      it 'sets the flash message' do
+        subject
+        expect(flash[:alert]).to include "It looks like you've already logged in"
       end
     end
   end

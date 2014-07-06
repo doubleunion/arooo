@@ -1,0 +1,15 @@
+%h1 Confirm your email address
+%p After this step, you'll be taken to the membership application.
+
+= form_tag confirm_email_path, class: "form form-horizontal" do
+  = label_tag "Email Address", :email
+  = text_field_tag :email
+  = submit_tag "Save", class: "btn btn-primary"
+
+%p Any questions or confusion? Contact the helpful membership applications team at #{ mail_to t 'du.join_email'}.
+
+%h3 Note for current Double Union members
+%p
+  If you're a Double Union member already and you're seeing this page, you should
+  %b not
+  fill in this form, and instead log in with your original authentication service (probably GitHub). Then, you can add other authentication services while you're logged in.
