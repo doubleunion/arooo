@@ -48,6 +48,9 @@ Doubleunion::Application.routes.draw do
   get 'get_email' => 'sessions#get_email'
   post 'confirm_email' => 'sessions#confirm_email'
 
+  post 'add_github_auth' => 'authentications#add_github_auth'
+  post 'add_google_auth' => 'authentications#add_google_auth'
+
   get 'membership', :to => 'static#membership'
   get 'policies',   :to => 'static#policies'
   get 'press',      :to => 'static#press'

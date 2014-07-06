@@ -5,7 +5,6 @@ class GoogleAuth
   attr_reader :original
 
   def initialize(original)
-    p original
     @original = original
   end
 

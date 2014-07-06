@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe SessionsController do
   include UserWithOmniauth
+  include AuthHelper
 
   describe 'GET github' do
     it 'redirects to github' do
@@ -97,6 +98,30 @@ describe SessionsController do
           expect { subject }.to_not change { User.count }
           expect(session[:user_id]).to eq(user.id)
         end
+      end
+    end
+
+    describe "with an existing, logged-in user" do
+      let(:user) { create_with_omniauth(OmniAuth.config.mock_auth[:github]) }
+
+      subject { get :create, provider: "google_oauth2" }
+
+      before do
+        log_in(user)
+        request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+      end
+
+      it "creates a new authentication for the user" do
+        expect { subject }.to change { user.authentications.count }.from(1).to(2)
+      end
+
+      it "makes a new Google authentication" do
+        subject
+        expect(user.authentications.last.provider).to eq "google_oauth2"
+      end
+
+      it "prints the thing again" do
+        subject
       end
     end
   end

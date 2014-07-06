@@ -14,7 +14,9 @@ class SessionsController < ApplicationController
 
     authentication = Authentication.where(conditions).first
 
-    if authentication.try(:user)
+    if current_user.present?
+      add_auth_and_redirect(omniauth)
+    elsif authentication.try(:user)
       set_session_and_redirect_returning_users(authentication.user)
     else
       set_auth_session_vars(omniauth)
@@ -79,19 +81,40 @@ class SessionsController < ApplicationController
     end
 
     def set_auth_session_vars(omniauth)
-      if omniauth['provider'] == "github"
-        omniauth = GithubAuth.new(omniauth)
-      elsif omniauth['provider'] == "google_oauth2"
-        omniauth = GoogleAuth.new(omniauth)
-      end
+      omniauth = set_provider(omniauth)
 
       session[:provider] = omniauth.provider
       session[:uid] = omniauth.uid
       session[:username] = omniauth.try(:username) || omniauth.try(:email)
     end
 
+    def add_auth_and_redirect(omniauth)
+      user = current_user
+      omniauth = set_provider(omniauth)
+
+      authentication          = user.authentications.build
+      authentication.provider = omniauth.provider
+      authentication.uid      = omniauth.uid
+
+      if authentication.save!
+        flash[:alert] = "#{omniauth.provider} authentication added!"
+      else
+        flash[:alert] = "Whoops, something went wrong! Sorry. Email admin@doubleunion.org if this keeps happening."
+      end
+
+      redirect_to edit_members_user_path(user.id)
+    end
+
     def set_user_session(user)
       set_current_user(user)
       user.logged_in!
+    end
+
+    def set_provider(omniauth)
+      if omniauth['provider'] == "github"
+        GithubAuth.new(omniauth)
+      elsif omniauth['provider'] == "google_oauth2"
+        GoogleAuth.new(omniauth)
+      end
     end
 end

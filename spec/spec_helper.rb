@@ -20,6 +20,11 @@ OmniAuth.config.add_mock(:github, {
   :info  => { :name => 'Some One', :email => 'someone@foo.bar' }
 })
 
+OmniAuth.config.add_mock(:google_oauth2, {
+  uid: '67890',
+  info: { name: "Cool Cat", email: "basil@example.com" }
+})
+
 RSpec.configure do |config|
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)

@@ -1,0 +1,14 @@
+%h3 Authentication
+
+%p The Double Union app supports authenticating with GitHub and Google.
+
+%p
+  You can currently log in via
+  %b
+    #{@user.authentications.pluck(:provider).to_sentence}.
+
+- unless @user.authentications.pluck(:provider).include?("google_oauth2")
+  = button_to "Add Google auth", add_google_auth_path, class: "btn"
+
+- unless @user.authentications.pluck(:provider).include?("github")
+  = button_to "Add GitHub auth", add_github_auth_path, class: "btn"
