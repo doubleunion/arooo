@@ -11,7 +11,7 @@ class ApplicationsMailer < ActionMailer::Base
   end
 
   def notify_members(application)
-    member_emails = User.members_and_key_members.pluck(:email).compact
+    member_emails = User.all_members.pluck(:email).compact
     @applicant = application.user
     mail(
       to: JOIN_EMAIL,

@@ -15,8 +15,8 @@ FactoryGirl.define do
       end
     end
 
-    factory :key_member do
-      state "key_member"
+    factory :voting_member do
+      state "voting_member"
     end
 
     factory :applicant do
@@ -25,12 +25,12 @@ FactoryGirl.define do
 
     factory :admin do
       is_admin true
-      state "key_member"
+      state "voting_member"
     end
   end
 
   factory :vote do
-    association :user, factory: :key_member
+    association :user, factory: :voting_member
     application
     value false
   end

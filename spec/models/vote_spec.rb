@@ -26,7 +26,7 @@ describe Vote do
   it 'should be valid if voter is key member' do
     vote = Vote.new
 
-    vote.user = User.make!(:key_member)
+    vote.user = User.make!(:voting_member)
     vote.application = Application.make!(:user => User.make!(:applicant))
     vote.value = true
     vote.valid?.should be_true
@@ -35,7 +35,7 @@ describe Vote do
   it 'should validate uniqueness per user and application' do
     applicant   = User.make!(:applicant)
     application = Application.make!(:user => applicant)
-    voter       = User.make!(:key_member)
+    voter       = User.make!(:voting_member)
     vote        = Vote.make!(:application => application, :user => voter)
 
     invalid = Vote.new(:application => application,

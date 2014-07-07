@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   before_filter :ensure_admin
-  before_filter :find_member, only: [:add_key_member, :revoke_key_member, :revoke_membership]
+  before_filter :find_member, only: [:add_voting_member, :revoke_voting_member, :revoke_membership]
 
   def applications
     @to_approve = Application.to_approve
@@ -9,7 +9,7 @@ class AdminController < ApplicationController
   end
 
   def members
-    @members_and_key_members = User.members_and_key_members
+    @all_members = User.all_members
       .includes(:profile)
       .order_by_state
       .limit(120)
@@ -39,8 +39,8 @@ class AdminController < ApplicationController
     end
   end
 
-  def add_key_member
-    if @user.make_key_member
+  def add_voting_member
+    if @user.make_voting_member
       flash[:message] = "#{@user.name} was added as a key member."
     else
       flash[:message] = "Whoops! #{@user.errors.full_messages.to_sentence}"
@@ -48,8 +48,8 @@ class AdminController < ApplicationController
     redirect_to admin_members_path
   end
 
-  def revoke_key_member
-    if @user.remove_key_membership
+  def revoke_voting_member
+    if @user.remove_voting_membership
       flash[:message] = "#{@user.name} was revoked as a key member."
     else
       flash[:message] = "Whoops! #{@user.errors.full_messages.to_sentence}"

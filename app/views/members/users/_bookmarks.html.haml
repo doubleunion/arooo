@@ -1,4 +1,4 @@
-- if current_user.member_or_key_member?
+- if current_user.member_or_voting_member?
   %h3 Bookmarks for Members
   %ul
     %li= link_to "Members mailing list", "http://lists.doubleunion.org/listinfo.cgi/members-doubleunion.org", target: "_blank"
@@ -8,7 +8,7 @@
     %li #{ link_to "DU wiki", "http://wiki.doubleunion.org/index.php?title=Main_Page", target: "_blank" } (publicly readable)
     %li= link_to "the DU app on GitHub", "https://github.com/doubleunion/doubleunion", target: "_blank"
 
-- if current_user.key_member?
+- if current_user.voting_member?
   %h3 Bookmarks for Key Members
   %ul
     %li= link_to "Key members mailing list", "http://lists.doubleunion.org/listinfo.cgi/keymembers-doubleunion.org", target: "_blank"

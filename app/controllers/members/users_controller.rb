@@ -2,14 +2,14 @@ class Members::UsersController < Members::MembersController
   before_action :set_user, :except => [:index, :show]
 
   def index
-    @members_and_key_members = User.members_and_key_members
+    @all_members = User.all_members
       .includes(:profile)
       .order_by_state
       .limit(120)
   end
 
   def show
-    @user = User.members_and_key_members.find(params.require(:id))
+    @user = User.all_members.find(params.require(:id))
   end
 
   def edit

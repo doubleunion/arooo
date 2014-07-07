@@ -8,7 +8,7 @@ describe AdminController do
 
     describe 'GET applications' do
       it 'allows user to view admin applications index' do
-        login_as(:key_member, is_admin: true)
+        login_as(:voting_member, is_admin: true)
         get :applications
         response.should render_template :applications
       end
@@ -19,7 +19,7 @@ describe AdminController do
         let(:application_params) { { application: { id: an_application.id} } }
 
         it 'should approve the relevant application' do
-          login_as(:key_member, is_admin: true)
+          login_as(:voting_member, is_admin: true)
           expect do
             patch :approve, application_params
           end.to change { an_application.reload.state }.from("submitted").to("approved")
@@ -31,7 +31,7 @@ describe AdminController do
       let(:application_params) { { application: { id: an_application.id} } }
 
       it 'should reject the relevant application' do
-        login_as(:key_member, is_admin: true)
+        login_as(:voting_member, is_admin: true)
         expect do
           patch :reject, application_params
         end.to change { an_application.reload.state }.from("submitted").to("rejected")
@@ -40,7 +40,7 @@ describe AdminController do
 
     describe 'GET new_members' do
       it 'allows admin to view admin new members index' do
-        login_as(:key_member, is_admin: true)
+        login_as(:voting_member, is_admin: true)
         get :new_members
         response.should render_template :new_members
       end
@@ -51,7 +51,7 @@ describe AdminController do
       let(:params) { { user: { id: member.id} } }
 
       it 'allows the admin to mark user setup as complete' do
-        login_as(:key_member, is_admin: true)
+        login_as(:voting_member, is_admin: true)
         post :setup_complete, params
         expect {member.reload.setup_complete}.to be_true
       end
@@ -62,7 +62,7 @@ describe AdminController do
       let(:params) { { user: { id: member.id, membership_note: "beeeep"} } }
 
       it 'allows the admin to make notes on the new user' do
-        login_as(:key_member, is_admin: true)
+        login_as(:voting_member, is_admin: true)
         expect do
           post :save_membership_note, params
         end.to change{member.reload.membership_note}.from(nil).to("beeeep")
@@ -72,33 +72,33 @@ describe AdminController do
 
     describe 'GET members' do
       it 'allows admin to view admin members index' do
-        login_as(:key_member, is_admin: true)
+        login_as(:voting_member, is_admin: true)
         get :members
         response.should render_template :members
       end
     end
 
-    describe 'PATCH add_key_member' do
+    describe 'PATCH add_voting_member' do
       let(:user) { create(:member) }
       let(:params) { { user: { id: user.id} } }
 
-      it 'allows admin to add key_member access' do
-        login_as(:key_member, is_admin: true)
+      it 'allows admin to add voting_member access' do
+        login_as(:voting_member, is_admin: true)
         expect do
-          patch :add_key_member, params
-        end.to change { user.reload.state }.from("member").to("key_member")
+          patch :add_voting_member, params
+        end.to change { user.reload.state }.from("member").to("voting_member")
       end
     end
 
-    describe 'PATCH revoke_key_member' do
-      let(:user) { create(:key_member) }
+    describe 'PATCH revoke_voting_member' do
+      let(:user) { create(:voting_member) }
       let(:params) { { user: { id: user.id} } }
 
-      it 'allows admin to revoke key_member access' do
-        login_as(:key_member, is_admin: true)
+      it 'allows admin to revoke voting_member access' do
+        login_as(:voting_member, is_admin: true)
         expect do
-          patch :revoke_key_member, params
-        end.to change { user.reload.state }.from("key_member").to("member")
+          patch :revoke_voting_member, params
+        end.to change { user.reload.state }.from("voting_member").to("member")
       end
     end
 
@@ -107,7 +107,7 @@ describe AdminController do
       let(:params) { { user: { id: user.id } } }
 
       it 'allows admin to revoke membership' do
-        login_as(:key_member, is_admin: true)
+        login_as(:voting_member, is_admin: true)
         expect do
           patch :revoke_membership, params
         end.to change { user.reload.state }.from("member").to("former_member")

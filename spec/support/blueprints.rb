@@ -17,7 +17,7 @@ end
 User.blueprint(:visitor)    { state { 'visitor'    } }
 User.blueprint(:applicant)  { state { 'applicant'  } }
 User.blueprint(:member)     { state { 'member'     } }
-User.blueprint(:key_member) { state { 'key_member' } }
+User.blueprint(:voting_member) { state { 'voting_member' } }
 
 Application.blueprint do
 end

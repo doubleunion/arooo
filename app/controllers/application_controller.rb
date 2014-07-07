@@ -42,8 +42,8 @@ class ApplicationController < ActionController::Base
     require_user_with_state('applicant')
   end
 
-  def require_member_or_key_member_user
-    require_user_with_state(['member', 'key_member'])
+  def require_member_or_voting_member_user
+    require_user_with_state(['member', 'voting_member'])
   end
 
   def require_user_with_state(states)

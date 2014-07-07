@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'members can finish their account setup' do
   let(:member) { create(:member) }
-  let(:other_member) { create(:key_member) }
+  let(:other_member) { create(:voting_member) }
 
   before do
     page.set_rack_session(:user_id => member.id)

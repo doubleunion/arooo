@@ -29,7 +29,7 @@ describe Members::UsersController do
     subject { get :index }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
-    it_should_behave_like "allow members", [:member, :key_member]
+    it_should_behave_like "allow members", [:member, :voting_member]
 
     it 'redirects if not logged in' do
       subject
@@ -41,7 +41,7 @@ describe Members::UsersController do
     subject { get :show, id: someone_cool.id }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
-    it_should_behave_like "allow members", [:member, :key_member]
+    it_should_behave_like "allow members", [:member, :voting_member]
 
     it 'redirects if not logged in' do
       subject
@@ -53,7 +53,7 @@ describe Members::UsersController do
     subject { get :edit, id: someone_cool.id }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
-    it_should_behave_like "allow members", [:member, :key_member]
+    it_should_behave_like "allow members", [:member, :voting_member]
 
     it 'redirects if not logged in' do
       subject
@@ -65,7 +65,7 @@ describe Members::UsersController do
     subject { post :update, id: someone_cool.id, user: {id: someone_cool.id} }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
-    it_should_behave_like "allow members", [:member, :key_member]
+    it_should_behave_like "allow members", [:member, :voting_member]
 
     it 'redirects if not logged in' do
       subject
@@ -108,7 +108,7 @@ describe Members::UsersController do
     subject { get :setup, user_id: someone_cool.id }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
-    it_should_behave_like "allow members", [:member, :key_member]
+    it_should_behave_like "allow members", [:member, :voting_member]
 
     it 'redirects if not logged in' do
       subject
@@ -139,7 +139,7 @@ describe Members::UsersController do
     subject { get :dues, user_id: someone_cool.id }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
-    it_should_behave_like "allow members", [:member, :key_member]
+    it_should_behave_like "allow members", [:member, :voting_member]
 
     it 'redirects if not logged in' do
       subject

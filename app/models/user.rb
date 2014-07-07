@@ -37,12 +37,12 @@ class User < ActiveRecord::Base
   scope :visitors,    -> { where(:state => 'visitor') }
   scope :applicants,  -> { where(:state => 'applicant') }
   scope :members,     -> { where(:state => 'member') }
-  scope :key_members, -> { where(:state => 'key_member') }
+  scope :voting_members, -> { where(:state => 'voting_member') }
 
-  scope :members_and_key_members, -> { where(:state => %w(member key_member)) }
+  scope :all_members, -> { where(:state => %w(member voting_member)) }
 
   scope :show_public, -> {
-    members_and_key_members
+    all_members
     .includes(:profile)
     .where(:'profiles.show_name_on_site' => true)
     .where('name IS NOT NULL')
@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
   }
 
   scope :new_members, -> {
-    members_and_key_members
+    all_members
     .where('setup_complete IS NULL or setup_complete = ?', false)
     .includes(:application)
     .order('applications.processed_at ASC')
@@ -74,11 +74,11 @@ class User < ActiveRecord::Base
 
   scope :order_by_state, -> { order(<<-eos
     CASE state
-    WHEN 'key_member' THEN 1
-    WHEN 'member'     THEN 2
-    WHEN 'applicant'  THEN 3
-    WHEN 'visitor'    THEN 4
-    ELSE                   5
+    WHEN 'voting_member' THEN 1
+    WHEN 'member'        THEN 2
+    WHEN 'applicant'     THEN 3
+    WHEN 'visitor'       THEN 4
+    ELSE                      5
     END
     eos
     .squish)}
@@ -92,27 +92,27 @@ class User < ActiveRecord::Base
       transition :applicant => :member
     end
 
-    event :make_key_member do
-      transition :member => :key_member
+    event :make_voting_member do
+      transition :member => :voting_member
     end
 
-    event :remove_key_membership do
-      transition :key_member => :member
+    event :remove_voting_membership do
+      transition :voting_member => :member
     end
 
     event :remove_membership do
-      transition [:member, :key_member] => :former_member
+      transition [:member, :voting_member] => :former_member
     end
 
     state :visitor
     state :applicant
     state :member
-    state :key_member
+    state :voting_member
     state :former_member
   end
 
-  def member_or_key_member?
-    member? || key_member?
+  def member_or_voting_member?
+    member? || voting_member?
   end
 
   def gravatar_url(size = 200)
@@ -146,7 +146,7 @@ class User < ActiveRecord::Base
   end
 
   def number_applications_needing_vote
-    if self.key_member?
+    if self.voting_member?
       n = Application.where(state: 'submitted').count - Application.joins("JOIN votes ON votes.application_id = applications.id AND applications.state = 'submitted' AND votes.user_id = #{self.id}").count
       n==0 ? nil : n
     else
@@ -159,7 +159,7 @@ class User < ActiveRecord::Base
   end
 
   def mature?
-    member_or_key_member? && application.processed_at.present? && application.processed_at <= 14.days.ago
+    member_or_voting_member? && application.processed_at.present? && application.processed_at <= 14.days.ago
   end
 
   private

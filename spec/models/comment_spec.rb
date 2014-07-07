@@ -32,7 +32,7 @@ describe Comment do
 
   it 'should be valid for key member' do
     comment = Comment.new
-    comment.user = User.make!(:key_member)
+    comment.user = User.make!(:voting_member)
     comment.tap(&:valid?).should have(0).errors_on(:user)
   end
 

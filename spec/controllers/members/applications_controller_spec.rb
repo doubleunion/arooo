@@ -83,7 +83,7 @@ describe Members::ApplicationsController do
       end
 
       it 'renders voting form for key member' do
-        login_as(:key_member)
+        login_as(:voting_member)
         get :show, :id => @submitted_application.id
         response.should render_template :show
         response.body.should have_selector(:css, "form#new_vote")

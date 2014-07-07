@@ -19,11 +19,11 @@
           = form_for user, url: admin_revoke_membership_path do |f|
             = f.hidden_field(:id)
             = f.submit "Revoke DU Membership", class: "btn reject-btn", confirm: "Are you sure?"
-          - if user.key_member?
-            = form_for user, url: admin_revoke_key_member_path do |f|
+          - if user.voting_member?
+            = form_for user, url: admin_revoke_voting_member_path do |f|
               = f.hidden_field(:id)
               = f.submit "Revoke Key Member", class: "btn reject-btn", confirm: "Are you sure?"
           - else
-            = form_for user, url: admin_add_key_member_path do |f|
+            = form_for user, url: admin_add_voting_member_path do |f|
               = f.hidden_field(:id)
               = f.submit "Make Key Member", class: "btn accept-btn", confirm: "Are you sure?"

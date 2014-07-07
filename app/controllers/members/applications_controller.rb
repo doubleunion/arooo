@@ -26,7 +26,7 @@ class Members::ApplicationsController < Members::MembersController
       sponsorship = Sponsorship.new(user_id: current_user.id, application_id: application.id)
 
       if sponsorship.save
-        vote(application_params, true) if current_user.key_member?
+        vote(application_params, true) if current_user.voting_member?
       else
         flash[:error] = "Sorry, something went wrong!"
       end
