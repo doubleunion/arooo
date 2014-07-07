@@ -15,7 +15,13 @@
 %h3 Membership qualifications
 
 %p
-  To keep the focus on a great space for women, all members must identify as women in a way that's significant to them, and be old enough to carry out any responsibilities. Guests of members may be any gender or age. We specifically encourage bringing (supervised) children to the space. New members join through a nomination and voting process (see below).
+  To keep the focus on a great space for women, all members must identify as women in a way that's significant to them, and be old enough to carry out any responsibilities. Guests of members may be any gender or age. We specifically encourage bringing (supervised) children to the space. New members join through an application and voting process (see below).
+
+%p
+  We welcome members with a broad variety of interests, skills, identities, backgrounds, and histories. What we have in common is a #{ link_to "set of values (base assumptions)", "https://www.doubleunion.org/base_assumptions"} and an interest in supporting each other and Double Union. If you're very interested in being part of Double Union but aren't sure whether you're a good fit, please apply. (Don't let #{ link_to "impostor syndrome", "http://geekfeminism.wikia.com/wiki/Impostor_syndrome"} stop you!)
+
+%p
+  To get a sense of what current members work on in the space, see our #{ link_to "blog", "http://doubleunion.tumblr.com/"}, #{ link_to "Twitter", "https://twitter.com/doubleunionsf"}, and #{ link_to "wiki", "http://wiki.doubleunion.org/index.php?title=Main_Page"} to find out about events/projects and equipment, or come to some events! Our committees so far include bicycles, electronics, jobs, open source software, printmaking and textiles, public speaking, 3D printing/CNC machining, and several committees related to running Double Union together (developing its web application, networking/IT for the space, designing its physical space and constructing modifications, finance/administration, membership coordination, maintaining the book library, etc.).
 
 %h3 Membership benefits and responsibilities
 
@@ -27,7 +33,7 @@
 %p This is the membership type you want if you would just like to work on your projects and not have to run the space.
 
 %ul
-  %li After attending two members meetings, you'll get a key code that lets you use the space whenever the building is open (generally 7am-6pm, Monday-Friday)
+  %li After attending at least two events (including at least one members meeting), you'll get a key code that lets you use the space whenever the building is open (generally 7am-6pm, Monday-Friday)
   %li You'll also be able to use the space in evenings and weekends when a key member is present
   %li Store your projects in the space (within reason)
   %li Pay monthly membership dues (what you can afford – generally between $10 and $50/month)
@@ -39,9 +45,8 @@
 %p If you are a key member, you can:
 
 %ul
-  %li Get into the space any time (a key!)
+  %li Get into the space any time (a set of keys!)
   %li Bring guests to the space
-  %li Shape the space’s direction and future
 
 %p Key members also have responsibilities:
 
@@ -49,17 +54,21 @@
   %li Contribute to the upkeep of the space
   %li Volunteer for various tasks (e.g., yarn coordinator!)
   %li Help uphold the rules of the space
-  %li Nominate and vote on new members
-  %li Come to weekly meetings
+  %li Come to meetings
+  %li Help shape the space’s direction and future
+
+%h4 Voting members
+
+%p Voting members (who are usually also key members) choose to take on the additional responsibility of reviewing and voting on membership applications.
 
 - if Configurable[:accepting_applications]
   %h3 Apply
 
   %p
-    New members join through a nomination and voting process. To apply for Double
+    New members join through an application and voting process. To apply for Double
     Union membership, start by authenticating with GitHub or Google.
 
-  %p
+  %b
     Before you apply, though, please read through our #{ link_to "Base Assumptions", base_assumptions_path }. They are very important to us and we want all members to be comfortable with them.
 
   %p= link_to 'Sign in with GitHub', github_login_path, :class => 'btn btn-primary btn-lg'
