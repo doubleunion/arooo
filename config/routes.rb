@@ -59,4 +59,6 @@ Doubleunion::Application.routes.draw do
   get 'visit',      :to => 'static#visit'
 
   get 'base_assumptions', :to => 'static#base_assumptions'
+
+  mount StripeEvent::Engine => '/stripe'
 end

@@ -22,6 +22,7 @@ gem 'redcarpet'
 gem 'configurable_engine'
 gem 'bugsnag'
 gem 'stripe'
+gem 'stripe_event'
 gem 'rack-canonical-host'
 gem 'jquery-datatables-rails'
 

@@ -4,3 +4,8 @@ Rails.configuration.stripe = {
 }
 
 Stripe.api_key = Rails.configuration.stripe[:secret_key]
+
+StripeEvent.configure do |events|
+  events.subscribe 'charge.succeeded', StripeEventHelper::ChargeSucceeded.new
+  events.subscribe 'charge.failed', StripeEventHelper::ChargeFailed.new
+end
