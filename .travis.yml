@@ -11,3 +11,4 @@ script:
 before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database doubleunion_test;' -U postgres
+env: SECRET_TOKEN=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
