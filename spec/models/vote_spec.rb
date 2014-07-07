@@ -23,7 +23,7 @@ describe Vote do
     vote.should have_at_least(1).errors_on(:user)
   end
 
-  it 'should be valid if voter is key member' do
+  it 'should be valid if voter is voting member' do
     vote = Vote.new
 
     vote.user = User.make!(:voting_member)

@@ -14,7 +14,7 @@ class Vote < ActiveRecord::Base
 
   def user_is_voting_member
     unless user && user.voting_member?
-      errors.add(:user, 'is not a key member')
+      errors.add(:user, 'is not a voting member')
     end
   end
 

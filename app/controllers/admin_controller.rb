@@ -41,7 +41,7 @@ class AdminController < ApplicationController
 
   def add_voting_member
     if @user.make_voting_member
-      flash[:message] = "#{@user.name} was added as a key member."
+      flash[:message] = "#{@user.name} was added as a voting member."
     else
       flash[:message] = "Whoops! #{@user.errors.full_messages.to_sentence}"
     end
@@ -50,7 +50,7 @@ class AdminController < ApplicationController
 
   def revoke_voting_member
     if @user.remove_voting_membership
-      flash[:message] = "#{@user.name} was revoked as a key member."
+      flash[:message] = "#{@user.name} was revoked as a voting member."
     else
       flash[:message] = "Whoops! #{@user.errors.full_messages.to_sentence}"
     end

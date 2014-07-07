@@ -82,7 +82,7 @@ describe Members::ApplicationsController do
         response.body.should_not have_selector(:css, "form#new_vote")
       end
 
-      it 'renders voting form for key member' do
+      it 'renders voting form for voting member' do
         login_as(:voting_member)
         get :show, :id => @submitted_application.id
         response.should render_template :show
