@@ -6,7 +6,7 @@ class Application < ActiveRecord::Base
   has_many :sponsorships
   has_many :users, :through => :sponsorships
 
-  MINIMUM_YES = 5
+  MINIMUM_YES = User.voting_members.count/2
   MAXIMUM_NO = 1
   MINIMUM_SPONSORS = 1
 
