@@ -19,7 +19,7 @@ describe Application do
     let(:application) { create(:application) }
 
     before do
-      application.submitted_at = Time.now - 1.weeks
+      application.submitted_at = Time.now - 8.days
       application.stub_chain(:yes_votes, :count).and_return 6
       application.stub_chain(:no_votes, :count).and_return 0
       application.stub_chain(:sponsorships, :count).and_return 1
