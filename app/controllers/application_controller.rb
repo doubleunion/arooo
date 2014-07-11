@@ -87,6 +87,8 @@ class ApplicationController < ActionController::Base
 
     vote.save!
 
-    application.votes_threshold_email
+    # current process makes the votes threshold email not helpful
+    # so, for now, no email. maybe this should be deleted in the future
+    #application.votes_threshold_email
   end
 end
