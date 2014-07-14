@@ -23,6 +23,7 @@ gem 'configurable_engine'
 gem 'bugsnag'
 gem 'stripe'
 gem 'rack-canonical-host'
+gem 'jquery-datatables-rails'
 
 group :development do
   gem 'better_errors'

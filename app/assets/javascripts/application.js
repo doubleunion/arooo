@@ -13,4 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require dues
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap
+
+$(document).ready(function () {
+  $('.js-datatable').dataTable({
+      "bPaginate": false
+  });
+});

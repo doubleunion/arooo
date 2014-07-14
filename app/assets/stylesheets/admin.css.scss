@@ -4,7 +4,19 @@ body.members {
     cursor: pointer;
   }
   .container {
-    max-width: 900px !important;
+    max-width: 950px !important;
+  }
+}
+
+.applications {
+  tr.more-padding {
+    th {
+      padding-right: 30px;
+    }
+  }
+
+  td.name, th.name {
+    width: 300px;
   }
 }
 
