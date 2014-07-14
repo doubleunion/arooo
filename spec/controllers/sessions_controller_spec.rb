@@ -139,51 +139,81 @@ describe SessionsController do
       session[:uid] = "12345"
     end
 
-    subject { post :confirm_email, email: "someone@foo.bar" }
+    subject { post :confirm_email, email: email }
 
-    context 'with a new user' do
-      let(:user) { User.last }
-      let(:authentication) { user.authentications.first }
+    context "with valid params" do
+      let(:email) { "someone@foo.bar" }
 
-      it 'creates user and makes applicant' do
-        expect { subject }.to change { User.count }.from(0).to(1)
+      context 'with a new user' do
+        let(:user) { User.last }
+        let(:authentication) { user.authentications.first }
 
-        expect(user.applicant?).to be_true
+        it 'creates user and makes applicant' do
+          expect { subject }.to change { User.count }.from(0).to(1)
 
-        expect(user.username).to be_present
-        expect(authentication.provider).to be_present
-        expect(authentication.uid).to be_present
+          expect(user.applicant?).to be_true
+
+          expect(user.username).to be_present
+          expect(authentication.provider).to be_present
+          expect(authentication.uid).to be_present
+        end
+
+        it 'sets the session with the newly-created user' do
+          subject
+          expect(session[:user_id]).to eq(user.id)
+        end
       end
 
-      it 'sets the session with the newly-created user' do
-        subject
-        expect(session[:user_id]).to eq(user.id)
+      context 'with an existing user' do
+        let(:user) { create_with_omniauth(OmniAuth.config.mock_auth[:github]) }
+
+        before do
+          user.update_attribute(:state, 'member')
+        end
+
+        it 'does not create a user' do
+          expect { subject }.not_to change { User.count }
+        end
+
+        it 'does not set the session' do
+          subject
+          expect(session[:user_id]).to be_nil
+        end
+
+        it 'redirects to the root path' do
+          expect(subject).to redirect_to :root
+        end
+
+        it 'sets the flash message' do
+          subject
+          expect(flash[:alert]).to include "It looks like you've previously logged in"
+        end
       end
     end
 
-    context 'with an existing user' do
-      let(:user) { create_with_omniauth(OmniAuth.config.mock_auth[:github]) }
+    context "with a bad email address" do
+      let(:email) { "someone" }
 
-      before do
-        user.update_attribute(:state, 'member')
+      it "rerenders the page" do
+        expect(subject).to render_template :get_email
       end
 
-      it 'does not create a user' do
-        expect { subject }.not_to change { User.count }
-      end
-
-      it 'does not set the session' do
+      it "does not set the session" do
         subject
         expect(session[:user_id]).to be_nil
       end
+    end
 
-      it 'redirects to the root path' do
-        expect(subject).to redirect_to :root
+    context "with no email address" do
+      let(:email) { "" }
+
+      it "rerenders the page" do
+        expect(subject).to render_template :get_email
       end
 
-      it 'sets the flash message' do
+      it "does not set the session" do
         subject
-        expect(flash[:alert]).to include "It looks like you've previously logged in"
+        expect(session[:user_id]).to be_nil
       end
     end
   end

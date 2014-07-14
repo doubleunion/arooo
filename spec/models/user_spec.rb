@@ -43,6 +43,7 @@ describe User do
   it 'should transition from visitor to applicant' do
     user = User.new
     user.username = 'sallyride'
+    user.email = 'cat@example.org'
     user.save!
 
     user.state.should == 'visitor'
@@ -53,6 +54,7 @@ describe User do
   it 'should not transition from visitor to member' do
     user = User.new
     user.username = 'sallyride'
+    user.email = 'cat@example.org'
     user.save!
 
     user.state.should == 'visitor'

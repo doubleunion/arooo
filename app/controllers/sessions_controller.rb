@@ -37,12 +37,18 @@ class SessionsController < ApplicationController
   end
 
   def confirm_email
-    if User.where(email: params[:email]).empty?
-      user = create_user_and_auth
-      user.make_applicant!
-      set_user_session(user)
+    if new_user?
+      user = User.create(username: session[:username], email: params[:email])
 
-      redirect_to edit_application_path(user.application)
+      if user.save
+        make_auth(user)
+        user.make_applicant!
+        set_user_session(user)
+        redirect_to edit_application_path(user.application)
+      else
+        flash[:message] = user.errors.full_messages.to_sentence
+        render :get_email
+      end
     else
       redirect_to root_path, alert: "It looks like you've previously logged in with a different authentication provider, so try logging in with a different one. Email admin@doubleunion.org for help if that isn't the case!"
     end
@@ -66,18 +72,11 @@ class SessionsController < ApplicationController
       end
     end
 
-    def create_user_and_auth
-      user = User.create!(
-        username: session[:username],
-        email: params[:email]
-      )
-
+    def make_auth(user)
       authentication          = user.authentications.build
       authentication.provider = session[:provider]
       authentication.uid      = session[:uid]
       authentication.save!
-
-      user
     end
 
     def set_auth_session_vars(omniauth)
@@ -116,5 +115,9 @@ class SessionsController < ApplicationController
       elsif omniauth['provider'] == "google_oauth2"
         GoogleAuth.new(omniauth)
       end
+    end
+
+    def new_user?
+      User.where(email: params[:email]).empty?
     end
 end

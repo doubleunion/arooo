@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true
 
-  validates :email, :allow_blank => true, uniqueness: true, :format => {
+  validates :email, uniqueness: true, :format => {
     :with    => EMAIL_PATTERN,
-    :message => 'Invalid email address' }
+    :message => 'address is invalid' }
 
   validates :dues_pledge, numericality: true, allow_blank: true
 
