@@ -1,0 +1,18 @@
+%p
+  Hi #{@user.name}!
+
+%p
+  Since we haven't heard from you, we're going to cancel your membership in seven days. If you're still excited about Double Union, sometime in the next seven days just fill out this #{ link_to "very short form", members_user_setup_url(@user.id) }.
+
+%p
+  If you have any questions, email the membership coordinators at #{mail_to I18n.t 'du.membership_email'}!
+
+
+%p
+  All the best,
+  %br/
+  Double Union
+  %br/
+  @doubleunionsf
+  %br/
+  = link_to "www.doubleunion.org", "http://www.doubleunion.org"

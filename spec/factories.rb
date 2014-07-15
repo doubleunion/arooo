@@ -13,6 +13,13 @@ FactoryGirl.define do
           user.application.save!
         end
       end
+
+      factory :setup_complete_member do
+        sequence(:email_for_google) { |n| "googleemail#{n}@example.com" }
+        dues_pledge [10, 25, 50].sample
+        stripe_customer_id "123abc"
+        setup_complete true
+      end
     end
 
     factory :voting_member do
