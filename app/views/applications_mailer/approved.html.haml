@@ -3,10 +3,25 @@
     %td
       %p Hi #{@user.name}!
 
-      %p Votes have been cast, and we'd like to offer you membership to Double Union! YAY!
+      %p Votes have been cast, and we'd like to offer you membership to Double Union! YAY! There's so much to do now that you're a member :D
+
+      %p As soon as possible, confirm your membership #{ link_to "on this page", members_user_setup_url(@user.id) } (don't forget to log in). This is where you'll give us your Google Docs-friendly email address, set up dues, and join the members' mailing list.
+
+      %p After you're done with that, check out the current applications to DU & let us know if you know any of the applicants! Only voting members vote, but everyone can (and should) comment on applications: #{ link_to "doubleunion.org", members_applications_url }. (You'll be able to sponsor applications after two weeks as a member.)
+
+      %p You can also check out our #{ link_to "wonderful wiki", "http://wiki.doubleunion.org/"} and e-mail wiki@doubleunion.org for access.
+
+      %p If you want to be listed publicly as a member (at the bottom of #{ link_to "this page", "http://www.doubleunion.org/membership" }), #{ link_to "log in", "http://www.doubleunion.org/login" } to the app and go to "Edit profile" in the right dropdown menu. There's a checkbox there marked "Show name/website/gravatar on public site?"
+
+      %p Things the membership coordinators will do for you:
+
+      %ul
+        %li Give you access to the Double Union Google Docs folder
+        %li Give you access to the DU calendar
+        %li Remind you to fill out #{ link_to "that form", members_user_setup_url(@user.id) } & set up dues :D
 
       %p
-        First off, here's the DU address:
+        In case you don't have it, here's the DU address:
         %br/
         Double Union
         %br/
@@ -15,31 +30,6 @@
         SF, CA 94103
 
       %p We're on the fourth floor. There's an elevator on the left when you enter the lobby of 333 Valencia. If you're taking the stairs, just keep walking until you can't walk up any more. Once you get to the fourth floor lobby, head toward the right hallway. We're just past Woman, Inc.
-
-      %p There's so much to do now that you're a member :D
-
-      %p
-        As soon as possible, confirm your membership #{ link_to "on this page", members_user_setup_url(@user.id) } (you'll need to login with GitHub or Google - whichever you used to apply). We need to know what email address to share our Google Drive & calendar with, and how much you'll be paying for monthly dues.
-
-      %p
-        That page also lets you set up dues and joining the members' mailing list. Both are important.
-
-      %p
-        If you want to be listed publicly as a member (at the bottom of #{ link_to "this page", "http://www.doubleunion.org/membership" }), #{ link_to "log in", "http://www.doubleunion.org/login" } to the app and go to "Edit profile" in the right dropdown menu. There's a checkbox there marked "Show name/website/gravatar on public site?"
-
-      %p
-        After you're done with that, check out the current applications to DU & let us know if you know any of the applicants! Only key members vote, but everyone can (and should) comment on applications: #{ link_to "doubleunion.org", root_url }. You'll be able to sponsor applications after two weeks as a member.
-
-      %p You should also check out our #{ link_to "wonderful wiki", "http://wiki.doubleunion.org/"} and e-mail wiki@doubleunion.org for access.
-
-      %p Please check the #{ link_to "Tumblr", "http://doubleunion.tumblr.com/" } and #{ link_to "Twitter", "https://twitter.com/DoubleUnionSF" } for open events!
-
-      %p Things the membership coordinator will do for you:
-
-      %ul
-        %li Give you access to the Double Union Google Docs folder
-        %li Give you access to the DU calendar
-        %li Remind you to fill out #{ link_to "that form", members_user_setup_url(@user.id) } & set up dues :D
 
       %p If you have any questions, email the membership coordinator at #{t('du.membership_email')}.
 
