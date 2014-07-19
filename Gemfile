@@ -41,6 +41,8 @@ group :development, :test do
   gem 'thin'
   gem 'faker'
   gem "rack_session_access"
+  gem "pry-rails"
+  gem "pry-debugger"
 end
 
 group :production do
