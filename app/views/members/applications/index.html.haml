@@ -1,10 +1,10 @@
 - if @applicants_submitted.any?
   %h2 Submitted Applications
-  %table.table.js-datatable.applications
+  %table.table.table-striped.js-datatable.applications
     %thead
       %tr.more-padding
         %th.name Name
-        %th Submitted
+        %th.date Submitted
         %th Sponsors
         %th Comments
         - if current_user.voting_member?
@@ -21,7 +21,7 @@
             = link_to applicant.name, members_application_path(application)
           %td
             - if application.submitted_at
-              = "#{time_ago_in_words(application.submitted_at)} ago"
+              = application.submitted_at.strftime('%b %d, %Y')
             - else
               \--
           %td

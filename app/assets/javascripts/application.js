@@ -18,6 +18,10 @@
 
 $(document).ready(function () {
   $('.js-datatable').dataTable({
-      "bPaginate": false
+    "bPaginate": false,
+    "aaSorting": [[ 1, "asc" ]],
+    "aoColumnDefs": [
+      {'aTargets': ['date'], 'sType': "date"}
+    ]
   });
 });
