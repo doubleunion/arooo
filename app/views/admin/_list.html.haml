@@ -4,8 +4,9 @@
       %th Name
       %th Username
       %th Status
+      %th Stripe Dues Set Up?
+      %th Last Stripe Payment
       %th Manage Status
-      %th Stripe?
   %tbody
     - users.each do |user|
       %tr
@@ -15,7 +16,8 @@
             = link_to user.name, members_user_path(user)
         %td= link_to user.username, members_user_path(user)
         %td= user.display_state
-        %td= user.last_stripe_charge_succeeded
+        %td= user.stripe_customer_id.present? ? "Yes" : "No"
+        %td= user.last_stripe_charge_succeeded.strftime('%b %d %Y') if user.last_stripe_charge_succeeded
         %td.buttons
           = form_for user, url: admin_revoke_membership_path do |f|
             = f.hidden_field(:id)
