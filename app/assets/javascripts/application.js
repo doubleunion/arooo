@@ -19,7 +19,7 @@
 $(document).ready(function () {
   $('.js-datatable').dataTable({
     "bPaginate": false,
-    "aaSorting": [[ 1, "asc" ]],
+    "aaSorting": [[ 1, "desc" ]],
     "aoColumnDefs": [
       {'aTargets': ['date'], 'sType': "date"}
     ]
