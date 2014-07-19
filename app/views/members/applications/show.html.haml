@@ -11,8 +11,8 @@
 
   = form_for @vote, :url => members_votes_path, :method => :post do |f|
     = f.hidden_field :application_id, :value => @application.id
-    = f.submit 'Yes', :name => 'vote_yes', :disabled => vote && vote.value
-    = f.submit 'No',  :name => 'vote_no',  :disabled => vote && !vote.value
+    = f.submit 'Yes', :name => 'vote_yes', :disabled => vote && vote.value, class: "btn btn-primary"
+    = f.submit 'No',  :name => 'vote_no',  :disabled => vote && !vote.value, class: "btn"
 
 - elsif !logged_in_as?(@user) && current_user.member?
   %h3= @user.name
@@ -26,7 +26,7 @@
     = label_tag :is_sponsor do
       = check_box_tag :is_sponsor, 1, @sponsorship.present?
       I've met this person and think they would be a great fit for Double Union
-    = f.submit "Submit"
+    = f.submit "Submit", class: "btn btn-primary"
 - else
   %p You'll be able to sponsor applicants once you've been a member for 2 weeks!
 
@@ -73,13 +73,15 @@
     %small{ :title => comment.created_at }
       = "#{time_ago_in_words(comment.created_at)} ago"
 
-= form_for [:members, @application, Comment.new] do |f|
-  .comment
-    = link_to user_gravatar(current_user, 20), members_user_path(current_user)
-    = "#{link_to current_user.username, members_user_path(current_user)}:".html_safe
+
+= form_for [:members, @application, Comment.new], class: "form-horizontal" do |f|
+  .comment.form-group
+    .mb-5
+      = link_to user_gravatar(current_user, 20), members_user_path(current_user)
+      = "#{link_to current_user.username, members_user_path(current_user)}:".html_safe
     = f.hidden_field :application_id, :value => @application.id
-    = f.text_area :body, :rows => 3
-    %fieldset= f.submit 'Add comment'
+    = f.text_area :body, :rows => 3, class: "form-control"
+    %fieldset= f.submit 'Add comment', class: "btn btn-primary pull-right"
 
 %h3 Application
 = render :partial => 'applications/show', :locals => { :user => @user }
