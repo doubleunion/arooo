@@ -1,10 +1,10 @@
 %h1 New DU Members
 .instructions
   %ul
-    %li First, make sure the the member's dues have appeared in the #{link_to "DU PayPal account", "http://paypal.com/", target: "_blank"}
-    %li Figure out if they are on the #{ link_to "members mailing list", "http://lists.doubleunion.org/roster.cgi/members-doubleunion.org"}, and if not, email them and make sure they're on the list before making their setup as complete.
-    %li Then, give the member access to the DU Members Google #{ link_to "drive folder", "https://drive.google.com/#folders/0B6a_aDP-2fOVV2FQLW5FVTZ2Mjg", target: "_blank" } & #{ link_to "calendar", "https://www.google.com/calendar/render", target: "_blank" }
+    %li First, make sure they are on the #{ link_to "members mailing list", "http://lists.doubleunion.org/roster.cgi/members-doubleunion.org"}, and if not, email them and make sure they're on the list before making their setup as complete.
+    %li Then, if they've set up dues, give the member access to the DU Members Google #{ link_to "drive folder", "https://drive.google.com/#folders/0B6a_aDP-2fOVV2FQLW5FVTZ2Mjg", target: "_blank" } & #{ link_to "calendar", "https://www.google.com/calendar/render", target: "_blank" }
+    %li Clicking the Setup Finished button will sent the member an email letting them know they have access to the Google docs & calendar now.
 
-    %li Follow up with people!
+  %p Don't forget to save each note individually so you don't lose your work.
 
 = render partial: 'new_member', collection: @new_members

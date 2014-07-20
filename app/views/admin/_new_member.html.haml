@@ -4,7 +4,6 @@
     %ul.list-unstyled
       %li
         %b #{ link_to new_member.name, members_user_path(new_member) }
-      %li Approved #{ new_member.application.processed_at.strftime("%b %-d") }
       %li= new_member.email
       %li
         = form_for :user, url: admin_setup_complete_path do |f|
@@ -13,11 +12,21 @@
   .col-md-4
     %ul.list-unstyled
       %li
-        %b Google email:
-      %li #{ new_member.email_for_google }
+        %b Approved on #{ new_member.application.processed_at.strftime("%b %-d") }
       %li
-        %b Dues pledge:
-        #{ new_member.dues_pledge }
+        - if new_member.email_for_google
+          %b Google email:
+          = new_member.email_for_google
+        - else
+          .admin-warning
+            No Google email
+      %li
+        - if new_member.last_stripe_charge_succeeded
+          %b Stripe Payment Made On:
+          = new_member.last_stripe_charge_succeeded
+        - else
+          .admin-warning
+            Dues Not Set Up
   .col-md-4
     = form_for :user, url: admin_save_membership_note_path do |f|
       = f.hidden_field :id, value: new_member.id
