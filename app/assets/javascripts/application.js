@@ -17,11 +17,21 @@
 //= require dataTables/jquery.dataTables.bootstrap
 
 $(document).ready(function () {
+  $.extend( $.fn.dataTable.defaults, {
+    "bPaginate": false
+  } );
+
   $('.js-datatable').dataTable({
-    "bPaginate": false,
+  });
+
+  $('.js-datatable-dues').dataTable({
+    "aaSorting": [[ 2, "asc" ]]
+  })
+
+  $('.js-datatable-applications').dataTable({
     "aaSorting": [[ 1, "desc" ]],
     "aoColumnDefs": [
       {'aTargets': ['date'], 'sType': "date"}
     ]
-  });
+  })
 });

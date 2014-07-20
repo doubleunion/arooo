@@ -12,7 +12,6 @@ class AdminController < ApplicationController
     @all_members = User.all_members
       .includes(:profile)
       .order_by_state
-      .limit(120)
   end
 
   def approve
@@ -90,6 +89,11 @@ class AdminController < ApplicationController
       flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
     end
     redirect_to admin_new_members_path
+  end
+
+  def dues
+    @all_members = User.all_members
+    @members_without_dues = User.no_stripe_dues
   end
 
   protected

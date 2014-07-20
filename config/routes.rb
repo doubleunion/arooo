@@ -24,6 +24,7 @@ Doubleunion::Application.routes.draw do
   get 'admin/new_members' => 'admin#new_members'
   get 'admin/applications' => 'admin#applications'
   get 'admin/members' => 'admin#members'
+  get 'admin/dues' => 'admin#dues'
 
   patch 'admin/approve' => 'admin#approve'
   patch 'admin/reject' => 'admin#reject'

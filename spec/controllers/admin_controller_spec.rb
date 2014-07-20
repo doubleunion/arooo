@@ -113,6 +113,15 @@ describe AdminController do
         end.to change { user.reload.state }.from("member").to("former_member")
       end
     end
+
+    describe 'GET dues' do
+      it "allows admins to view the admin dues page" do
+        login_as(:voting_member, is_admin: true)
+        get :dues
+        expect(response).to render_template :dues
+        expect(assigns(:all_members)).to eq(User.all_members)
+      end
+    end
   end
 
   describe 'as a non-admin user' do
@@ -128,6 +137,14 @@ describe AdminController do
       it 'should redirect to root if logged in as member' do
         login_as(:member)
         get :members
+        response.should redirect_to :root
+      end
+    end
+
+    describe 'GET dues' do
+      it 'should redirect to root if logged in as member' do
+        login_as(:member)
+        get :dues
         response.should redirect_to :root
       end
     end

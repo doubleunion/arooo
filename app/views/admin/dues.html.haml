@@ -1,0 +1,29 @@
+%h2 Manage Dues
+
+%ul
+  %li Members with dues in Stripe: #{User.where('stripe_customer_id IS NOT NULL').count}
+  %li Members who still need to set up Stripe dues: #{@members_without_dues.count}
+
+%a{"data-toggle" => "collapse" , "href" => "#collapseEmails"} Email Addresses of Members Without Dues <b class="caret"></b>
+%div.collapse.out#collapseEmails
+  %ul.list-unstyled
+    - @members_without_dues.each do |user|
+      %li= user.email
+
+%table.table.table-striped.admin-console.js-datatable-dues
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th.min-width-150 Dues Set Up?
+      %th.min-width-150 Last Payment
+  %tbody
+    - @all_members.each do |user|
+      %tr
+        %td
+          = user_gravatar(user, 20)
+          - if user.name.present?
+            = link_to user.name, members_user_path(user)
+        %td= user.email
+        %td= user.stripe_customer_id.present? ? "Yes" : "No"
+        %td= user.last_stripe_charge_succeeded.strftime('%b %d %Y') if user.last_stripe_charge_succeeded

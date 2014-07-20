@@ -41,6 +41,11 @@ class User < ActiveRecord::Base
 
   scope :all_members, -> { where(:state => %w(member voting_member)) }
 
+  scope :no_stripe_dues, -> {
+    all_members
+    .where(stripe_customer_id: nil)
+  }
+
   scope :show_public, -> {
     all_members
     .includes(:profile)
