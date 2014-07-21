@@ -5,6 +5,24 @@ describe StripeEventHelper do
   before { StripeMock.start }
   after { StripeMock.stop }
 
+  describe "ChargeSucceeded" do
+    let(:event) { StripeMock.mock_webhook_event('charge.succeeded') }
+    let(:time) { Time.now }
+    let(:member) { create :member }
+
+    subject { StripeEventHelper::ChargeSucceeded.new.call(event) }
+
+    before do
+      event.data.object.created = time
+      event.data.object.customer = "beep"
+      member.update_column(:stripe_customer_id, "beep")
+    end
+
+    it "stores the timestamp from Stripe on the user table" do
+      expect { subject }.to change { member.reload.last_stripe_charge_succeeded.to_i }.to(time.to_i)
+    end
+  end
+
   describe "ChargeFailed" do
     let(:event) { StripeMock.mock_webhook_event('charge.failed') }
     let(:mail) { ActionMailer::Base.deliveries.last }
