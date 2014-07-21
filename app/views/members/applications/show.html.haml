@@ -11,8 +11,8 @@
 
   = form_for @vote, :url => members_votes_path, :method => :post do |f|
     = f.hidden_field :application_id, :value => @application.id
-    = f.submit 'Yes', :name => 'vote_yes', :disabled => vote && vote.value, class: "btn btn-primary"
-    = f.submit 'No',  :name => 'vote_no',  :disabled => vote && !vote.value, class: "btn"
+    = f.submit 'Yes', :name => 'vote_yes', :disabled => vote && vote.value
+    = f.submit 'No',  :name => 'vote_no',  :disabled => vote && !vote.value
 
 - elsif !logged_in_as?(@user) && current_user.member?
   %h3= @user.name
