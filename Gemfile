@@ -57,4 +57,5 @@ group :test do
   gem 'machinist'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
+  gem 'stripe-ruby-mock', '~> 1.10.1.7'
 end
