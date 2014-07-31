@@ -19,10 +19,6 @@ class User < ActiveRecord::Base
     :if       => :setup_complete,
     :format   => { :with => EMAIL_PATTERN }
 
-  validates :dues_pledge,
-    :presence => true,
-    :if       => :setup_complete
-
   has_one  :profile,     :dependent => :destroy
   has_one  :application, :dependent => :destroy
   has_many :authentications, dependent: :destroy
