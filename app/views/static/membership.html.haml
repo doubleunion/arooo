@@ -1,32 +1,33 @@
 %h2 Membership
 
-- if Configurable[:accepting_applications]
-  %h3 Join us!
+- unless Configurable[:accepting_applications]
+  .alert.alert-info
+    We aren't currently accepting applications. Join our #{ link_to "general interest mailing list", "http://lists.doubleunion.org/listinfo.cgi/doubleunion-doubleunion.org", class: "alert-link"} to be notified when applications are open again!
 
-  %p
-    We are looking for new members! Keep reading to learn more about becoming a member and joining our awesome feminist community workshop.
+%p
+  New members join through an application and voting process. If you're very interested in being part of Double Union but aren't sure whether you're “good enough,” please apply. Don't let #{ link_to "impostor syndrome", "http://geekfeminism.wikia.com/wiki/Impostor_syndrome" } stop you!
 
-  %p
-    The main reason to become a member is to be able to visit the space without a host. Non-members are welcome in the space if they are accompanied by a key member, to come to an open house night, to take a class, or to attend an open event.
-- else
-  %p We aren't currently accepting applications. Join our #{ link_to "general interest mailing list", "http://lists.doubleunion.org/listinfo.cgi/doubleunion-doubleunion.org"} to be notified when applications are open again!
+%p
+  Along with submitting an application, a qualification for membership is that you've met at least one member who is willing to say you seem like a reasonable potential member (such as that you'd respect the #{ link_to "base assumptions", base_assumptions_path }, #{ link_to "anti-harassment policy", policies_path }, and responsibilities of being a member). Please come to events to meet some of us! Or if you'd prefer a quieter opportunity to meet just a couple members over a cup of tea, email #{ mail_to "join@doubleunion.org" } and we'll set this up.
 
 
 %h3 Membership qualifications
 
 %p
-  To keep the focus on a great space for women, all members must identify as women in a way that's significant to them, and be old enough to carry out any responsibilities. Guests of members may be any gender or age. We specifically encourage bringing (supervised) children to the space. New members join through an application and voting process (see below).
+  Double Union welcomes members with a broad variety of interests, skills, identities, backgrounds, and histories. What we have in common is a #{ link_to "set of values (base assumptions) ", base_assumptions_path }  and an interest in supporting each other and Double Union.
 
 %p
-  We welcome members with a broad variety of interests, skills, identities, backgrounds, and histories. What we have in common is a #{ link_to "set of values (base assumptions)", "https://www.doubleunion.org/base_assumptions"} and an interest in supporting each other and Double Union. If you're very interested in being part of Double Union but aren't sure whether you're a good fit, please apply. (Don't let #{ link_to "impostor syndrome", "http://geekfeminism.wikia.com/wiki/Impostor_syndrome"} stop you!)
+  To keep the focus on a great space for women (trans, cis, queer, straight, and not-fitting-into-those-labels/other), all members must identify as women in a way that's significant to them. Members must also be old enough to carry out any responsibilities. Guests of members may be any gender or age. We specifically encourage bringing (supervised) children to the space.
+
+%h3 How do members use the space?
 
 %p
-  To get a sense of what current members work on in the space, see our #{ link_to "blog", "http://doubleunion.tumblr.com/"}, #{ link_to "Twitter", "https://twitter.com/doubleunionsf"}, and #{ link_to "wiki", "http://wiki.doubleunion.org/index.php?title=Main_Page"} to find out about events/projects and equipment, or come to some events! Our committees so far include bicycles, electronics, jobs, open source software, printmaking and textiles, public speaking, 3D printing/CNC machining, and several committees related to running Double Union together (developing its web application, networking/IT for the space, designing its physical space and constructing modifications, finance/administration, membership coordination, maintaining the book library, etc.).
+  To get a sense of what current members work on in the space, see our #{ link_to "blog", "http://doubleunion.tumblr.com/"}, #{ link_to "Twitter", "https://twitter.com/doubleunionsf"}, and #{ link_to "wiki", "http://wiki.doubleunion.org/index.php?title=Main_Page"} to find out about events/projects and equipment, or come to some events!  People work on many things in the space, including adding lights to bicycles, electronics, circuits/soft-circuits, finding jobs, contributing to open source software, zine making, printmaking and textiles, public speaking, 3D printing, CNC machining, fiber arts, sewing/serging, and reading in the library.
+
+%p
+  Note that while Double Union is a great place to work on projects during the week, it’s not a good option for full-time coworking, taking conference calls or having team meetings. We have a very active members-only mailing list where events, workshops, and meetings are thought up and scheduled, as well as a members-only calendar. Any member can propose an event or workshop!
 
 %h3 Membership benefits and responsibilities
-
-%p
-  Double Union is a great place to work on projects during the week, but not a good option for full-time coworking. Members are encouraged to use the space, but not for conference calls or team meetings.
 
 %h4 Regular members
 
@@ -40,7 +41,7 @@
 
 %h4 Key members
 
-%p Key members literally have keys to the space, but are also key to Double Union.
+%p Key members literally have keys to the space, but are also key to Double Union. If you would like to become a key member, talk to other key members about what it’s like and how to become one!
 
 %p If you are a key member, you can:
 
@@ -52,14 +53,25 @@
 
 %ul
   %li Contribute to the upkeep of the space
-  %li Volunteer for various tasks (e.g., yarn coordinator!)
+  %li Volunteer for various tasks (e.g., library coordinator!)
   %li Help uphold the rules of the space
   %li Come to meetings
   %li Help shape the space’s direction and future
 
 %h4 Voting members
 
-%p Voting members (who are usually also key members) choose to take on the additional responsibility of reviewing and voting on membership applications.
+%p Voting members (who are usually also key members) choose to take on the additional responsibility of reviewing and voting on membership applications and adding new key members.
+
+%h3 Decisionmaking at Double Union
+
+%p
+  We have a very active members-only mailing list where we propose and discuss things, and have members meetings about twice a month. This usually results in decisions without a formal process being necessary. Groups of 2+ members interested in a topic form committees, which generally have pre-approved budgets, to run events or be in charge of some aspect of the space's operation.
+
+%p
+  Our committees so far include bicycles, electronics, jobs, open source software, zine making, printmaking and textiles, public speaking, 3D printing/CNC machining. We also have several committees related to running Double Union together, such as developing our web application, networking/IT for the space, designing its physical space and constructing modifications, finance/administration, membership coordination, and maintaining the book library.
+
+%p
+  If something is hard to decide, controversial, or otherwise needs a final decision, our small board makes the decision. We don't want to get stuck in endless discussions; having a board avoids that problem. The board also does the legal and financial decision making involved in being a non-profit.
 
 - if Configurable[:accepting_applications]
   %h3 Apply
