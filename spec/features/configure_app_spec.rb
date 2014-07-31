@@ -43,10 +43,6 @@ describe 'opening and closing applications' do
       expect(page).to have_content "Sign in with GitHub"
     end
 
-    it 'should say Join Us!' do
-      expect(page).to have_content "Join us!"
-    end
-
     context 'as an applicant' do
       before do
         page.set_rack_session(:user_id => applicant.id)
