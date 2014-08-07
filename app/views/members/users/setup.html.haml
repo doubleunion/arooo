@@ -19,13 +19,12 @@
   If you ever need to update your Google docs/calendar email address, please email
   #{mail_to t('du.membership_email')} and we'll get those updated, too.
 
-.form
-  = form_for @user, url: members_user_setup_path(@user) do |f|
-    .form-group
-      = f.label "Google-friendly email"
-      = f.text_field :email_for_google, size: 40
-    .form-group
-      = f.submit "Submit", class: "btn btn-primary"
+
+= form_for @user, url: members_user_setup_path(@user), html: { class: "form form-inline" } do |f|
+  .form-group
+    = f.label "Google-friendly email"
+    = f.text_field :email_for_google, size: 40
+    = f.submit "Submit", class: "btn btn-primary"
 
 %h3 Step Two: Set Up Monthly Dues
 %p Email <a href="mailto:membership@doubleunion.org">membership@doubleunion.org</a> if you have any questions or concerns about dues!
