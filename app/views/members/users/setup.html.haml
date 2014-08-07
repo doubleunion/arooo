@@ -31,12 +31,13 @@
 %p Email <a href="mailto:membership@doubleunion.org">membership@doubleunion.org</a> if you have any questions or concerns about dues!
 = render 'dues_form', action: "Set Up"
 
-%h3 Step Three: Sign Up for the Mailing List
+%h3 Step Three: Check Out the Mailing List
 
 %p
-  We'll get you approved quickly, and then you can introduce yourself! This is our main method of communication, so it's important you're on it. We highly recommend using filters/labels in your mail client to keep your inbox from being overwhelmed.
+  The membership coordinator has added you to the members mailing list! You should have received an email from members-request@lists.doubleunion.org with information about your subscription to the list. To get a sense of what we talk about on the mailing list, check out the #{ link_to "mailing list archives", "http://lists.doubleunion.org/private.cgi/members-doubleunion.org/" }. (You'll need the password from the confirmation email to log in — it's toward the bottom of the email.)
 
-%h4=link_to "Click here to join the DU members mailing list!", "http://lists.doubleunion.org/listinfo.cgi/members-doubleunion.org", target: "_blank"
+%p
+  (We do email a fair amount, so if you don't know about filters and labels and are a gmail user, #{ link_to "have we got a link for you", "https://support.google.com/mail/answer/6579?hl=en", target: "_blank" }.)
 
 %p
   =button_to "Back to members home", members_root_path, class: "btn btn-default", method: "get"
