@@ -36,8 +36,6 @@ Doubleunion::Application.routes.draw do
   patch 'admin/revoke_voting_member' => 'admin#revoke_voting_member'
   patch 'admin/revoke_membership' => 'admin#revoke_membership'
 
-  resources :tumblr_posts, :only => [:index, :show], :path => 'blog'
-
   resources :applications, :only => [:new, :show, :edit, :update]
 
   get 'auth/:provider/callback' => 'sessions#create'
