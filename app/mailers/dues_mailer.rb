@@ -1,9 +1,9 @@
 class DuesMailer < ActionMailer::Base
-  default from: "Double Union <#{I18n.t 'du.membership_email'}>"
+  default from: "Double Union <#{MEMBERSHIP_EMAIL}>"
 
   def failed(email)
     mail(
-      to: [email, I18n.t('du.membership_email')],
+      to: [email, MEMBERSHIP_EMAIL],
       subject: "Heads Up! DU dues charge failed"
     )
   end

@@ -1,6 +1,5 @@
 class ApplicationsMailer < ActionMailer::Base
-  JOIN_EMAIL =  "Double Union <#{I18n.t 'du.join_email'}>"
-  default from: JOIN_EMAIL
+  default from: "Double Union <#{JOIN_EMAIL}>"
 
   def confirmation(application)
     @user = application.user
