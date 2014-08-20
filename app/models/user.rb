@@ -4,38 +4,38 @@ class User < ActiveRecord::Base
   attr_accessible :username, :name, :email, :profile_attributes,
     :application_attributes, :email_for_google, :dues_pledge
 
-  validates :state, :presence => true
+  validates :state, presence: true
 
   validates :username, presence: true
 
-  validates :email, uniqueness: true, :format => {
-    :with    => EMAIL_PATTERN,
-    :message => 'address is invalid' }
+  validates :email, uniqueness: true, format: {
+    with:    EMAIL_PATTERN,
+    message: 'address is invalid' }
 
   validates :dues_pledge, numericality: true, allow_blank: true
 
   validates :email_for_google,
-    :presence => true,
-    :if       => :setup_complete,
-    :format   => { :with => EMAIL_PATTERN }
+    presence: true,
+    if:       :setup_complete,
+    format:   { with: EMAIL_PATTERN }
 
-  has_one  :profile,     :dependent => :destroy
-  has_one  :application, :dependent => :destroy
+  has_one  :profile,     dependent: :destroy
+  has_one  :application, dependent: :destroy
   has_many :authentications, dependent: :destroy
-  has_many :votes,       :dependent => :destroy
-  has_many :comments,    :dependent => :destroy
+  has_many :votes,       dependent: :destroy
+  has_many :comments,    dependent: :destroy
   has_many :sponsorships
-  has_many :applications, :through => :sponsorships
+  has_many :applications, through: :sponsorships
 
   after_create :create_profile, :create_application
   accepts_nested_attributes_for :profile, :application
 
-  scope :visitors,    -> { where(:state => 'visitor') }
-  scope :applicants,  -> { where(:state => 'applicant') }
-  scope :members,     -> { where(:state => 'member') }
-  scope :voting_members, -> { where(:state => 'voting_member') }
+  scope :visitors,    -> { where(state: 'visitor') }
+  scope :applicants,  -> { where(state: 'applicant') }
+  scope :members,     -> { where(state: 'member') }
+  scope :voting_members, -> { where(state: 'voting_member') }
 
-  scope :all_members, -> { where(:state => %w(member voting_member)) }
+  scope :all_members, -> { where(state: %w(member voting_member)) }
 
   scope :no_stripe_dues, -> {
     all_members
@@ -89,21 +89,21 @@ class User < ActiveRecord::Base
     eos
     .squish)}
 
-  state_machine :state, :initial => :visitor do
+  state_machine :state, initial: :visitor do
     event :make_applicant do
-      transition :visitor => :applicant
+      transition visitor: :applicant
     end
 
     event :make_member do
-      transition :applicant => :member
+      transition applicant: :member
     end
 
     event :make_voting_member do
-      transition :member => :voting_member
+      transition member: :voting_member
     end
 
     event :remove_voting_membership do
-      transition :voting_member => :member
+      transition voting_member: :member
     end
 
     event :remove_membership do
@@ -128,11 +128,11 @@ class User < ActiveRecord::Base
   end
 
   def create_profile
-    self.profile ||= Profile.create(:user_id => id)
+    self.profile ||= Profile.create(user_id: id)
   end
 
   def create_application
-    self.application ||= Application.create(:user_id => id)
+    self.application ||= Application.create(user_id: id)
   end
 
   def display_state
@@ -148,7 +148,7 @@ class User < ActiveRecord::Base
   end
 
   def vote_for(application)
-    Vote.where(:application => application, :user => self).first
+    Vote.where(application: application, user: self).first
   end
 
   def number_applications_needing_vote
@@ -161,7 +161,7 @@ class User < ActiveRecord::Base
   end
 
   def sponsor(application)
-    Sponsorship.where(:application => application, :user => self).first
+    Sponsorship.where(application: application, user: self).first
   end
 
   def mature?

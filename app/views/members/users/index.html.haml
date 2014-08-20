@@ -2,4 +2,4 @@
 
 - if @all_members.any?
   %h3 Members
-  = render :partial => 'list', :locals => { :users => @all_members }
+  = render partial: 'list', locals: { users: @all_members }

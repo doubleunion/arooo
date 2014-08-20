@@ -2,8 +2,8 @@ class ApplicationsController < ApplicationController
   before_action :ensure_accepting_applications
   before_action :require_applicant_user
 
-  before_action :set_user,               :only => [:show, :edit, :update]
-  before_action :ensure_own_application, :only => [:show, :edit, :update]
+  before_action :set_user,               only: [:show, :edit, :update]
+  before_action :ensure_own_application, only: [:show, :edit, :update]
 
   def new
     redirect_to edit_application_path(current_user.application)
@@ -21,7 +21,7 @@ class ApplicationsController < ApplicationController
       user_errors = @user.errors.full_messages.to_sentence
       errors = user_errors + app_errors
       flash[:error] = "Application not saved: #{errors}"
-      render :action => :edit, :id => @user.application.id and return
+      render action: :edit, id: @user.application.id and return
     end
 
     case commit_action
@@ -36,7 +36,7 @@ class ApplicationsController < ApplicationController
     when :save
       flash[:notice] = 'Application saved'
     end
-    redirect_to :action => :edit, :id => @user.application.id
+    redirect_to action: :edit, id: @user.application.id
   end
 
   private
@@ -61,8 +61,8 @@ class ApplicationsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email,
-      :profile_attributes     => profile_attributes,
-      :application_attributes => application_attributes)
+      profile_attributes: profile_attributes,
+      application_attributes: application_attributes)
   end
 
   def profile_attributes

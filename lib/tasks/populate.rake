@@ -1,6 +1,6 @@
 namespace :populate do
   desc 'Populate users in development'
-  task :users => :environment do
+  task users: :environment do
     raise 'development only' unless Rails.env.development?
 
     10.times do

@@ -83,8 +83,8 @@
   %b
     Before you apply, though, please read through our #{ link_to "Base Assumptions", base_assumptions_path }. They are very important to us and we want all members to be comfortable with them.
 
-  %p= link_to 'Sign in with GitHub', github_login_path, :class => 'btn btn-primary btn-lg'
-  %p= link_to 'Sign in with Google', google_login_path, :class => 'btn btn-primary btn-lg'
+  %p= link_to 'Sign in with GitHub', github_login_path, class: 'btn btn-primary btn-lg'
+  %p= link_to 'Sign in with Google', google_login_path, class: 'btn btn-primary btn-lg'
 
 %h3 Current members
 %p There are #{@total_members} current members, including:
@@ -95,7 +95,7 @@
         .current-member
           .member-image
             - if user.email
-              = image_tag user.gravatar_url(50), :alt => user.name, :title => user.name, :class => 'icon-50'
+              = image_tag user.gravatar_url(50), alt: user.name, title: user.name, class: 'icon-50'
           .member-info
             %span.member-name
               - if user.profile.website

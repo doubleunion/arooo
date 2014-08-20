@@ -20,7 +20,7 @@ describe Comment do
   end
 
   it 'should not be valid for applicant' do
-    comment = Comment.new(:user => User.make!(:applicant))
+    comment = Comment.new(user: User.make!(:applicant))
     comment.tap(&:valid?).should have_at_least(1).errors_on(:user)
   end
 
@@ -37,7 +37,7 @@ describe Comment do
   end
 
   it 'should be saved for member' do
-    comment = Comment.new(:body => 'hello')
+    comment = Comment.new(body: 'hello')
     comment.application = Application.make!(:with_user)
     comment.user = User.make!(:member)
     comment.save.should be_true

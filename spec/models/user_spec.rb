@@ -34,9 +34,10 @@ describe User do
   it 'should accept nested attributes for profile' do
     user = User.make!
     user.profile.twitter.should be_nil
-    user.update_attributes!(:profile_attributes => {
-      :id      => user.profile.id,
-      :twitter => 'Horse_ebooks' })
+    user.update_attributes!(profile_attributes: {
+      id: user.profile.id,
+      twitter: 'Horse_ebooks'
+    })
     user.profile.twitter.should eq('Horse_ebooks')
   end
 

@@ -6,7 +6,7 @@ describe "applying to double union" do
 
   before do
     cool_lady.update_attribute(:state, "applicant")
-    page.set_rack_session(:user_id => cool_lady.id)
+    page.set_rack_session(user_id: cool_lady.id)
   end
 
   it "allows the user to submit an application" do

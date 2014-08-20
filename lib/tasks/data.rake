@@ -1,7 +1,7 @@
 # For one-off backfills, etc
 namespace :data do
   desc 'Backfill user states in development'
-  task :backfill_user_state => :environment do
+  task backfill_user_state: :environment do
     raise 'Development only' unless Rails.env.development?
 
     User.find_each do |user|

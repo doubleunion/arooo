@@ -1,7 +1,7 @@
-%nav.navbar#member-nav{ :role => 'navigation' }
+%nav.navbar#member-nav{ role: 'navigation' }
   .container
     .navbar-header
-      %button.navbar-toggle{:type => 'button', :'data-toggle' => 'collapse', :'data-target' => '.navbar-ex1-collapse'}
+      %button.navbar-toggle{type: 'button', :'data-toggle' => 'collapse', :'data-target' => '.navbar-ex1-collapse'}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
@@ -14,7 +14,7 @@
         %li= link_to 'Manage Dues', members_user_dues_path(current_user)
         - if current_user.is_admin?
           %li.dropdown
-            %a{ :href => '#', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' }
+            %a{ href: '#', class: 'dropdown-toggle', :'data-toggle' => 'dropdown' }
               Admin Tools
               <b class="caret"></b>
             %ul.dropdown-menu

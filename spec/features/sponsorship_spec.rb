@@ -7,7 +7,7 @@ describe 'sponsoring an applicant' do
 
   describe "someone that has been a member for at least 2 weeks" do
     before do
-      page.set_rack_session(:user_id => mature_member.id)
+      page.set_rack_session(user_id: mature_member.id)
     end
 
     it 'allows a mature member to sponsor an application' do
@@ -33,7 +33,7 @@ describe 'sponsoring an applicant' do
 
   describe "someone that has been a member for less than 2 weeks" do
     before do
-      page.set_rack_session(:user_id => member.id)
+      page.set_rack_session(user_id: member.id)
     end
 
     it 'cant see sponsorship checkbox' do

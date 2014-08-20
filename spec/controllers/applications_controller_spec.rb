@@ -30,19 +30,19 @@ describe ApplicationsController do
 
   describe 'GET show' do
     it 'should redirect to root if not logged in' do
-      get :show, :id => 1
+      get :show, id: 1
       response.should redirect_to :root
     end
 
     it 'should redirect to root if logged in as visitor' do
       user = login_as(:visitor)
-      get :show, :id => user.application.id
+      get :show, id: user.application.id
       response.should redirect_to :root
     end
 
     it 'should redirect to root if logged in as member' do
       user = login_as(:member)
-      get :show, :id => user.application.id
+      get :show, id: user.application.id
       response.should redirect_to :root
     end
 
@@ -53,12 +53,12 @@ describe ApplicationsController do
       before { log_in(user) }
 
       it 'should render own application' do
-        get :show, :id => user.application.id
+        get :show, id: user.application.id
         response.should render_template :show
       end
 
       it 'should not render application of another user' do
-        get :show, :id => other_user.application.id
+        get :show, id: other_user.application.id
         response.should redirect_to :root
       end
     end
@@ -66,19 +66,19 @@ describe ApplicationsController do
 
   describe 'GET edit' do
     it 'should redirect to root if not logged in' do
-      get :edit, :id => User.make!(:applicant).application.id
+      get :edit, id: User.make!(:applicant).application.id
       response.should redirect_to :root
     end
 
     it 'should redirect to root if logged in as visitor' do
       user = login_as(:visitor)
-      get :edit, :id => user.application.id
+      get :edit, id: user.application.id
       response.should redirect_to :root
     end
 
     it 'should redirect to root if logged in as member' do
       user = login_as(:member)
-      get :edit, :id => user.application.id
+      get :edit, id: user.application.id
       response.should redirect_to :root
     end
 
@@ -89,12 +89,12 @@ describe ApplicationsController do
       before { log_in(user) }
 
       it 'should render edit for own application' do
-        get :edit, :id => user.application.id
+        get :edit, id: user.application.id
         response.should render_template :edit
       end
 
       it "should redirect to root for another user's application" do
-        get :edit, :id => other_user.application.id
+        get :edit, id: other_user.application.id
         response.should redirect_to :root
       end
     end
@@ -102,19 +102,19 @@ describe ApplicationsController do
 
   describe 'POST update' do
     it 'should redirect to root if not logged in' do
-      post :update, :id => User.make!(:applicant).application.id
+      post :update, id: User.make!(:applicant).application.id
       response.should redirect_to :root
     end
 
     it 'should redirect to root if logged in as visitor' do
       user = login_as(:visitor)
-      post :update, :id => user.application.id
+      post :update, id: user.application.id
       response.should redirect_to :root
     end
 
     it 'should redirect to root if logged in as member' do
       user = login_as(:member)
-      post :update, :id => user.application.id
+      post :update, id: user.application.id
       response.should redirect_to :root
     end
 
@@ -123,10 +123,11 @@ describe ApplicationsController do
         user = login_as(:applicant)
         user.application.agreement_terms.should be_false
 
-        params = { :id => user.application.id, :user => {
-          :application_attributes => {
-            :id      => user.application.id,
-            :agreement_terms => true }}}
+        params = { id: user.application.id, user: {
+          application_attributes:
+            { id: user.application.id, agreement_terms: true }
+          }
+        }
 
         post :update, params
 

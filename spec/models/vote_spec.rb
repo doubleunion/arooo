@@ -17,7 +17,7 @@ describe Vote do
     vote = Vote.new
 
     vote.user = User.make!(:member)
-    vote.application = Application.make!(:user => User.make!(:applicant))
+    vote.application = Application.make!(user: User.make!(:applicant))
     vote.value = true
     vote.valid?.should be_false
     vote.should have_at_least(1).errors_on(:user)
@@ -27,20 +27,20 @@ describe Vote do
     vote = Vote.new
 
     vote.user = User.make!(:voting_member)
-    vote.application = Application.make!(:user => User.make!(:applicant))
+    vote.application = Application.make!(user: User.make!(:applicant))
     vote.value = true
     vote.valid?.should be_true
   end
 
   it 'should validate uniqueness per user and application' do
     applicant   = User.make!(:applicant)
-    application = Application.make!(:user => applicant)
+    application = Application.make!(user: applicant)
     voter       = User.make!(:voting_member)
-    vote        = Vote.make!(:application => application, :user => voter)
+    vote        = Vote.make!(application: application, user: voter)
 
-    invalid = Vote.new(:application => application,
-                       :user  => voter,
-                       :value => true)
+    invalid = Vote.new(application: application,
+                       user: voter,
+                       value: true)
     invalid.valid?.should be_false
     invalid.should have_at_least(1).error_on(:user_id)
   end

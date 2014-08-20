@@ -1,10 +1,10 @@
 class Application < ActiveRecord::Base
   belongs_to :user
 
-  has_many :votes,    :dependent => :destroy
-  has_many :comments, :dependent => :destroy
+  has_many :votes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :sponsorships
-  has_many :users, :through => :sponsorships
+  has_many :users, through: :sponsorships
 
   MINIMUM_YES = User.voting_members.count/2
   MAXIMUM_NO = 1
@@ -13,9 +13,9 @@ class Application < ActiveRecord::Base
 
   attr_protected :id
 
-  validates :user_id, :presence => true
-  validates :state, :presence => true
-  validate :validate_agreed, :if => :submitted?
+  validates :user_id, presence: true
+  validates :state, presence: true
+  validate :validate_agreed, if: :submitted?
 
   scope :for_applicant, -> {
     includes(:user)
@@ -24,13 +24,13 @@ class Application < ActiveRecord::Base
 
   scope :submitted, -> {
     for_applicant
-    .where(:state => 'submitted')
+    .where(state: 'submitted')
     .order('applications.submitted_at DESC')
   }
 
   scope :started,   -> {
     for_applicant
-    .where(:state => 'started')
+    .where(state: 'started')
     .order('applications.created_at DESC')
   }
 
@@ -66,14 +66,14 @@ class Application < ActiveRecord::Base
     end
   end
 
-  state_machine :state, :initial => :started do
-    after_transition :started => :submitted do |application, transition|
+  state_machine :state, initial: :started do
+    after_transition started: :submitted do |application, transition|
       ApplicationsMailer.confirmation(application).deliver
       ApplicationsMailer.notify_members(application).deliver
       application.touch :submitted_at
     end
 
-    after_transition :submitted => [:approved, :rejected] do |application, transition|
+    after_transition submitted: [:approved, :rejected] do |application, transition|
       application.touch :processed_at
     end
 
@@ -83,15 +83,15 @@ class Application < ActiveRecord::Base
     end
 
     event :submit do
-      transition :started => :submitted
+      transition started: :submitted
     end
 
     event :approve do
-      transition :submitted => :approved
+      transition submitted: :approved
     end
 
     event :reject do
-      transition :submitted => :rejected
+      transition submitted: :rejected
     end
 
     state :started

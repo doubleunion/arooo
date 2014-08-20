@@ -5,7 +5,7 @@ describe 'members can finish their account setup' do
   let(:other_member) { create(:voting_member) }
 
   before do
-    page.set_rack_session(:user_id => member.id)
+    page.set_rack_session(user_id: member.id)
   end
 
   it 'allows members to submit information' do

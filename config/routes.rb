@@ -1,23 +1,23 @@
 Doubleunion::Application.routes.draw do
-  root :to => 'static#index'
+  root to: 'static#index'
 
   namespace :members do
-    root :to => 'users#index'
-    resources :users, :only => [:index, :show, :edit, :update] do
+    root to: 'users#index'
+    resources :users, only: [:index, :show, :edit, :update] do
       get 'setup' => "users#setup"
       patch 'setup' => "users#finalize"
       get 'dues' => "users#dues"
       post 'dues' => "users#submit_dues_to_stripe"
     end
-    resources :votes, :only => :create
+    resources :votes, only: :create
 
-    resources :applications, :only => [:index, :show] do
-      resources :comments, :only => :create
+    resources :applications, only: [:index, :show] do
+      resources :comments, only: :create
       post 'sponsor' => "applications#sponsor"
     end
 
-    resources :caches, :only => :index do
-      post :expire, :on => :collection
+    resources :caches, only: :index do
+      post :expire, on: :collection
     end
   end
 
@@ -36,7 +36,7 @@ Doubleunion::Application.routes.draw do
   patch 'admin/revoke_voting_member' => 'admin#revoke_voting_member'
   patch 'admin/revoke_membership' => 'admin#revoke_membership'
 
-  resources :applications, :only => [:new, :show, :edit, :update]
+  resources :applications, only: [:new, :show, :edit, :update]
 
   get 'auth/:provider/callback' => 'sessions#create'
   get 'github_login' => 'sessions#github'
@@ -50,14 +50,14 @@ Doubleunion::Application.routes.draw do
   post 'add_github_auth' => 'authentications#add_github_auth'
   post 'add_google_auth' => 'authentications#add_google_auth'
 
-  get 'membership', :to => 'static#membership'
-  get 'policies',   :to => 'static#policies'
-  get 'press',      :to => 'static#press'
-  get 'support',    :to => 'static#support'
-  get 'supporters', :to => 'static#supporters'
-  get 'visit',      :to => 'static#visit'
+  get 'membership', to: 'static#membership'
+  get 'policies',   to: 'static#policies'
+  get 'press',      to: 'static#press'
+  get 'support',    to: 'static#support'
+  get 'supporters', to: 'static#supporters'
+  get 'visit',      to: 'static#visit'
 
-  get 'base_assumptions', :to => 'static#base_assumptions'
+  get 'base_assumptions', to: 'static#base_assumptions'
 
   mount StripeEvent::Engine => '/stripe'
 end

@@ -4,9 +4,9 @@ class Comment < ActiveRecord::Base
 
   attr_accessible :body, :application_id
 
-  validates :user_id, :application_id, :presence => true
+  validates :user_id, :application_id, presence: true
 
-  validates :body, :presence => true, :length => { :maximum => 2000 }
+  validates :body, presence: true, length: { maximum: 2000 }
 
   validate :user_is_member_or_voting_member
 

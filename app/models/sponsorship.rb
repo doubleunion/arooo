@@ -4,6 +4,6 @@ class Sponsorship < ActiveRecord::Base
   belongs_to :user
   belongs_to :application
 
-  validates :user, :presence => true
+  validates :user, presence: true
   validates :application, uniqueness: { scope: :user }
 end

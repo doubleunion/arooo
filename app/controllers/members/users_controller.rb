@@ -1,5 +1,5 @@
 class Members::UsersController < Members::MembersController
-  before_action :set_user, :except => [:index, :show]
+  before_action :set_user, except: [:index, :show]
 
   def index
     @all_members = User.all_members
@@ -39,9 +39,9 @@ class Members::UsersController < Members::MembersController
       subscription.save
     else
       stripe_customer = Stripe::Customer.create(
-        :email => params[:email],
-        :plan => params[:plan],
-        :card  => params[:token]
+        email: params[:email],
+        plan: params[:plan],
+        card: params[:token]
       )
 
       current_user.update_attribute(:stripe_customer_id, stripe_customer.id)
@@ -67,7 +67,7 @@ class Members::UsersController < Members::MembersController
   def user_params
     params.require(:user).permit(:name, :email,
       :email_for_google, :dues_pledge,
-      :profile_attributes => profile_attributes)
+      profile_attributes: profile_attributes)
   end
 
   def profile_attributes

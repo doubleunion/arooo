@@ -9,20 +9,20 @@
       You voted <strong>#{vote.display_value}</strong>
       #{time_ago_in_words(vote.created_at)} ago
 
-  = form_for @vote, :url => members_votes_path, :method => :post do |f|
-    = f.hidden_field :application_id, :value => @application.id
-    = f.submit 'Yes', :name => 'vote_yes', :disabled => vote && vote.value
-    = f.submit 'No',  :name => 'vote_no',  :disabled => vote && !vote.value
+  = form_for @vote, url: members_votes_path, method: :post do |f|
+    = f.hidden_field :application_id, value: @application.id
+    = f.submit 'Yes', name: 'vote_yes', disabled: vote && vote.value
+    = f.submit 'No',  name: 'vote_no',  disabled: vote && !vote.value
 
 - elsif !logged_in_as?(@user) && current_user.member?
   %h3= @user.name
-  %button{ :disabled => true }
+  %button{ disabled: true }
     Only Voting Members Can Vote
 
 %h3 Sponsorship
 
 - if current_user.mature?
-  = form_for :sponsorship, :url => members_application_sponsor_path(@application), :method => :post do |f|
+  = form_for :sponsorship, url: members_application_sponsor_path(@application), method: :post do |f|
     = label_tag :is_sponsor do
       = check_box_tag :is_sponsor, 1, @sponsorship.present?
       I've met this person and think they would be a great fit for Double Union
@@ -68,9 +68,9 @@
   - commenter = comment.user
   .comment
     = link_to user_gravatar(commenter, 20), members_user_path(commenter)
-    = "#{link_to commenter.username, members_user_path(commenter), :title => commenter.name}:".html_safe
+    = "#{link_to commenter.username, members_user_path(commenter), title: commenter.name}:".html_safe
     = comment.body
-    %small{ :title => comment.created_at }
+    %small{ title: comment.created_at }
       = "#{time_ago_in_words(comment.created_at)} ago"
 
 
@@ -79,11 +79,11 @@
     .mb-5
       = link_to user_gravatar(current_user, 20), members_user_path(current_user)
       = "#{link_to current_user.username, members_user_path(current_user)}:".html_safe
-    = f.hidden_field :application_id, :value => @application.id
-    = f.text_area :body, :rows => 3, class: "form-control"
+    = f.hidden_field :application_id, value: @application.id
+    = f.text_area :body, rows: 3, class: "form-control"
     %fieldset= f.submit 'Add comment', class: "btn btn-primary pull-right"
 
 %h3 Application
-= render :partial => 'applications/show', :locals => { :user => @user }
+= render partial: 'applications/show', locals: { user: @user }
 
 %p= link_to "Back to Applications Overview", members_root_path

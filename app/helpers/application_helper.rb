@@ -6,11 +6,11 @@ module ApplicationHelper
   end
 
   def external_link_to(label, url, opts = {})
-    link_to(label, url, { :target => '_blank' }.merge(opts))
+    link_to(label, url, { target: '_blank' }.merge(opts))
   end
   
   def external_auto_link(url)
-    auto_link(url, :html => { :target => '_blank' })
+    auto_link(url, html: { target: '_blank' })
   end
 
   def s3_url(name)
@@ -64,19 +64,19 @@ module ApplicationHelper
     code.html_safe
   end
 
-  @@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(:hard_wrap => true,
-                                                                   :prettify => true),
-                                       :no_intra_emphasis => true,
-                                       :tables => true,
-                                       :fenced_code_blocks => true,
-                                       :autolink => true,
-                                       :strikethrough => true,
-                                       :lax_spacing => true,
-                                       :space_after_headers => true,
-                                       :superscript => true,
-                                       :underline => true,
-                                       :highlight => true,
-                                       :quote => true)
+  @@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(hard_wrap: true,
+                                                                   prettify: true),
+                                       no_intra_emphasis: true,
+                                       tables: true,
+                                       fenced_code_blocks: true,
+                                       autolink: true,
+                                       strikethrough: true,
+                                       lax_spacing: true,
+                                       space_after_headers: true,
+                                       superscript: true,
+                                       underline: true,
+                                       highlight: true,
+                                       quote: true)
 
   def markdown(text)
     return nil unless text

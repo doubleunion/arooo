@@ -6,7 +6,7 @@ describe 'opening and closing applications' do
 
   context 'when applications are closed' do
     before do
-      page.set_rack_session(:user_id => admin.id)
+      page.set_rack_session(user_id: admin.id)
       visit admin_configurable_path
       uncheck "Accepting applications"
       click_button "Save"
@@ -19,7 +19,7 @@ describe 'opening and closing applications' do
 
     context 'as an applicant' do
       before do
-        page.set_rack_session(:user_id => applicant.id)
+        page.set_rack_session(user_id: applicant.id)
         visit edit_application_path(applicant.application)
       end
 
@@ -45,7 +45,7 @@ describe 'opening and closing applications' do
 
     context 'as an applicant' do
       before do
-        page.set_rack_session(:user_id => applicant.id)
+        page.set_rack_session(user_id: applicant.id)
         visit edit_application_path(applicant.application)
       end
 

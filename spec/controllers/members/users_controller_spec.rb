@@ -75,9 +75,9 @@ describe Members::UsersController do
     describe "updating stuff" do
       context "when logged in" do
         it 'updates name and email' do
-          user = login_as(:member, :name => 'Foo Bar', :email => 'someone@foo.bar')
+          user = login_as(:member, name: 'Foo Bar', email: 'someone@foo.bar')
 
-          post :update, :id => user.id, :user => {
+          post :update, id: user.id, user: {
             name: 'FooBar TooBar',
             email: 'someone2@foo.bar',
             profile_attributes: { skills: 'writing awesome tests' }
@@ -122,11 +122,12 @@ describe Members::UsersController do
     it_should_behave_like "deny non-members", [:visitor, :applicant]
 
     it 'updates Google email and dues pledge if logged in' do
-      user = login_as(:member, :name => 'Foo Bar', :email => 'someone@foo.bar')
+      user = login_as(:member, name: 'Foo Bar', email: 'someone@foo.bar')
 
-      patch :finalize, :user_id => user.id, :user => {
-        :dues_pledge  => 25,
-        :email_for_google => 'googly-eyes@example.com' }
+      patch :finalize, user_id: user.id, user: {
+        dues_pledge: 25,
+        email_for_google: 'googly-eyes@example.com'
+      }
 
       response.should render_template "setup"
 
@@ -157,7 +158,7 @@ describe Members::UsersController do
       }
     end
 
-    let!(:user) { login_as(:member, :name => 'Foo Bar', :email => 'someone@foo.bar') }
+    let!(:user) { login_as(:member, name: 'Foo Bar', email: 'someone@foo.bar') }
 
     subject { post :submit_dues_to_stripe, params }
 

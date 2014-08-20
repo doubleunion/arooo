@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
 
   def create
     omniauth = request.env['omniauth.auth']
-    conditions = { :provider => omniauth['provider'],
-                   :uid      => omniauth['uid'].to_s }
+    conditions = { provider: omniauth['provider'],
+                   uid: omniauth['uid'].to_s }
 
     authentication = Authentication.where(conditions).first
 
@@ -26,11 +26,11 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_url, :notice => 'You have logged out'
+    redirect_to root_url, notice: 'You have logged out'
   end
 
   def failure
-    redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
+    redirect_to root_url, alert: "Authentication error: #{params[:message].humanize}"
   end
 
   def get_email

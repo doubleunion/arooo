@@ -15,9 +15,9 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 OmniAuth.config.test_mode = true
 
 OmniAuth.config.add_mock(:github, {
-  :uid   => '12345',
-  :extra => { :raw_info => { :login => 'someone' } },
-  :info  => { :name => 'Some One', :email => 'someone@foo.bar' }
+  uid: '12345',
+  extra: { raw_info: { login: 'someone' } },
+  info: { name: 'Some One', email: 'someone@foo.bar' }
 })
 
 OmniAuth.config.add_mock(:google_oauth2, {
