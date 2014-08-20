@@ -9,7 +9,7 @@ Doubleunion::Application.routes.draw do
       get 'dues' => "users#dues"
       post 'dues' => "users#submit_dues_to_stripe"
     end
-    resources :votes, only: :create
+    resources :votes, only: [:create, :destroy]
 
     resources :applications, only: [:index, :show] do
       resources :comments, only: :create

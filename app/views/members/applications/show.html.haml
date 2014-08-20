@@ -14,6 +14,9 @@
     = f.submit 'Yes', name: 'vote_yes', disabled: vote && vote.value
     = f.submit 'No',  name: 'vote_no',  disabled: vote && !vote.value
 
+  - if current_user.voted_on?(@application)
+    #{ link_to 'Remove your vote', members_vote_path, method: :delete }
+
 - elsif !logged_in_as?(@user) && current_user.member?
   %h3= @user.name
   %button{ disabled: true }

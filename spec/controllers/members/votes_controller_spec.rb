@@ -7,14 +7,14 @@ describe Members::VotesController do
 
   describe "POST create" do
     let(:params) { {
-      vote: { application_id: application.id }, "vote_no" => "No"
+    vote: { application_id: application.id }, "vote_no" => "No"
     } }
+
+    subject { post :create, params }
 
     before do
       login_as(member)
     end
-
-    subject { post :create, params }
 
     context "when logged in as a voting member" do
       let(:member) { create(:voting_member) }
@@ -41,6 +41,34 @@ describe Members::VotesController do
           subject
           expect(Vote.last.value).to be_true
         end
+      end
+    end
+  end
+
+  describe "DELETE destroy" do
+    subject { delete :destroy, params }
+
+    before do
+      login_as(member)
+
+      vote = Vote.new
+      vote.application_id = application.id
+      vote.user_id = member.id
+      vote.value = true
+      vote.save
+    end
+
+    context "when logged in as a voting member" do
+      let(:member) { create(:voting_member) }
+      let(:params) { { id: application.id } }
+      let(:vote) { Vote.where(application_id: application.id,
+                              user_id: member.id,
+                              value: true).first
+      }
+
+      it "allows me to remove my vote" do
+        expect { subject }.to change { Vote.count }.by(-1)
+        expect(vote).to be_nil
       end
     end
   end

@@ -25,6 +25,14 @@ describe "voting on an application" do
       expect(page).to have_content "Votes against membership (1)"
       expect(page).to have_content "You voted no"
     end
+
+    it "allows the member to remove their vote" do
+      visit members_application_path(application)
+      click_button "No"
+      expect(page).to have_content "Votes against membership (1)"
+      click_link "Remove your vote"
+      expect(page).to have_content "Votes against membership (0)"
+    end
   end
 
   context "logged in as a non-voting member" do
