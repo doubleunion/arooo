@@ -78,6 +78,30 @@ describe AdminController do
       end
     end
 
+    describe 'PATCH add_key_member' do
+      let(:user) { create(:member) }
+      let(:params) { { user: { id: user.id} } }
+
+      it 'allows admin to add key_member access' do
+        login_as(:voting_member, is_admin: true)
+        expect do
+          patch :add_key_member, params
+        end.to change { user.reload.state }.from("member").to("key_member")
+      end
+    end
+
+    describe 'PATCH revoke_key_member' do
+      let(:user) { create(:key_member) }
+      let(:params) { { user: { id: user.id} } }
+
+      it 'allows admin to revoke key_member access' do
+        login_as(:key_member, is_admin: true)
+        expect do
+          patch :revoke_key_member, params
+        end.to change { user.reload.state }.from("key_member").to("member")
+      end
+    end
+
     describe 'PATCH add_voting_member' do
       let(:user) { create(:member) }
       let(:params) { { user: { id: user.id} } }
