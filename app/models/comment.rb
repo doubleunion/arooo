@@ -8,10 +8,10 @@ class Comment < ActiveRecord::Base
 
   validates :body, presence: true, length: { maximum: 2000 }
 
-  validate :user_is_member_or_voting_member
+  validate :user_is_general_member
 
-  def user_is_member_or_voting_member
-    unless user && user.member_or_voting_member?
+  def user_is_general_member
+    unless user && user.general_member?
       errors.add(:user, 'is not a member')
     end
   end

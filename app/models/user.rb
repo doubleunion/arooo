@@ -130,9 +130,8 @@ class User < ActiveRecord::Base
     state :former_member
   end
 
-  # TODO-kiran: rename this method to include key members
-  def member_or_voting_member?
-    member? || voting_member?
+  def general_member?
+    member? || key_member? || voting_member?
   end
 
   def gravatar_url(size = 200)
@@ -179,7 +178,7 @@ class User < ActiveRecord::Base
   end
 
   def mature?
-    member_or_voting_member? && application.processed_at.present? && application.processed_at <= 14.days.ago
+    general_member? && application.processed_at.present? && application.processed_at <= 14.days.ago
   end
 
   private
