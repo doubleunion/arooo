@@ -14,6 +14,15 @@ class Profile < ActiveRecord::Base
   end
 
   def github_url
-    "https://github.com/#{self.user.username}"
+    # hacks -- we set username as the auth provider's username, and didn't
+    # store it on the auth. We should write a migration, instead, and remove
+    # this once we're confident the data looks good.
+    return make_github_url(self.user.username) unless self.user.username.include?('@')
+  end
+
+  private
+
+  def make_github_url(username)
+    "https://github.com/#{username}"
   end
 end
