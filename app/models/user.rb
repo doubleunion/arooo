@@ -33,9 +33,10 @@ class User < ActiveRecord::Base
   scope :visitors,    -> { where(state: 'visitor') }
   scope :applicants,  -> { where(state: 'applicant') }
   scope :members,     -> { where(state: 'member') }
+  scope :key_members, -> { where(state: 'key_member') }
   scope :voting_members, -> { where(state: 'voting_member') }
 
-  scope :all_members, -> { where(state: %w(member voting_member)) }
+  scope :all_members, -> { where(state: %w(member key_member voting_member)) }
 
   scope :no_stripe_dues, -> {
     all_members
@@ -81,10 +82,11 @@ class User < ActiveRecord::Base
   scope :order_by_state, -> { order(<<-eos
     CASE state
     WHEN 'voting_member' THEN 1
-    WHEN 'member'        THEN 2
-    WHEN 'applicant'     THEN 3
-    WHEN 'visitor'       THEN 4
-    ELSE                      5
+    WHEN 'key_member'    THEN 2
+    WHEN 'member'        THEN 3
+    WHEN 'applicant'     THEN 4
+    WHEN 'visitor'       THEN 5
+    ELSE                      6
     END
     eos
     .squish)}
@@ -98,25 +100,37 @@ class User < ActiveRecord::Base
       transition applicant: :member
     end
 
-    event :make_voting_member do
-      transition member: :voting_member
+    event :make_key_member do
+      transition member: :key_member
     end
 
+    # a member can transition straight to a voting member
+    event :make_voting_member do
+      transition [:member, :key_member] => :voting_member
+    end
+
+    # revoking voting privileges keeps key member status
     event :remove_voting_membership do
-      transition voting_member: :member
+      transition voting_member: :key_member
+    end
+
+    event :remove_key_membership do
+      transition key_member: :member
     end
 
     event :remove_membership do
-      transition [:member, :voting_member] => :former_member
+      transition [:member, :voting_member, :key_member] => :former_member
     end
 
     state :visitor
     state :applicant
     state :member
+    state :key_member
     state :voting_member
     state :former_member
   end
 
+  # TODO-kiran: rename this method to include key members
   def member_or_voting_member?
     member? || voting_member?
   end

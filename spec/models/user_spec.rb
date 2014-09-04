@@ -65,18 +65,30 @@ describe User do
   describe "#remove_voting_membership" do
     let(:voting_member) { create(:voting_member) }
 
-    it 'should transition from member or voting_member to former_member' do
+    it 'should transition from voting_member to key_member' do
       expect do
         voting_member.remove_voting_membership
-      end.to change{voting_member.state}.from("voting_member").to("member")
+      end.to change{voting_member.state}.from("voting_member").to("key_member")
+    end
+  end
+
+  describe "#remove_key_membership" do
+    let(:key_member) { create(:key_member) }
+
+    it 'should transition from key_member to member' do
+      expect {key_member.remove_key_membership}.to change{key_member.state}.from("key_member").to("member")
     end
   end
 
   describe "#remove_membership" do
     let(:member) { create(:member) }
+    let(:key_member) { create(:key_member) }
+    let(:voting_member) { create(:voting_member) }
 
-    it 'should transition from member or voting_member to former_member' do
+    it 'should transition from member, key_member, or voting_member to former_member' do
       expect {member.remove_membership}.to change{member.state}.from("member").to("former_member")
+      expect {key_member.remove_membership}.to change{key_member.state}.from("key_member").to("former_member")
+      expect {voting_member.remove_membership}.to change{voting_member.state}.from("voting_member").to("former_member")
     end
   end
 end

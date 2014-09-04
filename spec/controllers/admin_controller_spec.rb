@@ -98,7 +98,7 @@ describe AdminController do
         login_as(:voting_member, is_admin: true)
         expect do
           patch :revoke_voting_member, params
-        end.to change { user.reload.state }.from("voting_member").to("member")
+        end.to change { user.reload.state }.from("voting_member").to("key_member")
       end
     end
 
