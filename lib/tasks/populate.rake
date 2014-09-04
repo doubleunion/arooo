@@ -8,7 +8,6 @@ namespace :populate do
 
       user = User.new
 
-      user.provider = 'github'
       user.username = Faker::Internet.user_name
       user.name     = Faker::Name.name
       user.email    = Faker::Internet.email
@@ -28,13 +27,12 @@ namespace :populate do
     user = User.find_by username: args.username
     if !user
       user = User.new
-      user.provider = 'github'
       user.username = args.username
     end
     user.name = args.name
     user.email = args.email
     user.state = args.state
-    
+
     user.save
   end
 end
