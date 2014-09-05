@@ -23,6 +23,8 @@ If you are new to Rails, follow the [RailsBridge Installfest instructions](http:
       Client Secret from your Github application
     * don't forget to restart your Rails server so it can see your shiny new GitHub key & secret
 
+1. Use `rake secret` to generate a secret token, then set that as an environment variable.
+
 ## Specs
 
 Write specs! Yay! Especially for anything involving authorization walls.
