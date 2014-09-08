@@ -18,7 +18,7 @@
             %a{ href: members_applications_path }
               %span.badge= current_user.number_applications_needing_vote
         %ul.nav.navbar-nav.pull-right
-          - unless current_user.member_or_voting_member?
+          - unless current_user.general_member?
             %li.dropdown
               / %span.badge 5
               %a{ href: '#', class: 'dropdown-toggle', :'data-toggle' => 'dropdown' }
@@ -32,7 +32,7 @@
                   %li= link_to 'Application', new_application_path
                 %li.divider
                 %li= link_to 'Sign out', logout_path
-          - if current_user.member_or_voting_member?
+          - if current_user.general_member?
             %li
               = link_to edit_members_user_path(current_user) do
                 = user_gravatar(current_user)

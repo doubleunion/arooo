@@ -22,6 +22,10 @@ FactoryGirl.define do
       end
     end
 
+    factory :key_member do
+      state 'key_member'
+    end
+
     factory :voting_member do
       state "voting_member"
     end

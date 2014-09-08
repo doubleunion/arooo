@@ -8,7 +8,7 @@ class Members::MembersController < ApplicationController
   end
 
   def authenticate_member!
-    unless logged_in? && current_user.member_or_voting_member?
+    unless logged_in? && current_user.general_member?
       redirect_to root_url
     end
   end

@@ -56,7 +56,8 @@ Valid states:
 * `applicant`: not yet a member, no admin access, can only
   view/edit/save/submit their application
 * `member`: access to member admin section, cannot vote
-* `voting_member`: access to member admin section, can vote
+* `key_member`: access to member admin section, cannot vote, has keys to the space
+* `voting_member`: access to member admin section, can vote, has keys to the space
 
 Manually changing a user's state from the rails console:
 ```
@@ -65,6 +66,7 @@ Manually changing a user's state from the rails console:
 
 > user.make_applicant!  # => true
 > user.make_member!     # => true
+> user.make_key_member! # => true
 > user.make_voting_member! # => true
 > user.make_applicant!  # => raises invalid state transition error
 

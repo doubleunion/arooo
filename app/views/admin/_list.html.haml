@@ -21,8 +21,15 @@
           - if user.voting_member?
             = form_for user, url: admin_revoke_voting_member_path do |f|
               = f.hidden_field(:id)
-              = f.submit "Revoke Voting member", class: "btn reject-btn", confirm: "Are you sure?"
-          - else
+              = f.submit "Revoke Voting membership", class: "btn reject-btn", confirm: "Are you sure?"
+          - elsif user.key_member?
+            = form_for user, url: admin_revoke_key_member_path do |f|
+              = f.hidden_field(:id)
+              = f.submit "Revoke Key membership", class: "btn reject-btn", confirm: "Are you sure?"
             = form_for user, url: admin_add_voting_member_path do |f|
               = f.hidden_field(:id)
               = f.submit "Make Voting member", class: "btn accept-btn", confirm: "Are you sure?"
+          - else
+            = form_for user, url: admin_add_key_member_path do |f|
+              = f.hidden_field(:id)
+              = f.submit "Make Key member", class: "btn accept-btn", confirm: "Are you sure?"
