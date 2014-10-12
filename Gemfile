@@ -19,12 +19,12 @@ gem 'kaminari'
 gem 'actionpack-action_caching', github: 'rails/actionpack-action_caching'
 gem 'rails_autolink'
 gem 'redcarpet'
-gem 'configurable_engine'
+gem 'configurable_engine', '0.3.0' #TODO: upgrade once PR fixing bug is merged
 gem 'bugsnag'
 gem 'stripe'
 gem 'stripe_event'
 gem 'rack-canonical-host'
-gem 'jquery-datatables-rails'
+gem 'jquery-datatables-rails', '1.12.2' #TODO: upgrade this to the present
 
 group :development do
   gem 'better_errors'
@@ -37,7 +37,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.14.2'
   gem 'thin'
   gem 'faker'
   gem "rack_session_access"
