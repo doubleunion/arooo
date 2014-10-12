@@ -28,7 +28,7 @@
   = form_for :sponsorship, url: members_application_sponsor_path(@application), method: :post do |f|
     = label_tag :is_sponsor do
       = check_box_tag :is_sponsor, 1, @sponsorship.present?
-      I've met this person and think they would be a great fit for Double Union
+      I've met this person and think they would be a respectful member of the DU community.
     = f.submit "Submit", class: "btn btn-primary"
 - else
   %p You'll be able to sponsor applicants once you've been a member for 2 weeks!
