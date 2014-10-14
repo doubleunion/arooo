@@ -15,6 +15,7 @@
     %tr
       %th Name
       %th Email
+      %th Scholarship Member
       %th.min-width-150 Dues Set Up?
       %th.min-width-150 Last Payment
   %tbody
@@ -25,5 +26,6 @@
           - if user.name.present?
             = link_to user.name, members_user_path(user)
         %td= user.email
+        %td= user.is_scholarship
         %td= user.stripe_customer_id.present? ? "Yes" : "No"
         %td= user.last_stripe_charge_succeeded.strftime('%b %d %Y') if user.last_stripe_charge_succeeded
