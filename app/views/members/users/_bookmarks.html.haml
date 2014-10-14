@@ -11,7 +11,7 @@
 - if current_user.key_member? or current_user.voting_member?
   %h3 Bookmarks for Key Members
   %ul
-    %li Here goes the link to the key members worksheet.
+    %li #{ link_to "Instructions for locking up the building", "https://docs.google.com/document/d/1rFoyl5FJjDdr0LqiVacQPuKyj_rsmPpOnAGc77cWTAQ/edit#heading=h.ss1frhywqp3p" }
 
 - if current_user.voting_member?
   %h3 Bookmarks for Voting Members
