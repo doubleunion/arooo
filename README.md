@@ -10,13 +10,13 @@ This application has a lot of cool features, including:
 * Current members can vote and comment on applications
 * Current members can see a directory of members
 * Current members can pay dues via Stripe
-* Membership coordinators can manage dues and member status
+* Membership coordinators can manage member status
 
-The application supports three levels of membership: members, key members, and voting members, where any member can see and comment on an application, but only voting members can vote. Membership coordinators can set whether the app is accepting applications, accept or reject individual applications, manage member status, and review dues status.
+The application supports three levels of membership: members, key members, and voting members, where any member can see and comment on an application, but only voting members can vote. Membership coordinators can set whether the app is accepting applications, accept or reject individual applications, manage membership levels, and review dues status.
 
-It is currently very Double Union specific, but we are in the process of extracting the Double Union things out of it, so that other feminist hackerspaces can use it, too! We are open sourcing the app now so that we can work with other hackerspaces on that process. This app supports an application process that helps us maintain a safe space for our members, and we want this app to help other groups that have the same goal.
+It is currently very Double Union specific, but we are in the process of extracting the Double Union things out of it, so that other feminist hacker/makerspaces can use it, too! We are open sourcing the app now so that we can work with other hacker/makerspaces on that process. This app supports an application process that helps us maintain a safe space for our members, and we want this app to help other groups that have the same goal.
 
-If you're interested in using this project for your org and want to get in touch, [make an issue](https://github.com/doubleunion/arooo/issues/new) and we can chat. :dancer:
+If you're interested in using Arooo for your org and want to get in touch, [make an issue](https://github.com/doubleunion/arooo/issues/new) and we can chat. :dancer:
 
 ## How to Contribute
 
@@ -185,4 +185,8 @@ This section only pertains if you have Heroku & Deployment access.
 
 ## A Room of One's Own
 
-This app is named after a famous Virginia Wolf essay. You can learn more about it [on Wikipedia](http://en.wikipedia.org/wiki/A_Room_of_One's_Own)!
+This app is named after a famous Virginia Woolf essay. You can learn more about it [on Wikipedia](http://en.wikipedia.org/wiki/A_Room_of_One's_Own)!
+
+Also, here is a puppy that is saying "arooo":
+
+[![A puppy howling](http://cdn3.sbnation.com/assets/2875387/v728228.gif)](https://www.youtube.com/watch?v=2Tgwrkk-B3k)
