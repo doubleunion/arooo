@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140810033045) do
+ActiveRecord::Schema.define(version: 20141014030515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140810033045) do
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username"
   end
 
   create_table "comments", force: true do |t|
@@ -91,7 +92,6 @@ ActiveRecord::Schema.define(version: 20140810033045) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
     t.string   "state",                                        null: false
     t.datetime "last_logged_in_at"
     t.string   "email_for_google"
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 20140810033045) do
     t.text     "membership_note"
     t.string   "stripe_customer_id"
     t.datetime "last_stripe_charge_succeeded"
+    t.string   "username"
+    t.boolean  "is_scholarship",               default: false
   end
 
   create_table "votes", force: true do |t|
