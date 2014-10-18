@@ -1,5 +1,27 @@
-# Double Union
-[![Build Status](https://magnum.travis-ci.com/doubleunion/doubleunion.png?token=c7mAxBaDB8Dq7B1Hxwxj&branch=master)](https://magnum.travis-ci.com/doubleunion/doubleunion)
+# Arooo - A Room Of One's Own
+[![Build Status](https://travis-ci.org/doubleunion/arooo.svg)](https://travis-ci.org/doubleunion/arooo)
+
+## Welcome :rocket::rocket::rocket:
+
+This is a membership application app written by members of [Double Union](http://doubleunion.org/), a feminist hacker/makerspace for women in San Francisco.
+
+This application has a lot of cool features, including:
+* Prospective members can apply for membership
+* Current members can vote and comment on applications
+* Current members can see a directory of members
+* Current members can pay dues via Stripe
+* Membership coordinators can manage dues and member status
+
+The application supports three levels of membership: members, key members, and voting members, where any member can see and comment on an application, but only voting members can vote. Membership coordinators can set whether the app is accepting applications, accept or reject individual applications, manage member status, and review dues status.
+
+It is currently very Double Union specific, but we are in the process of extracting the Double Union things out of it, so that other feminist hackerspaces can use it, too! We are open sourcing the app now so that we can work with other hackerspaces on that process. This app supports an application process that helps us maintain a safe space for our members, and we want this app to help other groups that have the same goal.
+
+If you're interested in using this project for your org and want to get in touch, [make an issue](https://github.com/doubleunion/arooo/issues/new) and we can chat. :dancer:
+
+## How to Contribute
+
+We use [GitHub issues](https://github.com/doubleunion/arooo/issues) for feature development and bug tracking, so take a look for things that you can work on, and comment with any questions you have about half-baked issues.
+
 ## Development setup
 
 If you are new to Rails, follow the [RailsBridge Installfest instructions](http://installfest.railsbridge.org/installfest/) for getting your environment set up.
@@ -75,7 +97,7 @@ Manually changing a user's state from the rails console:
 
 ## Contributing
 
-If you are new to GitHub, you can [use this guide](http://installfest.railsbridge.org/installfest/) for help making a pull request.
+If you are new to GitHub, you can [use this guide](http://railsbridge.github.io/bridge_troll/) for help making a pull request.
 
 1. Fork it
 1. Get it running
@@ -160,3 +182,7 @@ This section only pertains if you have Heroku & Deployment access.
   ```
 
 1. If needed, perform rake tasks or set ENV variable settings on `production`
+
+## A Room of One's Own
+
+This app is named after a famous Virginia Wolf essay. You can learn more about it [on Wikipedia](http://en.wikipedia.org/wiki/A_Room_of_One's_Own)!
