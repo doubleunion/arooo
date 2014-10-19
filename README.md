@@ -190,3 +190,14 @@ This app is named after a famous Virginia Woolf essay. You can learn more about 
 Also, here is a puppy that is saying "arooo":
 
 [![A puppy howling](http://cdn3.sbnation.com/assets/2875387/v728228.gif)](https://www.youtube.com/watch?v=2Tgwrkk-B3k)
+
+
+## License
+
+Copyright (C) 2014 Double Union
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+See the LICENSE.txt file for the full license.
