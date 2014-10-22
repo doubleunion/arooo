@@ -191,6 +191,9 @@ Also, here is a puppy that is saying "arooo":
 
 [![A puppy howling](http://cdn3.sbnation.com/assets/2875387/v728228.gif)](https://www.youtube.com/watch?v=2Tgwrkk-B3k)
 
+## Security
+
+If you find a security vulnerability with Arooo, please let us know at admin@doubleunion.org. Thank you!
 
 ## License
 
