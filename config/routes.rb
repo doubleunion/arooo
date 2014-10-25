@@ -52,6 +52,8 @@ Doubleunion::Application.routes.draw do
   post 'add_github_auth' => 'authentications#add_github_auth'
   post 'add_google_auth' => 'authentications#add_google_auth'
 
+  get 'public_members' => 'api#public_members'
+
   get 'membership', to: 'static#membership'
   get 'policies',   to: 'static#policies'
   get 'press',      to: 'static#press'
