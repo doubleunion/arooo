@@ -33,6 +33,11 @@ class Members::UsersController < Members::MembersController
   def submit_dues_to_stripe
     if current_user.stripe_customer_id
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      if params[:token]
+        # Only try to update card if there is one. We can imagine a future scenario where a member can update their dues without inputting their CC info again.
+        customer.card = params[:token]
+        customer.save
+      end
       subscription = customer.subscriptions.first
       subscription.plan = params[:plan]
 
