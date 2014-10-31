@@ -165,15 +165,17 @@ describe Members::UsersController do
     context "when the user already has a Stripe ID" do
       before do
         @subscription = double(:subscription, plan: 999)
+        @customer = double(:customer, subscriptions: [@subscription])
 
         user.update_column(:stripe_customer_id, 123)
-        Stripe::Customer.should_receive(:retrieve).with(123) do
-          double(:customer, subscriptions: [@subscription])
-        end
+
+        Stripe::Customer.should_receive(:retrieve).with(123) { @customer }
       end
 
       it "updates their plan" do
         expect(@subscription).to receive(:'plan=').with("5")
+        expect(@customer).to receive(:'card=').with("abcdefg")
+        expect(@customer).to receive(:save)
         expect(@subscription).to receive(:save)
         subject
       end
