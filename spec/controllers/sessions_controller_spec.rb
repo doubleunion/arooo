@@ -4,6 +4,16 @@ describe SessionsController do
   include UserWithOmniauth
   include AuthHelper
 
+  describe 'GET login' do
+    it 'succeeds' do
+      expect(get :login).to be_success
+    end
+
+    it 'renders the page' do
+      expect(get :login).to render_template :login
+    end
+  end
+
   describe 'GET github' do
     it 'redirects to github' do
       expect(get :github).to redirect_to '/auth/github'

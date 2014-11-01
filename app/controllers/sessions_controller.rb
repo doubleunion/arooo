@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+
+  def login
+  end
+
   def github
     redirect_to '/auth/github'
   end

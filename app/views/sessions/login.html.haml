@@ -1,0 +1,11 @@
+- if Configurable[:accepting_applications]
+  %h2 Members and Applicants Sign In
+- else
+  %h2 Members Sign In
+
+%p.ib= link_to 'Sign in with GitHub', github_login_path, class: 'btn btn-primary btn-lg mr-20'
+%p.ib= link_to 'Sign in with Google', google_login_path, class: 'btn btn-primary btn-lg'
+
+- if Configurable[:accepting_applications]
+  %p To start an application, first authenticate with Google or GitHub. If you have any questions, email us at #{ mail_to JOIN_EMAIL }.
+

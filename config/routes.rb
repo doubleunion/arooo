@@ -43,7 +43,7 @@ Doubleunion::Application.routes.draw do
   get 'auth/:provider/callback' => 'sessions#create'
   get 'github_login' => 'sessions#github'
   get 'google_login' => 'sessions#google'
-  get 'login' => 'static#index'
+  get 'login' => 'sessions#login'
   get 'logout' => 'sessions#destroy'
   get 'auth/failure' => 'sessions#failure'
   get 'get_email' => 'sessions#get_email'
