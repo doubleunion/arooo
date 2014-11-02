@@ -100,11 +100,11 @@
 
               %tr
                 %td= app_fields.check_box :agreement_terms
-                %td= app_fields.label :agreement_terms, "I understand the #{link_to 'privileges and responsibilities', membership_path} that come with Double Union membership".html_safe, class: 'checkbox-label'
+                %td= app_fields.label :agreement_terms, "I understand the #{link_to 'privileges and responsibilities', MEMBERSHIP_URL} that come with Double Union membership".html_safe, class: 'checkbox-label'
 
               %tr
                 %td= app_fields.check_box :agreement_policies
-                %td= app_fields.label :agreement_policies, "I agree to all posted #{link_to 'Double Union policies', policies_path}".html_safe, class: 'checkbox-label'
+                %td= app_fields.label :agreement_policies, "I agree to all posted #{link_to 'Double Union policies', POLICIES_URL}".html_safe, class: 'checkbox-label'
 
               %tr
                 %td= app_fields.check_box :agreement_female

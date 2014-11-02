@@ -1,5 +1,5 @@
 Doubleunion::Application.routes.draw do
-  root to: 'static#index'
+  root to: 'sessions#login'
 
   namespace :members do
     root to: 'users#index'
@@ -54,15 +54,6 @@ Doubleunion::Application.routes.draw do
 
   get 'public_members' => 'api#public_members'
   get 'configurations' => 'api#configurations'
-
-  get 'membership', to: 'static#membership'
-  get 'policies',   to: 'static#policies'
-  get 'press',      to: 'static#press'
-  get 'support',    to: 'static#support'
-  get 'supporters', to: 'static#supporters'
-  get 'visit',      to: 'static#visit'
-
-  get 'base_assumptions', to: 'static#base_assumptions'
 
   mount StripeEvent::Engine => '/stripe'
 end

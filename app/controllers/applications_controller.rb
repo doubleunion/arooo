@@ -77,7 +77,7 @@ class ApplicationsController < ApplicationController
   def ensure_accepting_applications
     unless Configurable[:accepting_applications]
       flash['notice'] = "Double Union isn't currently accepting applications. Join our general interest mailing list to be notified when applications are open again."
-      redirect_to membership_path
+      redirect_to root_path
     end
   end
 end

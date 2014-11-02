@@ -26,9 +26,7 @@
                 = current_user.username
                 <b class="caret"></b>
               %ul.dropdown-menu
-                - if current_user.visitor?
-                  %li= link_to 'Apply', membership_path
-                - elsif current_user.applicant?
+                - if current_user.applicant?
                   %li= link_to 'Application', new_application_path
                 %li.divider
                 %li= link_to 'Sign out', logout_path

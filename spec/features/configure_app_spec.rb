@@ -10,11 +10,6 @@ describe 'opening and closing applications' do
       visit admin_configurable_path
       uncheck "Accepting applications"
       click_button "Save"
-      visit membership_path
-    end
-
-    it 'should not show the GitHub auth button' do
-      expect(page).not_to have_content "Sign in with GitHub"
     end
 
     context 'as an applicant' do
@@ -30,19 +25,10 @@ describe 'opening and closing applications' do
       it 'should not show me my application' do
         expect(page).not_to have_content "Hi, #{applicant.username}! We're glad you're"
       end
-
     end
   end
 
   context 'when applications are open' do
-    before do
-      visit membership_path
-    end
-
-    it 'should show the GitHub button' do
-      expect(page).to have_content "Sign in with GitHub"
-    end
-
     context 'as an applicant' do
       before do
         page.set_rack_session(user_id: applicant.id)

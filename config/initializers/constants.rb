@@ -13,3 +13,7 @@ TUMBLR_URL           = "http://#{TUMBLR_BASE}"
 MAILING_LIST_GENERAL = "http://lists.doubleunion.org/listinfo.cgi/doubleunion-doubleunion.org"
 GOOGLE_ANALYTICS_ID  = 'UA-47411942-1'
 S3_BUCKET            = "https://s3-us-west-1.amazonaws.com/doubleunion"
+EXTERNAL_SITE_URL    = "https://www.doubleunion.org"
+BASE_ASSUMPTIONS_URL = EXTERNAL_SITE_URL + "/base_assumptions"
+POLICIES_URL         = EXTERNAL_SITE_URL + "/policies"
+MEMBERSHIP_URL       = EXTERNAL_SITE_URL + "/membership"
