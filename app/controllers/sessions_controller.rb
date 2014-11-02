@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def login
+    redirect_to members_root_path if current_user.try(:general_member?)
   end
 
   def github
@@ -18,7 +19,9 @@ class SessionsController < ApplicationController
 
     authentication = Authentication.where(conditions).first
 
-    if current_user.present?
+    if current_user.present? && already_has_auth?(omniauth)
+      redirect_to members_root_path
+    elsif current_user.present?
       add_auth_and_redirect(omniauth)
     elsif authentication.try(:user)
       set_session_and_redirect_returning_users(authentication.user)
@@ -123,5 +126,10 @@ class SessionsController < ApplicationController
 
     def new_user?
       User.where(email: params[:email]).empty?
+    end
+
+    def already_has_auth?(omniauth)
+      current_auths = current_user.authentications.pluck(:provider)
+      current_auths.include?(omniauth['provider'])
     end
 end
