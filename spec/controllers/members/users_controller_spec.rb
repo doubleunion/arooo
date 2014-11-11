@@ -149,50 +149,75 @@ describe Members::UsersController do
   end
 
   describe 'POST submit_dues_to_stripe' do
+    before do
+      StripeMock.start
+      Stripe::Plan.create(:id => "test_plan",
+                          :amount => 5000,
+                          :currency => 'usd',
+                          :interval => 'month',
+                          :name => "test plan")
+    end
+
+    after do
+      StripeMock.stop
+    end
+
+    let(:token) { StripeMock.generate_card_token({}) }
+
     let(:params) do
       {
         user_id: user.id,
         email: 'user@example.com',
-        plan: 5,
-        token: 'abcdefg'
+        plan: "test_plan",
+        token: token
       }
     end
 
     let!(:user) { login_as(:member, name: 'Foo Bar', email: 'someone@foo.bar') }
 
-    subject { post :submit_dues_to_stripe, params }
+    subject(:post_dues) { post :submit_dues_to_stripe, params }
 
     context "when the user already has a Stripe ID" do
       before do
-        @subscription = double(:subscription, plan: 999)
-        @customer = double(:customer, subscriptions: [@subscription])
-
-        user.update_column(:stripe_customer_id, 123)
-
-        Stripe::Customer.should_receive(:retrieve).with(123) { @customer }
+        customer = Stripe::Customer.create({
+                                               email: 'user@example.com',
+                                               card: StripeMock.generate_card_token({})
+                                           })
+        user.update_column(:stripe_customer_id, customer.id)
       end
 
-      it "updates their plan" do
-        expect(@subscription).to receive(:'plan=').with("5")
-        expect(@customer).to receive(:'card=').with("abcdefg")
-        expect(@customer).to receive(:save)
-        expect(@subscription).to receive(:save)
-        subject
+      context "previous subscription has been canceled" do
+        it "creates new subscription with plan" do
+          post_dues
+          subscription = Stripe::Customer.retrieve(user.stripe_customer_id).subscriptions.first
+          expect(subscription.plan.id).to eq("test_plan")
+        end
+      end
+
+      context "has active subscription" do
+        before do
+          Stripe::Customer.retrieve(user.stripe_customer_id).subscriptions.create({:plan => "test_plan"})
+        end
+
+        let!(:previous_default_card) { Stripe::Customer.retrieve(user.stripe_customer_id).cards.first }
+
+        it "updates their card" do
+          post_dues
+          customer = Stripe::Customer.retrieve(user.stripe_customer_id)
+          expect(customer.default_card).to_not eq(previous_default_card)
+          subscription = customer.subscriptions.first
+          expect(subscription.plan.id).to eq("test_plan")
+        end
       end
     end
 
     context "when the user doesn't have a Stripe ID" do
-      let(:stripe_customer_id) { 5 }
-
-      before do
-        Stripe::Customer.should_receive(:create) do
-          double(:customer, id: stripe_customer_id)
-        end
-      end
 
       it "updates their stripe customer ID in the database" do
-        subject
-        expect(user.stripe_customer_id).to eq(stripe_customer_id)
+        post_dues
+        expect(user.stripe_customer_id).to be_present
+        subscription = Stripe::Customer.retrieve(user.stripe_customer_id).subscriptions.first
+        expect(subscription.plan.id).to eq("test_plan")
       end
     end
   end
