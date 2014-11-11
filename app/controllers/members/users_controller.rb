@@ -28,6 +28,10 @@ class Members::UsersController < Members::MembersController
   end
 
   def dues
+    if current_user.stripe_customer_id
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      @subscription = customer.subscriptions.first
+    end
   end
 
   def submit_dues_to_stripe
