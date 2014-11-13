@@ -39,9 +39,13 @@ class Members::UsersController < Members::MembersController
         customer.save
       end
       subscription = customer.subscriptions.first
-      subscription.plan = params[:plan]
+      if subscription
+        subscription.plan = params[:plan]
+        subscription.save
+      else # subscription may have been canceled due to non-payment
+        customer.subscriptions.create({:plan => params[:plan]})
+      end
 
-      subscription.save
     else
       stripe_customer = Stripe::Customer.create(
         email: params[:email],
