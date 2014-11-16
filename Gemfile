@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.5'
 gem 'rails', '4.0.8'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -40,9 +40,9 @@ group :development, :test do
   gem 'rspec-rails', '2.14.2'
   gem 'thin'
   gem 'faker'
-  gem "rack_session_access"
-  gem "pry-rails"
-  gem "pry-debugger"
+  gem 'rack_session_access'
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :production do
