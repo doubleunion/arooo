@@ -71,10 +71,28 @@ describe AdminController do
     end
 
     describe 'GET members' do
-      it 'allows admin to view admin members index' do
-        login_as(:voting_member, is_admin: true)
-        get :members
-        response.should render_template :members
+      context 'as HTML' do
+        it 'allows admin to view admin members index' do
+          login_as(:voting_member, is_admin: true)
+          get :members, format: 'html'
+          response.should render_template :members
+        end
+      end
+
+      context 'as JSON' do
+        let!(:member) { create(:member, name: 'Several Lemurs') }
+        let(:summary) { "We're like cats and bears mixed together and cute." }
+
+        before {
+          member.profile.update_column(:summary, summary)
+        }
+
+        it 'allows admin to view members as json' do
+          login_as(:voting_member, is_admin: true)
+          get :members, format: 'json'
+          response.body.should include "Several Lemurs"
+          response.body.should include summary
+        end
       end
     end
 
@@ -158,10 +176,20 @@ describe AdminController do
     end
 
     describe 'GET members' do
-      it 'should redirect to root if logged in as member' do
-        login_as(:member)
-        get :members
-        response.should redirect_to :root
+      context 'as HTML' do
+        it 'should redirect to root if logged in as member' do
+          login_as(:member)
+          get :members, format: 'html'
+          response.should redirect_to :root
+        end
+      end
+
+      context 'as JSON' do
+        it 'should redirect to root if logged in as member' do
+          login_as(:member)
+          get :members, format: 'json'
+          response.should redirect_to :root
+        end
       end
     end
 

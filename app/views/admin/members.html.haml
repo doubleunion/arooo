@@ -8,4 +8,6 @@
     %li Key codes / physical keys
     %li The wiki
 
+  %p Want all the members as a big blob of json? #{ link_to "Here you go!", admin_members_path(format: :json) }
+
   = render partial: 'list', locals: { users: @all_members }
