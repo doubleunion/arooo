@@ -12,6 +12,11 @@ class AdminController < ApplicationController
     @all_members = User.all_members
       .includes(:profile)
       .order_by_state
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @all_members.as_json(include: :profile) }
+    end
   end
 
   def approve
