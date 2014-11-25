@@ -26,6 +26,8 @@ We use [GitHub issues](https://github.com/doubleunion/arooo/issues) for feature 
 
 If you are new to Rails, follow the [RailsBridge Installfest instructions](http://installfest.railsbridge.org/installfest/) for getting your environment set up.
 
+0. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/) about how to do so.
+
 1. Standard Rails app setup
     * `cp config/database.example.yml config/database.yml`
     * Optional: edit database.yml if you want to change advanced things
@@ -33,7 +35,7 @@ If you are new to Rails, follow the [RailsBridge Installfest instructions](http:
     * `rake db:migrate`
     * `rake db:test:prepare`
 
-1. Go here and set up an application: http://github.com/settings/applications/new
+1. Set up an application for OAuth: http://github.com/settings/applications/new
     * Application name: Whatever you want
     * Homepage URL: http://localhost:3000
     * Authorization callback URL: http://localhost:3000/auth/github/callback
@@ -52,7 +54,7 @@ If you are new to Rails, follow the [RailsBridge Installfest instructions](http:
 
 Write specs! Yay! Especially for anything involving authorization walls.
 
-Run `rake db:test:prepare` after you pull or make any changes to the app, generally
+Run `rake db:test:prepare` after you pull or make any changes to the app, generally.
 
 Make sure `bundle exec rspec` passes before pushing your changes.
 
