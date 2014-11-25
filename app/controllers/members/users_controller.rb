@@ -60,7 +60,7 @@ class Members::UsersController < Members::MembersController
       current_user.update_attribute(:stripe_customer_id, stripe_customer.id)
     end
 
-    head :no_content
+    redirect_to members_user_dues_path, :notice => "Your dues have been updated."
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
