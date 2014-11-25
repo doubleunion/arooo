@@ -2,20 +2,12 @@ $(document).ready(function(){
 
   var handler = StripeCheckout.configure({
     key: $("#js-dues").data("key"),
+    email: $("#js-dues").data("email"),
 
     token: function(token, args) {
-      $.ajax({
-        url: $("#js-dues").data("dues-path"),
-        type: "POST",
-        data: {
-          "token": token.id,
-          "email": token.email,
-          "plan": $(".amount").val()
-        },
-        success: function() {
-          $("#main .container").prepend('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><div id="flash_notice">Your dues have been updated.</div></div>')
-        }
-      });
+        var tokenElem = $("<input type='hidden' name='token'>").val(token.id);
+        $("#dues-form").append(tokenElem).submit();
+        $("#js-dues").text("Updating...").attr("disabled", "disabled");
     }
   });
 
