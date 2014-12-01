@@ -12,6 +12,14 @@
 
 %h4 Update Stripe Subscription
 %p Membership dues payments are handled via Stripe, which will charge your credit or debit card on the same date each month. If you need to change your dues payment, just fill in the form again and it will be updated.
+
+- if @subscription
+  %p Your current Stripe subscription is #{number_to_currency (@subscription.plan.amount / 100)} per #{@subscription.plan.interval}, and your status is #{@subscription.status}.
+
+- else
+  %p You don't have a Stripe subscription yet, or it may have been canceled. Please add your payment method.
+
+
 = render 'dues_form', action: "Update"
 
 #recurringPaymentModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "recurringPaymentModal", role: "dialog", tabindex: "-1"}
