@@ -13,7 +13,8 @@ $(document).ready(function(){
 
   $('#js-dues').on('click', function(e) {
     handler.open({
-      name: "Double Union Dues"
+      name: "Double Union Dues",
+      allowRememberMe: false
     });
     e.preventDefault();
   });
