@@ -20,7 +20,7 @@
       %td.buttons
         = form_for application, url: admin_approve_path do |f|
           = f.hidden_field(:id)
-          = f.submit "Accept", class: "btn accept-btn", confirm: "Are you sure?"
+          = f.submit "Accept", class: "btn accept-btn", data: { confirm: "Are you sure?" }
         = form_for application, url: admin_reject_path do |f|
           = f.hidden_field(:id)
-          = f.submit "Reject", class: "btn reject-btn", confirm: "Are you sure?"
+          = f.submit "Reject", class: "btn reject-btn", data: { confirm: "Are you sure?" }
