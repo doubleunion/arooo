@@ -1,13 +1,24 @@
-- if @all_members.any?
-  %h3 Admin Membership Console
-  %p Changing state on these buttons doesn't do anything except update the app. You'll still need to inform the person of the status change and add/remove permissions to things as necessary, such as:
-  %ul
-    %li Mailing lists
-    %li Google drive folders
-    %li Member's calendar
-    %li Key codes / physical keys
-    %li The wiki
+= content_for :js do
+  = javascript_include_tag :membership_note
 
-  %p Want all the members as a big blob of json? #{ link_to "Here you go!", admin_members_path(format: :json) }
+.row
+  .col-md-9.col-md-offset-1
+    - if @all_members.any?
+      %h3 Admin Membership Console
+      %p Changing state on these buttons doesn't do anything except update the app. You'll still need to inform the person of the status change and add/remove permissions to things as necessary, such as:
+      %ul
+        %li Mailing lists
+        %li Google drive folders
+        %li Member's calendar
+        %li Key codes / physical keys
+        %li The wiki
 
-  = render partial: 'list', locals: { users: @all_members }
+      %hr
+
+      %p Want all the members as a big blob of json? #{ link_to "Here you go!", admin_members_path(format: :json) }
+
+      %hr
+
+      %p Of note(s): you have to save each note individually, but you can click each button at the end and they will each save without reloading the page (so you won't lose any other notes).
+
+= render partial: 'members', locals: { users: @all_members }

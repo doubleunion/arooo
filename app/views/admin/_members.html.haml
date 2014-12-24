@@ -2,18 +2,29 @@
   %thead
     %tr
       %th Name
-      %th Username
       %th Status
+      %th Scholarship?
+      %th.min-width-150 Dues Paid On
+      %th Notes
       %th Manage Status
   %tbody
     - users.each do |user|
       %tr
-        %td
-          = user_gravatar(user, 20)
+        %td.max-width-150
           - if user.name.present?
             = link_to user.name, members_user_path(user)
-        %td= link_to user.username, members_user_path(user)
         %td= user.display_state
+        %td= user.is_scholarship
+        %td= user.last_stripe_charge_succeeded.strftime('%b %d %Y') if user.last_stripe_charge_succeeded
+        %td
+          = form_for :user, url: admin_save_membership_note_path, remote: true, html: { class: "js-membership-note js-membership-note-#{user.id}" } do |f|
+            = f.hidden_field :id, value: user.id
+            = f.text_area :membership_note, rows: 4, cols: 30, value: user.membership_note
+            .submit
+              = f.submit "Save Note", class: "btn"
+              %span.collapse{class: "save-success-#{user.id}"} Note saved!
+              %span.collapse{class: "save-failure-#{user.id}"} Note not saved :(
+
         %td.buttons
           = form_for user, url: admin_revoke_membership_path do |f|
             = f.hidden_field(:id)

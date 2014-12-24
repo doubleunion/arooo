@@ -106,12 +106,16 @@ class AdminController < ApplicationController
   def save_membership_note
     user = User.find(user_params[:id])
     user.membership_note = user_params[:membership_note]
-    if user.save
-      flash[:message] = "Note saved!"
-    else
-      flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
+
+    respond_to do |format|
+      if user.save
+        format.json { render json: { user_id: user.id } }
+        format.html { redirect_to admin_new_members_path, notice: "Note saved!" }
+      else
+        format.json { render json: { user_id: user.id } }
+        format.html { redirect_to admin_new_members_path, notice: "Whoops! #{user.errors.full_messages.to_sentence}" }
+      end
     end
-    redirect_to admin_new_members_path
   end
 
   def dues
