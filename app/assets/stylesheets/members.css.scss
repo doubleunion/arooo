@@ -1,3 +1,14 @@
+/* Member page layout styles */
+body.members-layout {
+  .checkbox-label {
+    font-weight: normal;
+    cursor: pointer;
+  }
+  .container {
+    max-width: 950px;
+  }
+}
+
 /* User show page styles */
 
 .profile-pic {

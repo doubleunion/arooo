@@ -14,10 +14,7 @@
       = render 'layouts/member_nav' if current_user && current_user.general_member?
       #main{ role: 'main' }
         = render 'layouts/messages'
-        - if use_container?
-          .container= yield
-        - else
-          = yield
+        .container= yield
     %footer
       .container= render 'layouts/footer'
     = javascript_include_tag 'application'

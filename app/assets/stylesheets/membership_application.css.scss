@@ -1,3 +1,9 @@
+body.applications.show, body.applications.edit {
+  .container {
+    max-width: 680px;
+  }
+}
+
 body.applications.edit, body.applications.update {
   form {
     input[type="text"], textarea {

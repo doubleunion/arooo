@@ -13,9 +13,9 @@
  *= require mixins
  *= require sticky-footer
 
- *= require applications_edit
+ *= require admin
+ *= require membership_application
  *= require static_index
- *= require static_membership
  *= require members
  *= require utilities
  *= require dataTables/jquery.dataTables.bootstrap
@@ -23,10 +23,6 @@
 
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,600);
 @import url(//fonts.googleapis.com/css?family=Bree+Serif:400);
-
-.container {
-  max-width: 680px !important;
-}
 
 .content {
   background-color: #eee;

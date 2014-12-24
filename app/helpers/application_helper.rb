@@ -1,7 +1,7 @@
 module ApplicationHelper
   def body_classes
     classes = [controller_name, action_name]
-    classes << 'members' if members_page?
+    classes << 'members-layout' if members_page?
     classes
   end
 

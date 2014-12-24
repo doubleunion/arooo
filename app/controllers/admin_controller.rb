@@ -122,7 +122,7 @@ class AdminController < ApplicationController
   protected
 
   def members_page?
-    true
+    false
   end
 
   private

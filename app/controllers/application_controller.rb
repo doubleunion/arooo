@@ -1,14 +1,8 @@
 class ApplicationController < ActionController::Base
   http_basic_authenticate_with name: ENV['BASIC_AUTH_NAME'], password: ENV['BASIC_AUTH_PASSWORD'] if Rails.env.staging?
   protect_from_forgery
-  helper_method :current_user, :logged_in?, :logged_in_as?, :correct_user?,
-    :use_container?, :members_page?, :vote
-
-  protected
-
-  def set_use_container(bool)
-    @_use_container = bool
-  end
+  helper_method :current_user, :logged_in?, :logged_in_as?,
+                :correct_user?, :members_page?, :vote
 
   private
 
@@ -65,11 +59,6 @@ class ApplicationController < ActionController::Base
     reset_session
 
     session[:user_id] = user.id
-  end
-
-  def use_container?
-    return @_use_container if defined?(@_use_container)
-    @_use_container = true
   end
 
   def members_page?
