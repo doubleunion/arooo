@@ -42,6 +42,8 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     blankslate (3.1.3)
+    bootstrap-sass (3.3.1.0)
+      sass (~> 3.2)
     bugsnag (2.5.0)
       httparty (>= 0.6, < 1.0)
       multi_json (~> 1.0)
@@ -296,6 +298,7 @@ DEPENDENCIES
   awesome_print
   better_errors
   binding_of_caller
+  bootstrap-sass
   bugsnag
   capybara
   coffee-rails (~> 4.0.0)
