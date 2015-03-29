@@ -1,3 +1,7 @@
+- if current_user.member?
+  .mt-20
+    = link_to "Become a key member!", edit_members_user_status_path(current_user), class: "btn btn-default"
+
 = render 'bookmarks'
 
 - if @all_members.any?

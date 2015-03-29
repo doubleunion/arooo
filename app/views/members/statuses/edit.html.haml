@@ -1,0 +1,19 @@
+%h1 Become a key member!
+
+%p Keymembers can access Double Union 24/7, host events, and bring guests of any gender.
+%p When you submit this form, we'll email the membership coordinators and the chatelaines (who hold the keys) to arrange a time for you to get your keys!
+
+= form_tag members_user_status_path(current_user.id), method: "patch" do
+  %p
+    = check_box_tag "agreements[kick_out]", 1, false, required: true
+    = label_tag "agreements[kick_out]", "I would kick out someone who was violating the #{ link_to "anti-harassment policy", POLICIES_URL}.".html_safe
+
+  %p
+    = check_box_tag "agreements[lock_up]", 1, false, required: true
+    = label_tag "agreements[lock_up]", "I would lock up and turn on the alarms after I leave the space."
+
+  %p
+    = check_box_tag "agreements[take_action]", 1, false, required: true
+    = label_tag "agreements[take_action]", "If I saw something bad happening at DU, I would take action to stop it (say something, call 911, etc.)."
+
+  = submit_tag "Submit"

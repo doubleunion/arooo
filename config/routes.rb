@@ -3,11 +3,14 @@ Doubleunion::Application.routes.draw do
 
   namespace :members do
     root to: 'users#index'
+
     resources :users, only: [:index, :show, :edit, :update] do
       get 'setup' => "users#setup"
       patch 'setup' => "users#finalize"
       get 'dues' => "users#dues"
       post 'dues' => "users#submit_dues_to_stripe"
+
+      resource :status, only: [:edit, :update]
     end
     resources :votes, only: [:create, :destroy]
 
