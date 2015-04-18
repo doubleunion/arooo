@@ -24,6 +24,10 @@ Doubleunion::Application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resource :exceptions, only: :show
+  end
+
   get 'admin/new_members' => 'admin#new_members'
   get 'admin/applications' => 'admin#applications'
   get 'admin/members' => 'admin#members'
