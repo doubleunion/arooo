@@ -7,9 +7,8 @@ Doubleunion::Application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update] do
       get 'setup' => "users#setup"
       patch 'setup' => "users#finalize"
-      get 'dues' => "users#dues"
-      post 'dues' => "users#submit_dues_to_stripe"
 
+      resource :dues, only: [:show, :update]
       resource :status, only: [:edit, :update]
     end
     resources :votes, only: [:create, :destroy]
