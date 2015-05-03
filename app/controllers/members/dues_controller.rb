@@ -37,16 +37,26 @@ class Members::DuesController < Members::MembersController
       current_user.update_attribute(:stripe_customer_id, stripe_customer.id)
     end
 
-    redirect_to members_user_dues_path, :notice => "Your dues have been updated."
+    redirect_to redirect_target, :notice => "Your dues have been updated."
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to members_user_dues_path
+    redirect_to redirect_target
   end
 
   def scholarship_request
     DuesMailer.scholarship_requested(current_user, params[:reason]).deliver
 
     redirect_to members_user_dues_path, :notice => "Your scholarship request has been submitted"
+  end
+
+  private
+
+  def redirect_target
+    if request.referer && URI(request.referer).path =~ /setup/
+      members_user_setup_path(current_user)
+    else
+      members_user_dues_path(current_user)
+    end
   end
 end

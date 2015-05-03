@@ -25,6 +25,9 @@ describe Members::DuesController do
         :currency => "usd",
         :interval => "month",
         :name => "test plan")
+
+      # Must set referrer so that DuesController#redirect_target works
+      request.env['HTTP_REFERER'] = 'http://example.com/members/users/x/dues'
     end
 
     after do
@@ -46,6 +49,15 @@ describe Members::DuesController do
 
     subject(:post_dues) { post :update, params }
 
+    context "when the user is coming from the account setup page" do
+      # Must set referrer so that DuesController#redirect_target works
+      before { request.env['HTTP_REFERER'] = 'http://example.com/members/users/x/setup' }
+
+      it "redirects to the membership setup page" do
+        expect(subject).to redirect_to members_user_setup_path(user)
+      end
+    end
+
     context "when the user already has a Stripe ID" do
       before do
         customer = Stripe::Customer.create({
@@ -60,6 +72,10 @@ describe Members::DuesController do
           post_dues
           subscription = Stripe::Customer.retrieve(user.stripe_customer_id).subscriptions.first
           expect(subscription.plan.id).to eq("test_plan")
+        end
+
+        it "redirects to the manage dues page" do
+          expect(subject).to redirect_to members_user_dues_path(user)
         end
       end
 
