@@ -11,7 +11,7 @@ describe Members::DuesController do
     it_should_behave_like "deny non-members", [:visitor, :applicant]
     it_should_behave_like "allow members", [:member, :voting_member]
 
-    it 'redirects if not logged in' do
+    it "redirects if not logged in" do
       subject
       response.should redirect_to :root
     end
@@ -87,6 +87,22 @@ describe Members::DuesController do
         expect(user.stripe_customer_id).to be_present
         subscription = Stripe::Customer.retrieve(user.stripe_customer_id).subscriptions.first
         expect(subscription.plan.id).to eq("test_plan")
+      end
+    end
+  end
+
+  describe "POST scholarship_request" do
+    let(:params) { { "user_id" => member.id, "reason" => "Lemurs are pretty great animals." } }
+
+    subject { post :scholarship_request, params }
+
+    context "logged in as a member" do
+      before { login_as member }
+
+      it "sends an email" do
+        expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(1)
+        expect(ActionMailer::Base.deliveries.last.to).to eq(["scholarship@doubleunion.org"])
+        expect(ActionMailer::Base.deliveries.last.body).to include "Lemurs are pretty great"
       end
     end
   end

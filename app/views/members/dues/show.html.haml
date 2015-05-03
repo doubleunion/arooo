@@ -5,8 +5,6 @@
 
 %p Membership dues payments are handled via Stripe, which will charge your credit or debit card on the same date each month. If you need to change your dues payment, just fill in the form again and it will be updated.
 
-%p If paying dues is in any way a hardship for you, please email the board at #{ mail_to BOARD_EMAIL } to request a dues scholarship.
-
 %h3 Current Dues Status
 
 - if @subscription
@@ -18,6 +16,10 @@
 - elsif current_user.is_scholarship?
   %p You are receiving a scholarship for your dues payments.
 - else
-  %p You don't have a Stripe subscription yet, or it may have been canceled. Please add your credit or debit card, or email #{ mail_to "email the board", BOARD_EMAIL } to request a dues scholarship! <3
+  %p You don't have a Stripe subscription yet, or it may have been canceled. Please add your credit or debit card, or request a scholarship below! <3
 
 = render 'form', action: "Update"
+
+%h3 Apply for a Scholarship
+
+= render "scholarship_request"

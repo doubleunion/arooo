@@ -8,6 +8,7 @@ JOIN_EMAIL           = I18n.t('du.join_email')
 MEMBERSHIP_EMAIL     = I18n.t('du.membership_email')
 BOARD_EMAIL          = I18n.t('du.board_email')
 KEYS_EMAIL           = "keys@doubleunion.org"
+SCHOLARSHIP_EMAIL    = "scholarship@doubleunion.org"
 
 TUMBLR_BASE          = 'doubleunion.tumblr.com'
 TUMBLR_URL           = "http://#{TUMBLR_BASE}"

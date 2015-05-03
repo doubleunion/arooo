@@ -7,4 +7,14 @@ class DuesMailer < ActionMailer::Base
       subject: "Heads Up! DU dues charge failed"
     )
   end
+
+  def scholarship_requested(user, reason)
+    @user = user
+    @reason = reason
+
+    mail(
+      to: [SCHOLARSHIP_EMAIL],
+      subject: "New DU Scholarship Request",
+    )
+  end
 end

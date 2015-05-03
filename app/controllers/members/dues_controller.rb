@@ -43,4 +43,10 @@ class Members::DuesController < Members::MembersController
     flash[:error] = e.message
     redirect_to members_user_dues_path
   end
+
+  def scholarship_request
+    DuesMailer.scholarship_requested(current_user, params[:reason]).deliver
+
+    redirect_to members_user_dues_path, :notice => "Your scholarship request has been submitted"
+  end
 end

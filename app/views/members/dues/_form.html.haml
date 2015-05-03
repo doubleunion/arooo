@@ -1,9 +1,11 @@
-=form_tag members_user_dues_path(@user), method: "patch", :id => "dues-form"
-%select.amount{ name: "plan" }
-  %option{ value: "extra_large_monthly" } $100.00 USD Monthly
-  %option{ value: "large_monthly" } $50.00 USD Monthly
-  %option{ value: "medium_monthly", selected: "selected" } $25.00 USD Monthly
-  %option{ value: "small_monthly" } $10.00 USD Monthly
-%a#js-dues.btn.btn-primary{ href: "#", data: { key: "#{ENV['STRIPE_PUBLISHABLE_KEY']}", email: @user.email } } #{action} Dues
+- options = options_for_select({ "$100.00 USD Monthly" => "extra_large_monthly",
+    "$50.00 USD Monthly" => "large_monthly",
+    "$25.00 USD Monthly" => "medium_monthly",
+    "$10.00 USD Monthly" => "small_monthly" }, "medium_monthly")
+
+= form_tag members_user_dues_path(@user), method: "patch", :id => "dues-form" do
+  = select_tag :plan, options
+
+  %a#js-dues.btn.btn-primary{ href: "#", data: { key: "#{ENV['STRIPE_PUBLISHABLE_KEY']}", email: @user.email } } #{action} Dues
 
 %script{src: 'https://checkout.stripe.com/checkout.js'}
