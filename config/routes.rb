@@ -28,6 +28,7 @@ Doubleunion::Application.routes.draw do
   namespace :admin do
     resource :exceptions, only: :show
     resources :memberships, only: [:index, :update]
+    patch "memberships/:id/change_membership_state" => "memberships#change_membership_state", as: "change_membership_state"
   end
 
   get 'admin/new_members' => 'admin#new_members'
@@ -39,7 +40,7 @@ Doubleunion::Application.routes.draw do
 
   post 'admin/setup_complete' => 'admin#setup_complete'
   post 'admin/save_membership_note' => 'admin#save_membership_note'
-  
+
   resources :applications, only: [:new, :show, :edit, :update]
 
   get 'auth/:provider/callback' => 'sessions#create'

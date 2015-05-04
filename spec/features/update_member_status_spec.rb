@@ -20,6 +20,44 @@ describe "becoming a key member" do
   end
 end
 
+describe "marking members as on scholarship" do
+  before { page.set_rack_session(user_id: admin.id) }
+
+  context "when logged in as an admin" do
+    let(:admin) { create :admin }
+
+    context "with a member" do
+      let!(:member) { create :member }
+
+      it "allows members to be marked as on scholarship" do
+        visit admin_memberships_path
+        within(".user-#{member.id}") do
+          click_button "Mark as on scholarship"
+        end
+
+        within(".user-#{member.id}") do
+          expect(page).to have_content "Yes"
+        end
+      end
+
+      context "with a scholarship member" do
+        before { member.update_attributes(is_scholarship: true) }
+
+        it "allows members to be marked as not on scholarship" do
+          visit admin_memberships_path
+          within(".user-#{member.id}") do
+            click_button "Remove scholarship"
+          end
+
+          within(".user-#{member.id}") do
+            expect(page).to have_content "No"
+          end
+        end
+      end
+    end
+  end
+end
+
 describe "updating membership status" do
   before { page.set_rack_session(user_id: admin.id) }
 

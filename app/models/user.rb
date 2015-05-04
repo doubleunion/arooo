@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   EMAIL_PATTERN = /\A.+@.+\Z/
 
   attr_accessible :username, :name, :email, :profile_attributes,
-    :application_attributes, :email_for_google, :dues_pledge
+    :application_attributes, :email_for_google, :dues_pledge, :is_scholarship
 
   validates :state, presence: true
 

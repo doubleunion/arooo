@@ -3,7 +3,7 @@
     %tr
       %th Name
       %th Status
-      %th Scholarship?
+      %th On scholarship?
       %th.min-width-150 Dues Paid On
       %th Notes
       %th Manage Status
@@ -14,7 +14,16 @@
           - if user.name.present?
             = link_to user.name, members_user_path(user)
         %td= user.display_state
-        %td= user.is_scholarship
+        %td
+          = user.is_scholarship ? "Yes" : "No"
+          = form_for user, url: admin_membership_path(user) do |f|
+            = f.hidden_field(:id)
+            = f.hidden_field(:is_scholarship, value: !user.is_scholarship)
+            - if user.is_scholarship
+              = f.submit "Remove scholarship", class: "btn", data: { confirm: "Are you sure? Note: This does not change the member's dues in Stripe." }
+            - else
+              = f.submit "Mark as on scholarship", class: "btn", data: { confirm: "Are you sure? Note: This does not change the member's dues in Stripe." }
+
         %td= user.last_stripe_charge_succeeded.strftime('%b %d %Y') if user.last_stripe_charge_succeeded
         %td
           = form_for :user, url: admin_save_membership_note_path, remote: true, html: { class: "js-membership-note js-membership-note-#{user.id}" } do |f|
@@ -26,26 +35,26 @@
               %span.collapse{class: "save-failure-#{user.id}"} Note not saved :(
 
         %td.buttons
-          = form_for user, url: admin_membership_path(user) do |f|
+          = form_for user, url: admin_change_membership_state_path(user) do |f|
             = f.hidden_field(:id)
             = f.hidden_field(:updated_state, value: :former_member)
             = f.submit "Revoke DU Membership", class: "btn reject-btn", data: { confirm: "Are you sure?" }
           - if user.voting_member?
-            = form_for user, url: admin_membership_path(user) do |f|
+            = form_for user, url: admin_change_membership_state_path(user) do |f|
               = f.hidden_field(:id)
               = f.hidden_field(:updated_state, value: :key_member)
               = f.submit "Revoke Voting membership", class: "btn reject-btn", data: { confirm: "Are you sure?" }
           - elsif user.key_member?
-            = form_for user, url: admin_membership_path(user) do |f|
+            = form_for user, url: admin_change_membership_state_path(user) do |f|
               = f.hidden_field(:id)
               = f.hidden_field(:updated_state, value: :member)
               = f.submit "Revoke Key membership", class: "btn reject-btn", data: { confirm: "Are you sure?" }
-            = form_for user, url: admin_membership_path(user) do |f|
+            = form_for user, url: admin_change_membership_state_path(user) do |f|
               = f.hidden_field(:id)
               = f.hidden_field(:updated_state, value: :voting_member)
               = f.submit "Make Voting member", class: "btn accept-btn", data: { confirm: "Are you sure?" }
           - else
-            = form_for user, url: admin_membership_path(user) do |f|
+            = form_for user, url: admin_change_membership_state_path(user) do |f|
               = f.hidden_field(:id)
               = f.hidden_field(:updated_state, value: :key_member)
               = f.submit "Make Key member", class: "btn accept-btn", data: { confirm: "Are you sure?" }
