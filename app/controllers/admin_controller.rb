@@ -1,22 +1,10 @@
 class AdminController < ApplicationController
   before_filter :ensure_admin
-  before_filter :find_member, only: [:add_voting_member, :add_key_member, :revoke_key_member, :revoke_voting_member, :revoke_membership]
 
   def applications
     @to_approve = Application.to_approve
     @to_reject = Application.to_reject
     @unknown = Application.not_enough_info
-  end
-
-  def members
-    @all_members = User.all_members
-      .includes(:profile)
-      .order_by_state
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @all_members.as_json(include: :profile) }
-    end
   end
 
   def approve
@@ -41,51 +29,6 @@ class AdminController < ApplicationController
       flash[:error] = "Whoops! #{application.errors.full_messages.to_sentence}"
       render :applications
     end
-  end
-
-  def add_key_member
-    if @user.make_key_member
-      flash[:message] = "#{@user.name} was added as a key member."
-    else
-      flash[:message] = "Whoops! #{@user.errors.full_messages.to_sentence}"
-    end
-    redirect_to admin_members_path
-  end
-
-  def revoke_key_member
-    if @user.remove_key_membership
-      flash[:message] = "#{@user.name} was revoked as a key member."
-    else
-      flash[:message] = "Whoops! #{@user.errors.full_messages.to_sentence}"
-    end
-    redirect_to admin_members_path
-  end
-
-  def add_voting_member
-    if @user.make_voting_member
-      flash[:message] = "#{@user.name} was added as a voting member."
-    else
-      flash[:message] = "Whoops! #{@user.errors.full_messages.to_sentence}"
-    end
-    redirect_to admin_members_path
-  end
-
-  def revoke_voting_member
-    if @user.remove_voting_membership
-      flash[:message] = "#{@user.name} was revoked as a voting member."
-    else
-      flash[:message] = "Whoops! #{@user.errors.full_messages.to_sentence}"
-    end
-    redirect_to admin_members_path
-  end
-
-  def revoke_membership
-    if @user.remove_membership
-      flash[:message] = "#{@user.name} was revoked as a member."
-    else
-      flash[:message] = "Whoops! #{@user.errors.full_messages.to_sentence}"
-    end
-    redirect_to admin_members_path
   end
 
   def new_members
@@ -142,5 +85,4 @@ class AdminController < ApplicationController
   def find_member
     @user = User.find(params[:user][:id])
   end
-
 end

@@ -97,28 +97,18 @@ class User < ActiveRecord::Base
     end
 
     event :make_member do
-      transition applicant: :member
+      transition [:applicant, :voting_member, :key_member] => :member
     end
 
     event :make_key_member do
-      transition member: :key_member
+      transition [:member, :voting_member] => :key_member
     end
 
-    # a member can transition straight to a voting member
     event :make_voting_member do
       transition [:member, :key_member] => :voting_member
     end
 
-    # revoking voting privileges keeps key member status
-    event :remove_voting_membership do
-      transition voting_member: :key_member
-    end
-
-    event :remove_key_membership do
-      transition key_member: :member
-    end
-
-    event :remove_membership do
+    event :make_former_member do
       transition [:member, :voting_member, :key_member] => :former_member
     end
 

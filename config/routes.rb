@@ -27,11 +27,11 @@ Doubleunion::Application.routes.draw do
 
   namespace :admin do
     resource :exceptions, only: :show
+    resources :memberships, only: [:index, :update]
   end
 
   get 'admin/new_members' => 'admin#new_members'
   get 'admin/applications' => 'admin#applications'
-  get 'admin/members' => 'admin#members'
   get 'admin/dues' => 'admin#dues'
 
   patch 'admin/approve' => 'admin#approve'
@@ -39,13 +39,7 @@ Doubleunion::Application.routes.draw do
 
   post 'admin/setup_complete' => 'admin#setup_complete'
   post 'admin/save_membership_note' => 'admin#save_membership_note'
-
-  patch 'admin/add_voting_member' => 'admin#add_voting_member'
-  patch 'admin/add_key_member' => 'admin#add_key_member'
-  patch 'admin/revoke_voting_member' => 'admin#revoke_voting_member'
-  patch 'admin/revoke_key_member' => 'admin#revoke_key_member'
-  patch 'admin/revoke_membership' => 'admin#revoke_membership'
-
+  
   resources :applications, only: [:new, :show, :edit, :update]
 
   get 'auth/:provider/callback' => 'sessions#create'

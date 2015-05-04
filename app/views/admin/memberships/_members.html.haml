@@ -9,7 +9,7 @@
       %th Manage Status
   %tbody
     - users.each do |user|
-      %tr
+      %tr{class: "user-#{user.id}"}
         %td.max-width-150
           - if user.name.present?
             = link_to user.name, members_user_path(user)
@@ -26,21 +26,26 @@
               %span.collapse{class: "save-failure-#{user.id}"} Note not saved :(
 
         %td.buttons
-          = form_for user, url: admin_revoke_membership_path do |f|
+          = form_for user, url: admin_membership_path(user) do |f|
             = f.hidden_field(:id)
+            = f.hidden_field(:updated_state, value: :former_member)
             = f.submit "Revoke DU Membership", class: "btn reject-btn", data: { confirm: "Are you sure?" }
           - if user.voting_member?
-            = form_for user, url: admin_revoke_voting_member_path do |f|
+            = form_for user, url: admin_membership_path(user) do |f|
               = f.hidden_field(:id)
+              = f.hidden_field(:updated_state, value: :key_member)
               = f.submit "Revoke Voting membership", class: "btn reject-btn", data: { confirm: "Are you sure?" }
           - elsif user.key_member?
-            = form_for user, url: admin_revoke_key_member_path do |f|
+            = form_for user, url: admin_membership_path(user) do |f|
               = f.hidden_field(:id)
+              = f.hidden_field(:updated_state, value: :member)
               = f.submit "Revoke Key membership", class: "btn reject-btn", data: { confirm: "Are you sure?" }
-            = form_for user, url: admin_add_voting_member_path do |f|
+            = form_for user, url: admin_membership_path(user) do |f|
               = f.hidden_field(:id)
+              = f.hidden_field(:updated_state, value: :voting_member)
               = f.submit "Make Voting member", class: "btn accept-btn", data: { confirm: "Are you sure?" }
           - else
-            = form_for user, url: admin_add_key_member_path do |f|
+            = form_for user, url: admin_membership_path(user) do |f|
               = f.hidden_field(:id)
+              = f.hidden_field(:updated_state, value: :key_member)
               = f.submit "Make Key member", class: "btn accept-btn", data: { confirm: "Are you sure?" }

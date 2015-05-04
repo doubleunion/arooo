@@ -70,92 +70,6 @@ describe AdminController do
 
     end
 
-    describe 'GET members' do
-      context 'as HTML' do
-        it 'allows admin to view admin members index' do
-          login_as(:voting_member, is_admin: true)
-          get :members, format: 'html'
-          response.should render_template :members
-        end
-      end
-
-      context 'as JSON' do
-        let!(:member) { create(:member, name: 'Several Lemurs') }
-        let(:summary) { "We're like cats and bears mixed together and cute." }
-
-        before {
-          member.profile.update_column(:summary, summary)
-        }
-
-        it 'allows admin to view members as json' do
-          login_as(:voting_member, is_admin: true)
-          get :members, format: 'json'
-          response.body.should include "Several Lemurs"
-          response.body.should include summary
-        end
-      end
-    end
-
-    describe 'PATCH add_key_member' do
-      let(:user) { create(:member) }
-      let(:params) { { user: { id: user.id} } }
-
-      it 'allows admin to add key_member access' do
-        login_as(:voting_member, is_admin: true)
-        expect do
-          patch :add_key_member, params
-        end.to change { user.reload.state }.from("member").to("key_member")
-      end
-    end
-
-    describe 'PATCH revoke_key_member' do
-      let(:user) { create(:key_member) }
-      let(:params) { { user: { id: user.id} } }
-
-      it 'allows admin to revoke key_member access' do
-        login_as(:key_member, is_admin: true)
-        expect do
-          patch :revoke_key_member, params
-        end.to change { user.reload.state }.from("key_member").to("member")
-      end
-    end
-
-    describe 'PATCH add_voting_member' do
-      let(:user) { create(:member) }
-      let(:params) { { user: { id: user.id} } }
-
-      it 'allows admin to add voting_member access' do
-        login_as(:voting_member, is_admin: true)
-        expect do
-          patch :add_voting_member, params
-        end.to change { user.reload.state }.from("member").to("voting_member")
-      end
-    end
-
-    describe 'PATCH revoke_voting_member' do
-      let(:user) { create(:voting_member) }
-      let(:params) { { user: { id: user.id} } }
-
-      it 'allows admin to revoke voting_member access' do
-        login_as(:voting_member, is_admin: true)
-        expect do
-          patch :revoke_voting_member, params
-        end.to change { user.reload.state }.from("voting_member").to("key_member")
-      end
-    end
-
-    describe 'PATCH revoke_membership' do
-      let(:user) { create(:member) }
-      let(:params) { { user: { id: user.id } } }
-
-      it 'allows admin to revoke membership' do
-        login_as(:voting_member, is_admin: true)
-        expect do
-          patch :revoke_membership, params
-        end.to change { user.reload.state }.from("member").to("former_member")
-      end
-    end
-
     describe 'GET dues' do
       it "allows admins to view the admin dues page" do
         login_as(:voting_member, is_admin: true)
@@ -172,24 +86,6 @@ describe AdminController do
         login_as(:member)
         get :applications
         response.should redirect_to :root
-      end
-    end
-
-    describe 'GET members' do
-      context 'as HTML' do
-        it 'should redirect to root if logged in as member' do
-          login_as(:member)
-          get :members, format: 'html'
-          response.should redirect_to :root
-        end
-      end
-
-      context 'as JSON' do
-        it 'should redirect to root if logged in as member' do
-          login_as(:member)
-          get :members, format: 'json'
-          response.should redirect_to :root
-        end
       end
     end
 

@@ -35,9 +35,9 @@ describe User do
     user = User.make!
     user.profile.twitter.should be_nil
     user.update_attributes!(profile_attributes: {
-      id: user.profile.id,
-      twitter: 'Horse_ebooks'
-    })
+        id: user.profile.id,
+        twitter: 'Horse_ebooks'
+      })
     user.profile.twitter.should eq('Horse_ebooks')
   end
 
@@ -62,33 +62,51 @@ describe User do
     expect { user.make_member! }.to raise_error(StateMachine::InvalidTransition)
   end
 
-  describe "#remove_voting_membership" do
-    let(:voting_member) { create(:voting_member) }
-
-    it 'should transition from voting_member to key_member' do
-      expect do
-        voting_member.remove_voting_membership
-      end.to change{voting_member.state}.from("voting_member").to("key_member")
-    end
-  end
-
-  describe "#remove_key_membership" do
-    let(:key_member) { create(:key_member) }
-
-    it 'should transition from key_member to member' do
-      expect {key_member.remove_key_membership}.to change{key_member.state}.from("key_member").to("member")
-    end
-  end
-
-  describe "#remove_membership" do
+  describe "#make_former_member" do
     let(:member) { create(:member) }
-    let(:key_member) { create(:key_member) }
-    let(:voting_member) { create(:voting_member) }
 
-    it 'should transition from member, key_member, or voting_member to former_member' do
-      expect {member.remove_membership}.to change{member.state}.from("member").to("former_member")
-      expect {key_member.remove_membership}.to change{key_member.state}.from("key_member").to("former_member")
-      expect {voting_member.remove_membership}.to change{voting_member.state}.from("voting_member").to("former_member")
+    subject { member.make_former_member }
+
+    it "should transition from member to former_member" do
+      expect { subject }.to change { member.state }.from("member").to("former_member")
+    end
+  end
+
+  describe "#make_member" do
+    let(:member) { create(:key_member) }
+
+    subject { member.make_member }
+
+    it "should transition from key member to member" do
+      expect { subject }.to change { member.state }.from("key_member").to("member")
+    end
+  end
+
+  describe "#make_key_member" do
+    let(:member) { create :voting_member }
+
+    subject { member.make_key_member }
+
+    it "should transition from voting_member to member" do
+      expect { subject }.to change { member.state }.from("voting_member").to("key_member")
+    end
+
+    context "with an applicant" do
+      let(:member) { create :applicant }
+
+      it "should not transition from applicant to key member" do
+        expect { subject }.not_to change { member.state }
+      end
+    end
+  end
+
+  describe "#make_voting_member" do
+    let(:member) { create(:key_member) }
+
+    subject { member.make_voting_member }
+
+    it "should transition from key member to voting member" do
+      expect { subject }.to change { member.state }.from("key_member").to("voting_member")
     end
   end
 end
