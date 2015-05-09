@@ -38,7 +38,7 @@
           = form_for user, url: admin_change_membership_state_path(user) do |f|
             = f.hidden_field(:id)
             = f.hidden_field(:updated_state, value: :former_member)
-            = f.submit "Revoke DU Membership", class: "btn reject-btn", data: { confirm: "Are you sure?" }
+            = f.submit "Revoke DU Membership", class: "btn reject-btn", data: { confirm: "Are you sure you'd like to cancel #{user.name}'s DU membership?" }
           - if user.voting_member?
             = form_for user, url: admin_change_membership_state_path(user) do |f|
               = f.hidden_field(:id)
