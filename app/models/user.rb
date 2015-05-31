@@ -74,11 +74,6 @@ class User < ActiveRecord::Base
     .order('applications.processed_at ASC')
   }
 
-  scope :setup_incomplete, -> {
-    all_members
-    .where(stripe_customer_id: nil)
-  }
-
   scope :order_by_state, -> { order(<<-eos
     CASE state
     WHEN 'voting_member' THEN 1

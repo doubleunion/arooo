@@ -5,7 +5,7 @@ describe AccountSetupReminder do
     before { ActionMailer::Base.deliveries = [] }
 
     let(:deliveries) { ActionMailer::Base.deliveries }
-    let(:users) { User.setup_incomplete }
+    let(:users) { User.new_members }
     let(:member) { create :member }
     let(:other_member) { create :setup_complete_member }
 
