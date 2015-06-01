@@ -17,6 +17,10 @@
 %p
   All fields are optional unless otherwise indicated.
 
+- if Configurable[:application_deadline_warning].present?
+  .alert.alert-info
+    = Configurable[:application_deadline_warning]
+
 = form_for @user, url: application_path(@user.application) do |f|
 
   %fieldset
