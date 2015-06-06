@@ -11,7 +11,7 @@ class Members::StatusesController < Members::MembersController
       return render :edit
     elsif @new_key_member.member? && @new_key_member.make_key_member!
       send_keymember_email
-      flash[:message] = "Yay, you're now a key member! You will be contacted to schedule a walkthrough and to get your keys. If you're not contacted within 3 days, email #{KEYS_EMAIL}.".html_safe
+      flash[:message] = "Yay, you're now a key member! You've just received an email with instructions for getting your keys. Questions? Email #{KEYS_EMAIL}.".html_safe
     else
       flash[:error] = "Only members can become key members. If you'd like to change your membership status, email #{MEMBERSHIP_EMAIL}".html_safe
     end
