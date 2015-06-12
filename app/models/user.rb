@@ -122,7 +122,7 @@ class User < ActiveRecord::Base
   def gravatar_url(size = 200)
     email = gravatar_email || self.email
     hash = email ? Digest::MD5.hexdigest(email.downcase) : nil
-    "http://www.gravatar.com/avatar/#{hash}?s=#{size}"
+    "https://www.gravatar.com/avatar/#{hash}?s=#{size}"
   end
 
   def create_profile
