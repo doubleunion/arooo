@@ -6,6 +6,7 @@ class Profile < ActiveRecord::Base
   validates :reasons,  length: { maximum: 2000 }
   validates :projects, length: { maximum: 2000 }
   validates :skills,   length: { maximum: 2000 }
+  validates :feminism, length: { maximum: 2000 }
 
   attr_protected :id
 
