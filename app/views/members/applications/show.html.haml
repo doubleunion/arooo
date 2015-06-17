@@ -1,5 +1,8 @@
 %p= link_to "Back to Applications Overview", members_applications_path
 
+%h3 Application
+= render partial: 'applications/show', locals: { user: @user }
+
 - if !logged_in_as?(@user) && current_user.voting_member?
   %h3= @user.name
 
@@ -86,7 +89,5 @@
     = f.text_area :body, rows: 3, class: "form-control"
     %fieldset= f.submit 'Add comment', class: "btn btn-primary pull-right"
 
-%h3 Application
-= render partial: 'applications/show', locals: { user: @user }
 
 %p= link_to "Back to Applications Overview", members_root_path
