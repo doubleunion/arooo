@@ -27,7 +27,15 @@
     = f.submit "Submit", class: "btn btn-primary"
 
 %h3 Step Two: Set Up Monthly Dues
-%p Email #{ mail_to MEMBERSHIP_EMAIL } if you have any questions or concerns about dues!
+
+%p
+  We gladly welcome and support members who can't afford to pay membership dues!
+  That's why any member can request a scholarship due to financial need at any time.
+  There is no waiting period before you can apply for a scholarship or other restriction on when or how often you can ask for a scholarship.
+%p
+  To apply for a scholarship, go to the #{ link_to "manage dues page", members_user_dues_path(@user) } and fill out the form.
+
+%p Email #{ mail_to MEMBERSHIP_EMAIL } if you have any questions or concerns about dues.
 = render 'members/dues/form', action: "Set Up"
 
 %h3 Step Three: Check Out the Mailing List
