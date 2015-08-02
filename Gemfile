@@ -12,7 +12,7 @@ gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'pg'
 gem 'protected_attributes'
-gem 'state_machine'
+gem 'state_machine', git: "https://github.com/seuros/state_machine"
 gem 'kaminari'
 gem 'actionpack-action_caching', github: 'rails/actionpack-action_caching'
 gem 'rails_autolink'
