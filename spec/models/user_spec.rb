@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   describe "validations" do
-    it { should validate_presence_of :username }
+    it { is_expected.to validate_presence_of :username }
 
     describe "email address" do
       let(:existing_user) { create :user }
@@ -12,7 +12,7 @@ describe User do
 
       it "doesn't allow duplication email addresses" do
         subject
-        expect(new_user.valid?).to be_false
+        expect(new_user.valid?).to be_falsey
       end
 
       it "returns the correct error" do
@@ -23,22 +23,22 @@ describe User do
   end
 
   it 'should be in visitor state by default' do
-    User.new.state.should == 'visitor'
+    expect(User.new.state).to eq('visitor')
   end
 
   it 'should have profile after created' do
-    User.new.profile.should be_nil
-    User.make!.profile.should be_an_instance_of(Profile)
+    expect(User.new.profile).to be_nil
+    expect(User.make!.profile).to be_an_instance_of(Profile)
   end
 
   it 'should accept nested attributes for profile' do
     user = User.make!
-    user.profile.twitter.should be_nil
+    expect(user.profile.twitter).to be_nil
     user.update_attributes!(profile_attributes: {
         id: user.profile.id,
         twitter: 'Horse_ebooks'
       })
-    user.profile.twitter.should eq('Horse_ebooks')
+    expect(user.profile.twitter).to eq('Horse_ebooks')
   end
 
   it 'should transition from visitor to applicant' do
@@ -47,9 +47,9 @@ describe User do
     user.email = 'cat@example.org'
     user.save!
 
-    user.state.should == 'visitor'
+    expect(user.state).to eq('visitor')
     user.make_applicant!
-    user.state.should == 'applicant'
+    expect(user.state).to eq('applicant')
   end
 
   it 'should not transition from visitor to member' do
@@ -58,7 +58,7 @@ describe User do
     user.email = 'cat@example.org'
     user.save!
 
-    user.state.should == 'visitor'
+    expect(user.state).to eq('visitor')
     expect { user.make_member! }.to raise_error(StateMachine::InvalidTransition)
   end
 

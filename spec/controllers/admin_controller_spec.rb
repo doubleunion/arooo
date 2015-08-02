@@ -10,7 +10,7 @@ describe AdminController do
       it 'allows user to view admin applications index' do
         login_as(:voting_member, is_admin: true)
         get :applications
-        response.should render_template :applications
+        expect(response).to render_template :applications
       end
     end
 
@@ -42,7 +42,7 @@ describe AdminController do
       it 'allows admin to view admin new members index' do
         login_as(:voting_member, is_admin: true)
         get :new_members
-        response.should render_template :new_members
+        expect(response).to render_template :new_members
       end
     end
 
@@ -50,10 +50,16 @@ describe AdminController do
       let!(:member) { create(:member) }
       let(:params) { { user: { id: member.id} } }
 
+      subject { post :setup_complete, params }
+
+      before {
+        member.update(email_for_google: "bananas@example.com")
+      }
+
       it 'allows the admin to mark user setup as complete' do
         login_as(:voting_member, is_admin: true)
-        post :setup_complete, params
-        expect {member.reload.setup_complete}.to be_true
+
+        expect { subject  }.to change{ member.reload.setup_complete }.from(nil).to(true)
       end
     end
 
@@ -85,7 +91,7 @@ describe AdminController do
       it 'should redirect to root if logged in as member' do
         login_as(:member)
         get :applications
-        response.should redirect_to :root
+        expect(response).to redirect_to :root
       end
     end
 
@@ -93,7 +99,7 @@ describe AdminController do
       it 'should redirect to root if logged in as member' do
         login_as(:member)
         get :dues
-        response.should redirect_to :root
+        expect(response).to redirect_to :root
       end
     end
   end

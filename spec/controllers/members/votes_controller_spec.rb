@@ -28,7 +28,7 @@ describe Members::VotesController do
       describe "voting no" do
         it "stores the correct value" do
           subject
-          expect(Vote.last.value).to be_false
+          expect(Vote.last.value).to be_falsey
         end
       end
 
@@ -39,7 +39,7 @@ describe Members::VotesController do
 
         it "stores the correct value" do
           subject
-          expect(Vote.last.value).to be_true
+          expect(Vote.last.value).to be_truthy
         end
       end
     end

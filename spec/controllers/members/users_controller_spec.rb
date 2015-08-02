@@ -13,7 +13,7 @@ describe Members::UsersController do
 
     it 'redirects if not logged in' do
       subject
-      response.should redirect_to :root
+      expect(response).to redirect_to :root
     end
   end
 
@@ -25,7 +25,7 @@ describe Members::UsersController do
 
     it 'redirects if not logged in' do
       subject
-      response.should redirect_to :root
+      expect(response).to redirect_to :root
     end
   end
 
@@ -37,7 +37,7 @@ describe Members::UsersController do
 
     it 'redirects if not logged in' do
       subject
-      response.should redirect_to :root
+      expect(response).to redirect_to :root
     end
   end
 
@@ -49,7 +49,7 @@ describe Members::UsersController do
 
     it 'redirects if not logged in' do
       subject
-      response.should redirect_to :root
+      expect(response).to redirect_to :root
     end
 
     describe "updating stuff" do
@@ -63,11 +63,11 @@ describe Members::UsersController do
             profile_attributes: { skills: 'writing awesome tests' }
           }
 
-          response.should render_template :edit
+          expect(response).to render_template :edit
 
-          user.name.should eq('FooBar TooBar')
-          user.email.should eq('someone2@foo.bar')
-          user.profile.skills.should eq('writing awesome tests')
+          expect(user.name).to eq('FooBar TooBar')
+          expect(user.email).to eq('someone2@foo.bar')
+          expect(user.profile.skills).to eq('writing awesome tests')
         end
       end
 
@@ -92,7 +92,7 @@ describe Members::UsersController do
 
     it 'redirects if not logged in' do
       subject
-      response.should redirect_to :root
+      expect(response).to redirect_to :root
     end
   end
 
@@ -109,10 +109,10 @@ describe Members::UsersController do
         email_for_google: 'googly-eyes@example.com'
       }
 
-      response.should render_template "setup"
+      expect(response).to render_template "setup"
 
-      user.dues_pledge.should eq(25)
-      user.email_for_google.should eq('googly-eyes@example.com')
+      expect(user.dues_pledge).to eq(25)
+      expect(user.email_for_google).to eq('googly-eyes@example.com')
     end
   end
 end

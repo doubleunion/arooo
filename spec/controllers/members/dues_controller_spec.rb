@@ -13,7 +13,7 @@ describe Members::DuesController do
 
     it "redirects if not logged in" do
       subject
-      response.should redirect_to :root
+      expect(response).to redirect_to :root
     end
   end
 

@@ -59,7 +59,7 @@ describe ApplicationsMailer do
       let(:mail) { stale_application.no_sponsor_email }
 
       it 'is sent if application is stale' do
-        mail.should deliver_to(stale_application.user.email)
+        expect(mail).to deliver_to(stale_application.user.email)
       end
     end
   end

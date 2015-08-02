@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Application do
   describe "validations" do
-    it { should validate_presence_of :user_id }
+    it { is_expected.to validate_presence_of :user_id }
   end
 
   describe '#submit' do
@@ -20,13 +20,13 @@ describe Application do
 
     before do
       application.submitted_at = Time.now - 8.days
-      application.stub_chain(:yes_votes, :count).and_return 6
-      application.stub_chain(:no_votes, :count).and_return 0
-      application.stub_chain(:sponsorships, :count).and_return 1
+      expect(application).to receive_message_chain(:yes_votes, :count) { 6 }
+      expect(application).to receive_message_chain(:no_votes, :count) { 0 }
+      expect(application).to receive_message_chain(:sponsorships, :count) { 1 }
     end
 
     it "should be approvable" do
-      expect(application.approvable?).to be_true
+      expect(application.approvable?).to be_truthy
     end
 
     context "with an approvable application that's too new" do
@@ -35,7 +35,7 @@ describe Application do
       end
 
       it "should not be approvable" do
-        expect(application.approvable?).to be_false
+        expect(application.approvable?).to be_falsey
       end
     end
   end
@@ -44,13 +44,13 @@ describe Application do
     let(:application) { create(:application) }
 
     before do
-      application.stub_chain(:yes_votes, :count).and_return
-      application.stub_chain(:no_votes, :count).and_return 2
-      application.stub_chain(:sponsorships, :count).and_return 0
+      allow(application).to receive_message_chain(:yes_votes, :count)
+      allow(application).to receive_message_chain(:no_votes, :count) { 2 }
+      allow(application).to receive_message_chain(:sponsorships, :count) { 0 }
     end
 
     it "should be rejectable" do
-      expect(application.rejectable?).to be_true
+      expect(application.rejectable?).to be_truthy
     end
   end
 end

@@ -68,7 +68,7 @@ describe Members::StatusesController do
         end
 
         it "does not change the member's status" do
-          expect { subject }.not_to change { member.state }.from("member").to("key_member")
+          expect { subject }.not_to change { member.state }.from("member")
         end
 
         it "rerenders the form with a flash" do
@@ -87,7 +87,7 @@ describe Members::StatusesController do
       end
 
       it "does not change the member's status" do
-        expect { subject }.not_to change { member.state }.from("voting_member").to("key_member")
+        expect { subject }.not_to change { member.state }.from("key_member")
       end
     end
   end

@@ -3,7 +3,6 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'email_spec'
-require 'rspec/autorun'
 require 'capybara/rails'
 require 'rack_session_access/capybara'
 require 'shoulda/matchers'
@@ -75,11 +74,11 @@ module AuthHelper
   def login_as(user_or_state, attrs = {})
     user = user_or_state.is_a?(User) ? user_or_state : nil
     user ||= User.make!(user_or_state, attrs)
-    controller.stub(:current_user).and_return(user)
+    allow(controller).to receive(:current_user).and_return(user)
     user
   end
 
   def log_in(user)
-    controller.stub(:current_user).and_return(user)
+    allow(controller).to receive(:current_user).and_return(user)
   end
 end

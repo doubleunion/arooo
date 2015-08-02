@@ -38,8 +38,8 @@ describe 'sponsoring an applicant' do
 
     it 'cant see sponsorship checkbox' do
       visit members_application_path(application)
-      page.should have_text("You'll be able to sponsor applicants once you've been a member for 2 weeks!")
-      page.should_not have_css('.is_sponsor')
+      expect(page).to have_text("You'll be able to sponsor applicants once you've been a member for 2 weeks!")
+      expect(page).not_to have_css('.is_sponsor')
     end
   end
 end

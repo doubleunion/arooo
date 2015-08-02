@@ -10,7 +10,7 @@ describe Admin::MembershipsController do
       context "as HTML" do
         it "allows admin to view admin members index" do
           get :index, format: "html"
-          response.should render_template :index
+          expect(response).to render_template :index
         end
       end
 
@@ -22,8 +22,8 @@ describe Admin::MembershipsController do
 
         it "allows admin to view members as json" do
           get :index, format: "json"
-          response.body.should include "Several Lemurs"
-          response.body.should include summary
+          expect(response.body).to include "Several Lemurs"
+          expect(response.body).to include summary
         end
       end
     end
@@ -34,14 +34,14 @@ describe Admin::MembershipsController do
       context "as HTML" do
         it "should redirect to root if logged in as member" do
           get :index, format: "html"
-          response.should redirect_to :root
+          expect(response).to redirect_to :root
         end
       end
 
       context "as JSON" do
         it "should redirect to root if logged in as member" do
           get :index, format: "json"
-          response.should redirect_to :root
+          expect(response).to redirect_to :root
         end
       end
     end
@@ -150,7 +150,7 @@ describe Admin::MembershipsController do
           let(:updated_state) { "bananas" }
 
           it "raises an error" do
-            expect { subject }.to raise_error
+            expect { subject }.to raise_error(NoMethodError)
           end
         end
       end

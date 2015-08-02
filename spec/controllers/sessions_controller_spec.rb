@@ -55,13 +55,12 @@ describe SessionsController do
         end
 
         it "makes the visitor an applicant" do
-          subject
-          expect { user.reload.applicant? }.to be_true
+          expect { subject }.to change { user.reload.state }.from("visitor").to("applicant")
         end
 
         it "redirects to confirm their email address" do
           subject
-          expect { response }.to redirect_to get_email_path
+          expect(response).to redirect_to get_email_path
         end
 
         it "does not create a session for them" do
@@ -83,7 +82,7 @@ describe SessionsController do
 
         it "redirects to the application edit page" do
           subject
-          expect { response }.to redirect_to edit_application_path(user.application)
+          expect(response).to redirect_to edit_application_path(user.application)
         end
       end
 
@@ -101,7 +100,7 @@ describe SessionsController do
 
         it "redirects to the member root path" do
           subject
-          expect { response }.to redirect_to members_root_path
+          expect(response).to redirect_to members_root_path
         end
 
         it "creates session for member" do
@@ -118,7 +117,7 @@ describe SessionsController do
 
           it "redirects to the member root path" do
             subject
-            expect { response }.to redirect_to members_root_path
+            expect(response).to redirect_to members_root_path
           end
         end
       end
@@ -174,7 +173,7 @@ describe SessionsController do
         it "creates user and makes applicant" do
           expect { subject }.to change { User.count }.from(0).to(1)
 
-          expect(user.applicant?).to be_true
+          expect(user.applicant?).to be_truthy
 
           expect(user.username).to be_present
           expect(authentication.provider).to be_present
