@@ -39,7 +39,7 @@ class AdminController < ApplicationController
     user = User.find(user_params[:id])
     user.setup_complete = true
     if user.save
-      ApplicationsMailer.member_access(user.application).deliver
+      ApplicationsMailer.member_access(user.application).deliver_now
     else
       flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
     end

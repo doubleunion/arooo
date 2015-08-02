@@ -54,7 +54,7 @@ class Application < ActiveRecord::Base
 
   def no_sponsor_email
     if stale? && stale_email_sent_at.nil?
-      ApplicationsMailer.no_sponsor(self).deliver.tap do |message|
+      ApplicationsMailer.no_sponsor(self).deliver_now.tap do |message|
         touch :stale_email_sent_at
       end
     end
@@ -62,14 +62,14 @@ class Application < ActiveRecord::Base
 
   def votes_threshold_email
     if rejectable? || approvable?
-      ApplicationsMailer.votes_threshold(self).deliver
+      ApplicationsMailer.votes_threshold(self).deliver_now
     end
   end
 
   state_machine :state, initial: :started do
     after_transition started: :submitted do |application, transition|
-      ApplicationsMailer.confirmation(application).deliver
-      ApplicationsMailer.notify_members(application).deliver
+      ApplicationsMailer.confirmation(application).deliver_now
+      ApplicationsMailer.notify_members(application).deliver_now
       application.touch :submitted_at
     end
 
@@ -79,7 +79,7 @@ class Application < ActiveRecord::Base
 
     after_transition submitted: :approved do |application|
       application.user.make_member
-      ApplicationsMailer.approved(application).deliver
+      ApplicationsMailer.approved(application).deliver_now
     end
 
     event :submit do

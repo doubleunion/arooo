@@ -29,6 +29,6 @@ class Members::StatusesController < Members::MembersController
   end
 
   def send_keymember_email
-    MemberStatusMailer.new_key_member(current_user).deliver
+    MemberStatusMailer.new_key_member(current_user).deliver_now
   end
 end

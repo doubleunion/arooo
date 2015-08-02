@@ -16,7 +16,7 @@ module StripeEventHelper
       else
         email = event.data.object.card.name
       end
-      DuesMailer.failed(email).deliver
+      DuesMailer.failed(email).deliver_now
     end
   end
 end
