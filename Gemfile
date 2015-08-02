@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.5'
+ruby '2.2.2'
 
 gem 'rails', '4.0.8'
 gem 'jquery-rails'
@@ -41,7 +41,8 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '2.14.2'
+  gem 'rspec-rails', '2.99.0'
+  gem 'test-unit' # remove once rails version upgraded >= 4.1
   gem 'thin'
   gem 'faker'
   gem 'rack_session_access'
