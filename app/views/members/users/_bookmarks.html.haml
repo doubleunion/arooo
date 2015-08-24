@@ -5,7 +5,7 @@
     %li= link_to "Members folder in Google Drive", "https://drive.google.com/folderview?id=0B6a_aDP-2fOVV2FQLW5FVTZ2Mjg", target: "_blank"
     %li= link_to "Members Handbook", "https://docs.google.com/document/d/1yYXAj8rzQMiYt2xFdzm2xEOe0LCHohWNrMWzad-4mtQ/edit", target: "_blank"
     %li= link_to "DU Members calendar in Google calendars", "https://www.google.com/calendar/embed?src=br12b81lfe63rggddlg0k92mko@group.calendar.google.com&ctz=America/Los_Angeles", target: "_blank"
-    %li #{ link_to "DU wiki", "http://wiki.doubleunion.org/index.php?title=Main_Page", target: "_blank" } (publicly readable)
+    %li= link_to "DU Slack chat", "https://doubleunion.slack.com/", target: "_blank"
     %li= link_to "the DU app on GitHub", "https://github.com/doubleunion/arooo", target: "_blank"
 
 - if current_user.key_member? or current_user.voting_member?
