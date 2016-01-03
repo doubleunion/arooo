@@ -20,6 +20,9 @@ describe Members::DuesController do
   describe "POST update" do
     before do
       StripeMock.start
+      # TODO: remove api_key setting when this issue is fixed:
+      # https://github.com/rebelidealist/stripe-ruby-mock/issues/209
+      Stripe.api_key = "coolapikey"
       Stripe::Plan.create(:id => "test_plan",
         :amount => 5000,
         :currency => "usd",
