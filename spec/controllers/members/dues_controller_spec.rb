@@ -59,11 +59,14 @@ describe Members::DuesController do
     end
 
     context "when the user already has a Stripe ID" do
-      before do
+      let(:customer) do
         customer = Stripe::Customer.create({
             email: "user@example.com",
-            card: StripeMock.generate_card_token({})
+            source: StripeMock.generate_card_token({})
           })
+      end
+
+      before do
         user.update_column(:stripe_customer_id, customer.id)
       end
 
@@ -79,17 +82,15 @@ describe Members::DuesController do
         end
       end
 
-      context "has active subscription" do
-        before do
-          Stripe::Customer.retrieve(user.stripe_customer_id).subscriptions.create({:plan => "test_plan"})
-        end
+      context "has a prior payment source" do
+        before { customer = Stripe::Customer.retrieve(user.stripe_customer_id) }
 
-        let!(:previous_default_card) { Stripe::Customer.retrieve(user.stripe_customer_id).cards.first }
+        let!(:previous_default_source) { Stripe::Customer.retrieve(user.stripe_customer_id).sources.first }
 
         it "updates their card" do
           post_dues
           customer = Stripe::Customer.retrieve(user.stripe_customer_id)
-          expect(customer.default_card).to_not eq(previous_default_card)
+          expect(customer.default_source).to_not eq(previous_default_source)
           subscription = customer.subscriptions.first
           expect(subscription.plan.id).to eq("test_plan")
         end

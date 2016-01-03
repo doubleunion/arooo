@@ -16,7 +16,7 @@ class Members::DuesController < Members::MembersController
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
       if params[:token]
         # Only try to update card if there is one. We can imagine a future scenario where a member can update their dues without inputting their CC info again.
-        customer.card = params[:token]
+        customer.source = params[:token]
         customer.save
       end
       subscription = customer.subscriptions.first
@@ -31,7 +31,7 @@ class Members::DuesController < Members::MembersController
       stripe_customer = Stripe::Customer.create(
         email: params[:email],
         plan: params[:plan],
-        card: params[:token]
+        source: params[:token]
       )
 
       current_user.update_attribute(:stripe_customer_id, stripe_customer.id)

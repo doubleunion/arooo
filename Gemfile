@@ -42,7 +42,6 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.1'
-  gem 'test-unit' # remove once rails version upgraded >= 4.1
   gem 'thin'
   gem 'faker'
   gem 'rack_session_access'
@@ -63,6 +62,6 @@ group :test do
   gem 'machinist'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
-  gem 'stripe-ruby-mock', '~> 1.10.1.7'
+  gem 'stripe-ruby-mock', '~> 2.2.1', :require => 'stripe_mock'
   gem 'rspec-collection_matchers'
 end

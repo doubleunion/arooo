@@ -77,3 +77,6 @@ pickle-email-*.html
 
 # Ignore application configuration
 /config/application.yml
+
+# Don't need byebug history
+.byebug_history
