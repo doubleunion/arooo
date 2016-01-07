@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Members::StatusesController do
+describe Members::KeyMembersController do
   include AuthHelper
 
   let(:member) { create :member }

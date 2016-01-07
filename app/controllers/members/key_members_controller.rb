@@ -1,4 +1,4 @@
-class Members::StatusesController < Members::MembersController
+class Members::KeyMembersController < Members::MembersController
 
   def edit
   end

@@ -10,7 +10,7 @@ describe "becoming a key member" do
     let(:member) { create :member }
 
     it "allows a member to become a key member" do
-      visit edit_members_user_status_path(member)
+      visit edit_members_user_key_members_path(member)
       check "agreements[kick_out]"
       check "agreements[lock_up]"
       check "agreements[take_action]"
