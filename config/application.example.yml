@@ -7,6 +7,8 @@
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
 # Add application configuration variables here, as shown below.
 #
+SECRET_TOKEN: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
 MANDRILL_USERNAME:
 MANDRILL_API_KEY:
 

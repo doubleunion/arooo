@@ -43,12 +43,9 @@ If you are new to Rails, follow the [RailsBridge Installfest instructions](http:
 1. `cp config/application.example.yml config/application.yml`
 
 1. Edit config/application.yml
-    * set `GITHUB_CLIENT_KEY` and `GITHUB_CLIENT_SECRET` to the Client ID and
+    * Set `GITHUB_CLIENT_KEY` and `GITHUB_CLIENT_SECRET` to the Client ID and
       Client Secret from your Github application
-    * don't forget to restart your Rails server so it can see your shiny new GitHub key & secret
-
-1. Use `rake secret` to generate a secret token, then set that as an environment variable called SECRET_TOKEN.
-   `export SECRET_TOKEN= <what rake secret generated >`
+    * Don't forget to restart your Rails server so it can see your shiny new GitHub key & secret
 
 ## Specs
 
