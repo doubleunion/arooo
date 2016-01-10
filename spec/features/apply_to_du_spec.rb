@@ -13,7 +13,7 @@ describe "applying to double union" do
     visit new_application_path
 
     fill_in "Twitter username", with: "@beepboopbeep"
-    fill_in "Blog url", with: "http://blog.awesome.com"
+    fill_in "Blog URL", with: "http://blog.awesome.com"
     check "user_application_attributes_agreement_terms"
     check "user_application_attributes_agreement_policies"
     check "user_application_attributes_agreement_female"
