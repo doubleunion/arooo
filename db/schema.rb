@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014030515) do
+ActiveRecord::Schema.define(version: 20160109231413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20141014030515) do
     t.datetime "last_stripe_charge_succeeded"
     t.string   "username"
     t.boolean  "is_scholarship",               default: false
+    t.boolean  "voting_policy_agreement",                  default: false
   end
 
   create_table "votes", force: true do |t|

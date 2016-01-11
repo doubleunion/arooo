@@ -35,10 +35,11 @@
               %span.collapse{class: "save-failure-#{user.id}"} Note not saved :(
 
         %td.buttons
-          = form_for user, url: admin_change_membership_state_path(user) do |f|
-            = f.hidden_field(:id)
-            = f.hidden_field(:updated_state, value: :former_member)
-            = f.submit "Revoke DU Membership", class: "btn reject-btn", data: { confirm: "Are you sure you'd like to cancel #{user.name}'s DU membership?" }
+          - if user.voting_policy_agreement.present? && !user.voting_member?
+            = form_for user, url: admin_change_membership_state_path(user) do |f|
+              = f.hidden_field(:id)
+              = f.hidden_field(:updated_state, value: :voting_member)
+              = f.submit "Make Voting member", class: "btn accept-btn", data: { confirm: "Are you sure?" }
           - if user.voting_member?
             = form_for user, url: admin_change_membership_state_path(user) do |f|
               = f.hidden_field(:id)
@@ -49,12 +50,12 @@
               = f.hidden_field(:id)
               = f.hidden_field(:updated_state, value: :member)
               = f.submit "Revoke Key membership", class: "btn reject-btn", data: { confirm: "Are you sure?" }
-            = form_for user, url: admin_change_membership_state_path(user) do |f|
-              = f.hidden_field(:id)
-              = f.hidden_field(:updated_state, value: :voting_member)
-              = f.submit "Make Voting member", class: "btn accept-btn", data: { confirm: "Are you sure?" }
           - else
             = form_for user, url: admin_change_membership_state_path(user) do |f|
               = f.hidden_field(:id)
               = f.hidden_field(:updated_state, value: :key_member)
               = f.submit "Make Key member", class: "btn accept-btn", data: { confirm: "Are you sure?" }
+          = form_for user, url: admin_change_membership_state_path(user) do |f|
+            = f.hidden_field(:id)
+            = f.hidden_field(:updated_state, value: :former_member)
+            = f.submit "Revoke DU Membership", class: "btn reject-btn", data: { confirm: "Are you sure you'd like to cancel #{user.name}'s DU membership?" }
