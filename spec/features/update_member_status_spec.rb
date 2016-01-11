@@ -20,6 +20,26 @@ describe "becoming a key member" do
   end
 end
 
+describe "submitting the voting member agreement" do
+  let(:member) { create(:member) }
+
+  before { page.set_rack_session(user_id: member.id) }
+
+  it "allows a member to submit the voting member agreement" do
+    visit members_root_path
+    click_link "Become a voting member"
+    expect(page).to have_content "Voting Member Agreement"
+    check "I have read and agree to uphold the confidentiality policy."
+    check "I have read and agree to uphold the voting member policy document."
+    check "I agree to vote on applications according to the criteria laid out in the voting member policy."
+    check "I have attended a voting member training"
+    check "I am able to dedicate 3-4 hours per week to voting during the membership drive"
+    check "I am open to having uncomfortable discussions during the course of voting on applications."
+    click_on "Submit"
+    expect(page).to have_content "Thank you for volunteering to serve as a voting member! A membership coordinator will be in touch soon."
+  end
+end
+
 describe "marking members as on scholarship" do
   before { page.set_rack_session(user_id: admin.id) }
 
@@ -77,6 +97,29 @@ describe "updating membership status" do
         end
       end
 
+      context "who has agreed to the voting member agreement" do
+        before { member.update!(voting_policy_agreement: true) }
+
+        it "allows a member to become a voting member" do
+          visit admin_memberships_path
+          click_button "Make Voting member"
+
+          expect(page).to have_content "#{member.name} is now a voting member."
+          within(".user-#{member.id}") do
+            expect(page).to have_content "voting member"
+          end
+        end
+      end
+
+      context "who has not agreed to the voting member agreement" do
+        it "does not show the make voting member button" do
+          visit admin_memberships_path
+          click_button "Make Key member"
+
+          expect(page).not_to have_content "Make voting member"
+        end
+      end
+
       it "allows membership to be cancelled" do
         visit admin_memberships_path
         within(".user-#{member.id}") do
@@ -116,7 +159,7 @@ describe "updating membership status" do
     context "with a voting member" do
       let!(:member) { create :voting_member }
 
-      it "allows key membership to be cancelled" do
+      it "allows voting membership to be cancelled" do
         visit admin_memberships_path
         within(".user-#{member.id}") do
           click_button "Revoke Voting membership"

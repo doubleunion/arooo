@@ -1,0 +1,38 @@
+%h1 Voting Member Agreement
+
+%p
+  Filling out this form makes you eligible to become a voting member, but a membership coordinator will still need to confirm
+  that you attended a voting member training and then give you voting member privileges in the app.
+
+%p Please make sure you've read through the following documents before filling out this form:
+
+%ul
+  %li= link_to "DU voting member policies", Configurable[:voting_member_policy_doc], target: "_blank"
+  %li= link_to "DU confidentiality policy", POLICIES_URL, target: "_blank"
+
+= form_tag members_user_voting_members_path(current_user.id), method: "patch" do
+  %p
+    = check_box_tag "agreements[confidentiality]", 1, false, required: true
+    = label_tag "agreements[confidentiality]", "I have read and agree to uphold the #{ link_to "confidentiality policy", POLICIES_URL, target: "_blank"}.".html_safe
+
+  %p
+    = check_box_tag "agreements[policy_agreement]", 1, false, required: true
+    = label_tag "agreements[policy_agreement]", "I have read and agree to uphold the #{ link_to "voting member policy document", Configurable[:voting_member_policy_doc], target: "_blank" }.".html_safe
+
+  %p
+    = check_box_tag "agreements[voting_principles]", 1, false, required: true
+    = label_tag "agreements[voting_principles]", "I agree to vote on applications according to the criteria laid out in the #{ link_to "voting member policy", Configurable[:voting_member_policy_doc] }.".html_safe
+
+  %p
+    = check_box_tag "agreements[attended_training]", 1, false, required: true
+    = label_tag "agreements[attended_training]", "I have attended a voting member training."
+
+  %p
+    = check_box_tag "agreements[time_commitment]", 1, false, required: true
+    = label_tag "agreements[time_commitment]", "I am able to dedicate 3-4 hours per week to voting during the membership drive."
+
+  %p
+    = check_box_tag "agreements[hard_conversations]", 1, false, required: true
+    = label_tag "agreements[hard_conversations]", "I am open to having uncomfortable discussions during the course of voting on applications."
+
+  = submit_tag "Submit", class: "btn"
