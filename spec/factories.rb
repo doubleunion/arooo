@@ -28,6 +28,7 @@ FactoryGirl.define do
 
     factory :voting_member do
       state "voting_member"
+      voting_policy_agreement true
     end
 
     factory :applicant do

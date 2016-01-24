@@ -107,6 +107,10 @@ class User < ActiveRecord::Base
       transition [:member, :voting_member, :key_member] => :former_member
     end
 
+    after_transition on: [:make_member, :make_key_member, :make_former_member] do |user, _|
+      user.update(voting_policy_agreement: false)
+    end
+
     state :visitor
     state :applicant
     state :member

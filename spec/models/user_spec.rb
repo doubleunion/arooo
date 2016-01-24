@@ -80,6 +80,14 @@ describe User do
     it "should transition from key member to member" do
       expect { subject }.to change { member.state }.from("key_member").to("member")
     end
+
+    context "with a voting member" do
+      let(:member) { create(:voting_member) }
+
+      it "should remove voting member agreement status" do
+        expect { subject }.to change { member.voting_policy_agreement }.from(true).to(false)
+      end
+    end
   end
 
   describe "#make_key_member" do
@@ -89,6 +97,10 @@ describe User do
 
     it "should transition from voting_member to member" do
       expect { subject }.to change { member.state }.from("voting_member").to("key_member")
+    end
+
+    it "should remove voting member agreement status" do
+      expect { subject }.to change { member.voting_policy_agreement }.from(true).to(false)
     end
 
     context "with an applicant" do
