@@ -17,7 +17,7 @@ gem 'kaminari'
 gem 'actionpack-action_caching', github: 'rails/actionpack-action_caching'
 gem 'rails_autolink'
 gem 'redcarpet'
-gem 'configurable_engine', '0.3.0' #TODO: upgrade once PR fixing bug is merged
+gem 'configurable_engine'
 gem 'bugsnag'
 gem 'stripe'
 gem 'stripe_event'
