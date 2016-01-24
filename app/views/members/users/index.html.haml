@@ -3,7 +3,7 @@
     - if current_user.member?
       = link_to "Become a key member", edit_members_user_key_members_path(current_user), class: "btn btn-default"
 
-    - unless current_user.voting_member?
+    - unless current_user.voting_policy_agreement
       = link_to "Become a voting member", edit_members_user_voting_members_path(current_user), class: "btn btn-default"
 
 = render 'bookmarks'
