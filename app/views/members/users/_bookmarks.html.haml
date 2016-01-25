@@ -11,10 +11,4 @@
 - if current_user.key_member? or current_user.voting_member?
   %h3 Bookmarks for Key Members
   %ul
-    %li #{ link_to "Instructions for locking up the building", "https://docs.google.com/document/d/1rFoyl5FJjDdr0LqiVacQPuKyj_rsmPpOnAGc77cWTAQ/edit#heading=h.ss1frhywqp3p" }
-
-- if current_user.voting_member?
-  %h3 Bookmarks for Voting Members
-  %ul
-    %li= link_to "Voting Members mailing list", "http://lists.doubleunion.org/listinfo.cgi/keymembers-doubleunion.org", target: "_blank"
-    %li= link_to "Voting Members folder in Google Drive", "https://drive.google.com/#folders/0B6a_aDP-2fOVazRJMWFYSU50clU", target: "_blank"
+    %li #{ link_to "Instructions for accessing the space", "https://docs.google.com/document/d/1yYXAj8rzQMiYt2xFdzm2xEOe0LCHohWNrMWzad-4mtQ/edit#heading=h.bzddvad2czon", target: "_blank" }
