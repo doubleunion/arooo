@@ -2,17 +2,21 @@
 
 %p
   Hello! We're glad you're interested in becoming a member of Double Union. We love reading applications and look forward to meeting you if we haven't already.
-
-%p
   If you have any questions about the application or application process, please email our membership coordinators at #{ mail_to JOIN_EMAIL }.
-
-%p
-  If this application looks blanker than you left it, double check that you logged in with the same service as before by logging out and trying the other one (GitHub or Google).
 
 %p
   You can save this application at any time before you submit it. Once
   submitted, it will only be visible to Double Union members.  No part of this
   application will ever be public.
+
+%p
+  A small tip: The paragraph questions are parsed as markdown! Here's a #{ link_to "markdown syntax cheatsheet", "https://caleorourke.gitbooks.io/redcarpet-syntax/content/cheatsheet/index.html", target: "_blank"}.
+  That means that you can also just type in sentences or paragraphs and it'll look fine, too.
+  You can also #{ link_to "preview your application", application_path(@user.application), target: "_blank"} before or after submitting it.
+
+%p
+  If this application looks blanker than you left it, double check that you logged in with the same service as before by logging out and trying the other one (GitHub or Google).
+
 
 - if Configurable[:application_deadline_warning].present?
   .alert.alert-info
@@ -83,7 +87,7 @@
             Feel free to include extra URLs if you like. It's helpful to include a little extra info here if you don't have a
             public online presence (such as Twitter or a website).
           %p.small Required — 2000 character maximum.
-        %td= profile_fields.text_area :summary, rows: 10, required: true
+        %td= profile_fields.text_area :summary, rows: 10
 
       %tr
         %td
@@ -92,7 +96,7 @@
             We ask this question since we'd like to know if you have interests and goals related to joining DU that are
             approximately compatible with the general broad goals of DU (and what it can offer to members).
           %p.small Required — 2000 character maximum.
-        %td= profile_fields.text_area :reasons, rows: 10, required: true
+        %td= profile_fields.text_area :reasons, rows: 10
 
       %tr
         %td
@@ -104,7 +108,7 @@
             don't have a formal/academic way of talking about this! You may also find it helpful to look at our
             #{ link_to "base assumptions", BASE_ASSUMPTIONS_URL } since they help explain DU's shared values.
           %p.small Required — 2000 character maximum.
-        %td= profile_fields.text_area :feminism, rows: 10, required: true
+        %td= profile_fields.text_area :feminism, rows: 10
 
       %tr
         %td
@@ -114,14 +118,14 @@
             to hold during the membership application round (or as public events in general). This doesn't have to be
             long.
           %p.small Required — 2000 character maximum.
-        %td= profile_fields.text_area :projects, rows: 10, required: true
+        %td= profile_fields.text_area :projects, rows: 10
 
       %tr
         %td
           = profile_fields.label :skills, 'What skills are you most interested in learning, improving, and/or teaching?'
           %p.small Same as above - we're curious! This doesn't have to be long.
           %p.small Required — 2000 character maximum.
-        %td= profile_fields.text_area :skills, rows: 10, required: true
+        %td= profile_fields.text_area :skills, rows: 10
 
       %tr.nested-table
         %td{ colspan: 2 }
@@ -131,11 +135,11 @@
 
               %tr
                 %td.pt-10= app_fields.check_box :agreement_terms
-                %td.pt-10.pl-10= app_fields.label :agreement_terms, "I understand the #{link_to 'privileges and responsibilities', MEMBERSHIP_URL} that come with Double Union membership.".html_safe, class: 'checkbox-label'
+                %td.pt-10.pl-10= app_fields.label :agreement_terms, "I understand the #{link_to 'privileges and responsibilities', MEMBERSHIP_URL, target: "_blank"} that come with Double Union membership.".html_safe, class: 'checkbox-label'
 
               %tr
                 %td.pt-10= app_fields.check_box :agreement_policies
-                %td.pt-10.pl-10= app_fields.label :agreement_policies, "I agree to all posted #{link_to 'Double Union policies', POLICIES_URL}.".html_safe, class: 'checkbox-label'
+                %td.pt-10.pl-10= app_fields.label :agreement_policies, "I agree to all posted #{link_to 'Double Union policies', POLICIES_URL, target: "_blank"}.".html_safe, class: 'checkbox-label'
 
               %tr
                 %td.pt-10= app_fields.check_box :agreement_female
@@ -153,6 +157,10 @@
   - else
     %p
       When you're done with your application, submit it with the button below.
-      You will be able to edit it at any time.
+      You will be able to edit it any time before the membership drive closes.
+    %p
+      If you're curious what your application will look like to us,
+      you can #{ link_to "check it out here", application_path(@user.application), target: "_blank"}.
+
     %fieldset
       = f.submit 'Submit application', name: 'submit', class: "btn btn-primary"
