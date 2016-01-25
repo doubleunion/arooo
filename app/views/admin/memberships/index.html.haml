@@ -19,6 +19,15 @@
 
       %hr
 
+      %a{"data-toggle" => "collapse" , "href" => "#collapseVotingAgreementFolks"} Members who have filled out the voting policy agreement
+      %div.collapse.out#collapseVotingAgreementFolks
+        %p
+          %ul.list-unstyled
+            - User.where(voting_policy_agreement: true).each do |user|
+              %li= "#{user.name} <#{user.email}>"
+
+      %hr
+
       %p Of note(s): you have to save each note individually, but you can click each button at the end and they will each save without reloading the page (so you won't lose any other notes).
 
 = render partial: 'members', locals: { users: @all_members }
