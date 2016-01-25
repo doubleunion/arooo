@@ -150,11 +150,11 @@
   - else
     = f.submit 'Save without submitting', name: 'save', class: "btn"
 
-  %h3 Submit
   - if @user.application.submitted?
     %p Application submitted #{time_ago_in_words(@user.application.submitted_at)} ago
     %p= link_to 'View application', application_path(@user.application)
   - else
+    %h3 Submit
     %p
       When you're done with your application, submit it with the button below.
       You will be able to edit it any time before the membership drive closes.
