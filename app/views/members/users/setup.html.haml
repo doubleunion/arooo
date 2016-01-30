@@ -5,26 +5,25 @@
 
 %h3 Please do ALL of these things:
 %ol
-  %li Tell us your Google email
+  %li Tell us your Google-friendly email address
   %li Set up your dues via Stripe
   %li Check out the members mailing list
 
 %h3 Step One: Email
 
 %p
-  We use Google docs and calendar to share information.
-  Let us know what email address we should share those things with.
-
-%p
-  If you ever need to update your Google docs/calendar email address, please email
-  #{ mail_to MEMBERSHIP_EMAIL } and we'll get those updated, too.
-
+  We use Google Drive and Google Calendar to share information.
+  Let us know what email address we should share those things with (don't forget to click "Submit").
 
 = form_for @user, url: members_user_setup_path(@user), html: { class: "form form-inline" } do |f|
   .form-group
     = f.label "Google-friendly email"
     = f.text_field :email_for_google, size: 40
     = f.submit "Submit", class: "btn btn-primary"
+
+%p
+  If you later need to update your Google Drive/Calendar email address, please email
+  #{ mail_to MEMBERSHIP_EMAIL } and we'll get those updated.
 
 %h3 Step Two: Set Up Monthly Dues
 
