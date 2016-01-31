@@ -109,8 +109,10 @@ If you need a user that has admin access:
 
 ```
 > user = User.find_by_username('cool_user')
-> user.update_attributes(is_admin: true) # admins can accept/reject applications, update member status, open/close applications, and do new member setup
+> user.update_attributes(is_admin: true)
 ```
+
+Admins can accept/reject applications, update any member's status, see current member's dues, open and close applications, and manage new member setup.
 
 ## Contributing
 
