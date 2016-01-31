@@ -81,7 +81,17 @@ Valid states:
 * `key_member`: access to member admin section, cannot vote, has keys to the space
 * `voting_member`: access to member admin section, can vote, has keys to the space
 
-Manually changing a user's state from the rails console:
+
+### Manually changing a user's state
+
+First, open a Rails console in a terminal window, from the same directory as the app:
+
+```
+rails console
+```
+
+Now you can update any user:
+
 ```
 > user = User.find_by_username('someusername')
 > user.state # => "visitor"
@@ -93,6 +103,13 @@ Manually changing a user's state from the rails console:
 > user.make_applicant!  # => raises invalid state transition error
 
 > user.update_attribute(:state, 'applicant') # bypasses normal checks & succeeds
+```
+
+If you need a user that has admin access:
+
+```
+> user = User.find_by_username('cool_user')
+> user.update_attributes(is_admin: true) # admins can accept/reject applications, update member status, open/close applications, and do new member setup
 ```
 
 ## Contributing
