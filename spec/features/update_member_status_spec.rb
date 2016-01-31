@@ -14,6 +14,7 @@ describe "becoming a key member" do
       check "agreements[kick_out]"
       check "agreements[lock_up]"
       check "agreements[take_action]"
+      check "agreements[attended_events]"
       click_button "Submit"
       expect(page).to have_content "Yay, you're now a key member!"
     end

@@ -35,7 +35,7 @@ describe Members::KeyMembersController do
       context "with the agreement boxes checked" do
         let(:params) { {
           "user_id" => member.id,
-          "agreements" => { "kick_out"=>"1", "lock_up"=>"1", "take_action"=>"1" }
+          "agreements" => { "attended_events" => "1", "kick_out"=>"1", "lock_up"=>"1", "take_action"=>"1" }
         } }
 
         let(:subject) { patch :update, params }
@@ -74,7 +74,7 @@ describe Members::KeyMembersController do
         it "rerenders the form with a flash" do
           subject
           expect(response).to render_template :edit
-          expect(flash[:error]).to include "You must agree to the three statements below to become a key member."
+          expect(flash[:error]).to include "You must agree to the statements below to become a key member."
         end
       end
     end

@@ -1,9 +1,17 @@
 %h1 Become a key member!
 
-%p Keymembers can access Double Union 24/7, host events, and bring guests of any gender. Learn more in the #{ link_to "Members Handbook about key membership", "https://docs.google.com/document/d/1yYXAj8rzQMiYt2xFdzm2xEOe0LCHohWNrMWzad-4mtQ/edit#heading=h.lsg2zdao236h" }.
-%p Before filling out this form, note that a requirement for keymembership is to have attended at least two events at DU (including at least one members meeting or orientation); if you haven't done that yet, do that first. :) When you submit this form, it'll email the membership coordinators to ask them to arrange a time with you to get you set up with access to the space (including a key code and smartlock access). You can also email them at membership@doubleunion.org to follow up.
+%p
+  Keymembers can access Double Union 24/7, host events, and bring guests of any gender. Learn more in the
+  #{ link_to "Members Handbook section on key membership", "https://docs.google.com/document/d/1yYXAj8rzQMiYt2xFdzm2xEOe0LCHohWNrMWzad-4mtQ/edit#heading=h.lsg2zdao236h", target: "_blank" }.
+%p
+  When you submit this form, it'll email the membership coordinators to ask them to arrange a time with you to get you
+  a key code and smartlock access. You can also email them at membership@doubleunion.org to follow up.
 
 = form_tag members_user_key_members_path(current_user.id), method: "patch" do
+  %p
+    = check_box_tag "agreements[attended_events]", 1, false, required: true
+    = label_tag "agreements[attended_events]", "I have attended at least two events at DU (including at least one members meeting or orientation)."
+
   %p
     = check_box_tag "agreements[kick_out]", 1, false, required: true
     = label_tag "agreements[kick_out]", "I would kick out someone who was violating the #{ link_to "anti-harassment policy", POLICIES_URL}.".html_safe
