@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 20160109231413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "applications", force: true do |t|
+  create_table "applications", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "state",                               null: false
-    t.boolean  "agreement_terms",     default: false, null: false
-    t.boolean  "agreement_policies",  default: false, null: false
-    t.boolean  "agreement_female",    default: false, null: false
+    t.string   "state",               limit: 255,                 null: false
+    t.boolean  "agreement_terms",                 default: false, null: false
+    t.boolean  "agreement_policies",              default: false, null: false
+    t.boolean  "agreement_female",                default: false, null: false
     t.datetime "submitted_at"
     t.datetime "processed_at"
     t.datetime "created_at"
@@ -32,16 +32,15 @@ ActiveRecord::Schema.define(version: 20160109231413) do
   add_index "applications", ["state"], name: "index_applications_on_state", using: :btree
   add_index "applications", ["user_id"], name: "index_applications_on_user_id", using: :btree
 
-  create_table "authentications", force: true do |t|
+  create_table "authentications", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
+    t.string   "provider",   limit: 255
+    t.string   "uid",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
   end
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer  "user_id",                     null: false
     t.integer  "application_id",              null: false
     t.string   "body",           limit: 2000, null: false
@@ -51,26 +50,26 @@ ActiveRecord::Schema.define(version: 20160109231413) do
 
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "configurables", force: true do |t|
-    t.string   "name"
-    t.string   "value"
+  create_table "configurables", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "value",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "configurables", ["name"], name: "index_configurables_on_name", using: :btree
 
-  create_table "profiles", force: true do |t|
+  create_table "profiles", force: :cascade do |t|
     t.integer  "user_id",                                        null: false
-    t.string   "twitter"
-    t.string   "facebook"
-    t.string   "website"
-    t.string   "linkedin"
-    t.string   "blog"
+    t.string   "twitter",           limit: 255
+    t.string   "facebook",          limit: 255
+    t.string   "website",           limit: 255
+    t.string   "linkedin",          limit: 255
+    t.string   "blog",              limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "show_name_on_site",              default: false, null: false
-    t.string   "gravatar_email"
+    t.string   "gravatar_email",    limit: 255
     t.string   "summary",           limit: 2000
     t.string   "reasons",           limit: 2000
     t.string   "projects",          limit: 2000
@@ -80,33 +79,33 @@ ActiveRecord::Schema.define(version: 20160109231413) do
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
-  create_table "sponsorships", force: true do |t|
+  create_table "sponsorships", force: :cascade do |t|
     t.integer  "application_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
+  create_table "users", force: :cascade do |t|
+    t.string   "name",                         limit: 255
+    t.string   "email",                        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                                        null: false
+    t.string   "username",                     limit: 255
+    t.string   "state",                        limit: 255,                 null: false
     t.datetime "last_logged_in_at"
-    t.string   "email_for_google"
+    t.string   "email_for_google",             limit: 255
     t.integer  "dues_pledge"
-    t.boolean  "is_admin",                     default: false
+    t.boolean  "is_admin",                                 default: false
     t.boolean  "setup_complete"
     t.text     "membership_note"
-    t.string   "stripe_customer_id"
+    t.string   "stripe_customer_id",           limit: 255
     t.datetime "last_stripe_charge_succeeded"
-    t.string   "username"
-    t.boolean  "is_scholarship",               default: false
+    t.boolean  "is_scholarship",                           default: false
     t.boolean  "voting_policy_agreement",                  default: false
   end
 
-  create_table "votes", force: true do |t|
+  create_table "votes", force: :cascade do |t|
     t.integer  "user_id",        null: false
     t.integer  "application_id", null: false
     t.boolean  "value",          null: false
