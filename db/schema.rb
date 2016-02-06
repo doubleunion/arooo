@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109231413) do
+ActiveRecord::Schema.define(version: 20160206220049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "applications", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "state",               limit: 255,                 null: false
-    t.boolean  "agreement_terms",                 default: false, null: false
-    t.boolean  "agreement_policies",              default: false, null: false
-    t.boolean  "agreement_female",                default: false, null: false
+    t.string   "state",                               null: false
+    t.boolean  "agreement_terms",     default: false, null: false
+    t.boolean  "agreement_policies",  default: false, null: false
+    t.boolean  "agreement_female",    default: false, null: false
     t.datetime "submitted_at"
     t.datetime "processed_at"
     t.datetime "created_at"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 20160109231413) do
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "provider",   limit: 255
-    t.string   "uid",        limit: 255
+    t.string   "provider"
+    t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20160109231413) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "configurables", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "value",      limit: 255
+    t.string   "name"
+    t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,15 +61,15 @@ ActiveRecord::Schema.define(version: 20160109231413) do
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id",                                        null: false
-    t.string   "twitter",           limit: 255
-    t.string   "facebook",          limit: 255
-    t.string   "website",           limit: 255
-    t.string   "linkedin",          limit: 255
-    t.string   "blog",              limit: 255
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "website"
+    t.string   "linkedin"
+    t.string   "blog"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "show_name_on_site",              default: false, null: false
-    t.string   "gravatar_email",    limit: 255
+    t.string   "gravatar_email"
     t.string   "summary",           limit: 2000
     t.string   "reasons",           limit: 2000
     t.string   "projects",          limit: 2000
@@ -87,14 +87,14 @@ ActiveRecord::Schema.define(version: 20160109231413) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                         limit: 255
-    t.string   "email",                        limit: 255
+    t.string   "name"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username",                     limit: 255
-    t.string   "state",                        limit: 255,                 null: false
+    t.string   "username"
+    t.string   "state",                                                    null: false
     t.datetime "last_logged_in_at"
-    t.string   "email_for_google",             limit: 255
+    t.string   "email_for_google"
     t.integer  "dues_pledge"
     t.boolean  "is_admin",                                 default: false
     t.boolean  "setup_complete"
