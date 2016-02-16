@@ -119,21 +119,81 @@ describe ApplicationsController do
     end
 
     describe 'if logged in as applicant' do
-      it 'should update own application' do
-        user = login_as(:applicant)
-        expect(user.application.agreement_terms).to be_falsey
-
-        params = { id: user.application.id, user: {
-          application_attributes:
-            { id: user.application.id, agreement_terms: true }
+      let(:user) { login_as(:applicant) }
+      let(:application) { user.application }
+      let(:params) { {
+        id: application.id,
+        user:
+          {
+            application_attributes: application_params,
+            profile_attributes: profile_params
           }
-        }
+      } }
+      let(:profile_params) { { summary: "lemurs!" } }
 
-        post :update, params
+      subject { post :update, params }
 
-        expect(response).to redirect_to edit_application_path(user.application)
+      context "when saving an application" do
+        let(:application_params) { { id: application.id, agreement_terms: true } }
 
-        expect(user.application.agreement_terms).to be_truthy
+        before { params.merge! save: "unimportant string" }
+
+        it "should update the user's application" do
+          expect { subject }.to change { application.agreement_terms }.from(false).to(true)
+          expect(response).to redirect_to edit_application_path(application)
+        end
+
+        context "missing required fields" do
+          before { params.merge!(user: { email: "" })}
+
+          it "should not update the user" do
+            expect { subject }.not_to change { user.reload.email }
+          end
+
+          it "should show an error message" do
+            subject
+            expect(flash[:error]).to include "Application not saved"
+          end
+        end
+      end
+
+      context "when submitting an application" do
+        before { params.merge! submit: "unimportant string" }
+
+        let(:application_params) do
+          {
+            id: application.id, agreement_terms: true, agreement_policies: true,
+            agreement_female: true
+          }
+        end
+        let(:profile_params) { {
+          summary: "lemurs!", reasons: "lemurs!",
+          projects: "lemurs!", skills: "lemurs!", feminism: "lemurs!"
+        } }
+
+        context "with all required fields" do
+          it "should add an notice to the flash" do
+            subject
+            expect(flash[:notice]).to include "Application submitted"
+          end
+
+          it "should submit the application" do
+            expect { subject }.to change { application.state }.from("started").to("submitted")
+          end
+        end
+
+        context "missing required fields" do
+          let(:application_params) { { id: application.id, agreement_terms: true } }
+
+          it "should add an error to the flash" do
+            subject
+            expect(flash[:error]).to include "Application not submitted"
+          end
+
+          it "should not submit the application" do
+            expect { subject }.not_to change { application.state }.from("started")
+          end
+        end
       end
     end
   end
