@@ -53,7 +53,7 @@ FactoryGirl.define do
   end
 
   factory :application do
-    user
+    association :user, factory: :applicant
     state "submitted"
     agreement_terms true
     agreement_policies true

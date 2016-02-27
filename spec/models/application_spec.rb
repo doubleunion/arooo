@@ -12,6 +12,27 @@ describe Application do
       expect {
         application.submit
       }.to change(ActionMailer::Base.deliveries, :count).by(2)
+      expect(application.reload.submitted_at).to be_present
+    end
+  end
+
+  describe "#approve" do
+    let(:application) { create(:approvable_application) }
+    let(:user) { application.user }
+
+    subject { application.approve }
+
+    it "sends an email to the applicant" do
+      expect { subject }.to change(ActionMailer::Base.deliveries, :count).by(1)
+    end
+
+    it "marks processed_at" do
+      subject
+      expect(application.reload.processed_at).to be_present
+    end
+
+    it "makes them a member" do
+      expect { subject }.to change { user.state }.from("applicant").to("member")
     end
   end
 
