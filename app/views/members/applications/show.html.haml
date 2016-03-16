@@ -1,6 +1,7 @@
 %p= link_to "Back to Applications Overview", members_applications_path
 
 %h3 Application
+%p As guided by our #{ link_to "Confidentiality Policy", "https://docs.google.com/document/d/1X7UEBNjojwB90Wuewfk4IiDpV2oL6av9mqdD8F0zXzY/edit", target: "_blank" }, please keep all information about people's individual applications (such as contents, comments from members, and votes) confidential among DU members.
 = render partial: 'applications/show', locals: { user: @user }
 
 - if !logged_in_as?(@user) && current_user.voting_member?
@@ -70,6 +71,8 @@
     %td= @application.not_voted_count > 0 ? 'hidden' : '--'
 
 %h3 Comments
+%p As a helpful reference, here's our #{ link_to "criteria for prospective members", "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.w83btzy2bttc", target: "_blank" } to consider when commenting, sponsoring, and voting.
+%p For members who aren't voting members during this round: if you'd like to send a comment directly to the voting members or the board (such as a concern), #{ link_to "here's how to send your comment", "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.ti79qe36hzgp", target: "_blank" }. Thanks!
 - @comments.each do |comment|
   - commenter = comment.user
   .comment
