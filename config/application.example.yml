@@ -9,8 +9,12 @@
 #
 SECRET_TOKEN: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
-MANDRILL_USERNAME:
-MANDRILL_API_KEY:
+# If you want to try sending email locally, you'll need make an AWS account and populate these values
+# It's easier to just use Mailcatcher and Mailer previews, though!
+AWS_ACCESS_KEY_ID:
+AWS_SECRET_ACCESS_KEY:
+AWS_REGION: us-west-2
+
 
 # Be sure to include a space between the colon and the key/secret!
 GITHUB_CLIENT_KEY: 

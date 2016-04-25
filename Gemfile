@@ -22,6 +22,7 @@ gem 'bugsnag'
 gem 'stripe'
 gem 'stripe_event'
 gem 'rack-canonical-host'
+gem 'aws-sdk-rails', '~> 1.0'
 
 gem 'haml-rails'
 gem 'sass-rails', '~> 4.0.0'
