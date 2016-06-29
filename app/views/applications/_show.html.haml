@@ -11,7 +11,11 @@
       Email
       %small (required)
     %td= @user.email
-
+  %tr
+    %td.left
+      Preferred Pronouns
+      %small (optional)
+      %small *This does not affect your application, Double Union wants to respect what pronouns you use
   %tr
     %td.left Twitter url
     %td= external_auto_link(@user.profile.twitter_url)
