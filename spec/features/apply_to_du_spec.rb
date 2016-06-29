@@ -14,6 +14,7 @@ describe "applying to double union" do
 
     fill_in "Twitter username", with: "@beepboopbeep"
     fill_in "Blog URL", with: "http://blog.awesome.com"
+    fill_in "Pronouns", with: "They/Them"
     check "user_application_attributes_agreement_terms"
     check "user_application_attributes_agreement_policies"
     check "user_application_attributes_agreement_female"
@@ -23,6 +24,7 @@ describe "applying to double union" do
     }.to change { cool_lady.application.reload.state }.from("started").to("submitted")
 
     expect(page).to have_content "Application submitted!"
+    expect(find_field('Pronouns').value).to eq "They/Them"
     expect(find_field('Twitter username').value).to eq "@beepboopbeep"
   end
 
@@ -44,6 +46,7 @@ describe "applying to double union" do
     visit new_application_path
     expect(page).to have_content "We're glad you're interested"
 
+    fill_in "Pronouns", with: "They/Them"
     fill_in "Twitter username", with: "@beepboopbeep"
     fill_in "Blog URL", with: "http://blog.awesome.com"
     check "user_application_attributes_agreement_terms"
@@ -52,10 +55,12 @@ describe "applying to double union" do
 
     click_on "Submit application"
 
+    fill_in "Pronouns", with: "Ze/Zir"
     fill_in "Twitter username", with: "@new_and_better_handle"
 
     first(:button, "Update application").click
 
+    expect(find_field('Pronouns').value).to eq "Ze/Zir"
     expect(find_field('Twitter username').value).to eq "@new_and_better_handle"
   end
 

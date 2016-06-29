@@ -4,6 +4,8 @@
   = user_gravatar(@user, 150)
 
 %h2= @user.name if @user.name.present?
+- if profile.pronouns.present?
+  %h4= profile.pronouns
 
 - if @user.email.present?
   %h4= @user.email

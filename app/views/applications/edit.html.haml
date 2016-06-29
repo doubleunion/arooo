@@ -49,6 +49,14 @@
 
       %tr
         %td
+          = profile_fields.label :pronouns, 'Pronouns'
+
+          %p.small What #{ link_to "pronouns", PRONOUNS_GUIDE_URL, target: "_blank" } should people use for you at Double Union, such as at events? (This doesn't affect your application, we just want to know how to refer to you respectfully.)
+
+        %td= profile_fields.text_field :pronouns
+
+      %tr
+        %td
           = profile_fields.label :twitter, 'Twitter username'
           %small (optional)
         %td= profile_fields.text_field :twitter
@@ -106,7 +114,7 @@
             that new members care about this too; we expect members to identify as feminist in some way. To help us
             understand your perspective, we'd like to hear about your thoughts around your own feminism. It's ok if you
             don't have a formal/academic way of talking about this! You may also find it helpful to look at our
-            #{ link_to "base assumptions", BASE_ASSUMPTIONS_URL } since they help explain DU's shared values.
+            #{ link_to "base assumptions", BASE_ASSUMPTIONS_URL, target: "_blank" } since they help explain DU's shared values.
           %p.small Required — 2000 character maximum.
         %td= profile_fields.text_area :feminism, rows: 10
 
