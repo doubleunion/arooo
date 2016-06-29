@@ -1,17 +1,17 @@
-TWITTER_USERNAME     = 'doubleunionsf'
-TWITTER_URL          = "https://twitter.com/#{TWITTER_USERNAME}"
+TWITTER_USERNAME       = 'doubleunionsf'
+TWITTER_URL            = "https://twitter.com/#{TWITTER_USERNAME}"
 
-PRESS_EMAIL          = 'press@doubleunion.org'
-PAYPAL_EMAIL         = 'paypal@doubleunion.org'
-CONTACT_EMAIL        = 'doubleunionsf@gmail.com'
-JOIN_EMAIL           = I18n.t('du.join_email')
-MEMBERSHIP_EMAIL     = I18n.t('du.membership_email')
-BOARD_EMAIL          = I18n.t('du.board_email')
-KEYS_EMAIL           = "keys@doubleunion.org"
-SCHOLARSHIP_EMAIL    = "scholarship@doubleunion.org"
+PRESS_EMAIL            = 'press@doubleunion.org'
+PAYPAL_EMAIL           = 'paypal@doubleunion.org'
+CONTACT_EMAIL          = 'doubleunionsf@gmail.com'
+JOIN_EMAIL             = I18n.t('du.join_email')
+MEMBERSHIP_EMAIL       = I18n.t('du.membership_email')
+BOARD_EMAIL            = I18n.t('du.board_email')
+KEYS_EMAIL             = "keys@doubleunion.org"
+SCHOLARSHIP_EMAIL      = "scholarship@doubleunion.org"
 
-TUMBLR_BASE          = 'doubleunion.tumblr.com'
-TUMBLR_URL           = "http://#{TUMBLR_BASE}"
+TUMBLR_BASE            = 'doubleunion.tumblr.com'
+TUMBLR_URL             = "http://#{TUMBLR_BASE}"
 
 MAILING_LIST_GENERAL = "http://lists.doubleunion.org/listinfo.cgi/doubleunion-doubleunion.org"
 GOOGLE_ANALYTICS_ID  = 'UA-47411942-1'
@@ -25,3 +25,4 @@ LOCK_UP_DOC          = "https://docs.google.com/document/d/1rFoyl5FJjDdr0LqiVacQ
 VOTING_CRITERIA_DOC  = "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.w83btzy2bttc"
 COMMENTING_DOC       = "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.ti79qe36hzgp"
 VOTING_PROCESS_DOC   = "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.y6eimvxrwzvf"
+BRYN_MAWR_PRONOUNS_URL = "http://www.brynmawr.edu/pensby/documents/AskingforNameandPronouns.pdf"
