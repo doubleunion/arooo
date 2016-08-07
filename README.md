@@ -14,13 +14,17 @@ This application has a lot of cool features, including:
 
 The application supports three levels of membership: members, key members, and voting members, where any member can see and comment on an application, but only voting members can vote. Membership coordinators can set whether the app is accepting applications, accept or reject individual applications, manage membership levels, and review dues status.
 
-It is currently very Double Union specific, but we are in the process of extracting the Double Union things out of it, so that other feminist hacker/makerspaces can use it, too! We are open sourcing the app now so that we can work with other hacker/makerspaces on that process. This app supports an application process that helps us maintain a safe space for our members, and we want this app to help other groups that have the same goal.
+It is currently very Double Union specific, but we'd like to extract the Double Union things out of it, so that other feminist hacker/makerspaces can use it, too! We open sourced the app so that we can work with other hacker/makerspaces on that process. This app supports an application process that helps us maintain a safe space for our members, and we want this app to help other groups that have the same goal.
+
+To check out a couple of screenshots, [see our Arooo announcement post](https://doubleunion.tumblr.com/post/101099822404/meet-arooo-a-open-source-membership-management).
 
 If you're interested in using Arooo for your org and want to get in touch, [make an issue](https://github.com/doubleunion/arooo/issues/new) and we can chat. :dancer:
 
 ## How to Contribute
 
-We use [GitHub issues](https://github.com/doubleunion/arooo/issues) for feature development and bug tracking, so take a look for things that you can work on, and comment with any questions you have about half-baked issues.
+We use [GitHub issues](https://github.com/doubleunion/arooo/issues) for feature development and bug tracking, so take a look for things that you can work on, and comment with any questions you have.
+
+If you're a Double Union member, you can chat with the maintainers in our [#du-app chat channel](https://doubleunion.slack.com/messages/du-app/). Ask us how you can help!
 
 ## Development setup
 
@@ -145,7 +149,7 @@ If you are new to GitHub, you can [use this guide](http://railsbridge.github.io/
 
 ## Reviewing
 
-This section only pertains if you have doubleunion/doubleunion write/push access.
+This section only pertains if you have doubleunion/arooo write/push access.
 
 1. Read through the GitHub issue that the Pull Request is fixing
 1. Code review the Pull Request, commenting on any potential issues, improvements, or telling the person how awesome their code is
