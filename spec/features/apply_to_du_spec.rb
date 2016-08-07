@@ -14,7 +14,6 @@ describe "applying to double union" do
 
     fill_in "Twitter username", with: "@beepboopbeep"
     fill_in "Blog URL", with: "http://blog.awesome.com"
-    fill_in "Pronoun", with: "They/Them"
     check "user_application_attributes_agreement_terms"
     check "user_application_attributes_agreement_policies"
     check "user_application_attributes_agreement_female"
