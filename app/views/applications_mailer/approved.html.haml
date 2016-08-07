@@ -9,12 +9,11 @@
 
       %p If you want to be listed publicly as a member (at the bottom of #{ link_to "this page", MEMBERSHIP_URL }), #{ link_to "log in", login_url } to the app and go to "Edit profile" in the right dropdown menu. There's a checkbox there marked "Show name/website/gravatar on public site?"
 
-      %p Things the membership coordinators will do for you:
+      %p After you fill out #{ link_to "the membership confirmation and setup form", members_user_setup_url(@user.id) }, things the membership coordinators will do for you:
 
       %ul
         %li Give you access to the Double Union Google Drive folder and Google Calendar
         %li Give you access to the DU Slack chat
-        %li Remind you to fill out #{ link_to "that form", members_user_setup_url(@user.id) } & set up dues :D
 
       %p
         In case you don't have it, here's the DU address:
@@ -25,7 +24,7 @@
         %br/
         San Francisco, CA 94107
 
-      %p When you're a new member, you can visit when other people are already in the space (check the mailing list for information about this). When you get to the building: the ground floor has a glass door with a keypad to the right. You can use the keypad to dial our suite number (111) to call a person who can let you in. Then go inside and take the elevator up to the first floor. The space is down the hall to your right!
+      %p When you're a new member, you can visit when other people are already in the space (such as during events announced on the mailing list). When you get to the building: the ground floor has a glass door with a keypad to the right. You can use the keypad to dial the pound sign (#) and then our suite number (111) to call the phone in the space, and a person in the space can let you in by answering the phone. Then go inside and take the elevator up to the first floor. The space is down the hall to your right!
 
       %p If you have any questions, email the membership coordinator at #{ mail_to MEMBERSHIP_EMAIL }.
 
