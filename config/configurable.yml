@@ -8,6 +8,9 @@ application_deadline_warning:
 voting_member_policy_doc:
   type: text
 
+onboarding_offboarding_checklist:
+  type: text
+
 # This file controls what config variables you want to be able to allow your users
 # to set, as well as those you'll be able to access from within the application.
 # 
