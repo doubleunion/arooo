@@ -49,6 +49,13 @@
 
       %tr
         %td
+          = profile_fields.label :pronoun, "Pronoun"
+          %small (optional)
+          %p.small *This does not affect your application, Double Union wants to respect what pronouns you use
+        %td= profile_fields.text_field :pronoun
+
+      %tr
+        %td
           = profile_fields.label :twitter, 'Twitter username'
           %small (optional)
         %td= profile_fields.text_field :twitter
