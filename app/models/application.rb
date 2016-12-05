@@ -67,10 +67,14 @@ class Application < ActiveRecord::Base
   end
 
   state_machine :state, initial: :started do
-    after_transition started: :submitted do |application, transition|
+    after_transition started: :submitted do |application, _|
       application.touch :submitted_at
       ApplicationsMailer.confirmation(application).deliver_now
-      ApplicationsMailer.notify_members(application).deliver_now
+
+      member_emails = User.all_members.pluck(:email).compact
+      (member_emails << JOIN_EMAIL).each do |email|
+        ApplicationsMailer.notify_member_of_application(application, email).deliver_now
+      end
     end
 
     after_transition submitted: [:approved, :rejected] do |application, transition|

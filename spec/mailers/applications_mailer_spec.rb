@@ -23,16 +23,14 @@ describe ApplicationsMailer do
 
     describe 'member notification email' do
       before do
-        5.times do
-          create(:member)
-        end
+        5.times { create(:member) }
       end
 
-      let(:mail) { ApplicationsMailer.notify_members(application) }
+      let(:member_email) { User.last.email }
+      let(:mail) { ApplicationsMailer.notify_member_of_application(application, member_email) }
 
-      it 'is sent to current members' do
-        expect(mail.to).to include("join@doubleunion.org")
-        expect(mail.bcc.count).to eq(5)
+      it 'is sent to a current member' do
+        expect(mail.to).to include(member_email)
       end
 
       it "includes the applicant's deets" do

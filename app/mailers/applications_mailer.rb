@@ -9,12 +9,10 @@ class ApplicationsMailer < ActionMailer::Base
     )
   end
 
-  def notify_members(application)
-    member_emails = User.all_members.pluck(:email).compact
+  def notify_member_of_application(application, member_email)
     @applicant = application.user
     mail(
-      to: JOIN_EMAIL,
-      bcc: member_emails,
+      to: member_email,
       subject: "New Double Union application submitted"
     )
   end
