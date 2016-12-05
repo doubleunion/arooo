@@ -68,9 +68,9 @@ class Application < ActiveRecord::Base
 
   state_machine :state, initial: :started do
     after_transition started: :submitted do |application, transition|
+      application.touch :submitted_at
       ApplicationsMailer.confirmation(application).deliver_now
       ApplicationsMailer.notify_members(application).deliver_now
-      application.touch :submitted_at
     end
 
     after_transition submitted: [:approved, :rejected] do |application, transition|
