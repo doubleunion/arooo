@@ -4,3 +4,16 @@
       %p There's a new Double Union application!
 
       %h3 #{link_to @applicant.name, members_application_url(@applicant.application)}
+
+      %p
+        Follow this link to read and comment on it. If you know this person and think they should become a Double Union member, please sponsor their application!
+        All members are encouraged to comment on any application in the DU app.
+        The comments are not visible once the application has been accepted or rejected.
+
+      %p
+        Want to learn more about the voting process? Check out the
+        #{ link_to "Voting Members Policy", VOTING_POLICY_DOC } for criteria for prospective members
+        (and things we don't consider when looking at applications).
+
+      %p
+        #{link_to "Click here to check out that application", members_application_url(@applicant.application)}.
