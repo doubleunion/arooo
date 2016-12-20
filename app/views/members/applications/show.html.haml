@@ -80,7 +80,7 @@
   - commenter = comment.user
   .comment
     = link_to user_gravatar(commenter, 20), members_user_path(commenter)
-    = "#{link_to commenter.username, members_user_path(commenter), title: commenter.name}:".html_safe
+    = "#{link_to commenter.name, members_user_path(commenter), title: commenter.name}:".html_safe
     = comment.body
     %small{ title: comment.created_at }
       = "#{time_ago_in_words(comment.created_at)} ago"

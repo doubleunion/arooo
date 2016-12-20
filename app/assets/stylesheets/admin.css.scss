@@ -10,7 +10,7 @@
   }
 }
 
-body.admin.applications.show {
+body.applications.show {
   td.left {
     width: 30%;
     font-weight: bold;
@@ -21,17 +21,10 @@ body.admin.applications.show {
   }
   .comment {
     border-bottom: 1px solid #eee;
-    padding: 3px 0;
+    padding: 5px 0;
     small {
       color: #999;
       font-size: 12px;
-    }
-    form, textarea {
-      display: inline;
-    }
-    textarea {
-      width: 400px;
-      margin-bottom: 10px;
     }
   }
 }
