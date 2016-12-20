@@ -71,8 +71,16 @@
     %td= @application.not_voted_count > 0 ? 'hidden' : '--'
 
 %h3 Comments
-%p As a helpful reference, here's our #{ link_to "criteria for prospective members", "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.w83btzy2bttc", target: "_blank" } to consider when commenting, sponsoring, and voting.
-%p For members who aren't voting members during this round: if you'd like to send a comment directly to the voting members or the board (such as a concern), #{ link_to "here's how to send your comment", "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.ti79qe36hzgp", target: "_blank" }. Thanks!
+%p
+  As a helpful reference, here's our
+  %strong= link_to "criteria for prospective members", VOTING_CRITERIA_DOC, target: "_blank"
+  to consider when commenting, sponsoring, and voting.
+%p
+  For members who aren't voting members during this round: if you'd like to send a comment
+  directly to the voting members or the board (such as a concern),
+  = succeed "." do
+    %strong= link_to "here's how to send your comment", COMMENTING_DOC, target: "_blank"
+  Thanks!
 
 %hr
 
