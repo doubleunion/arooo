@@ -90,7 +90,7 @@
   .comment.form-group
     .mb-5
       = link_to user_gravatar(current_user, 20), members_user_path(current_user)
-      = "#{link_to current_user.username, members_user_path(current_user)}:".html_safe
+      = "#{link_to current_user.name, members_user_path(current_user)}:".html_safe
     = f.hidden_field :application_id, value: @application.id
     = f.text_area :body, rows: 3, class: "form-control"
     %fieldset= f.submit 'Add comment', class: "btn btn-primary pull-right"
