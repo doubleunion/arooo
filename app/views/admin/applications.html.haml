@@ -1,13 +1,11 @@
 .row
   .col-md-10.col-md-offset-1
-    %h4 To be approved, an application needs:
-    %ul
-      %li #{Application::MINIMUM_YES}+ yes votes
-      %li 1+ sponsor(s)
-      %li <2 no votes
-      %li Have been submitted for at least 7 days
+    %h4 Approval Criteria:
 
-    %p The number of yes votes required is half of the voting membership, rounding down when it's an odd number of people.
+    %ul
+      %li #{Application.minimum_yes_votes}+ yes votes (half the voting member count, rounding down if there's an odd number of voting members)
+      %li Fewer than 2 no votes
+      %li 1+ sponsor(s)
 
     %p Clicking "Approve" makes the person a member, sends them an email notifying them, and moves them into the New Member page, where the new member coordinators help get them set up.
 

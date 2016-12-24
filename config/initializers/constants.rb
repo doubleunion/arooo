@@ -24,3 +24,4 @@ KEY_PICKUP_DOC       = "https://docs.google.com/document/d/1RYzqGjmA3lLhv9eQzHBg
 LOCK_UP_DOC          = "https://docs.google.com/document/d/1rFoyl5FJjDdr0LqiVacQPuKyj_rsmPpOnAGc77cWTAQ/edit?usp=sharing"
 VOTING_CRITERIA_DOC  = "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.w83btzy2bttc"
 COMMENTING_DOC       = "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.ti79qe36hzgp"
+VOTING_PROCESS_DOC   = "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.y6eimvxrwzvf"

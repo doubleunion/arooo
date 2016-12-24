@@ -6,10 +6,13 @@ class Application < ActiveRecord::Base
   has_many :sponsorships
   has_many :users, through: :sponsorships
 
-  MINIMUM_YES = User.voting_members.count/2
   MAXIMUM_NO = 1
   MINIMUM_SPONSORS = 1
-
+  # this used to be a constant called MINIMUM_YES, but since it's now calculated,
+  # it should be recalculated more often than however often we restart the app
+  def self.minimum_yes_votes
+    User.voting_members.count/2
+  end
 
   attr_protected :id
 
@@ -105,11 +108,15 @@ class Application < ActiveRecord::Base
   end
 
   def approvable?
-    enough_yes && few_nos && sponsored && submitted_at < 7.days.ago
+    enough_yes && few_nos && sponsored
   end
 
   def rejectable?
     !few_nos
+  end
+
+  def sufficient_votes?
+    enough_yes || !few_nos
   end
 
   def self.to_approve
@@ -137,7 +144,7 @@ class Application < ActiveRecord::Base
   end
 
   def enough_yes
-    yes_votes.count >= MINIMUM_YES
+    yes_votes.count >= self.class.minimum_yes_votes
   end
 
   def few_nos

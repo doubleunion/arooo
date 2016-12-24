@@ -1,11 +1,20 @@
 - if @applicants_submitted.any?
   %h2 Submitted Applications
   %p As guided by our #{ link_to "Confidentiality Policy", "https://docs.google.com/document/d/1X7UEBNjojwB90Wuewfk4IiDpV2oL6av9mqdD8F0zXzY/edit", target: "_blank" }, please keep all information about people's individual applications (such as contents, comments from members, and votes) confidential among DU members.
+
+  %p
+    The "Enough Votes?" column is looking for #{Application.minimum_yes_votes}+ yes votes or
+    more than 1 no vote, which is enough votes to make a decision
+    per our #{ link_to "application criteria", VOTING_PROCESS_DOC, target: "_blank" }.
+    Members also need to have at least one sponsor to be accepted (so someone with lots of
+    yeses but no sponsor can't be accepted).
+
   %table.table.table-striped.js-datatable-applications.applications
     %thead
       %tr.more-padding
         %th.name Name
         %th.date Submitted
+        %th Enough Votes?
         %th Sponsors
         %th Comments
         - if current_user.voting_member?
@@ -25,6 +34,8 @@
               = application.submitted_at.strftime('%b %d, %Y')
             - else
               \--
+          %td
+            = application.sufficient_votes? ? "yes" : "no"
           %td
             = application.sponsorships.count
           %td= application.comments.size

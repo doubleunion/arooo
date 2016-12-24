@@ -72,7 +72,7 @@ FactoryGirl.define do
       submitted_at 7.days.ago
 
       after(:create) do |application, _|
-        create_list(:vote, Application::MINIMUM_YES, application: application, value: true)
+        create_list(:vote, Application.minimum_yes_votes, application: application, value: true)
         create_list(:sponsorship, Application::MINIMUM_SPONSORS, application: application)
       end
     end

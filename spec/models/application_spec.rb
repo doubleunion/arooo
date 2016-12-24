@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Application do
+  let(:application) { create :application }
+
   describe "validations" do
     it { is_expected.to validate_presence_of :user_id }
   end
@@ -36,11 +38,8 @@ describe Application do
     end
   end
 
-  describe 'with an approvable application' do
-    let(:application) { create(:application) }
-
+  describe '#approvable?' do
     before do
-      application.submitted_at = Time.now - 8.days
       expect(application).to receive_message_chain(:yes_votes, :count) { 6 }
       expect(application).to receive_message_chain(:no_votes, :count) { 0 }
       expect(application).to receive_message_chain(:sponsorships, :count) { 1 }
@@ -49,21 +48,9 @@ describe Application do
     it "should be approvable" do
       expect(application.approvable?).to be_truthy
     end
-
-    context "with an approvable application that's too new" do
-      before do
-        application.submitted_at = Time.now
-      end
-
-      it "should not be approvable" do
-        expect(application.approvable?).to be_falsey
-      end
-    end
   end
 
-  describe 'with a rejectable application' do
-    let(:application) { create(:application) }
-
+  describe '#rejectable?' do
     before do
       allow(application).to receive_message_chain(:yes_votes, :count)
       allow(application).to receive_message_chain(:no_votes, :count) { 2 }
@@ -72,6 +59,51 @@ describe Application do
 
     it "should be rejectable" do
       expect(application.rejectable?).to be_truthy
+    end
+  end
+
+  describe "#sufficient_votes?" do
+    subject { application.sufficient_votes? }
+
+    before do
+      5.times do
+        create :voting_member
+      end
+    end
+
+    context "with enough yes votes" do
+      before do
+        expect(application).to receive_message_chain(:yes_votes, :count) { 4 }
+      end
+
+      it { is_expected.to be true }
+    end
+
+    context "with enough no votes" do
+      before do
+        allow(application).to receive_message_chain(:yes_votes, :count) { 1 }
+        allow(application).to receive_message_chain(:no_votes, :count) { 2 }
+      end
+
+      it { is_expected.to be true }
+    end
+
+    context "with enough yes AND no votes" do
+      before do
+        allow(application).to receive_message_chain(:yes_votes, :count) { 3 }
+        allow(application).to receive_message_chain(:no_votes, :count) { 2 }
+      end
+
+      it { is_expected.to be true }
+    end
+
+    context "with not enough votes" do
+      before do
+        allow(application).to receive_message_chain(:yes_votes, :count) { 1 }
+        allow(application).to receive_message_chain(:no_votes, :count) { 1 }
+      end
+
+      it { is_expected.to be false }
     end
   end
 end
