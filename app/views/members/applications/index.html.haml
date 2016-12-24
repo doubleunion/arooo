@@ -35,7 +35,7 @@
             - else
               \--
           %td
-            = application.sufficient_votes? ? "yes" : "no"
+            = application.sufficient_votes? ? "enough" : "not yet"
           %td
             = application.sponsorships.count
           %td= application.comments.size
