@@ -3,16 +3,10 @@
 
 %h1 Double Union Account Setup
 
-%h3 Please do ALL of these things:
-%ol
-  %li Tell us your Google-friendly email address
-  %li Set up your dues via Stripe
-  %li Check out the members mailing list
-
 %h3 Step One: Email
 
 %p
-  We use Google Drive and Google Calendar to share information.
+  We use Google Drive and Google Calendar to share information, and Google Groups for our mailing list.
   Let us know what email address we should share those things with (don't forget to click "Submit").
 
 = form_for @user, url: members_user_setup_path(@user), html: { class: "form form-inline" } do |f|
@@ -22,8 +16,11 @@
     = f.submit "Submit", class: "btn btn-primary"
 
 %p
-  If you later need to update your Google Drive/Calendar email address, please email
-  #{ mail_to MEMBERSHIP_EMAIL } and we'll get those updated.
+  If you don't want to use the Google-friendly email address you entered above for the mailing list, or you later need to update your Drive/Calendar/mailing list email address, please let us know at #{ mail_to MEMBERSHIP_EMAIL } and we'll get you sorted!
+
+%p
+  We do email a fair amount, so if you're a Gmail user, consider #{ link_to "setting up a Double Union label and filter for these emails", "https://support.google.com/mail/answer/6579?hl=en", target: "_blank" }.
+
 
 %h3 Step Two: Set Up Monthly Dues
 
@@ -40,13 +37,4 @@
 
 %p Email #{ mail_to MEMBERSHIP_EMAIL } if you have any questions or concerns about dues.
 
-%h3 Step Three: Check Out the Mailing List
-
-%p
-  The membership coordinator has added you to the members mailing list! You should have received an email from members-request@lists.doubleunion.org with information about your subscription to the list. To get a sense of what we talk about on the mailing list, check out the #{ link_to "mailing list archives", "http://lists.doubleunion.org/private.cgi/members-doubleunion.org/" }. (You'll need the password from the confirmation email to log in — it's toward the bottom of the email.)
-
-%p
-  (We do email a fair amount, so if you're a Gmail user, consider #{ link_to "setting up a Double Union label and filter for these emails", "https://support.google.com/mail/answer/6579?hl=en", target: "_blank" }. When you make a filter for your DU mailing list emails, make sure to check the box for "Never send it to Spam".)
-
-%p
-  =button_to "Back to members home", members_root_path, class: "btn btn-default", method: "get"
+= button_to "Back to members home", members_root_path, class: "btn btn-default", method: "get"
