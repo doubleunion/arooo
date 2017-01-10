@@ -25,6 +25,10 @@
       = f.text_field :name
 
     %fieldset
+      %legend= fields.label :pronouns, 'Pronouns'
+      = fields.text_field :pronouns
+
+    %fieldset
       %legend= f.label :email, 'Email'
       = f.text_field :email
 
