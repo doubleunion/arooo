@@ -6,7 +6,7 @@ class Comment < ActiveRecord::Base
 
   validates :user_id, :application_id, presence: true
 
-  validates :body, presence: true, length: { maximum: 2000 }
+  validates :body, presence: true
 
   validate :user_is_general_member
 
