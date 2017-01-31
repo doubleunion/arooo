@@ -22,8 +22,13 @@
 
 = render 'form', action: "Update"
 
-%p If you'd like to cancel your Double Union membership or have other questions about dues and membership, please email #{ mail_to MEMBERSHIP_EMAIL } to reach the membership coordinators.
 
 %h3 Apply for a Scholarship
 
 = render "scholarship_request"
+
+.cancel-membership
+  %h3 Cancel your Membership
+  %p If you'd like to cancel your Double Union membership, click #{link_to "here", class: "cancel-membership"}. If you have other questions about dues and membership, please email #{ mail_to MEMBERSHIP_EMAIL } to reach out to the membership coordinators.
+
+  = button_to("Cancel", members_user_cancel_path, method: :delete, id: "cancel-btn", class: "btn btn-primary hidden", data: { confirm: "Are you sure?" } )

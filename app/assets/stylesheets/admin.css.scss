@@ -70,3 +70,10 @@ body.applications.show {
 .admin-warning {
   color: red;
 }
+
+.cancel {
+  background-color: red;
+  &:hover {
+    background-color: #a41f2b ;
+  }
+}
