@@ -9,6 +9,21 @@ class Members::DuesController < Members::MembersController
     end
   end
 
+  def cancel
+    message = "You don't have an active membership dues subscription"
+    if current_user.stripe_customer_id
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      @subscription = customer.subscriptions.first
+
+      if @subscription
+        @subscription.delete
+        message = "Your dues have now been canceled"
+      end
+    end
+    flash[:notice] = message
+    redirect_to members_user_dues_path(current_user)
+  end
+
   def update
     @user = current_user
 

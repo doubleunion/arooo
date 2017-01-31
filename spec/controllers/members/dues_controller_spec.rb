@@ -17,6 +17,70 @@ describe Members::DuesController do
     end
   end
 
+  describe "DELETE cancel" do
+
+    let!(:user) { login_as(:member, name: "Foo Bar", email: "someone@example.com") }
+
+    let(:params) do
+      {
+        user_id: user.id
+      }
+    end
+
+    subject(:cancel_dues) { delete :cancel, params }
+
+    context "when the user does not have a Stripe ID" do
+      it 'sets the flash and redirects to the manage dues page' do
+        expect(subject).to redirect_to members_user_dues_path(user)
+        expect(flash[:notice]).to include "You don't have an active membership dues subscription"
+      end
+    end
+
+    context "when the user already has a Stripe ID" do
+      before do
+        StripeMock.start
+        # TODO: remove api_key setting when this issue is fixed:
+        # https://github.com/rebelidealist/stripe-ruby-mock/issues/209
+        Stripe.api_key = "coolapikey"
+        Stripe::Plan.create(:id => "test_plan",
+          :amount => 5000,
+          :currency => "usd",
+          :interval => "month",
+          :name => "test plan")
+
+        # Must set referrer so that DuesController#redirect_target works
+        request.env['HTTP_REFERER'] = 'http://example.com/members/users/x/dues'
+      end
+
+      after do
+        StripeMock.stop
+      end
+      let(:customer) do
+        customer = Stripe::Customer.create({
+            email: "user@example.com",
+            source: StripeMock.generate_card_token({})
+          })
+      end
+
+      let(:active_subscription) do
+        customer.subscriptions.create({:plan => "test_plan"})
+      end
+
+      before do
+        user.update_column(:stripe_customer_id, customer.id)
+      end
+
+      it "should cancel their active subscription" do
+        canceled_subscription_id = active_subscription.id
+
+        cancel_dues
+
+        expect{customer.subscriptions.retrieve(canceled_subscription_id)}.to raise_error(Stripe::InvalidRequestError)
+        expect(subject).to redirect_to members_user_dues_path(user)
+      end
+    end
+  end
+
   describe "POST update" do
     before do
       StripeMock.start
