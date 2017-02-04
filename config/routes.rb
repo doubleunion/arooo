@@ -9,6 +9,7 @@ Doubleunion::Application.routes.draw do
       patch 'setup' => "users#finalize"
 
       resource :dues, only: [:show, :update]
+      delete 'cancel' => "dues#cancel"
       post 'scholarship_request' => "dues#scholarship_request"
 
       resource :key_members, only: [:edit, :update]
