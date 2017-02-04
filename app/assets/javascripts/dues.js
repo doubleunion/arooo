@@ -19,8 +19,6 @@ $(document).ready(function(){
     e.preventDefault();
   });
 
-
-
   $('.cancel-membership').click(
   function (e) {
     e.preventDefault();

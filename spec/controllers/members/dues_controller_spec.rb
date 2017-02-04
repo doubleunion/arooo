@@ -50,11 +50,14 @@ describe Members::DuesController do
 
         # Must set referrer so that DuesController#redirect_target works
         request.env['HTTP_REFERER'] = 'http://example.com/members/users/x/dues'
+
+        user.update_column(:stripe_customer_id, customer.id)
       end
 
       after do
         StripeMock.stop
       end
+
       let(:customer) do
         customer = Stripe::Customer.create({
             email: "user@example.com",
@@ -64,10 +67,6 @@ describe Members::DuesController do
 
       let(:active_subscription) do
         customer.subscriptions.create({:plan => "test_plan"})
-      end
-
-      before do
-        user.update_column(:stripe_customer_id, customer.id)
       end
 
       it "should cancel their active subscription" do
