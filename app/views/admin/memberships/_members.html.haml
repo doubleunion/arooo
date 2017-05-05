@@ -2,6 +2,7 @@
   %thead
     %tr
       %th Name
+      %th Google Email
       %th Status
       %th On scholarship?
       %th.min-width-150 Dues Paid On
@@ -13,6 +14,11 @@
         %td.max-width-150
           - if user.name.present?
             = link_to user.name, members_user_path(user)
+        - if user.email_for_google
+          %td=user.email_for_google
+        - else
+          %td.admin-warning
+            Not set
         %td= user.display_state
         %td
           = user.is_scholarship ? "Yes" : "No"
