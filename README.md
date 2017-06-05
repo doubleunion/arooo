@@ -166,7 +166,7 @@ This section only pertains if you have Heroku & Deployment access.
 
   ```
   [remote "production"]
-     url = git@heroku.com:doubleunion.git
+     url = git@heroku.com:du-arooo.git
      fetch = +refs/heads/*:refs/remotes/heroku/*
   [remote "staging"]
      url = git@heroku.com:doubleunion-staging.git
