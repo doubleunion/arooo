@@ -1,7 +1,7 @@
 # Arooo - A Room Of One's Own
 [![Build Status](https://travis-ci.org/doubleunion/arooo.svg)](https://travis-ci.org/doubleunion/arooo)
 
-## Welcome :rocket::rocket::rocket:
+## Welcome :rocket::rocket::rocket:✨✨
 
 This is a membership application app written by members of [Double Union](http://doubleunion.org/), a feminist hacker/makerspace for women in San Francisco.
 
@@ -29,6 +29,7 @@ If you're a Double Union member, you can chat with the maintainers in our [#du-a
 ## Development setup
 
 If you are new to Rails, follow the [RailsBridge Installfest instructions](http://installfest.railsbridge.org/installfest/) for getting your environment set up.
+- You must follow the Railsbridge Installfest instructions if you do not have `ruby`, `bundler`, or `rails` installed before continuing.
 
 0. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/) about how to do so.
 
