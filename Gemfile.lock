@@ -1,9 +1,9 @@
 GIT
-  remote: git://github.com/rails/actionpack-action_caching.git
-  revision: 30ae10cba0f0a573d5e6c6e46cae506558b70d33
+  remote: https://github.com/rails/actionpack-action_caching
+  revision: 985767a265820804fde51fb977e4d67aa87df358
   specs:
-    actionpack-action_caching (1.1.0)
-      actionpack (>= 4.0.0, < 5.0)
+    actionpack-action_caching (1.2.0)
+      actionpack (>= 4.0.0, < 6)
 
 GIT
   remote: https://github.com/seuros/state_machine
@@ -392,3 +392,9 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   unicorn
+
+RUBY VERSION
+   ruby 2.2.2p95
+
+BUNDLED WITH
+   1.15.1
