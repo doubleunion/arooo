@@ -14,7 +14,7 @@ gem 'pg'
 gem 'protected_attributes'
 gem 'state_machine', git: "https://github.com/seuros/state_machine"
 gem 'kaminari'
-gem 'actionpack-action_caching', github: 'rails/actionpack-action_caching'
+gem 'actionpack-action_caching', git: 'https://github.com/rails/actionpack-action_caching'
 gem 'rails_autolink'
 gem 'redcarpet'
 gem 'configurable_engine'
