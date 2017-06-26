@@ -35,6 +35,7 @@ If you are new to Rails, follow the [RailsBridge Installfest instructions](http:
 
 1. Run `bundle install`
     * Bundle may fail on pg; run `brew install postgresql` if it does
+    * If you get `FATAL: role “postgres” does not exist`, run `/usr/local/Cellar/postgresql/<version>/bin/createuser -s postgres`
 
 1. Standard Rails app setup
     * `cp config/database.example.yml config/database.yml`
