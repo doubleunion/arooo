@@ -33,6 +33,9 @@ If you are new to Rails, follow the [RailsBridge Installfest instructions](http:
 
 0. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/) about how to do so.
 
+1. Run `bundle install`
+    * Bundle may fail on pg; run `brew install postgresql` if it does
+
 1. Standard Rails app setup
     * `cp config/database.example.yml config/database.yml`
     * Optional: edit database.yml if you want to change advanced things
