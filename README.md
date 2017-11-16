@@ -167,7 +167,9 @@ This section only pertains if you have doubleunion/arooo write/push access.
 
 This section only pertains if you have Heroku & Deployment access.
 
-1. Add Heroku remotes to your `.git/config`
+1. Add Heroku remotes to your `.git/config` (type `git remote --help` for more instructions on how to configure git remote.)
+
+Note: Only maintainers have heroku access and can deploy.
 
   ```
   [remote "production"]
