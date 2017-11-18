@@ -13,7 +13,7 @@ SCHOLARSHIP_EMAIL    = "scholarship@doubleunion.org"
 TUMBLR_BASE          = 'doubleunion.tumblr.com'
 TUMBLR_URL           = "http://#{TUMBLR_BASE}"
 
-MAILING_LIST_GENERAL = "http://lists.doubleunion.org/listinfo.cgi/doubleunion-doubleunion.org"
+MAILING_LIST_GENERAL = "https://groups.google.com/a/doubleunion.org/forum/#!forum/public"
 GOOGLE_ANALYTICS_ID  = 'UA-47411942-1'
 S3_BUCKET            = "https://s3-us-west-1.amazonaws.com/doubleunion"
 
