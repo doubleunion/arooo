@@ -159,6 +159,7 @@ This section only pertains if you have doubleunion/arooo write/push access.
 1. Read through the GitHub issue that the Pull Request is fixing
 1. Code review the Pull Request, commenting on any potential issues, improvements, or telling the person how awesome their code is
 1. After the Pull Request is reviewed & fixed (if necessary) and the Travis CI build is passing, merge the Pull Request into `master`
+1. Note: We like to have a short, linear history, so manually squash the PR into one commit, and rebase.
 1. Delete the branch, and close the relevant issue if not referenced in the Pull Request already
 1. Deploy! (see below)
 
