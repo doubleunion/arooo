@@ -9,7 +9,9 @@ require 'shoulda/matchers'
 require 'stripe_mock'
 
 Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('headless')
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
