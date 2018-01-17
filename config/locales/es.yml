@@ -1,0 +1,5 @@
+es:
+  viewIn: "English"
+  newLocale: "en"
+  hello: "¡Hola!"
+  confirm_language_switch: "This will erase any unsaved data. Continue anyway?"

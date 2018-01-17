@@ -20,4 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  viewIn: "Spanish"
+  newLocale: "es"
+  hello: "Hello!"
+  confirm_language_switch: "This will erase any unsaved data. Continue anyway?"

@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?, :logged_in_as?,
                 :correct_user?, :members_page?, :vote
 
+  before_action :set_locale
+
   private
 
   def current_user
@@ -79,5 +81,13 @@ class ApplicationController < ActionController::Base
     # current process makes the votes threshold email not helpful
     # so, for now, no email. maybe this should be deleted in the future
     #application.votes_threshold_email
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def default_url_options
+    { locale: I18n.locale }
   end
 end

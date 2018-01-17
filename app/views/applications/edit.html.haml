@@ -1,7 +1,10 @@
 %h2 Membership application
 
+=link_to "View this page in #{t(:viewIn)}", edit_application_path(current_user.application, locale: t(:newLocale)), data: {confirm: t(:confirm_language_switch)}
+
 %p
-  Hello! We're glad you're interested in becoming a member of Double Union. We love reading applications and look forward to meeting you if we haven't already.
+  = t(:hello)
+  We're glad you're interested in becoming a member of Double Union. We love reading applications and look forward to meeting you if we haven't already.
   If you have any questions about the application or application process, please email our membership coordinators at #{ mail_to JOIN_EMAIL }.
 
 %p
