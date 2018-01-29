@@ -168,7 +168,9 @@
     = f.submit t(:save_without_submitting), name: 'save', class: "btn"
 
   - if @user.application.submitted?
-    %p Application submitted #{time_ago_in_words(@user.application.submitted_at)} ago
+    %p
+      = t(:application_submitted)
+      #{time_ago_in_words(@user.application.submitted_at)} ago
     %p= link_to 'View application', application_path(@user.application)
   - else
     %h3
