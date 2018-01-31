@@ -28,6 +28,8 @@ If you're a Double Union member, you can chat with the maintainers in our [#du-a
 
 ## Development setup
 
+NOTE: The 'bundle install' command below will not work if you have Mac OSX High Sierra. The libv8 dependency is not supported. We are actively working on a fix!
+
 If you are new to Rails, follow the [RailsBridge Installfest instructions](http://installfest.railsbridge.org/installfest/) for getting your environment set up.
 - You must follow the Railsbridge Installfest instructions if you do not have `ruby`, `bundler`, or `rails` installed before continuing.
 
