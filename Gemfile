@@ -38,7 +38,9 @@ group :development do
   gem 'quiet_assets'
   gem 'awesome_print'
   gem 'execjs'
-  gem 'therubyracer', github:"lyrahall14/arooo", branch: "high-sierra-libv8-fix"
+  #not at all sure if this is the right way to do it
+  #instructions taken from here: https://rossta.net/blog/how-to-specify-local-ruby-gems-in-your-gemfile.html
+  gem 'therubyracer', github:"https://github.com/lyrahall14/therubyracer-high-sierra", branch: "master"
 end
 
 group :development, :test do
