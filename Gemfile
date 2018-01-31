@@ -38,7 +38,7 @@ group :development do
   gem 'quiet_assets'
   gem 'awesome_print'
   gem 'execjs'
-  gem 'therubyracer'
+  gem 'therubyracer', github:"lyrahall14/arooo", branch: "high-sierra-libv8-fix"
 end
 
 group :development, :test do
