@@ -170,7 +170,8 @@
   - if @user.application.submitted?
     %p
       = t(:application_submitted)
-      #{time_ago_in_words(@user.application.submitted_at)} ago
+      #{time_ago_in_words(@user.application.submitted_at)}
+      = t(:ago)
     %p= link_to 'View application', application_path(@user.application)
   - else
     %h3
