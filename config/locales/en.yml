@@ -67,6 +67,7 @@ en:
   update: "Update application"
   save_without_submitting: "Save without submitting"
   application_submitted: "Application submitted"
+  ago: " ago"
   submit: "Submit"
   when_done: "When you're done with your application, submit it with the button below. You will be able to edit it any time before the membership drive closes."
   if_curious: "If you're curious what your application will look like to us,
