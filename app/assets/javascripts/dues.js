@@ -18,12 +18,4 @@ $(document).ready(function(){
     });
     e.preventDefault();
   });
-
-  $('.cancel-membership').click(
-  function (e) {
-    e.preventDefault();
-    $('#cancel-btn').removeClass('hidden');
-    $('#cancel-btn').addClass('cancel');
-  }
-);
 });

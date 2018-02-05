@@ -77,6 +77,10 @@ describe Members::DuesController do
         expect{customer.subscriptions.retrieve(canceled_subscription_id)}.to raise_error(Stripe::InvalidRequestError)
         expect(subject).to redirect_to members_user_dues_path(user)
       end
+
+      it "emails the membership coordinator" do
+        expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      end
     end
   end
 

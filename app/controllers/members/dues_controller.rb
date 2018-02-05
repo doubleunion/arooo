@@ -17,9 +17,10 @@ class Members::DuesController < Members::MembersController
 
       if @subscription
         @subscription.delete
-        message = "Your dues have now been canceled"
+        message = "Your dues have now been canceled, and the membership coordinator will remove you from mailing lists shortly."
       end
     end
+    CancelMembershipMailer.cancel(current_user).deliver_now
     flash[:notice] = message
     redirect_to members_user_dues_path(current_user)
   end

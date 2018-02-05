@@ -57,12 +57,14 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'chromedriver-helper'
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
+  gem 'factory_girl_rails'
   gem 'launchy'
   gem 'machinist'
-  gem 'factory_girl_rails'
+  gem 'rspec-collection_matchers'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'stripe-ruby-mock', '~> 2.2.1', :require => 'stripe_mock'
-  gem 'rspec-collection_matchers'
 end

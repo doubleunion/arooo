@@ -8,6 +8,12 @@ require 'rack_session_access/capybara'
 require 'shoulda/matchers'
 require 'stripe_mock'
 
+Capybara.register_driver :selenium do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('headless')
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -53,7 +59,10 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  # We use DatabaseCleaner. Using the built in transactional fixtures doesn't
+  # work with feature specs, as creating a user and logging in are separate
+  # threads.
+  config.use_transactional_fixtures = false
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
