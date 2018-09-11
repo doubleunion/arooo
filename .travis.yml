@@ -1,13 +1,15 @@
 language: ruby
 cache: bundler
 rvm:
-  - "2.3.5"
+  - "2.4.0"
 script:
   - bundle exec rake db:drop
   - bundle exec rake db:create
   - bundle exec rake db:migrate
   - bundle exec rake db:test:prepare
   - bundle exec rspec spec
+addons:
+  chrome: stable
 before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database doubleunion_test;' -U postgres
