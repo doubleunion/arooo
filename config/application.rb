@@ -41,5 +41,14 @@ module Doubleunion
     I18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
     config.autoload_paths += %W(#{config.root}/lib)
+
+    # CORS – this allows doubleunion.org to request the api from javascript
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+
+        resource '/public_members', :headers => :any, :methods => [:get], :max_age => 0
+      end
+    end
   end
 end
