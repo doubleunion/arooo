@@ -91,6 +91,7 @@ class Application < ActiveRecord::Base
 
     event :submit do
       transition started: :submitted
+      transition rejected: :submitted
     end
 
     event :approve do

@@ -38,6 +38,27 @@ describe Application do
     end
   end
 
+  describe "approve after rejection" do
+    let(:application) { create(:application) }
+    let(:user) { application.user }
+
+    before do
+      allow(application).to receive_message_chain(:yes_votes, :count)
+      allow(application).to receive_message_chain(:no_votes, :count) { 2 }
+      allow(application).to receive_message_chain(:sponsorships, :count) { 0 }
+    end
+
+    it "should be rejectable, rejected, then re-voted and approvable" do
+      expect(application.rejectable?).to be_truthy
+      application.reject
+
+      # re-submit
+      application.submit! # this causes: Cannot transition state via :submit from :rejected (Reason(s): State cannot transition via "submit")
+      expect(Application.submitted).to include(application)
+      # TODO - figure out what to do with the previous voting round no votes? Delete them? Or just don't count them?
+    end
+  end
+
   describe '#approvable?' do
     before do
       expect(application).to receive_message_chain(:yes_votes, :count) { 6 }
