@@ -172,7 +172,7 @@ GEM
     kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
-    libv8 (3.16.14.13)
+    libv8 (3.16.14.19)
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -327,8 +327,8 @@ GEM
     stripe_event (1.5.0)
       activesupport (>= 3.1)
       stripe (~> 1.6)
-    therubyracer (0.12.2)
-      libv8 (~> 3.16.14.0)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
       ref
     thin (1.6.4)
       daemons (~> 1.0, >= 1.0.9)
@@ -413,7 +413,7 @@ DEPENDENCIES
   unicorn
 
 RUBY VERSION
-   ruby 2.3.5p376
+   ruby 2.4.0p0
 
 BUNDLED WITH
-   1.15.4
+   1.16.1
