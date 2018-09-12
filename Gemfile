@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.5'
+ruby '2.4.0'
 
 gem 'rails', '~> 4.2'
 gem 'jquery-rails'
@@ -48,6 +48,7 @@ group :development, :test do
   gem 'rack_session_access'
   gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'puma' # for capybara
 end
 
 group :production do
