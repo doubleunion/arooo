@@ -48,7 +48,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.4.0)
+    addressable (2.6.0)
+      public_suffix (>= 2.0.2, < 4.0)
     archive-zip (0.7.0)
       io-like (~> 0.3.0)
     arel (6.0.4)
@@ -76,14 +77,14 @@ GEM
     bugsnag (3.0.0)
       json (~> 1.7, >= 1.7.7)
     builder (3.2.3)
-    byebug (8.2.1)
-    capybara (3.7.1)
+    capybara (3.18.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
-      xpath (~> 3.1)
+      regexp_parser (~> 1.2)
+      xpath (~> 3.2)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
     chromedriver-helper (1.1.0)
@@ -182,15 +183,15 @@ GEM
       mini_mime (>= 0.1.1)
     method_source (0.8.2)
     mime-types (2.99.3)
-    mini_mime (1.0.0)
-    mini_portile2 (2.3.0)
+    mini_mime (1.0.1)
+    mini_portile2 (2.4.0)
     minitest (5.10.3)
     multi_json (1.12.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     netrc (0.11.0)
-    nokogiri (1.8.4)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.3)
+      mini_portile2 (~> 2.4.0)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -219,15 +220,13 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-byebug (3.3.0)
-      byebug (~> 8.0)
-      pry (~> 0.10)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
+    public_suffix (3.0.3)
     puma (3.12.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
-    rack (1.6.10)
+    rack (1.6.11)
     rack-canonical-host (0.1.0)
       addressable
       rack (~> 1.0)
@@ -272,6 +271,7 @@ GEM
     rake (12.3.0)
     redcarpet (3.3.4)
     ref (2.0.0)
+    regexp_parser (1.4.0)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -354,7 +354,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    xpath (3.1.0)
+    xpath (3.2.0)
       nokogiri (~> 1.8)
 
 PLATFORMS
@@ -391,7 +391,6 @@ DEPENDENCIES
   omniauth-google-oauth2
   pg
   protected_attributes
-  pry-byebug
   pry-rails
   puma
   quiet_assets
