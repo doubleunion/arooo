@@ -21,6 +21,7 @@ Doubleunion::Application.routes.draw do
       resources :comments, only: :create
       post 'sponsor' => "applications#sponsor"
     end
+    resources :comments, only: :index
 
     resources :caches, only: :index do
       post :expire, on: :collection
