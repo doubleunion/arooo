@@ -13,6 +13,10 @@ class Members::CommentsController < Members::MembersController
     redirect_to members_application_path(application)
   end
 
+  def index
+    @recent_comments = Comment.where('created_at > ?', 1.month.ago).sort_by(&:created_at).reverse
+  end
+
   private
 
   def application_id_param
