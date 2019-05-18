@@ -388,7 +388,7 @@ DEPENDENCIES
   omniauth
   omniauth-github
   omniauth-google-oauth2
-  pg (= 0.21.0)
+  pg (= 0.21)
   protected_attributes
   pry-rails
   puma
