@@ -14,7 +14,7 @@ class Members::CommentsController < Members::MembersController
   end
 
   def index
-    @recent_comments = Comment.where('created_at > ?', 1.month.ago).sort_by(&:created_at).reverse
+    @recent_comments = Comment.where('created_at > ?', 1.month.ago).sort_by(&:created_at)
   end
 
   private

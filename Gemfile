@@ -48,8 +48,9 @@ group :development, :test do
   gem 'faker'
   gem 'rack_session_access'
   gem 'pry-rails'
-  # gem 'pry-byebug'
+  gem 'pry'
   gem 'puma' # for capybara
+  gem 'timecop'
 end
 
 group :production do
