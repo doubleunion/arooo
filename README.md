@@ -68,7 +68,9 @@ Make sure `bundle exec rspec` passes before pushing your changes.
 
 Development: `$ bundle exec rails console`
 
-Production: `$ heroku run rails console`
+Staging: `$ heroku run rails console --remote staging`
+
+Production: `$ heroku run rails console --remote production`
 
 ## Populate development database
 
