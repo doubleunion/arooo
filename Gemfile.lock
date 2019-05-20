@@ -339,6 +339,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (1.4.1)
+    timecop (0.9.1)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.4)
@@ -390,6 +391,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   pg (= 0.21)
   protected_attributes
+  pry
   pry-rails
   puma
   quiet_assets
@@ -411,6 +413,7 @@ DEPENDENCIES
   stripe_event
   therubyracer
   thin
+  timecop
   turbolinks
   uglifier (>= 1.3.0)
   unicorn

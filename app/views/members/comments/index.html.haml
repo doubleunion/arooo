@@ -3,15 +3,18 @@
 %table.table.table-striped.js-datatable-applications.applications
   %thead
     %tr.more-padding
-      %th.name Commenter Name
-      %th.name Applicant Name
+      %th Commenter Name
+      %th Applicant Name
       %th Comment
+      %th Date
   %tbody
     - @recent_comments.each do |comment|
       %tr
         %td
           = comment.user.name
         %td
-          = comment.application.user.name
+          = link_to comment.application.user.name, members_application_path(comment.application)
         %td
           = comment.body
+        %td
+          = comment.created_at
