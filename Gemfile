@@ -19,7 +19,8 @@ gem 'rails_autolink'
 gem 'redcarpet'
 gem 'configurable_engine'
 gem 'bugsnag'
-gem 'stripe'
+gem 'stripe', '2.5.0' # TODO upgrade this! Carefully...
+gem 'rest-client', '2.0.2' # This is brought in by stripe. lower versions cause error "KeyError: key not found: :ciphers"
 gem 'stripe_event'
 gem 'rack-canonical-host'
 gem 'aws-sdk-rails', '~> 1.0'
@@ -48,8 +49,9 @@ group :development, :test do
   gem 'faker'
   gem 'rack_session_access'
   gem 'pry-rails'
-  # gem 'pry-byebug'
+  gem 'pry'
   gem 'puma' # for capybara
+  gem 'timecop'
 end
 
 group :production do
@@ -68,5 +70,5 @@ group :test do
   gem 'rspec-collection_matchers'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
-  gem 'stripe-ruby-mock', '~> 2.2.1', :require => 'stripe_mock'
+  gem 'stripe-ruby-mock', :require => 'stripe_mock'
 end
