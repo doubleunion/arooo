@@ -43,7 +43,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.4'
+  gem 'rspec-rails', '~> 3.5'
   gem 'thin'
   gem 'faker'
   gem 'rack_session_access'
