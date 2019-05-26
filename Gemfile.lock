@@ -343,7 +343,7 @@ DEPENDENCIES
   bugsnag
   capybara
   chromedriver-helper
-  coffee-rails (= 4.2.2)
+  coffee-rails
   configurable_engine
   database_cleaner (= 1.0.1)
   email_spec
