@@ -20,7 +20,6 @@ gem 'redcarpet'
 gem 'configurable_engine'
 gem 'bugsnag'
 gem 'stripe', '2.5.0' # TODO upgrade this! Carefully...
-gem 'rest-client', '2.0.2' # This is brought in by stripe. lower versions cause error "KeyError: key not found: :ciphers"
 gem 'stripe_event'
 gem 'rack-canonical-host'
 gem 'aws-sdk-rails', '~> 1.0'
