@@ -85,13 +85,13 @@ GEM
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
     coderay (1.1.0)
-    coffee-rails (4.0.1)
+    coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
-      railties (>= 4.0.0, < 5.0)
+      railties (>= 4.0.0)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.10.0)
+    coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     configurable_engine (0.4.8)
       rails (> 3.1.0)
@@ -343,7 +343,7 @@ DEPENDENCIES
   bugsnag
   capybara
   chromedriver-helper
-  coffee-rails (~> 4.0.0)
+  coffee-rails (= 4.2.2)
   configurable_engine
   database_cleaner (= 1.0.1)
   email_spec
