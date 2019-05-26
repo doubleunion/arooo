@@ -14,7 +14,10 @@ class Members::CommentsController < Members::MembersController
   end
 
   def index
-    @recent_comments = Comment.where('created_at > ?', 1.month.ago).sort_by(&:created_at).reverse
+    # only comments on applications that are not accepted should be viewable!
+    @recent_comments = Comment.where('created_at > ?', 1.month.ago).sort_by(&:created_at).select { |comment|
+      comment.application.state == 'submitted'
+    }
   end
 
   private
