@@ -27,7 +27,7 @@ gem 'rack-cors'
 
 gem 'haml-rails'
 gem 'sass-rails', '~> 4.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'bootstrap-sass'
 gem 'jquery-datatables-rails', '1.12.2' #TODO: upgrade this to the present
