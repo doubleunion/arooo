@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/rails/actionpack-action_caching
-  revision: 985767a265820804fde51fb977e4d67aa87df358
-  specs:
-    actionpack-action_caching (1.2.0)
-      actionpack (>= 4.0.0, < 6)
-
-GIT
   remote: https://github.com/seuros/state_machine
   revision: 95ba53f03e5657a5873343c2b1dc6a148ea3542e
   specs:
@@ -27,6 +20,8 @@ GEM
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    actionpack-action_caching (1.2.0)
+      actionpack (>= 4.0.0, < 6)
     actionview (4.2.10)
       activesupport (= 4.2.10)
       builder (~> 3.1)
@@ -100,7 +95,7 @@ GEM
     concurrent-ruby (1.1.5)
     configurable_engine (0.4.8)
       rails (> 3.1.0)
-    crass (1.0.3)
+    crass (1.0.4)
     daemons (1.2.3)
     dante (0.2.0)
     database_cleaner (1.0.1)
@@ -167,7 +162,7 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.19)
-    loofah (2.1.1)
+    loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     machinist (2.0)
@@ -243,12 +238,12 @@ GEM
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
-    rails-dom-testing (1.0.8)
-      activesupport (>= 4.2.0.beta, < 5.0)
+    rails-dom-testing (1.0.9)
+      activesupport (>= 4.2.0, < 5.0)
       nokogiri (~> 1.6)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -355,7 +350,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  actionpack-action_caching!
+  actionpack-action_caching
   awesome_print
   aws-sdk-rails (~> 1.0)
   better_errors
