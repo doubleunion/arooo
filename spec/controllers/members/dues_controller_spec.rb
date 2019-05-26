@@ -46,6 +46,7 @@ describe Members::DuesController do
           :amount => 5000,
           :currency => "usd",
           :interval => "month",
+          :product => "test product",
           :name => "test plan")
 
         # Must set referrer so that DuesController#redirect_target works
@@ -94,6 +95,7 @@ describe Members::DuesController do
         :amount => 5000,
         :currency => "usd",
         :interval => "month",
+        :product => "test product",
         :name => "test plan")
 
       # Must set referrer so that DuesController#redirect_target works
