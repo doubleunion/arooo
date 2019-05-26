@@ -61,7 +61,7 @@ end
 group :test do
   gem 'capybara'
   gem 'chromedriver-helper'
-  gem 'database_cleaner', '1.0.1'
+  gem 'database_cleaner'
   gem 'email_spec'
   gem 'factory_girl_rails'
   gem 'launchy'
