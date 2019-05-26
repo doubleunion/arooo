@@ -377,7 +377,7 @@ DEPENDENCIES
   rails_autolink
   redcarpet
   rspec-collection_matchers
-  rspec-rails (~> 3.3)
+  rspec-rails (~> 3.4)
   sass-rails (~> 4.0)
   selenium-webdriver
   shoulda-matchers
