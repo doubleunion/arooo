@@ -33,17 +33,17 @@ gem 'bootstrap-sass'
 gem 'jquery-datatables-rails', '1.12.2' #TODO: upgrade this to the present
 
 group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  gem 'better_errors' # Provides a better error page for Rails and other Rack apps
+  gem 'binding_of_caller' # Retrieve the binding of a method's caller
   gem 'html2haml'
-  gem 'quiet_assets'
+  gem 'quiet_assets' # turns off Rails asset pipeline log
   gem 'awesome_print'
-  gem 'execjs'
-  gem 'therubyracer'
+  gem 'execjs' # last updated 2016
+  gem 'therubyracer' # Call JavaScript code and manipulate JavaScript objects from Ruby
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.2'
+  gem 'rspec-rails', '~> 3.3'
   gem 'thin'
   gem 'faker'
   gem 'rack_session_access'
