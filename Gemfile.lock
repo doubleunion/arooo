@@ -368,7 +368,7 @@ DEPENDENCIES
   haml-rails
   html2haml
   jbuilder
-  jquery-datatables-rails (= 1.12.2)
+  jquery-datatables-rails (~> 1)
   jquery-rails
   kaminari
   launchy
