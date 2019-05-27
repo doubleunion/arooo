@@ -385,7 +385,7 @@ DEPENDENCIES
   rack-canonical-host
   rack-cors
   rack_session_access
-  rails (~> 4.2)
+  rails
   rails_12factor
   rails_autolink
   redcarpet
