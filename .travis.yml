@@ -1,7 +1,7 @@
 language: ruby
 cache: bundler
 rvm:
-  - "2.4.6"
+  - '2.5.5'
 script:
   - bundle exec rake db:drop
   - bundle exec rake db:create
