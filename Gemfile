@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.5.5'
 
-gem 'rails', '~> 4.2'
+gem 'rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
@@ -19,18 +19,18 @@ gem 'rails_autolink'
 gem 'redcarpet'
 gem 'configurable_engine'
 gem 'bugsnag'
-gem 'stripe', '2.5.0' # TODO upgrade this! Carefully...
+gem 'stripe', '~> 2' # TODO upgrade this! Carefully...
 gem 'stripe_event'
 gem 'rack-canonical-host'
-gem 'aws-sdk-rails', '~> 1.0'
+gem 'aws-sdk-rails'
 gem 'rack-cors'
 
 gem 'haml-rails'
-gem 'sass-rails', '~> 4.0'
+gem 'sass-rails', '~> 4'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'bootstrap-sass'
-gem 'jquery-datatables-rails', '1.12.2' #TODO: upgrade this to the present
+gem 'jquery-datatables-rails', '~> 1' # TODO: upgrade this to the present
 
 group :development do
   gem 'better_errors' # Provides a better error page for Rails and other Rack apps
@@ -68,6 +68,6 @@ group :test do
   gem 'machinist'
   gem 'rspec-collection_matchers'
   gem 'selenium-webdriver'
-  gem 'shoulda-matchers', '~> 3' # TODO fix test and unpin
+  gem 'shoulda-matchers'
   gem 'stripe-ruby-mock', :require => 'stripe_mock'
 end
