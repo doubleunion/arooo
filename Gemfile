@@ -19,7 +19,7 @@ gem 'rails_autolink'
 gem 'redcarpet'
 gem 'configurable_engine'
 gem 'bugsnag'
-gem 'stripe', '2.5.0' # TODO upgrade this! Carefully...
+gem 'stripe', '~> 2' # TODO upgrade this! Carefully...
 gem 'stripe_event'
 gem 'rack-canonical-host'
 gem 'aws-sdk-rails', '~> 1.0'
