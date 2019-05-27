@@ -395,7 +395,7 @@ DEPENDENCIES
   redcarpet
   rspec-collection_matchers
   rspec-rails
-  sass-rails (~> 4.0)
+  sass-rails (~> 4)
   selenium-webdriver
   shoulda-matchers
   state_machine!
