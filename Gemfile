@@ -68,6 +68,6 @@ group :test do
   gem 'machinist'
   gem 'rspec-collection_matchers'
   gem 'selenium-webdriver'
-  gem 'shoulda-matchers', '~> 3' # TODO fix test and unpin
+  gem 'shoulda-matchers'
   gem 'stripe-ruby-mock', :require => 'stripe_mock'
 end

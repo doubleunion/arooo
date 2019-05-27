@@ -7,7 +7,5 @@ class Authentication < ActiveRecord::Base
 
   validates :user, :uid, :provider, presence: true
   validates :uid, uniqueness: { scope: :user_id }
-  validates :provider, inclusion: { in: AUTH_PROVIDERS,
-    message: "%{value} is not a valid provider"
-  }
+  validates :provider, inclusion: { in: AUTH_PROVIDERS }
 end
