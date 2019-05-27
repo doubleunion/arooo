@@ -22,7 +22,7 @@ gem 'bugsnag'
 gem 'stripe', '~> 2' # TODO upgrade this! Carefully...
 gem 'stripe_event'
 gem 'rack-canonical-host'
-gem 'aws-sdk-rails', '~> 1.0'
+gem 'aws-sdk-rails'
 gem 'rack-cors'
 
 gem 'haml-rails'

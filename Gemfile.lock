@@ -52,14 +52,18 @@ GEM
       execjs
     awesome_print (1.8.0)
     aws-eventstream (1.0.3)
-    aws-sdk-core (2.11.282)
-      aws-sigv4 (~> 1.0)
+    aws-partitions (1.167.0)
+    aws-sdk-core (3.53.1)
+      aws-eventstream (~> 1.0, >= 1.0.2)
+      aws-partitions (~> 1.0)
+      aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-rails (1.0.1)
-      aws-sdk-resources (~> 2)
+    aws-sdk-rails (2.1.0)
+      aws-sdk-ses (~> 1)
       railties (>= 3)
-    aws-sdk-resources (2.11.282)
-      aws-sdk-core (= 2.11.282)
+    aws-sdk-ses (1.21.0)
+      aws-sdk-core (~> 3, >= 3.53.0)
+      aws-sigv4 (~> 1.1)
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
     better_errors (2.5.1)
@@ -350,7 +354,7 @@ PLATFORMS
 DEPENDENCIES
   actionpack-action_caching
   awesome_print
-  aws-sdk-rails (~> 1.0)
+  aws-sdk-rails
   better_errors
   binding_of_caller
   bootstrap-sass
