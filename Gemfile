@@ -26,7 +26,7 @@ gem 'aws-sdk-rails'
 gem 'rack-cors'
 
 gem 'haml-rails'
-gem 'sass-rails', '~> 4'
+gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'bootstrap-sass'
