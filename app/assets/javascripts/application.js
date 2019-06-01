@@ -12,23 +12,23 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
 //= require dataTables/jquery.dataTables
-//= require dataTables/jquery.dataTables.bootstrap
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require bootstrap
 
 $(document).ready(function () {
   $.extend( $.fn.dataTable.defaults, {
     "bPaginate": false
   } );
 
-  $('.js-datatable').dataTable({
+  $('.js-datatable').DataTable({
   });
 
-  $('.js-datatable-dues').dataTable({
+  $('.js-datatable-dues').DataTable({
     "aaSorting": [[ 2, "asc" ]]
   })
 
-  $('.js-datatable-applications').dataTable({
+  $('.js-datatable-applications').DataTable({
     "aaSorting": [[ 1, "desc" ]],
     "aoColumnDefs": [
       {'aTargets': ['date'], 'sType': "date"}

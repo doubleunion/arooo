@@ -30,7 +30,7 @@ gem 'sass-rails', '~> 4'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'bootstrap-sass'
-gem 'jquery-datatables-rails', '~> 1' # TODO: upgrade this to the present
+gem 'jquery-datatables-rails'
 
 group :development do
   gem 'better_errors' # Provides a better error page for Rails and other Rack apps
