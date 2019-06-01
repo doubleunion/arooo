@@ -314,8 +314,8 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    stripe (2.12.0)
-      faraday (~> 0.9)
+    stripe (3.31.1)
+      faraday (~> 0.10)
     stripe-ruby-mock (2.5.7)
       dante (>= 0.2.0)
       multi_json (~> 1.0)
@@ -399,7 +399,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers
   state_machine!
-  stripe (~> 2)
+  stripe (~> 3)
   stripe-ruby-mock
   stripe_event
   therubyracer
