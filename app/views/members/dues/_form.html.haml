@@ -1,7 +1,14 @@
 - options = options_for_select({ "$100.00 USD Monthly" => "extra_large_monthly",
+    "$75.00 USD Monthly" => "75_monthly",
     "$50.00 USD Monthly" => "large_monthly",
+    "$45.00 USD Monthly" => "45_monthly",
+    "$40.00 USD Monthly" => "40_monthly",
+    "$35.00 USD Monthly" => "35_monthly",
+    "$30.00 USD Monthly" => "30_monthly",
     "$25.00 USD Monthly" => "medium_monthly",
-    "$10.00 USD Monthly" => "small_monthly" }, "medium_monthly")
+    "$20.00 USD Monthly" => "20_monthly",
+    "$15.00 USD Monthly" => "15_monthly",
+    "$10.00 USD Monthly" => "small_monthly" }, "30_monthly")
 
 = form_tag members_user_dues_path(@user), method: "patch", :id => "dues-form" do
   = select_tag :plan, options
