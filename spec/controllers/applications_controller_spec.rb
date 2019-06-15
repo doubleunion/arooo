@@ -66,7 +66,7 @@ describe ApplicationsController do
 
   describe 'GET edit' do
     it 'should redirect to root if not logged in' do
-      get :edit, id: User.make!(:applicant).application.id
+      get :edit, id: create(:user, state: :applicant).application.id
       expect(response).to redirect_to :root
     end
 
@@ -102,7 +102,7 @@ describe ApplicationsController do
 
   describe 'POST update' do
     it 'should redirect to root if not logged in' do
-      post :update, id: User.make!(:applicant).application.id
+      post :update, id: create(:user, state: :applicant).application.id
       expect(response).to redirect_to :root
     end
 

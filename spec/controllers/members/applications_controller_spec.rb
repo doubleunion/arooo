@@ -6,7 +6,7 @@ describe Members::ApplicationsController do
   render_views
 
   before :each do
-    @applicant = User.make!(:applicant)
+    @applicant = create(:user, state: :applicant)
   end
 
   describe 'GET show' do
@@ -38,7 +38,7 @@ describe Members::ApplicationsController do
       it 'renders if application is in submitted state' do
         login_as(:member)
 
-        applicant = User.make!(:applicant)
+        applicant = create(:user, state: :applicant)
         application = applicant.application
         application.update_attribute(:state, 'submitted')
 
@@ -49,7 +49,7 @@ describe Members::ApplicationsController do
       it 'redirects if application is in approved state' do
         login_as(:member)
 
-        applicant = User.make!(:applicant)
+        applicant = create(:user, state: :applicant)
         application = applicant.application
         application.update_attribute(:state, 'approved')
 
@@ -60,7 +60,7 @@ describe Members::ApplicationsController do
       it 'redirects if application is in rejected state' do
         login_as(:member)
 
-        applicant = User.make!(:applicant)
+        applicant = create(:user, state: :applicant)
         application = applicant.application
         application.update_attribute(:state, 'rejected')
 
@@ -71,7 +71,7 @@ describe Members::ApplicationsController do
 
     describe 'for submitted application' do
       before :each do
-        @submitted_application = User.make!(:applicant).application
+        @submitted_application = create(:user, state: :applicant).application
         @submitted_application.update_attribute(:state, 'submitted')
       end
 

@@ -23,7 +23,7 @@ User.blueprint(:voting_member) { state { 'voting_member' } }
 Application.blueprint do
 end
 
-Application.blueprint(:with_user) { user { User.make!(:applicant) } }
+Application.blueprint(:with_user) { user { create(:user, state: :applicant) } }
 
 Vote.blueprint do
   value { true }

@@ -16,8 +16,8 @@ describe Vote do
   it 'should be invalid if voter is member' do
     vote = Vote.new
 
-    vote.user = User.make!(:member)
-    vote.application = Application.make!(user: User.make!(:applicant))
+    vote.user = create(:user, state: :member)
+    vote.application = create(:application, user: create(:user, state: :applicant))
     vote.value = true
     expect(vote.valid?).to be_falsey
     expect(vote).to have_at_least(1).errors_on(:user)
@@ -26,17 +26,17 @@ describe Vote do
   it 'should be valid if voter is voting member' do
     vote = Vote.new
 
-    vote.user = User.make!(:voting_member)
-    vote.application = Application.make!(user: User.make!(:applicant))
+    vote.user = create(:user, state: :voting_member)
+    vote.application = create(:application, user: create(:user, state: :applicant))
     vote.value = true
     expect(vote.valid?).to be_truthy
   end
 
   it 'should validate uniqueness per user and application' do
-    applicant   = User.make!(:applicant)
-    application = Application.make!(user: applicant)
-    voter       = User.make!(:voting_member)
-    vote        = Vote.make!(application: application, user: voter)
+    applicant   = create(:user, state: :applicant)
+    application = create(:application, user: applicant)
+    voter       = create(:user, state: :voting_member)
+    vote        = create(:vote, application: application, user: voter)
 
     invalid = Vote.new(application: application,
                        user: voter,

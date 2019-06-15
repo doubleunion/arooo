@@ -15,31 +15,32 @@ describe Comment do
 
   it 'should not be valid for visitor' do
     comment = Comment.new
-    comment.user = User.make!(:visitor)
+    comment.user = create(:user, state: :visitor)
     expect(comment.tap(&:valid?)).to have_at_least(1).errors_on(:user)
   end
 
   it 'should not be valid for applicant' do
-    comment = Comment.new(user: User.make!(:applicant))
+    comment = Comment.new(user: create(:user, state: :applicant))
     expect(comment.tap(&:valid?)).to have_at_least(1).errors_on(:user)
   end
 
   it 'should be valid for member' do
     comment = Comment.new
-    comment.user = User.make!(:member)
+    comment.user = create(:user, state: :member)
     expect(comment.tap(&:valid?)).to have(0).errors_on(:user)
   end
 
   it 'should be valid for voting member' do
     comment = Comment.new
-    comment.user = User.make!(:voting_member)
+    comment.user = create(:user, state: :voting_member)
     expect(comment.tap(&:valid?)).to have(0).errors_on(:user)
   end
 
   it 'should be saved for member' do
     comment = Comment.new(body: 'hello')
-    comment.application = Application.make!(:with_user)
-    comment.user = User.make!(:member)
+    user = create(:user, state: :applicant)
+    comment.application = create(:application, user: user)
+    comment.user = create(:user, state: :member)
     expect(comment.save).to be_truthy
   end
 end

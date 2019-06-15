@@ -28,11 +28,11 @@ describe User do
 
   it 'should have profile after created' do
     expect(User.new.profile).to be_nil
-    expect(User.make!.profile).to be_an_instance_of(Profile)
+    expect(create(:user).profile).to be_an_instance_of(Profile)
   end
 
   it 'should accept nested attributes for profile' do
-    user = User.make!
+    user = create(:user)
     expect(user.profile.twitter).to be_nil
     user.update_attributes!(profile_attributes: {
         id: user.profile.id,
