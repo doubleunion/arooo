@@ -65,7 +65,6 @@ group :test do
   gem 'email_spec'
   gem 'factory_girl_rails'
   gem 'launchy'
-  gem 'machinist'
   gem 'rspec-collection_matchers'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
