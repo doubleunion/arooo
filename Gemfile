@@ -26,11 +26,11 @@ gem 'aws-sdk-rails'
 gem 'rack-cors'
 
 gem 'haml-rails'
-gem 'sass-rails', '~> 4'
+gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'bootstrap-sass'
-gem 'jquery-datatables-rails', '~> 1' # TODO: upgrade this to the present
+gem 'jquery-datatables-rails'
 
 group :development do
   gem 'better_errors' # Provides a better error page for Rails and other Rack apps
