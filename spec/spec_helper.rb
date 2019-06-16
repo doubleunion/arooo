@@ -89,7 +89,7 @@ end
 module AuthHelper
   def login_as(user_or_state, attrs = {})
     user = user_or_state.is_a?(User) ? user_or_state : nil
-    user ||= User.make!(user_or_state, attrs)
+    user ||= create(:user, attrs.merge(state: user_or_state))
     allow(controller).to receive(:current_user).and_return(user)
     user
   end

@@ -7,7 +7,7 @@ describe Profile do
 
   it 'should be valid with user id' do
     profile = Profile.new
-    profile.user = User.make!
+    profile.user = create(:user)
     expect(profile.valid?).to be_truthy
   end
 end
