@@ -4,8 +4,8 @@ it:
       messages:
         record_invalid: "Errore nella validazione dei campi: %{errors}"
         restrict_dependent_destroy:
-          has_one: L'eliminzaione non può essere portata a buon fine perchè esiste un %{record} dipendente
-          has_many: L'eliminzaione non può essere portata a buon fine perchè esiste un %{record} dipendente
+          has_one: L'eliminzaione non può essere portata a buon fine perché esiste un %{record} dipendente
+          has_many: L'eliminzaione non può essere portata a buon fine perché esiste un %{record} dipendente
   date:
     abbr_day_names:
     - dom
@@ -88,7 +88,7 @@ it:
         other: "%{count} giorni"
       x_minutes:
         one: 1 minuto
-        other: "%{count} minutos"
+        other: "%{count} minuti"
       x_months:
         one: 1 minuto
         other: "%{count} minuti"
@@ -108,7 +108,7 @@ it:
   errors:
     format: "%{attribute} %{message}"
     messages:
-      accepted: deve essere accttato
+      accepted: deve essere accettato
       blank: non può essere vuoto
       present: deve essere vuoto
       confirmation: non coincide
@@ -142,7 +142,7 @@ it:
       body: 'Sono stati trovati problemi con i seguenti campi:'
       header:
         one: Impossibile salvare questo %{model} perché è stato trovato 1 errore
-        other: Impossibile salvare questo %{model} perchè si sono trovati %{count} errori
+        other: Impossibile salvare questo %{model} perché si sono trovati %{count} errori
   helpers:
     select:
       prompt: Per favore selezionare
@@ -173,8 +173,8 @@ it:
           billion: mil miliardi
           million:
             one: milione
-            other: miglioni
-          quadrillion: mil migliardi
+            other: milione
+          quadrillion: mil miliardi
           thousand: mil
           trillion:
             one: biliardo
@@ -229,7 +229,7 @@ it:
   that_means: "Questo significa che puoi scrivere paragrafi e verranno impaginati corretamente. Puoi anche "
   preview_application: "rivedere la tua candidatura, senza il rischio di modificarla"
   before_or_after: " prima di inviarla"
-  blanker_application: "Se ti sembra di aver già acompletato alcuni campi nella candidatura, controlla di aver effettuato il login con il l'account giusto (GitHub o Google)"
+  blanker_application: "Se ti sembra di aver già completato alcuni campi nella candidatura, controlla di aver effettuato il login con il l'account giusto (GitHub o Google)"
   full_name: "Nome Completo"
   required: "richiesto"
   email: "Indirizzo Email"
@@ -245,10 +245,10 @@ it:
   tell_us_about_yourself: "Raccontaci qualcosa su di te!"
   overall_story: "Con questa domanda vorremmo che ci raccontassi un po' della tua storia. Non valutiamo le candidature secondo la fama o il successo di una persona. Alcune frasi o un paragrafo vanno benissimo, ci piacerebbe che ci raccontassi delle tue caratteristiche, ma non vogliamo obbligarti a scrivere un lungo testo. Sentiti libera di includere un po' di di link aggiuntivi. Ci aiuta molto se includi un po' di informazioni aggiuntive se non hai una presenza attiva su Internet (come Twitter o un tuo sito)."
   required_character_limit: "Richiesto, almeno 2000 caratteri."
-  why_interested: "Perchè sei interessata a entrare in Double Union"
-  interests_and_goals: "Ti facciamo questa domanda perchè ch piacerebbe sapere se hai degli interessi e degli obbiettivi rispetto alla tua partecipazione che sono compatibili con quelli di DU (e cosa puoi offrire ai suoi membri)"
+  why_interested: "Perché sei interessata a entrare in Double Union"
+  interests_and_goals: "Ti facciamo questa domanda perché ci piacerebbe sapere se hai degli interessi e degli obbiettivi rispetto alla tua partecipazione che sono compatibili con quelli di DU (e cosa puoi offrire ai suoi membri)"
   tell_us_about_feminism: "Raccontaci del tuo femminismo!"
-  intersectional: "Ti facciamo questa domanda perch+ ci teniamo che DU sia uno spazio femminista intersezionale, e per noi è importante a questo tengano anche i nostri membri; ci apsettiamo che i membri di DU in qualche modo si sentano femministe. Per farci capire meglio la tua prospettiva, vorremmo che ci raccontassi le tue riflessioni sul tio modo di essere femminista. Va bene se le tue idee non sono espresse formalmente! Magari ti può interessare guardare i nostri"
+  intersectional: "Ti facciamo questa domanda perché ci teniamo che DU sia uno spazio femminista intersezionale, e per noi è importante a questo tengano anche i nostri membri; ci aspettiamo che i membri di DU in qualche modo si sentano femministe. Per farci capire meglio la tua prospettiva, vorremmo che ci raccontassi le tue riflessioni sul tuo modo di essere femminista. Va bene se le tue idee non sono espresse formalmente! Magari ti può interessare guardare i nostri"
   base_assumptions: "assunti di base. (per ora solo in inglese),"
   help_explain_values: " che possono spiegare i valori condivisi da DU"
   what_to_work_on: "Cosa vorresti fare in questo spazio?"
