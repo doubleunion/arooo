@@ -63,7 +63,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'database_cleaner'
   gem 'email_spec'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails', '~> 4'
   gem 'launchy'
   gem 'rspec-collection_matchers'
   gem 'selenium-webdriver'
