@@ -125,6 +125,9 @@ If you need a user that has admin access:
 
 Admins can accept/reject applications, update any member's status, see current member's dues, open and close applications, and manage new member setup.
 
+## Bugsnag
+Bugsnag is a heroku plugin that records errors in the production app. This is helpful for debugging. For bugsnag access, ask someone with access to the board@ section of 1Password to log into bugsnag and send you an email invite to create an account.
+
 ## Contributing
 
 If you are new to GitHub, you can [use this guide](http://railsbridge.github.io/bridge_troll/) for help making a pull request.
