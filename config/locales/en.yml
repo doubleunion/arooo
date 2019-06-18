@@ -20,8 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  view_in: "View this page in Spanish"
-  new_locale: "es"
+  view_in: "View this page in"
+  new_locale_1_name: "Spanish"
+  new_locale_2_name: "Italian"
+  new_locale_1: "es"
+  new_locale_2: "it"
   confirm_language_switch: "This will erase any unsaved data. Continue anyway?"
   glad_for_interest: "Hello! We're glad you're interested in becoming a member of Double Union. We love reading applications and look forward to meeting you if we haven't already."
   any_questions: "If you have any questions about the application or application process, please email our membership coordinators at "
