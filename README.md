@@ -64,9 +64,13 @@ Run `rake db:test:prepare` after you pull or make any changes to the app, genera
 
 Make sure `bundle exec rspec` passes before pushing your changes.
 
-## Rails console
+## Rails console - local
 
 Development: `$ bundle exec rails console`
+
+## Rails console - heroku
+
+Set up heroku commandline client: https://devcenter.heroku.com/articles/heroku-cli
 
 Staging: `$ heroku run rails console --remote staging`
 
