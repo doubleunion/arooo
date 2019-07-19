@@ -173,9 +173,11 @@ This section only pertains if you have doubleunion/arooo write/push access.
 1. Deploy! (see below)
 
 
-## Deploying
+## Deploying and Heroku access
 
 This section only pertains if you have Heroku & Deployment access.
+
+If you are a DU member, see https://docs.google.com/document/d/19LbIYB2RDy-17UXuQx6wLgKp2EdLdqj-pg1cm3EpSb8/edit for more information on getting permission.
 
 1. Add Heroku remotes to your `.git/config` (type `git remote --help` for more instructions on how to configure git remote.)
 
