@@ -2,6 +2,8 @@ language: ruby
 cache: bundler
 rvm:
   - '2.5.5'
+services:
+  - postgresql
 script:
   - bundle exec rake db:drop
   - bundle exec rake db:create

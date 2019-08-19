@@ -31,11 +31,12 @@ If you're a Double Union member, you can chat with the maintainers in our [#du-a
 If you are new to Rails, follow the [RailsBridge Installfest instructions](http://installfest.railsbridge.org/installfest/) for getting your environment set up.
 - You must follow the Railsbridge Installfest instructions if you do not have `ruby`, `bundler`, or `rails` installed before continuing.
 
-0. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/) about how to do so.
+0. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/) about how to do so. The Railsbridge Installfest instructions may have asked you to install a different version of Ruby, but run `rvm install 2.5.5` or whatever version switching into the cloned app tells you to use to install the correct version of Ruby.
 
 1. Run `bundle install`
     * Bundle may fail on pg; run `brew install postgresql` if it does
     * If you get `FATAL: role “postgres” does not exist`, run `/usr/local/Cellar/postgresql/<version>/bin/createuser -s postgres`
+    * If bundle install fails with "can't find gem bundler", run `gem install bundler -v '2.0.1'` or whatever version you get from `cat Gemfile.lock | grep -A 1 "BUNDLED"`
 
 1. Standard Rails app setup
     * `cp config/database.example.yml config/database.yml`
