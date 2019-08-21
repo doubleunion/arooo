@@ -22,9 +22,11 @@ If you're interested in using Arooo for your org and want to get in touch, [make
 
 ## How to Contribute
 
-We use [GitHub issues](https://github.com/doubleunion/arooo/issues) for feature development and bug tracking, so take a look for things that you can work on, and comment with any questions you have.
+We use [GitHub issues](https://github.com/doubleunion/arooo/issues) for feature development and bug tracking.
 
-If you're a Double Union member, you can chat with the maintainers in our [#du-app chat channel](https://doubleunion.slack.com/messages/du-app/). Ask us how you can help!
+Anyone is welcome to make an issue or a pull request. We would *love* for first-time contributors to pick one of our [good first issue](https://github.com/doubleunion/arooo/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) issues :) 
+
+We will have a mailing list... soon! For now, let's communicate through github issues. Thanks for your patience :)
 
 ## Development setup
 
