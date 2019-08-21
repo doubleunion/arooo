@@ -26,7 +26,7 @@ We use [GitHub issues](https://github.com/doubleunion/arooo/issues) for feature 
 
 Anyone is welcome to make an issue or a pull request. We would *love* for first-time contributors to pick one of our [good first issue](https://github.com/doubleunion/arooo/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) issues :) 
 
-We will have a mailing list... soon! For now, let's communicate through github issues. Thanks for your patience :)
+We have a mailing list! Feel free to ask any question, including basica git and ruby questions :) https://groups.google.com/a/doubleunion.org/forum/#!forum/public-du-code
 
 ## Development setup
 
