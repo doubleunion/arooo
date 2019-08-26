@@ -2,6 +2,7 @@
   %thead
     %tr
       %th Name
+      %th Preferred Email
       %th Google Email
       %th Status
       %th On scholarship?
@@ -14,6 +15,11 @@
         %td.max-width-150
           - if user.name.present?
             = link_to user.name, members_user_path(user)
+        - if user.email
+          %td=user.email
+        -else
+          %td.admin-warning
+            Not set
         - if user.email_for_google
           %td=user.email_for_google
         - else
