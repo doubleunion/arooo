@@ -1,5 +1,6 @@
 # Arooo - A Room Of One's Own
 [![Build Status](https://travis-ci.org/doubleunion/arooo.svg)](https://travis-ci.org/doubleunion/arooo)
+[![Open Source Helpers](https://www.codetriage.com/doubleunion/arooo/badges/users.svg)](https://www.codetriage.com/doubleunion/arooo)
 
 ## Welcome :rocket::rocket::rocket:✨✨
 
