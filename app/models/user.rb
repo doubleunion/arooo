@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include AdminUser
+
   EMAIL_PATTERN = /\A.+@.+\Z/
 
   attr_accessible :username, :name, :email, :profile_attributes,

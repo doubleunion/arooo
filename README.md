@@ -81,7 +81,7 @@ If you are new to Rails, follow the [RailsBridge Installfest instructions](http:
 1. Standard Rails app setup
     * `cp config/database.example.yml config/database.yml`
     * `rake db:create`
-    * `rake db:migrate`
+    * `rake db:migrate` If for some reason you see an error like `could not find migration 3` then run `rake db:migrate VERSION=20170110040726` to force the migrations to run
     * `rake db:test:prepare` Now you can write and run tests! You can skip the other setup steps until you want to run arooo locally. :)
 
 1. Set up an application for OAuth: http://github.com/settings/applications/new
@@ -154,7 +154,7 @@ Now you can update any user:
 > user.update_attribute(:state, 'applicant') # bypasses normal checks & succeeds
 ```
 
-If you need a user that has admin access:
+If you need to make or unmake an admin, have a current admin click the un/make admin button on a member in the Member Admin View, or run the below in prod console.
 
 ```
 > user = User.find_by_username('cool_user')
