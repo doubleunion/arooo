@@ -34,6 +34,20 @@ class Admin::MembershipsController < ApplicationController
     redirect_to admin_memberships_path
   end
 
+  def make_admin
+    user = User.find(params[:id])
+    user.make_admin!
+    flash[:message] = "#{user.name} is now an admin"
+    redirect_to admin_memberships_path
+  end
+
+  def unmake_admin
+    user = User.find(params[:id])
+    user.unmake_admin!
+    flash[:message] = "#{user.name} is now NOT an admin"
+    redirect_to admin_memberships_path
+  end
+
   private
 
   def user_params

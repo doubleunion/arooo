@@ -54,7 +54,7 @@ describe Admin::MembershipsController do
 
     context "marking a member as on scholarship" do
       let(:member) { create :member }
-      let(:params) { { id: member.id, user: { is_scholarship: true } } }
+      let(:params) { {id: member.id, user: {is_scholarship: true}} }
 
       it "should mark scholarship as true" do
         expect { subject }.to change { member.reload.is_scholarship }.from(false).to(true)
@@ -68,7 +68,7 @@ describe Admin::MembershipsController do
 
     context "logged in as a non-admin" do
       let(:member) { create :member }
-      let(:params) { { id: member.id, user: { updated_state: "key_member"  } } }
+      let(:params) { {id: member.id, user: {updated_state: "key_member"}} }
 
       before { login_as(:member) }
 
@@ -81,7 +81,7 @@ describe Admin::MembershipsController do
       before { login_as(:voting_member, is_admin: true) }
 
       context "updating member state" do
-        let(:params) { { id: member.id, user: { updated_state: updated_state } } }
+        let(:params) { {id: member.id, user: {updated_state: updated_state}} }
 
         context "making a member a key member" do
           let(:member) { create :member }
@@ -152,6 +152,78 @@ describe Admin::MembershipsController do
           it "raises an error" do
             expect { subject }.to raise_error(NoMethodError)
           end
+        end
+      end
+    end
+  end
+
+  describe "PATCH make_admin" do
+
+    subject { patch :make_admin, params }
+
+    context "logged in as an admin" do
+      before { login_as(:voting_member, is_admin: true) }
+
+      context "making a member an admin" do
+        let(:params) { {id: member.id} }
+        let(:member) { create :member }
+
+        it "makes them an admin" do
+          expect(member.is_admin).to eq false
+          subject
+          expect(member.reload.is_admin).to eq true
+        end
+      end
+    end
+
+    context "logged in as a non-admin" do
+      before { login_as(:voting_member, is_admin: false) }
+
+      context "making a member an admin" do
+        let(:params) { {id: member.id, user: {updated_state: updated_state}} }
+        let(:member) { create :member }
+
+        let(:updated_state) { "key_member" }
+
+        it "redirect to root and does not update the user" do
+          expect { subject }.not_to change { member.is_admin }
+          expect(subject).to redirect_to :root
+        end
+      end
+    end
+  end
+
+  describe "PATCH unmake_admin" do
+
+    subject { patch :unmake_admin, params }
+
+    context "logged in as an admin" do
+      before { login_as(:voting_member, is_admin: true) }
+
+      context "making a member an admin" do
+        let(:params) { {id: member.id} }
+        let(:member) { create :member, is_admin: true }
+
+        it "makes member not an admin" do
+          expect(member.is_admin).to eq true
+          subject
+          expect(member.reload.is_admin).to eq false
+        end
+      end
+    end
+
+    context "logged in as a non-admin" do
+      before { login_as(:voting_member, is_admin: false) }
+
+      context "making a member an admin" do
+        let(:params) { {id: member.id} }
+        let(:member) { create :member }
+
+        let(:updated_state) { "key_member" }
+
+        it "redirect to root and does not update the user" do
+          expect { subject }.not_to change { member.is_admin }
+          expect(subject).to redirect_to :root
         end
       end
     end
