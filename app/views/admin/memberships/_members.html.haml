@@ -2,6 +2,7 @@
   %thead
     %tr
       %th Name
+      %th Preferred Email
       %th Google Email
       %th Status
       %th On scholarship?
@@ -14,6 +15,11 @@
         %td.max-width-150
           - if user.name.present?
             = link_to user.name, members_user_path(user)
+        - if user.email
+          %td=user.email
+        -else
+          %td.admin-warning
+            Not set
         - if user.email_for_google
           %td=user.email_for_google
         - else
@@ -41,6 +47,14 @@
               %span.collapse{class: "save-failure-#{user.id}"} Note not saved :(
 
         %td.buttons
+          - if user.is_admin
+            = form_for user, url: admin_unmake_admin_path(user) do |f|
+              = f.hidden_field(:id)
+              = f.submit "Un-make Admin", class: "btn accept-btn", data: { confirm: "Remove admin permissions?" }
+          - else
+            = form_for user, url: admin_make_admin_path(user) do |f|
+              = f.hidden_field(:id)
+              = f.submit "Make Admin", class: "btn accept-btn", data: { confirm: "Admins can make key members, cancel member memberships, see dues, open and close new-member applications" }
           - if user.voting_policy_agreement.present? && !user.voting_member?
             = form_for user, url: admin_change_membership_state_path(user) do |f|
               = f.hidden_field(:id)
