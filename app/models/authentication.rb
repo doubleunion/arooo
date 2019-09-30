@@ -9,3 +9,15 @@ class Authentication < ActiveRecord::Base
   validates :uid, uniqueness: { scope: :user_id }
   validates :provider, inclusion: { in: AUTH_PROVIDERS }
 end
+
+# == Schema Information
+#
+# Table name: authentications
+#
+#  id         :integer          not null, primary key
+#  provider   :string
+#  uid        :string
+#  created_at :datetime
+#  updated_at :datetime
+#  user_id    :integer
+#
