@@ -156,3 +156,25 @@ class Application < ActiveRecord::Base
     sponsorships.count >= MINIMUM_SPONSORS
   end
 end
+
+# == Schema Information
+#
+# Table name: applications
+#
+#  id                  :integer          not null, primary key
+#  agreement_female    :boolean          default(FALSE), not null
+#  agreement_policies  :boolean          default(FALSE), not null
+#  agreement_terms     :boolean          default(FALSE), not null
+#  processed_at        :datetime
+#  stale_email_sent_at :datetime
+#  state               :string           not null
+#  submitted_at        :datetime
+#  created_at          :datetime
+#  updated_at          :datetime
+#  user_id             :integer
+#
+# Indexes
+#
+#  index_applications_on_state    (state)
+#  index_applications_on_user_id  (user_id)
+#
