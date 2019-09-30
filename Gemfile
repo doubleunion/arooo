@@ -35,6 +35,7 @@ gem 'jquery-datatables-rails'
 group :development do
   gem 'better_errors' # Provides a better error page for Rails and other Rack apps
   gem 'binding_of_caller' # Retrieve the binding of a method's caller
+  gem 'brakeman' # check for security issues
   gem 'html2haml'
   gem 'quiet_assets' # turns off Rails asset pipeline log
   gem 'awesome_print'

@@ -10,6 +10,7 @@ script:
   - bundle exec rake db:migrate
   - bundle exec rake db:test:prepare
   - bundle exec rspec spec
+  - brakeman
 addons:
   chrome: stable
 before_script:
