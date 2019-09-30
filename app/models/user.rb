@@ -180,3 +180,26 @@ class User < ActiveRecord::Base
 
   DEFAULT_PROVIDER = 'github'
 end
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id                           :integer          not null, primary key
+#  dues_pledge                  :integer
+#  email                        :string
+#  email_for_google             :string
+#  is_admin                     :boolean          default(FALSE)
+#  is_scholarship               :boolean          default(FALSE)
+#  last_logged_in_at            :datetime
+#  last_stripe_charge_succeeded :datetime
+#  membership_note              :text
+#  name                         :string
+#  setup_complete               :boolean
+#  state                        :string           not null
+#  username                     :string
+#  voting_policy_agreement      :boolean          default(FALSE)
+#  created_at                   :datetime
+#  updated_at                   :datetime
+#  stripe_customer_id           :string
+#

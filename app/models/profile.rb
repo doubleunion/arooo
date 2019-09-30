@@ -27,3 +27,30 @@ class Profile < ActiveRecord::Base
     "https://github.com/#{username}"
   end
 end
+
+# == Schema Information
+#
+# Table name: profiles
+#
+#  id                :integer          not null, primary key
+#  blog              :string
+#  facebook          :string
+#  feminism          :string(2000)
+#  gravatar_email    :string
+#  linkedin          :string
+#  projects          :string(2000)
+#  pronouns          :string
+#  reasons           :string(2000)
+#  show_name_on_site :boolean          default(FALSE), not null
+#  skills            :string(2000)
+#  summary           :string(2000)
+#  twitter           :string
+#  website           :string
+#  created_at        :datetime
+#  updated_at        :datetime
+#  user_id           :integer          not null
+#
+# Indexes
+#
+#  index_profiles_on_user_id  (user_id)
+#

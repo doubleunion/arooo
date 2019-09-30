@@ -13,7 +13,7 @@ class DuesMailer < ActionMailer::Base
     @reason = reason
 
     mail(
-      to: [SCHOLARSHIP_EMAIL],
+      to: [SCHOLARSHIP_EMAIL, @user.email],
       subject: "New DU Scholarship Request",
     )
   end
