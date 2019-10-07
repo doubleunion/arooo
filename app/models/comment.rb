@@ -16,3 +16,19 @@ class Comment < ActiveRecord::Base
     end
   end
 end
+
+# == Schema Information
+#
+# Table name: comments
+#
+#  id             :integer          not null, primary key
+#  body           :string           not null
+#  created_at     :datetime
+#  updated_at     :datetime
+#  application_id :integer          not null
+#  user_id        :integer          not null
+#
+# Indexes
+#
+#  index_comments_on_user_id  (user_id)
+#

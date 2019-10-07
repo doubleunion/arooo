@@ -33,6 +33,7 @@ gem 'bootstrap-sass'
 gem 'jquery-datatables-rails'
 
 group :development do
+  gem 'annotate' # Show db schema as comments in models
   gem 'better_errors' # Provides a better error page for Rails and other Rack apps
   gem 'binding_of_caller' # Retrieve the binding of a method's caller
   gem 'html2haml'
