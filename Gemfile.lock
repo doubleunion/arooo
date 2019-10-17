@@ -45,6 +45,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
+    annotate (3.0.2)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 13.0)
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (6.0.4)
@@ -75,7 +78,7 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
-    bugsnag (6.11.1)
+    bugsnag (6.12.1)
       concurrent-ruby (~> 1.0)
     builder (3.2.3)
     capybara (3.24.0)
@@ -360,6 +363,7 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-action_caching
+  annotate
   awesome_print
   aws-sdk-rails
   better_errors
@@ -419,4 +423,4 @@ RUBY VERSION
    ruby 2.5.5p157
 
 BUNDLED WITH
-   2.0.1
+   1.17.3

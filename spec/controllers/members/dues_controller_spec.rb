@@ -190,7 +190,7 @@ describe Members::DuesController do
 
       it "sends an email" do
         expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(1)
-        expect(ActionMailer::Base.deliveries.last.to).to eq(["scholarship@doubleunion.org"])
+        expect(ActionMailer::Base.deliveries.last.to).to eq(["scholarship@doubleunion.org", member.email])
         expect(ActionMailer::Base.deliveries.last.body).to include "Lemurs are pretty great"
       end
     end

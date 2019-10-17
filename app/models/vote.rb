@@ -36,3 +36,21 @@ class Vote < ActiveRecord::Base
     !value
   end
 end
+
+# == Schema Information
+#
+# Table name: votes
+#
+#  id             :integer          not null, primary key
+#  value          :boolean          not null
+#  created_at     :datetime
+#  updated_at     :datetime
+#  application_id :integer          not null
+#  user_id        :integer          not null
+#
+# Indexes
+#
+#  index_votes_on_application_id              (application_id)
+#  index_votes_on_user_id                     (user_id)
+#  index_votes_on_user_id_and_application_id  (user_id,application_id)
+#
