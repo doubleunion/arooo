@@ -1,0 +1,19 @@
+development:
+  adapter:  postgresql
+  host:    db 
+  encoding: unicode
+  database: doubleunion_development
+  pool:     5
+  username: postgres
+  password: password
+  template: template0
+
+test: &test
+  adapter:  postgresql
+  host:    db 
+  encoding: unicode
+  database: doubleunion_test
+  pool:     5
+  username: postgres
+  password: password
+  template: template0
