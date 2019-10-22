@@ -1,0 +1,34 @@
+version: "3"
+services:
+  db:
+    image: postgres:10.6-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=password
+
+  app:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/app
+      - bundle_cache:/bundle
+    environment:
+      - BUNDLE_PATH=/bundle/vendor
+      - RAILS_ENV=development
+      - PSQL_USERNAME=postgres
+      - PSQL_PASSWORD=password
+      - PSQL_HOST=db
+      - SECRET_TOKEN=development
+    tty: true
+    stdin_open: true
+
+volumes:
+  bundle_cache:
+  pg_data:
