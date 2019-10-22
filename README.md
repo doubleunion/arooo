@@ -96,6 +96,19 @@ If you are new to Rails, follow the [RailsBridge Installfest instructions](http:
       Client Secret from your Github application
     * Don't forget to restart your Rails server so it can see your shiny new GitHub key & secret
 
+#### Docker setup
+
+1. Install docker and docker compose
+
+1. build 
+  docker-compose build
+
+1. build 
+  docker-compose run --rm app bash -c bundle
+
+1. setup DB
+  docker-compose run --rm app bundle exec rake db:setup
+
 ### Tests
 
 Tests, also known as specs, are great! Adding tests is a great pull request all on its own. Please try to write tests when you add or change functionality. 

@@ -25,6 +25,7 @@ services:
       - PSQL_USERNAME=postgres
       - PSQL_PASSWORD=password
       - PSQL_HOST=db
+      - SECRET_TOKEN=development
     tty: true
     stdin_open: true
 
