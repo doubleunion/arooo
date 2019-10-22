@@ -100,6 +100,9 @@ If you are new to Rails, follow the [RailsBridge Installfest instructions](http:
 
 1. Install docker and docker compose
 
+1. Duplicate db config
+```cp config/database.docker.yml config/database.yml
+
 1. build 
   docker-compose build
 
