@@ -101,16 +101,16 @@ If you are new to Rails, follow the [RailsBridge Installfest instructions](http:
 1. Install docker and docker compose
 
 1. Duplicate db config
-```cp config/database.docker.yml config/database.yml
+```cp config/database.docker.yml config/database.yml```
 
 1. build 
-  docker-compose build
+```docker-compose build```
 
 1. build 
-  docker-compose run --rm app bash -c bundle
+```docker-compose run --rm app bash -c bundle```
 
 1. setup DB
-  docker-compose run --rm app bundle exec rake db:setup
+```docker-compose run --rm app bundle exec rake db:setup```
 
 ### Tests
 
