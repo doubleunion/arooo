@@ -63,5 +63,14 @@ Doubleunion::Application.routes.draw do
   get "public_members" => "api#public_members"
   get "configurations" => "api#configurations"
 
-  mount StripeEvent::Engine => "/stripe"
+  mount StripeEvent::Engine => '/stripe'
+
+  namespace :door_code do
+    # TODO log into twilio and change all the callbacks
+    # TODO where do we configure auth for this?
+    root to: 'door_code#welcome'
+    get 'sms' => "door_code#sms"
+    get 'handle-gather-ismember' => "door_code#gather_ismember"
+    get 'handle-gather-keycode' => "door_code#gather_keycode"
+  end
 end
