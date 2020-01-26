@@ -45,7 +45,8 @@ class Members::DuesController < Members::MembersController
 
     else
       stripe_customer = Stripe::Customer.create(
-        email: params[:email],
+        email: @user.email,
+        name: @user.name,
         plan: params[:plan],
         source: params[:token]
       )
