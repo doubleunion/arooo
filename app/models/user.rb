@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   has_many :applications, through: :sponsorships
 
   after_create :create_profile, :create_application
+  after_update :update_stripe_record
   accepts_nested_attributes_for :profile, :application
 
   scope :visitors,    -> { where(state: 'visitor') }
@@ -137,6 +138,20 @@ class User < ActiveRecord::Base
 
   def create_application
     self.application ||= Application.create(user_id: id)
+  end
+
+  def update_stripe_record
+    return unless stripe_customer_id?
+
+    # we only need to update things in stripe if their
+    # name or email changed.
+    return unless name_changed? || email_changed?
+
+    Stripe::Customer.update(
+      stripe_customer_id,
+      name: name,
+      email: email
+    )
   end
 
   def display_state
