@@ -24,13 +24,13 @@ gem "stripe_event"
 gem "rack-canonical-host"
 gem "aws-sdk-rails"
 gem "rack-cors"
-
 gem "haml-rails"
 gem "sass-rails"
 gem "uglifier"
 gem "coffee-rails"
 gem "bootstrap-sass"
 gem "jquery-datatables-rails"
+gem "bigdecimal", "1.4.4" # specify this directly to get around the error NoMethodError: undefined method `new' for BigDecimal:Class
 
 group :development do
   gem "annotate" # Show db schema as comments in models
@@ -50,7 +50,7 @@ group :development, :test do
   gem "rack_session_access"
   gem "pry-rails"
   gem "pry"
-  gem "puma", "~>3" # TOD upgrading to 4 breaks the capybara tests- fix this
+  gem "puma", "~>3" # TODO upgrading to 4 breaks the capybara tests- fix this
   gem "standard"
   gem "timecop"
 end

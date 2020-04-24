@@ -215,6 +215,9 @@ Note: Only maintainers have heroku access and can deploy.
 
 1. If needed, perform rake tasks or set ENV variable settings on `production`
 
+### Email
+
+This app sends emails, but who is our email provider? TODO
 
 ## Security
 
