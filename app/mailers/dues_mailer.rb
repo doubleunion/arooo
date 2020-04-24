@@ -14,7 +14,7 @@ class DuesMailer < ActionMailer::Base
 
     mail(
       to: [SCHOLARSHIP_EMAIL, @user.email],
-      subject: "New DU Scholarship Request",
+      subject: "New DU Scholarship Request"
     )
   end
 end

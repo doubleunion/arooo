@@ -14,7 +14,7 @@ Doubleunion::Application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
@@ -36,7 +36,7 @@ Doubleunion::Application.configure do
   config.assets.digest = true
 
   # Version of your assets, change this if you want to expire all your assets.
-  config.assets.version = '1.0'
+  config.assets.version = "1.0"
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
@@ -62,7 +62,7 @@ Doubleunion::Application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  config.assets.precompile += %w( admin.css dues.js membership_note.js )
+  config.assets.precompile += %w[admin.css dues.js membership_note.js]
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -76,7 +76,7 @@ Doubleunion::Application.configure do
   config.active_support.deprecation = :notify
 
   config.action_mailer.delivery_method = :aws_sdk
-  config.action_mailer.default_url_options = { host: ENV['HOST_URL'] }
+  config.action_mailer.default_url_options = {host: ENV["HOST_URL"]}
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false

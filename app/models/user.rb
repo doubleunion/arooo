@@ -11,21 +11,22 @@ class User < ActiveRecord::Base
   validates :username, presence: true
 
   validates :email, uniqueness: true, format: {
-    with:    EMAIL_PATTERN,
-    message: 'address is invalid' }
+    with: EMAIL_PATTERN,
+    message: "address is invalid"
+  }
 
   validates :dues_pledge, numericality: true, allow_blank: true
 
   validates :email_for_google,
     presence: true,
-    if:       :setup_complete,
-    format:   { with: EMAIL_PATTERN }
+    if: :setup_complete,
+    format: {with: EMAIL_PATTERN}
 
-  has_one  :profile,     dependent: :destroy
-  has_one  :application, dependent: :destroy
+  has_one :profile, dependent: :destroy
+  has_one :application, dependent: :destroy
   has_many :authentications, dependent: :destroy
-  has_many :votes,       dependent: :destroy
-  has_many :comments,    dependent: :destroy
+  has_many :votes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :sponsorships
   has_many :applications, through: :sponsorships
 
@@ -33,51 +34,52 @@ class User < ActiveRecord::Base
   after_update :update_stripe_record
   accepts_nested_attributes_for :profile, :application
 
-  scope :visitors,    -> { where(state: 'visitor') }
-  scope :applicants,  -> { where(state: 'applicant') }
-  scope :members,     -> { where(state: 'member') }
-  scope :key_members, -> { where(state: 'key_member') }
-  scope :voting_members, -> { where(state: 'voting_member') }
+  scope :visitors, -> { where(state: "visitor") }
+  scope :applicants, -> { where(state: "applicant") }
+  scope :members, -> { where(state: "member") }
+  scope :key_members, -> { where(state: "key_member") }
+  scope :voting_members, -> { where(state: "voting_member") }
 
-  scope :all_members, -> { where(state: %w(member key_member voting_member)) }
+  scope :all_members, -> { where(state: %w[member key_member voting_member]) }
 
   scope :no_stripe_dues, -> {
     all_members
-    .where(stripe_customer_id: nil)
+      .where(stripe_customer_id: nil)
   }
 
   scope :show_public, -> {
     all_members
-    .includes(:profile)
-    .where(:'profiles.show_name_on_site' => true)
-    .where('name IS NOT NULL')
-    .order_by_state
+      .includes(:profile)
+      .where('profiles.show_name_on_site': true)
+      .where("name IS NOT NULL")
+      .order_by_state
   }
 
   scope :with_submitted_application, -> {
     applicants
-    .includes(:profile)
-    .includes(:application)
-    .where(:'applications.state' => 'submitted')
-    .order('applications.submitted_at DESC')
+      .includes(:profile)
+      .includes(:application)
+      .where('applications.state': "submitted")
+      .order("applications.submitted_at DESC")
   }
 
   scope :with_started_application, -> {
     applicants
-    .includes(:profile)
-    .includes(:application)
-    .where(:'applications.state' => 'started')
-    .order('applications.submitted_at DESC')
+      .includes(:profile)
+      .includes(:application)
+      .where('applications.state': "started")
+      .order("applications.submitted_at DESC")
   }
 
   scope :new_members, -> {
     all_members
-    .where('setup_complete IS NULL or setup_complete = ?', false)
-    .includes(:application)
-    .order('applications.processed_at ASC')
+      .where("setup_complete IS NULL or setup_complete = ?", false)
+      .includes(:application)
+      .order("applications.processed_at ASC")
   }
 
-  scope :order_by_state, -> { order(<<-eos
+  scope :order_by_state, -> {
+                           order(<<-eos
     CASE state
     WHEN 'voting_member' THEN 1
     WHEN 'key_member'    THEN 2
@@ -86,8 +88,9 @@ class User < ActiveRecord::Base
     WHEN 'visitor'       THEN 5
     ELSE                      6
     END
-    eos
-    .squish)}
+                           eos
+                             .squish)
+                         }
 
   state_machine :state, initial: :visitor do
     event :make_applicant do
@@ -155,7 +158,7 @@ class User < ActiveRecord::Base
   end
 
   def display_state
-    state.gsub(/_/, ' ')
+    state.tr("_", " ")
   end
 
   def logged_in!
@@ -171,11 +174,9 @@ class User < ActiveRecord::Base
   end
 
   def number_applications_needing_vote
-    if self.voting_member?
-      n = Application.where(state: 'submitted').count - Application.joins("JOIN votes ON votes.application_id = applications.id AND applications.state = 'submitted' AND votes.user_id = #{self.id}").count
-      n==0 ? nil : n
-    else
-      nil
+    if voting_member?
+      n = Application.where(state: "submitted").count - Application.joins("JOIN votes ON votes.application_id = applications.id AND applications.state = 'submitted' AND votes.user_id = #{id}").count
+      n == 0 ? nil : n
     end
   end
 
@@ -193,7 +194,7 @@ class User < ActiveRecord::Base
     profile.gravatar_email if profile.gravatar_email.present?
   end
 
-  DEFAULT_PROVIDER = 'github'
+  DEFAULT_PROVIDER = "github"
 end
 
 # == Schema Information

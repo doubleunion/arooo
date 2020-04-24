@@ -5,9 +5,9 @@ class Members::CommentsController < Members::MembersController
     comment.user = current_user
 
     if comment.save
-      flash[:notice] = 'Comment saved'
+      flash[:notice] = "Comment saved"
     else
-      flash[:error] = 'Comment not saved'
+      flash[:error] = "Comment not saved"
     end
 
     redirect_to members_application_path(application)
@@ -15,8 +15,8 @@ class Members::CommentsController < Members::MembersController
 
   def index
     # only comments on applications that are not accepted should be viewable!
-    @recent_comments = Comment.where('created_at > ?', 1.month.ago).sort_by(&:created_at).select { |comment|
-      comment.application.state == 'submitted'
+    @recent_comments = Comment.where("created_at > ?", 1.month.ago).sort_by(&:created_at).select { |comment|
+      comment.application.state == "submitted"
     }
   end
 

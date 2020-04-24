@@ -4,7 +4,6 @@ describe MemberStatusMailer do
   let(:member) { create :member }
 
   describe "when someone fill out the keymember form" do
-
     describe "notification email" do
       let(:mail) { MemberStatusMailer.new_key_member(member) }
 

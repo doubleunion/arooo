@@ -12,6 +12,6 @@ module AdminUser
 
   def unmake_admin!
     self.is_admin = false
-    self.save!
+    save!
   end
 end

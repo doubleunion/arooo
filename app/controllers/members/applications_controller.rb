@@ -1,8 +1,7 @@
 class Members::ApplicationsController < Members::MembersController
-
   def index
     @applicants_submitted = User.with_submitted_application
-    @applicants_started   = User.with_started_application
+    @applicants_started = User.with_started_application
   end
 
   def show
@@ -10,8 +9,8 @@ class Members::ApplicationsController < Members::MembersController
     @comments = @application.comments.order(:created_at)
 
     unless @application.submitted?
-      flash[:error] = 'This application is not currently visible.'
-      redirect_to members_root_path and return
+      flash[:error] = "This application is not currently visible."
+      redirect_to(members_root_path) && return
     end
 
     @user = @application.user
@@ -47,4 +46,3 @@ class Members::ApplicationsController < Members::MembersController
     params.require(:application_id)
   end
 end
-
