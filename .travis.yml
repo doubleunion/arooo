@@ -15,6 +15,4 @@ addons:
 before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database doubleunion_test;' -U postgres
-env:
-  - SECRET_TOKEN=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-  - CODECOV_TOKEN="c5a54b10-ded7-4898-a613-1a70b0831d85"
+env: SECRET_TOKEN=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
