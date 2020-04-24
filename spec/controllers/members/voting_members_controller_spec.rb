@@ -6,7 +6,6 @@ describe Members::VotingMembersController do
   let(:member) { create :member }
 
   describe "get edit" do
-
     let(:subject) { get :edit, user_id: member }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
@@ -33,13 +32,15 @@ describe Members::VotingMembersController do
       before { login_as member }
 
       context "with the agreement boxes checked" do
-        let(:params) { {
-          "user_id" => member.id,
-          "agreements" => {
-            "confidentiality" => "1", "attended_training" => "1", "policy_agreement" => "1",
-            "time_commitment" => "1", "voting_principles" => "1", "hard_conversations" => "1"
+        let(:params) {
+          {
+            "user_id" => member.id,
+            "agreements" => {
+              "confidentiality" => "1", "attended_training" => "1", "policy_agreement" => "1",
+              "time_commitment" => "1", "voting_principles" => "1", "hard_conversations" => "1"
+            }
           }
-        } }
+        }
 
         let(:subject) { patch :update, params }
 
@@ -55,10 +56,12 @@ describe Members::VotingMembersController do
       end
 
       context "with the agreement boxes unchecked" do
-        let(:params) { {
-          "user_id" => member.id,
-          "agreements" => { "confidentiality" => "1" }
-        } }
+        let(:params) {
+          {
+            "user_id" => member.id,
+            "agreements" => {"confidentiality" => "1"}
+          }
+        }
 
         let(:subject) { patch :update, params }
 

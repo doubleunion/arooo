@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Application do
   let(:application) { create :application }
@@ -7,10 +7,10 @@ describe Application do
     it { is_expected.to validate_presence_of :user_id }
   end
 
-  describe '#submit' do
+  describe "#submit" do
     let(:application) { create(:unsubmitted_application) }
 
-    it 'sends an email to the applicant & members' do
+    it "sends an email to the applicant & members" do
       expect {
         application.submit
       }.to change(ActionMailer::Base.deliveries, :count).by(2)
@@ -59,7 +59,7 @@ describe Application do
     end
   end
 
-  describe '#approvable?' do
+  describe "#approvable?" do
     before do
       expect(application).to receive_message_chain(:yes_votes, :count) { 6 }
       expect(application).to receive_message_chain(:no_votes, :count) { 0 }
@@ -71,7 +71,7 @@ describe Application do
     end
   end
 
-  describe '#rejectable?' do
+  describe "#rejectable?" do
     before do
       allow(application).to receive_message_chain(:yes_votes, :count)
       allow(application).to receive_message_chain(:no_votes, :count) { 2 }

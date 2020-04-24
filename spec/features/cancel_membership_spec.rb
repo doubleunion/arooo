@@ -1,5 +1,5 @@
 require "spec_helper"
-require 'stripe_mock'
+require "stripe_mock"
 
 describe "canceling dues", js: true do
   include UserWithOmniauth
@@ -9,11 +9,11 @@ describe "canceling dues", js: true do
   let(:stripe_customer_id) { "123abc" }
   let(:plan) {
     OpenStruct.new(
-      :id => "test_plan",
-      :amount => 5000,
-      :currency => "usd",
-      :interval => "month",
-      :name => "test plan"
+      id: "test_plan",
+      amount: 5000,
+      currency: "usd",
+      interval: "month",
+      name: "test plan"
     )
   }
   let(:subscription) {
@@ -28,7 +28,7 @@ describe "canceling dues", js: true do
         id: stripe_customer_id,
         email: member.email,
         source: StripeMock.generate_card_token({}),
-        subscriptions: [ subscription ]
+        subscriptions: [subscription]
       }
     )
   }
@@ -52,15 +52,15 @@ describe "canceling dues", js: true do
     click_on "Sign in with GitHub"
     expect(page).to have_content "Bookmarks for Members"
 
-    allow(Stripe::Customer).to receive(:retrieve).
-      with(member.stripe_customer_id).
-      and_return(customer)
+    allow(Stripe::Customer).to receive(:retrieve)
+      .with(member.stripe_customer_id)
+      .and_return(customer)
 
     click_on "Manage Dues"
     expect(page).to have_content "Manage Your Double Union Dues"
-    message = accept_alert do
+    message = accept_alert {
       click_link "here"
-    end
+    }
     expect(message).to eq "Are you sure? Clicking yes will cancel your payments, and inform the membership coordinator to remove you from all mailing lists."
 
     expect(page).to have_content "Your dues have now been canceled"

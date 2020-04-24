@@ -1,9 +1,7 @@
 require "spec_helper"
 
 describe ApiController do
-
   describe "#public_members" do
-
     let!(:public_member) { create :member }
     let!(:another_public_member) { create :member }
     let(:member_json) {
@@ -11,7 +9,7 @@ describe ApiController do
         name: public_member.name,
         state: public_member.display_state,
         gravatar_url: public_member.gravatar_url,
-        profile: { website: public_member.profile.website }
+        profile: {website: public_member.profile.website}
       }
     }
     let(:another_member_json) {
@@ -19,7 +17,7 @@ describe ApiController do
         name: another_public_member.name,
         state: another_public_member.display_state,
         gravatar_url: another_public_member.gravatar_url,
-        profile: { website: another_public_member.profile.website }
+        profile: {website: another_public_member.profile.website}
       }
     }
 
@@ -53,7 +51,7 @@ describe ApiController do
   describe "#configurations" do
     subject { get :configurations, format: :json }
 
-    let(:config_json) { { configurations: { accepting_applications: true } } }
+    let(:config_json) { {configurations: {accepting_applications: true}} }
 
     it "returns the configurations" do
       subject

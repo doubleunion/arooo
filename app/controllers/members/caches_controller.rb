@@ -4,7 +4,7 @@ class Members::CachesController < Members::MembersController
 
   def expire
     controller = params.require(:controller_name)
-    action     = params.require(:action_name)
+    action = params.require(:action_name)
 
     expire_fragment(controller: "/#{controller}", action: action)
 

@@ -1,7 +1,6 @@
 require "spec_helper"
 
 describe "becoming a key member" do
-
   before do
     page.set_rack_session(user_id: member.id)
   end

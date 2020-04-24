@@ -1,5 +1,4 @@
 class AccountSetupReminder
-
   def initialize(users)
     @users = users
   end

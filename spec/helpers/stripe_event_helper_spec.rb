@@ -1,12 +1,12 @@
-require 'spec_helper'
-require 'stripe_mock'
+require "spec_helper"
+require "stripe_mock"
 
 describe StripeEventHelper do
   before { StripeMock.start }
   after { StripeMock.stop }
 
   describe "ChargeSucceeded" do
-    let(:event) { StripeMock.mock_webhook_event('charge.succeeded') }
+    let(:event) { StripeMock.mock_webhook_event("charge.succeeded") }
     let(:time) { Time.now }
     let(:member) { create :member }
 
@@ -24,7 +24,7 @@ describe StripeEventHelper do
   end
 
   describe "ChargeFailed" do
-    let(:event) { StripeMock.mock_webhook_event('charge.failed') }
+    let(:event) { StripeMock.mock_webhook_event("charge.failed") }
     let(:mail) { ActionMailer::Base.deliveries.last }
     let(:member) { create :member }
 

@@ -11,7 +11,7 @@ class Application < ActiveRecord::Base
   # this used to be a constant called MINIMUM_YES, but since it's now calculated,
   # it should be recalculated more often than however often we restart the app
   def self.minimum_yes_votes
-    User.voting_members.count/2
+    User.voting_members.count / 2
   end
 
   attr_protected :id
@@ -22,19 +22,19 @@ class Application < ActiveRecord::Base
 
   scope :for_applicant, -> {
     includes(:user)
-    .where(:'users.state' => 'applicant')
+      .where('users.state': "applicant")
   }
 
   scope :submitted, -> {
     for_applicant
-    .where(state: 'submitted')
-    .order('applications.submitted_at DESC')
+      .where(state: "submitted")
+      .order("applications.submitted_at DESC")
   }
 
-  scope :started,   -> {
+  scope :started, -> {
     for_applicant
-    .where(state: 'started')
-    .order('applications.created_at DESC')
+      .where(state: "started")
+      .order("applications.created_at DESC")
   }
 
   def yes_votes
@@ -121,15 +121,15 @@ class Application < ActiveRecord::Base
   end
 
   def self.to_approve
-    self.all.map { |x| x if x.approvable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
+    all.map { |x| x if x.approvable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
   end
 
   def self.to_reject
-    self.all.map { |x| x if x.rejectable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
+    all.map { |x| x if x.rejectable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
   end
 
   def self.not_enough_info
-    self.all.map { |x| x if !x.rejectable? && !x.approvable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
+    all.map { |x| x if !x.rejectable? && !x.approvable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
   end
 
   private

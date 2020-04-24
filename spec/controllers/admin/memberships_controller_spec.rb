@@ -63,7 +63,6 @@ describe Admin::MembershipsController do
   end
 
   describe "PATCH change_membership_state" do
-
     subject { patch :change_membership_state, params }
 
     context "logged in as a non-admin" do
@@ -158,7 +157,6 @@ describe Admin::MembershipsController do
   end
 
   describe "PATCH make_admin" do
-
     subject { patch :make_admin, params }
 
     context "logged in as an admin" do
@@ -194,7 +192,6 @@ describe Admin::MembershipsController do
   end
 
   describe "PATCH unmake_admin" do
-
     subject { patch :unmake_admin, params }
 
     context "logged in as an admin" do

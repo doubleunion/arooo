@@ -1,5 +1,4 @@
 class Members::DuesController < Members::MembersController
-
   def show
     @user = current_user
 
@@ -40,7 +39,7 @@ class Members::DuesController < Members::MembersController
         subscription.plan = params[:plan]
         subscription.save
       else # subscription may have been canceled due to non-payment
-        customer.subscriptions.create({:plan => params[:plan]})
+        customer.subscriptions.create({plan: params[:plan]})
       end
 
     else
@@ -54,8 +53,7 @@ class Members::DuesController < Members::MembersController
       current_user.update_attribute(:stripe_customer_id, stripe_customer.id)
     end
 
-    redirect_to redirect_target, :notice => "Your dues have been updated."
-
+    redirect_to redirect_target, notice: "Your dues have been updated."
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to redirect_target
@@ -64,7 +62,7 @@ class Members::DuesController < Members::MembersController
   def scholarship_request
     DuesMailer.scholarship_requested(current_user, params[:reason]).deliver_now
 
-    redirect_to members_user_dues_path, :notice => "Your scholarship request has been submitted"
+    redirect_to members_user_dues_path, notice: "Your scholarship request has been submitted"
   end
 
   private

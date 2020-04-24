@@ -9,22 +9,22 @@ class GithubAuth
   end
 
   def provider
-    original.fetch('provider')
+    original.fetch("provider")
   end
 
   def uid
-    original.fetch('uid')
+    original.fetch("uid")
   end
 
   def username
-    original.fetch('extra').fetch('raw_info').fetch('login')
+    original.fetch("extra").fetch("raw_info").fetch("login")
   end
 
   def name
-    original['info'].try(:fetch, 'name', nil)
+    original["info"].try(:fetch, "name", nil)
   end
 
   def email
-    original['info'].try(:fetch, 'email', nil)
+    original["info"].try(:fetch, "email", nil)
   end
 end

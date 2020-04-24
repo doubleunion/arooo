@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe "applying to double union" do
   let(:cool_lady) { create(:user) }
@@ -24,8 +24,8 @@ describe "applying to double union" do
     }.to change { cool_lady.application.reload.state }.from("started").to("submitted")
 
     expect(page).to have_content "Application submitted!"
-    expect(find_field('Pronouns').value).to eq "They/Them"
-    expect(find_field('Twitter username').value).to eq "@beepboopbeep"
+    expect(find_field("Pronouns").value).to eq "They/Them"
+    expect(find_field("Twitter username").value).to eq "@beepboopbeep"
   end
 
   it "allows the user to save her application without submitting it" do
@@ -39,7 +39,7 @@ describe "applying to double union" do
 
     expect(cool_lady.application.state).to eq("started")
     expect(page).to have_content "Application saved"
-    expect {Application.count}.to change{Application.count}.by(0)
+    expect { Application.count }.to change { Application.count }.by(0)
   end
 
   it "allows the user to update her application" do
@@ -60,8 +60,7 @@ describe "applying to double union" do
 
     first(:button, "Update application").click
 
-    expect(find_field('Pronouns').value).to eq "Ze/Zir"
-    expect(find_field('Twitter username').value).to eq "@new_and_better_handle"
+    expect(find_field("Pronouns").value).to eq "Ze/Zir"
+    expect(find_field("Twitter username").value).to eq "@new_and_better_handle"
   end
-
 end

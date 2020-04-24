@@ -10,7 +10,7 @@ Doubleunion::Application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = true
 
   # Don't care if the mailer can't send.
@@ -32,8 +32,8 @@ Doubleunion::Application.configure do
   config.assets.debug = true
 
   # Send email in development mode using MailCatcher: http://mailcatcher.me/.
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.default_url_options = {host: "localhost:3000"}
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { address: "localhost", port: 1025 }
+  config.action_mailer.smtp_settings = {address: "localhost", port: 1025}
 end

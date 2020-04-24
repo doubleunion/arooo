@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Members::VotesController do
   include AuthHelper
@@ -6,9 +6,11 @@ describe Members::VotesController do
   let(:application) { create(:application) }
 
   describe "POST create" do
-    let(:params) { {
-    vote: { application_id: application.id }, "vote_no" => "No"
-    } }
+    let(:params) {
+      {
+        :vote => {application_id: application.id}, "vote_no" => "No"
+      }
+    }
 
     subject { post :create, params }
 
@@ -33,9 +35,11 @@ describe Members::VotesController do
       end
 
       describe "voting yes" do
-        let(:params) { {
-          vote: { application_id: application.id }, "vote_yes" => "Yes"
-        } }
+        let(:params) {
+          {
+            :vote => {application_id: application.id}, "vote_yes" => "Yes"
+          }
+        }
 
         it "stores the correct value" do
           subject
@@ -60,10 +64,11 @@ describe Members::VotesController do
 
     context "when logged in as a voting member" do
       let(:member) { create(:voting_member) }
-      let(:params) { { id: application.id } }
-      let(:vote) { Vote.where(application_id: application.id,
-                              user_id: member.id,
-                              value: true).first
+      let(:params) { {id: application.id} }
+      let(:vote) {
+        Vote.where(application_id: application.id,
+                   user_id: member.id,
+                   value: true).first
       }
 
       it "allows me to remove my vote" do

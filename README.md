@@ -53,6 +53,7 @@ Do the below OR if you prefer docker, see the Docker Setup section
 1. `cp config/application.example.yml config/application.yml`
 1. `rake db:test:prepare` Now you can write and run tests! You can skip the other setup steps until you want to run arooo locally. :)
 1. `bundle exec rake spec # runs tests` 
+1. ` bundle exec standardrb --fix # auto-fix linting issues (optional)` [more linter info](https://github.com/testdouble/standard)
 1. `bundle exec rake db:setup # requires running local postgres`
 1. `rails db:migrate`
 1. `bundle exec rake populate:users # Populate data in your local database - optional`

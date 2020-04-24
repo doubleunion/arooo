@@ -11,12 +11,12 @@ module UserWithOmniauth
     authentication = Authentication.new
 
     user.username = omniauth.try(:username) || omniauth.email
-    user.name     = omniauth.name
-    user.email    = omniauth.email
+    user.name = omniauth.name
+    user.email = omniauth.email
 
-    authentication.user     = user
+    authentication.user = user
     authentication.provider = omniauth.provider
-    authentication.uid      = omniauth.uid
+    authentication.uid = omniauth.uid
 
     user.save!
     authentication.save!
