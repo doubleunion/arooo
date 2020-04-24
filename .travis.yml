@@ -1,7 +1,7 @@
 language: ruby
 cache: bundler
 rvm:
-  - '2.5.7'
+  - '2.7.1'
 services:
   - postgresql
 script:
