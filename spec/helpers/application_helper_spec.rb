@@ -33,7 +33,7 @@ describe ApplicationHelper do
       expect(markdown(code_block_input_text)). to eq(code_block_output_text)
 
       code_inline_input_text = "````code1\ncode2````"
-      code_inline_output_text = "<pre><code class=\"prettyprint\">code1\ncode2````\n</code></pre>\n"
+      code_inline_output_text = "<pre><code class=\"prettyprint lang-code1\">code2````\n</code></pre>\n"
       expect(markdown(code_inline_input_text)). to eq(code_inline_output_text)
     end
   end
