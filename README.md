@@ -143,7 +143,6 @@ Now you can update any user:
 If you need to make or unmake an admin, have a current admin click the un/make admin button on a member in the Member Admin View. Admins can accept/reject applications, update any member's status, see current member's dues, open and close applications, and manage new member setup.
 
 ## Production maintainer / SRE guide
-You don't need this stuff if you don't have heroku permission to deploy arooo
 
 ### Rails console - heroku
 
@@ -164,7 +163,7 @@ Thank you to Bugsnag for their [OSS program](https://www.bugsnag.com/open-source
 
 ### Deploying and Heroku access
 
-This section only pertains if you have Heroku & Deployment access.
+This section only pertains if you have heroku & deployment access
 
 If you are a DU member, see https://docs.google.com/document/d/19LbIYB2RDy-17UXuQx6wLgKp2EdLdqj-pg1cm3EpSb8/edit for more information on getting permission.
 
@@ -213,6 +212,12 @@ Note: Only maintainers have heroku access and can deploy.
   ```
 
 1. If needed, perform rake tasks or set ENV variable settings on `production`
+
+#### Staging
+
+Currently neither github nor google auth works on staging- we should get this working again so we can actually test. 
+
+The basic-auth login is found in https://dashboard.heroku.com/apps/doubleunion-staging/settings under BASIC_AUTH_NAME/BASIC_AUTH_PASSWORD
 
 
 ## Security
