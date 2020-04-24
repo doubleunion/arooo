@@ -50,7 +50,7 @@ group :development, :test do
   gem 'rack_session_access'
   gem 'pry-rails'
   gem 'pry'
-  gem 'puma' # for capybara
+  gem 'puma', '~>3' # TOD upgrading to 4 breaks the capybara tests- fix this
   gem 'timecop'
 end
 
@@ -61,7 +61,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'factory_bot_rails', '~> 4'
@@ -70,4 +70,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'stripe-ruby-mock', :require => 'stripe_mock'
+  gem 'simplecov'
 end
