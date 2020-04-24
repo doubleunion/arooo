@@ -446,7 +446,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 2.5.7p206
+   ruby 2.7.1p206
 
 BUNDLED WITH
    1.17.3
