@@ -1,5 +1,4 @@
 module StripeEventHelper
-
   class ChargeSucceeded
     def call(event)
       stripe_customer_id = event.data.object.customer
@@ -11,10 +10,10 @@ module StripeEventHelper
 
   class ChargeFailed
     def call(event)
-      if event.data.object.customer.present?
-        email = User.find_by_stripe_customer_id(event.data.object.customer).email
+      email = if event.data.object.customer.present?
+        User.find_by_stripe_customer_id(event.data.object.customer).email
       else
-        email = event.data.object.source.name
+        event.data.object.source.name
       end
       DuesMailer.failed(email).deliver_now
     end

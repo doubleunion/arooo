@@ -1,16 +1,16 @@
 module ApplicationHelper
   def body_classes
     classes = [controller_name, action_name]
-    classes << 'members-layout' if members_page?
+    classes << "members-layout" if members_page?
     classes
   end
 
   def external_link_to(label, url, opts = {})
-    link_to(label, url, { target: '_blank' }.merge(opts))
+    link_to(label, url, {target: "_blank"}.merge(opts))
   end
-  
+
   def external_auto_link(url)
-    auto_link(url, html: { target: '_blank' })
+    auto_link(url, html: {target: "_blank"})
   end
 
   def s3_url(name)
@@ -34,17 +34,17 @@ module ApplicationHelper
   end
 
   def pretty_timestamp(timestamp)
-    format = '%b %e'
-    format << ', %Y' unless timestamp.year == Time.now.year
-    format << ' at %l:%M%P'
+    format = "%b %e"
+    format << ", %Y" unless timestamp.year == Time.now.year
+    format << " at %l:%M%P"
 
     timestamp.strftime(format)
   end
 
   # now unused in favor of redcarpet markdown
-  #def preserve_newlines(text)
+  # def preserve_newlines(text)
   #  text ? text.split("\n").map { |p| h(p) }.join("<br />").html_safe : nil
-  #end
+  # end
 
   def google_analytics
     return unless Rails.env.production?
@@ -66,17 +66,17 @@ module ApplicationHelper
 
   @@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(hard_wrap: true,
                                                                    prettify: true),
-                                       no_intra_emphasis: true,
-                                       tables: true,
-                                       fenced_code_blocks: true,
-                                       autolink: true,
-                                       strikethrough: true,
-                                       lax_spacing: true,
-                                       space_after_headers: true,
-                                       superscript: true,
-                                       underline: true,
-                                       highlight: true,
-                                       quote: true)
+    no_intra_emphasis: true,
+    tables: true,
+    fenced_code_blocks: true,
+    autolink: true,
+    strikethrough: true,
+    lax_spacing: true,
+    space_after_headers: true,
+    superscript: true,
+    underline: true,
+    highlight: true,
+    quote: true)
 
   def markdown(text)
     return nil unless text

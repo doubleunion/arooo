@@ -31,7 +31,7 @@ class CreateAuthentications < ActiveRecord::Migration
 
     Authentication.find_each do |auth|
       user = User.where(id: auth.user_id).first
-      user.update_attributes(provider: auth.provider, uid: auth.uid) if user
+      user&.update_attributes(provider: auth.provider, uid: auth.uid)
     end
 
     drop_table :authentications

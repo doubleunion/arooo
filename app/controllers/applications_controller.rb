@@ -2,7 +2,7 @@ class ApplicationsController < ApplicationController
   before_action :ensure_accepting_applications
   before_action :require_applicant_user
 
-  before_action :set_user,               only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update]
   before_action :ensure_own_application, only: [:show, :edit, :update]
 
   def new
@@ -17,24 +17,24 @@ class ApplicationsController < ApplicationController
 
   def update
     unless @user.update_attributes(user_params)
-      app_errors =  @user.application.errors.full_messages.to_sentence
+      app_errors = @user.application.errors.full_messages.to_sentence
       user_errors = @user.errors.full_messages.to_sentence
       errors = user_errors + app_errors
       flash[:error] = "Application not saved: #{errors}"
-      render action: :edit, id: @user.application.id and return
+      render(action: :edit, id: @user.application.id) && return
     end
 
     case commit_action
     when :submit
       begin
         @user.application.submit!
-        flash[:notice] = 'Application submitted!'
+        flash[:notice] = "Application submitted!"
       rescue StateMachine::InvalidTransition
         errors = @user.application.errors.full_messages.to_sentence
         flash[:error] = "Application not submitted: #{errors}"
       end
     when :save
-      flash[:notice] = 'Application saved'
+      flash[:notice] = "Application saved"
     end
     redirect_to action: :edit, id: @user.application.id
   end
@@ -52,9 +52,9 @@ class ApplicationsController < ApplicationController
   end
 
   def commit_action
-    if params['save']
+    if params["save"]
       :save
-    elsif params['submit']
+    elsif params["submit"]
       :submit
     end
   end
@@ -67,7 +67,7 @@ class ApplicationsController < ApplicationController
 
   def profile_attributes
     [:id, :twitter, :pronouns, :facebook, :website, :linkedin, :blog,
-     :summary, :reasons, :feminism, :projects, :skills ]
+     :summary, :reasons, :feminism, :projects, :skills]
   end
 
   def application_attributes
@@ -76,7 +76,7 @@ class ApplicationsController < ApplicationController
 
   def ensure_accepting_applications
     unless Configurable[:accepting_applications]
-      flash['notice'] = "Double Union isn't currently accepting applications. Join our general interest mailing list to be notified when applications are open again."
+      flash["notice"] = "Double Union isn't currently accepting applications. Join our general interest mailing list to be notified when applications are open again."
       redirect_to root_path
     end
   end

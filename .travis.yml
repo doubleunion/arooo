@@ -5,6 +5,7 @@ rvm:
 services:
   - postgresql
 script:
+#  - bundle exec standardrb
   - bundle exec rake db:drop
   - bundle exec rake db:create
   - bundle exec rake db:migrate

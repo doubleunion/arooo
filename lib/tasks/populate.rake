@@ -1,7 +1,7 @@
 namespace :populate do
-  desc 'Populate users in development'
+  desc "Populate users in development"
   task users: :environment do
-    raise 'development only' unless Rails.env.development?
+    raise "development only" unless Rails.env.development?
 
     10.times do
       states = User.state_machine.states.map(&:name).map(&:to_s)
@@ -9,23 +9,23 @@ namespace :populate do
       user = User.new
 
       user.username = Faker::Internet.user_name
-      user.name     = Faker::Name.name
-      user.email    = Faker::Internet.email
-      user.state    = states.sample
+      user.name = Faker::Name.name
+      user.email = Faker::Internet.email
+      user.state = states.sample
 
       user.save
     end
   end
   task :user, [:username, :name, :email, :state] => :environment do |t, args|
-    raise 'username not provided' unless !!args.username && !args.username.empty?
+    raise "username not provided" unless !!args.username && !args.username.empty?
 
-    raise 'development only' unless Rails.env.development?
+    raise "development only" unless Rails.env.development?
 
     states = User.state_machine.states.map(&:name).map(&:to_s)
-    raise 'invalid state' unless states.include? args.state
+    raise "invalid state" unless states.include? args.state
 
     user = User.find_by username: args.username
-    if !user
+    unless user
       user = User.new
       user.username = args.username
     end

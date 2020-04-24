@@ -6,23 +6,23 @@ describe SessionsController do
 
   describe "GET login" do
     it "succeeds" do
-      expect(get :login).to be_success
+      expect(get(:login)).to be_success
     end
 
     it "renders the page" do
-      expect(get :login).to render_template :login
+      expect(get(:login)).to render_template :login
     end
   end
 
   describe "GET github" do
     it "redirects to github" do
-      expect(get :github).to redirect_to "/auth/github"
+      expect(get(:github)).to redirect_to "/auth/github"
     end
   end
 
   describe "GET google" do
     it "redirects to github" do
-      expect(get :google).to redirect_to "/auth/google_oauth2"
+      expect(get(:google)).to redirect_to "/auth/google_oauth2"
     end
   end
 
@@ -150,7 +150,7 @@ describe SessionsController do
 
   describe "GET get_email" do
     it "renders the get_email page" do
-      expect(get :get_email).to render_template :get_email
+      expect(get(:get_email)).to render_template :get_email
     end
   end
 

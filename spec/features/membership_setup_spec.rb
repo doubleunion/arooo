@@ -1,6 +1,6 @@
-require 'spec_helper'
+require "spec_helper"
 
-describe 'members can finish their account setup' do
+describe "members can finish their account setup" do
   let(:member) { create(:member) }
   let(:other_member) { create(:voting_member) }
 
@@ -8,7 +8,7 @@ describe 'members can finish their account setup' do
     page.set_rack_session(user_id: member.id)
   end
 
-  it 'allows members to submit information' do
+  it "allows members to submit information" do
     visit members_user_setup_path(member)
 
     fill_in "user_email_for_google", with: "cat@example.com"

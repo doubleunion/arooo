@@ -1,37 +1,37 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'simplecov'
+require "simplecov"
 SimpleCov.start
 
-ENV["RAILS_ENV"] ||= 'test'
+ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../../config/environment", __FILE__)
-require 'rspec/rails'
-require 'email_spec'
-require 'capybara/rails'
-require 'rack_session_access/capybara'
-require 'shoulda/matchers'
-require 'stripe_mock'
+require "rspec/rails"
+require "email_spec"
+require "capybara/rails"
+require "rack_session_access/capybara"
+require "shoulda/matchers"
+require "stripe_mock"
 
 Capybara.register_driver :selenium do |app|
   options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument('headless')
+  options.add_argument("headless")
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 OmniAuth.config.test_mode = true
 
 OmniAuth.config.add_mock(:github, {
-  uid: '12345',
-  extra: { raw_info: { login: 'someone' } },
-  info: { name: 'Some One', email: 'someone@foo.bar' }
+  uid: "12345",
+  extra: {raw_info: {login: "someone"}},
+  info: {name: "Some One", email: "someone@foo.bar"}
 })
 
 OmniAuth.config.add_mock(:google_oauth2, {
-  uid: '67890',
-  info: { name: "Cool Cat", email: "basil@example.com" }
+  uid: "67890",
+  info: {name: "Cool Cat", email: "basil@example.com"}
 })
 
 Shoulda::Matchers.configure do |config|

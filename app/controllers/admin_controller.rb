@@ -52,10 +52,10 @@ class AdminController < ApplicationController
 
     respond_to do |format|
       if user.save
-        format.json { render json: { user_id: user.id } }
+        format.json { render json: {user_id: user.id} }
         format.html { redirect_to admin_new_members_path, notice: "Note saved!" }
       else
-        format.json { render json: { user_id: user.id } }
+        format.json { render json: {user_id: user.id} }
         format.html { redirect_to admin_new_members_path, notice: "Whoops! #{user.errors.full_messages.to_sentence}" }
       end
     end

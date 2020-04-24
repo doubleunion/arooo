@@ -1,7 +1,6 @@
 class NewMembersMailer < ActionMailer::Base
-
   default from: "Double Union <#{MEMBERSHIP_EMAIL}>"
-  
+
   def three_day_reminder(user)
     @user = user
 

@@ -6,7 +6,6 @@ describe Members::KeyMembersController do
   let(:member) { create :member }
 
   describe "get edit" do
-
     let(:subject) { get :edit, user_id: member }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
@@ -33,10 +32,12 @@ describe Members::KeyMembersController do
       before { login_as member }
 
       context "with the agreement boxes checked" do
-        let(:params) { {
-          "user_id" => member.id,
-          "agreements" => { "attended_events" => "1", "kick_out"=>"1", "lock_up"=>"1", "take_action"=>"1" }
-        } }
+        let(:params) {
+          {
+            "user_id" => member.id,
+            "agreements" => {"attended_events" => "1", "kick_out" => "1", "lock_up" => "1", "take_action" => "1"}
+          }
+        }
 
         let(:subject) { patch :update, params }
 
@@ -56,10 +57,12 @@ describe Members::KeyMembersController do
       end
 
       context "with the agreement boxes unchecked" do
-        let(:params) { {
-          "user_id" => member.id,
-          "agreements" => { "lock_up"=>"1", "take_action"=>"1" }
-        } }
+        let(:params) {
+          {
+            "user_id" => member.id,
+            "agreements" => {"lock_up" => "1", "take_action" => "1"}
+          }
+        }
 
         let(:subject) { patch :update, params }
 

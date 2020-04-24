@@ -1,5 +1,4 @@
 class Members::VotingMembersController < Members::MembersController
-
   ALL_AGREEMENTS = %w[confidentiality attended_training policy_agreement time_commitment voting_principles hard_conversations]
 
   def edit
@@ -26,5 +25,3 @@ class Members::VotingMembersController < Members::MembersController
     !(agreements.keys.sort == ALL_AGREEMENTS.sort && agreements.values.all? { |x| x == "1" })
   end
 end
-
-

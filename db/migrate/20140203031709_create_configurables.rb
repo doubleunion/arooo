@@ -6,7 +6,7 @@ class CreateConfigurables < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
     add_index :configurables, :name
   end
 
