@@ -1,4 +1,4 @@
-FROM ruby:2.5.7-slim
+FROM ruby:2.7.1-slim
 
 RUN apt-get update -qq && \
     apt-get install -y build-essential curl cmake git libpq-dev tzdata

@@ -220,6 +220,9 @@ Currently neither github nor google auth works on staging- we should get this wo
 
 The basic-auth login is found in https://dashboard.heroku.com/apps/doubleunion-staging/settings under BASIC_AUTH_NAME/BASIC_AUTH_PASSWORD
 
+### Email
+
+This app sends emails, but who is our email provider? TODO
 
 ## Security
 

@@ -72,6 +72,7 @@ GEM
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
+    bigdecimal (1.4.4)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.4.1)
@@ -229,7 +230,8 @@ GEM
     rack-canonical-host (0.2.3)
       addressable (> 0, < 3)
       rack (>= 1.0.0, < 3)
-    rack-cors (1.0.3)
+    rack-cors (1.0.6)
+      rack (>= 1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rack_session_access (0.2.0)
@@ -391,6 +393,7 @@ DEPENDENCIES
   awesome_print
   aws-sdk-rails
   better_errors
+  bigdecimal (= 1.4.4)
   binding_of_caller
   bootstrap-sass
   bugsnag
@@ -446,7 +449,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 2.5.7p206
+   ruby 2.7.1p206
 
 BUNDLED WITH
-   1.17.3
+   2.1.4
