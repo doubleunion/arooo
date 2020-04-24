@@ -36,7 +36,7 @@ describe Vote do
     applicant = create(:user, state: :applicant)
     application = create(:application, user: applicant)
     voter = create(:user, state: :voting_member)
-    vote = create(:vote, application: application, user: voter)
+    create(:vote, application: application, user: voter)
 
     invalid = Vote.new(application: application,
                        user: voter,

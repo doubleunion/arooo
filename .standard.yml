@@ -1,0 +1,10 @@
+fix: true               # default: false
+parallel: true          # default: false
+format: progress        # default: Standard::Formatter
+default_ignores: false  # default: true
+
+ignore:                 # default: []
+  - 'db/schema.rb'
+  - 'vendor/**/*'
+#  - 'test/**/*':
+#      - Layout/AlignHash

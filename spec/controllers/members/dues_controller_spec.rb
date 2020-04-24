@@ -59,7 +59,7 @@ describe Members::DuesController do
       end
 
       let(:customer) do
-        customer = Stripe::Customer.create({
+        Stripe::Customer.create({
           email: "user@example.com",
           source: StripeMock.generate_card_token({})
         })
@@ -131,7 +131,7 @@ describe Members::DuesController do
 
     context "when the user already has a Stripe ID" do
       let(:customer) do
-        customer = Stripe::Customer.create({
+        Stripe::Customer.create({
           email: "user@example.com",
           source: StripeMock.generate_card_token({})
         })
@@ -154,7 +154,7 @@ describe Members::DuesController do
       end
 
       context "has a prior payment source" do
-        before { customer = Stripe::Customer.retrieve(user.stripe_customer_id) }
+        before { Stripe::Customer.retrieve(user.stripe_customer_id) }
 
         let!(:previous_default_source) { Stripe::Customer.retrieve(user.stripe_customer_id).sources.first }
 

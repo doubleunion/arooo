@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     return @current_user if defined?(@current_user)
 
     if session[:user_id] && session[:user_id].to_s =~ /\d+/
-      if user = User.find_by_id(session[:user_id])
+      if (user = User.find_by_id(session[:user_id]))
         @current_user = user
       else
         reset_session
