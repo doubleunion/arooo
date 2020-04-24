@@ -38,65 +38,28 @@ We have a mailing list! Feel free to ask any question, including basic git and r
 
 If you are new to GitHub, you can [use this guide](http://railsbridge.github.io/bridge_troll/) for help making a pull request.
 
-1. Fork it
-1. Get it running
-1. Create your feature branch
-
-  ```
-  git checkout -b my-new-feature
-  ```
-
-1. Write your code and specs
-1. Commit your changes
-
-  ```
-  git commit -am 'Add some feature'
-  ```
-
-1. Push to the branch
-
-  ```
-  git push origin my-new-feature
-  ```
-
-1. Create a new Pull Request, linking to the GitHub issue url the Pull Request is fixing in the description
-1. If you find bugs, have feature requests or questions, please file an issue.
-
-
 
 ### Development setup
 
-If you are new to Rails, follow the [RailsBridge Installfest instructions](http://installfest.railsbridge.org/installfest/) for getting your environment set up.
-- You must follow the Railsbridge Installfest instructions if you do not have `ruby`, `bundler`, or `rails` installed before continuing.
+Do the below OR if you prefer docker, see the Docker Setup section 
 
-0. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/) about how to do so. The Railsbridge Installfest instructions may have asked you to install a different version of Ruby, but run `rvm install 2.5.5` or whatever version switching into the cloned app tells you to use to install the correct version of Ruby.
-
-1. Run `bundle install`
-    * Bundle may fail on pg; run `brew install postgresql` if it does
-    * If you get `FATAL: role “postgres” does not exist`, run `/usr/local/Cellar/postgresql/<version>/bin/createuser -s postgres`
-    * If bundle install fails with "can't find gem bundler", run `gem install bundler -v '2.0.1'` or whatever version you get from `cat Gemfile.lock | grep -A 1 "BUNDLED"`
-
-1. If you are not on OSX you may need to install postgres separately- follow https://www.postgresql.org/download/ and https://www.postgresql.org/docs/8.3/server-start.html
-
-1. Standard Rails app setup
-    * `cp config/database.example.yml config/database.yml`
-    * `rake db:create`
-    * `rake db:migrate` If for some reason you see an error like `could not find migration 3` then run `rake db:migrate VERSION=20170110040726` to force the migrations to run
-    * `rake db:test:prepare` Now you can write and run tests! You can skip the other setup steps until you want to run arooo locally. :)
-
-1. Set up an application for OAuth: http://github.com/settings/applications/new
-    * Application name: Whatever you want
-    * Homepage URL: http://localhost:3000
-    * Authorization callback URL: http://localhost:3000/auth/github/callback
-
+1. install a ruby version manager: [rvm](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv)
+1. when you cd into the project diretory, let your version manager install the ruby version in `.ruby-version`
+1. `gem install bundler`
+1. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/)
+1. Make sure that postgres is installed [brew install postgres](https://wiki.postgresql.org/wiki/Homebrew) OR brew postgresql-upgrade-database (if you have an older version of postgres)
+1. `bundle install`
+1. `cp config/database.example.yml config/database.yml`
 1. `cp config/application.example.yml config/application.yml`
+1. `rake db:test:prepare` Now you can write and run tests! You can skip the other setup steps until you want to run arooo locally. :)
+1. `bundle exec rake spec # runs tests` 
+1. `bundle exec rake db:setup # requires running local postgres`
+1. `rails db:migrate`
+1. `bundle exec rake populate:users # Populate data in your local database - optional`
+1. `bundle exec rails server` # run server
+1. `bundle exec rails console` # run console (useful for looking at and changing your local data)
 
-1. Edit config/application.yml
-    * Set `GITHUB_CLIENT_KEY` and `GITHUB_CLIENT_SECRET` to the Client ID and
-      Client Secret from your Github application
-    * Don't forget to restart your Rails server so it can see your shiny new GitHub key & secret
-
-#### Docker setup
+#### Docker setup (optional)
 
 1. Install docker and docker compose
 
@@ -112,30 +75,37 @@ If you are new to Rails, follow the [RailsBridge Installfest instructions](http:
 1. setup DB
 ```docker-compose run --rm app bundle exec rake db:setup```
 
+#### Set up an application for local OAuth: 
+
+1. Github
+    * http://github.com/settings/applications/new
+    * Application name: Whatever you want
+    * Homepage URL: http://localhost:3000
+    * Authorization callback URL: http://localhost:3000/auth/github/callback
+    * in config/application.yml set `GITHUB_CLIENT_KEY` and `GITHUB_CLIENT_SECRET` to the Client ID and
+      Client Secret from your Github application
+    * Don't forget to restart your Rails server so it can see your shiny new GitHub key & secret
+1. Google
+    * TODO: figure this out and write it down 
+
+#### Common errors
+
+1. If you see the error `FATAL: role “postgres” does not exist`, if you are on OSX with brew run `/usr/local/Cellar/postgresql/<version>/bin/createuser -s postgres`
+
 ### Tests
 
 Tests, also known as specs, are great! Adding tests is a great pull request all on its own. Please try to write tests when you add or change functionality. 
 
 Run `rake db:test:prepare` after you pull or make any changes to the app, generally.
 
-Make sure `bundle exec rspec` passes before pushing your changes. (Our TravisCI integration will double-check before we merge code, so it's ok if you forget sometimes) :)
+Make sure `bundle exec rails spec` passes before pushing your changes. (Our TravisCI integration will double-check before we merge code, so it's ok if you forget sometimes) :)
 
-
-### Populate data in your local database
-
-To add a bunch of users to your dev database, you can use `bundle exec rake
-populate:users`. They will have random states. This is useful when you are running arooo locally to find a bug or look at your changes.
-
-### Rails console - local
-
-Development: `$ bundle exec rails console`
-This helps you look at and change your local data, which is helpful when you are running arooo locally to look at your changes.
+If you want to add a new kind of tests, or refactor the existing tests, do it!
 
 ### User states
 
-The current User state machine can be found in `app/models/user.rb`, but since
-it probably won't change much and it's the main moving piece of the
-application, here's a quick summary.
+The current User state machine can be found in `app/models/user.rb` It is the main moving piece of the
+application.
 
 Valid states:
 
@@ -170,16 +140,9 @@ Now you can update any user:
 > user.update_attribute(:state, 'applicant') # bypasses normal checks & succeeds
 ```
 
-If you need to make or unmake an admin, have a current admin click the un/make admin button on a member in the Member Admin View, or run the below in prod console.
+If you need to make or unmake an admin, have a current admin click the un/make admin button on a member in the Member Admin View. Admins can accept/reject applications, update any member's status, see current member's dues, open and close applications, and manage new member setup.
 
-```
-> user = User.find_by_username('cool_user')
-> user.update_attributes(is_admin: true)
-```
-
-Admins can accept/reject applications, update any member's status, see current member's dues, open and close applications, and manage new member setup.
-
-## Prod maintainer guide
+## Production maintainer / SRE guide
 You don't need this stuff if you don't have heroku permission to deploy arooo
 
 ### Rails console - heroku

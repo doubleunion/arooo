@@ -81,3 +81,4 @@ arooo.iml
 
 # Don't need byebug history
 .byebug_history
+coverage
