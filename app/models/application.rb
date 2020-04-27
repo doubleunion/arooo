@@ -1,3 +1,5 @@
+require 'state_machine' # from gem state_machine_deuxito
+
 class Application < ActiveRecord::Base
   belongs_to :user
 

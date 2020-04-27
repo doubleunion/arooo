@@ -49,7 +49,7 @@ module ApplicationHelper
   def google_analytics
     return unless Rails.env.production?
 
-    code = <<-eos
+    code = <<-EOS
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -60,7 +60,7 @@ module ApplicationHelper
         ga('send', 'pageview');
 
       </script>
-    eos
+    EOS
     code.html_safe
   end
 

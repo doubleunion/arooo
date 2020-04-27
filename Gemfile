@@ -12,7 +12,7 @@ gem "omniauth-github"
 gem "omniauth-google-oauth2"
 gem "pg", "0.21" # to move to v1, must upgrade activesupport
 gem "protected_attributes"
-gem "state_machine", git: "https://github.com/seuros/state_machine"
+gem "state_machine_deuxito"
 gem "kaminari"
 gem "actionpack-action_caching"
 gem "rails_autolink"

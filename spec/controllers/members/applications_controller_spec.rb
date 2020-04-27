@@ -31,7 +31,7 @@ describe Members::ApplicationsController do
       it "redirects if application is in started state" do
         login_as(:member)
         get :show, id: @applicant.application.id
-        expect(flash[:error]).to match /not currently visible/
+        expect(flash[:error]).to match(/not currently visible/)
         expect(response).to redirect_to members_root_path
       end
 

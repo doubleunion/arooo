@@ -1,9 +1,3 @@
-GIT
-  remote: https://github.com/seuros/state_machine
-  revision: 95ba53f03e5657a5873343c2b1dc6a148ea3542e
-  specs:
-    state_machine (1.2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -345,6 +339,7 @@ GEM
     standard (0.2.4)
       rubocop (~> 0.80.1)
       rubocop-performance (~> 1.5.2)
+    state_machine_deuxito (0.0.1)
     stripe (3.31.1)
       faraday (~> 0.10)
     stripe-ruby-mock (2.5.8)
@@ -436,7 +431,7 @@ DEPENDENCIES
   shoulda-matchers
   simplecov
   standard
-  state_machine!
+  state_machine_deuxito
   stripe (~> 3)
   stripe-ruby-mock
   stripe_event

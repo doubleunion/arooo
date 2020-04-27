@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
   }
 
   scope :order_by_state, -> {
-                           order(<<-eos
+                           order(<<-EOS
     CASE state
     WHEN 'voting_member' THEN 1
     WHEN 'key_member'    THEN 2
@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
     WHEN 'visitor'       THEN 5
     ELSE                      6
     END
-                           eos
+                           EOS
                              .squish)
                          }
 

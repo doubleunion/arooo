@@ -214,6 +214,12 @@ Note: Only maintainers have heroku access and can deploy.
 
 1. If needed, perform rake tasks or set ENV variable settings on `production`
 
+
+### Email
+
+This app sends emails, but who is our email provider? TODO
+
+
 #### Staging
 
 Currently neither github nor google auth works on staging- we should get this working again so we can actually test. 
@@ -223,6 +229,7 @@ The basic-auth login is found in https://dashboard.heroku.com/apps/doubleunion-s
 ### Email
 
 This app sends emails, but who is our email provider? TODO
+
 
 ## Security
 
