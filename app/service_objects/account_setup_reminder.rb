@@ -1,3 +1,5 @@
+require "state_machine" # from gem state_machine_deuxito
+
 class AccountSetupReminder
   def initialize(users)
     @users = users
