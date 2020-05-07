@@ -5,7 +5,6 @@
 - [Welcome :rocket::rocket::rocket:✨✨](#welcome-rocketrocketrocket)
   - [What does arooo do?](#what-does-arooo-do)
 - [How to Contribute](#how-to-contribute)
-  - [Github flow](#github-flow)
   - [Development setup](#development-setup)
     - [Steps to get set up to develop and run tests](#steps-to-get-set-up-to-develop-and-run-tests)
     - [Steps to run arooo server locally](#steps-to-run-arooo-server-locally)
@@ -48,9 +47,7 @@ Also, here is a puppy that is saying "arooo":
 
 The application supports three levels of membership: members, key members, and voting members, where any member can see and comment on an application, but only voting members can vote. Membership coordinators can set whether the app is accepting applications, accept or reject individual applications, manage membership levels, and review dues status.
 
-It is currently very Double Union specific, but we'd like to extract the Double Union things out of it, so that other feminist hacker/makerspaces can use it, too! We open sourced the app so that we can work with other hacker/makerspaces on that process. This app supports an application process that helps us maintain a safe space for our members, and we want this app to help other groups that have the same goal. If you're interested in using Arooo for your org, feel free to use it as-is or fork it and do that! We would like to make arooo more reusable and all help is welcome :) Feel free to [make an issue](https://github.com/doubleunion/arooo/issues/new) to discuss :) :dancer:
-
-To check out a couple of screenshots, [see our Arooo announcement post](https://doubleunion.tumblr.com/post/101099822404/meet-arooo-a-open-source-membership-management).
+You can see screenshots of the system here: [see our Arooo announcement post](https://doubleunion.tumblr.com/post/101099822404/meet-arooo-a-open-source-membership-management).
 
 
 ## How to Contribute
@@ -60,10 +57,6 @@ We use [GitHub issues](https://github.com/doubleunion/arooo/issues) for feature 
 Anyone is welcome to make an issue or a pull request. We would *love* for first-time contributors to pick one of our [good first issue](https://github.com/doubleunion/arooo/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) issues :)
 
 We have a mailing list! Feel free to ask any question, including basic git and ruby questions etc :) https://groups.google.com/a/doubleunion.org/forum/#!forum/public-du-code
-
-### Github flow
-
-If you are new to GitHub, you can [use this guide](http://railsbridge.github.io/bridge_troll/) for help making a pull request.
 
 
 ### Development setup
@@ -152,15 +145,13 @@ $ bundle install
 
 Tests, also known as specs, are great! Adding tests is a great pull request all on its own. Please try to write tests when you add or change functionality.
 
-Run `rake db:test:prepare` after you pull or make any changes to the app, generally.
+Run `rake db:test:prepare` after you pull or make any changes to the app, so make sure that your test database has the correct database schema
 
-Make sure `bundle exec rails spec` passes before pushing your changes. (Our TravisCI integration will double-check before we merge code, so it's ok if you forget sometimes) :)
-
-If you want to add a new kind of tests, or refactor the existing tests, do it!
+Make sure `bundle exec rake spec` passes before pushing your changes. (Our TravisCI integration will double-check before we merge code, so it's ok if you forget sometimes) :)
 
 ### User states
 
-The current User state machine can be found in `app/models/user.rb` It is the main moving piece of the
+The User state machine can be found in `app/models/user.rb` It is the main moving piece of the
 application.
 
 Valid states:
