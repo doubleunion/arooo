@@ -3,6 +3,7 @@ source "https://rubygems.org"
 ruby "2.7.1"
 
 gem "rails", "~>5.0"
+gem "rails"
 gem "jquery-rails"
 gem "turbolinks"
 gem "jbuilder"
@@ -11,11 +12,8 @@ gem "omniauth"
 gem "omniauth-github"
 gem "omniauth-google-oauth2"
 gem "pg", "0.21" # to move to v1, must upgrade activesupport
-gem "protected_attributes"
 gem "state_machine_deuxito", require: 'state_machine'
-# gem "protected_attributes" # only works w rails 4
 gem "protected_attributes_continued" # works w rails 5
-gem "state_machine_deuxito"
 gem "kaminari"
 gem "actionpack-action_caching"
 gem "rails_autolink"
@@ -54,7 +52,7 @@ group :development, :test do
   gem "rack_session_access"
   gem "pry-rails"
   gem "pry"
-  gem "puma", "~>3" # TODO upgrading to 4 breaks the capybara tests- fix this
+  gem "puma"
   gem "standard"
   gem "timecop"
 end
@@ -69,7 +67,7 @@ group :test do
   gem "webdrivers"
   gem "database_cleaner"
   gem "email_spec"
-  gem "factory_bot_rails", "~> 4"
+  gem "factory_bot_rails"
   gem "launchy"
   gem "rspec-collection_matchers"
   gem "selenium-webdriver"
