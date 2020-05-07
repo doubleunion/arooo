@@ -74,4 +74,5 @@ group :test do
   gem "shoulda-matchers"
   gem "stripe-ruby-mock", require: "stripe_mock"
   gem "simplecov"
+  gem 'rails-controller-testing'
 end
