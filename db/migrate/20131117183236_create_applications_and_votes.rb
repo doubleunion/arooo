@@ -1,4 +1,4 @@
-class CreateApplicationsAndVotes < ActiveRecord::Migration
+class CreateApplicationsAndVotes < ActiveRecord::Migration[4.2]
   def change
     create_table :applications do |t|
       t.integer :user_id

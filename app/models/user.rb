@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include AdminUser
 
   EMAIL_PATTERN = /\A.+@.+\Z/

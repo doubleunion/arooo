@@ -1,4 +1,4 @@
-class CreateSponsorshipsTable < ActiveRecord::Migration
+class CreateSponsorshipsTable < ActiveRecord::Migration[4.2]
   def change
     create_table :sponsorships do |t|
       t.integer :application_id

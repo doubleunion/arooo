@@ -1,4 +1,4 @@
-class Sponsorship < ActiveRecord::Base
+class Sponsorship < ApplicationRecord
   attr_accessible :user_id, :application_id
 
   belongs_to :user

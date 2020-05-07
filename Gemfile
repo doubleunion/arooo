@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.7.1"
 
-gem "rails"
+gem "rails", "~>5.0"
 gem "jquery-rails"
 gem "turbolinks"
 gem "jbuilder"
@@ -13,11 +13,14 @@ gem "omniauth-google-oauth2"
 gem "pg", "0.21" # to move to v1, must upgrade activesupport
 gem "protected_attributes"
 gem "state_machine_deuxito", require: 'state_machine'
+# gem "protected_attributes" # only works w rails 4
+gem "protected_attributes_continued" # works w rails 5
+gem "state_machine_deuxito"
 gem "kaminari"
 gem "actionpack-action_caching"
 gem "rails_autolink"
 gem "redcarpet"
-gem "configurable_engine"
+# gem "configurable_engine"
 gem "bugsnag"
 gem "stripe", "~> 3" # TODO upgrade this! Carefully...
 gem "stripe_event"
@@ -37,10 +40,11 @@ group :development do
   gem "better_errors" # Provides a better error page for Rails and other Rack apps
   gem "binding_of_caller" # Retrieve the binding of a method's caller
   gem "html2haml"
-  gem "quiet_assets" # turns off Rails asset pipeline log
+  # gem "quiet_assets" # turns off Rails asset pipeline log; disabled because of Rails 5 upgrade shenanigans
   gem "awesome_print"
   gem "execjs" # last updated 2016
   gem "therubyracer" # Call JavaScript code and manipulate JavaScript objects from Ruby
+  # gem 'rails_upgrader'
 end
 
 group :development, :test do

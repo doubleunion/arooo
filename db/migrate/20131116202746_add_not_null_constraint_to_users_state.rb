@@ -1,4 +1,4 @@
-class AddNotNullConstraintToUsersState < ActiveRecord::Migration
+class AddNotNullConstraintToUsersState < ActiveRecord::Migration[4.2]
   def up
     change_column :users, :state, :string, null: false
   end

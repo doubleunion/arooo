@@ -1,4 +1,4 @@
-class AddEssayQuestionsToProfile < ActiveRecord::Migration
+class AddEssayQuestionsToProfile < ActiveRecord::Migration[4.2]
   def change
     change_table :profiles do |t|
       t.string "summary", limit: 2000

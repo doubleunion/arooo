@@ -1,8 +1,8 @@
-class CreateAuthentications < ActiveRecord::Migration
-  class User < ActiveRecord::Base
+class CreateAuthentications < ActiveRecord::Migration[4.2]
+  class User < ApplicationRecord
   end
 
-  class Authentication < ActiveRecord::Base
+  class Authentication < ApplicationRecord
   end
 
   def up
