@@ -50,7 +50,7 @@ group :development, :test do
   gem "rack_session_access"
   gem "pry-rails"
   gem "pry"
-  gem "puma", "~>3" # TODO upgrading to 4 breaks the capybara tests- fix this
+  gem "puma", "~> 3", ">= 3.12.6" # TODO upgrading to 4 breaks the capybara tests- fix this
   gem "standard"
   gem "timecop"
 end
