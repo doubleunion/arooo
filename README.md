@@ -12,12 +12,15 @@ Also, here is a puppy that is saying "arooo":
 
 [![A puppy howling](http://cdn3.sbnation.com/assets/2875387/v728228.gif)](https://www.youtube.com/watch?v=2Tgwrkk-B3k)
 
-This application has a lot of cool features, including:
+### What does arooo do?
+
 * Prospective members can apply for membership
 * Current members can vote and comment on applications
 * Current members can see a directory of members
-* Current members can pay dues via Stripe
+* Current members adjust their dues via Stripe
+* Current members can apply for scholarships
 * Membership coordinators can manage member status
+* Emails are sent for applicants, accepted member setup reminders, cancelling mailers, dues issues, and scholarship requests (see `mailers` folder)
 
 The application supports three levels of membership: members, key members, and voting members, where any member can see and comment on an application, but only voting members can vote. Membership coordinators can set whether the app is accepting applications, accept or reject individual applications, manage membership levels, and review dues status.
 
@@ -43,6 +46,8 @@ If you are new to GitHub, you can [use this guide](http://railsbridge.github.io/
 
 Do the below OR if you prefer docker, see the Docker Setup section 
 
+#### Steps to get set up to develop and run tests
+
 1. install a ruby version manager: [rvm](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv)
 1. when you cd into the project diretory, let your version manager install the ruby version in `.ruby-version`
 1. `gem install bundler`
@@ -51,14 +56,15 @@ Do the below OR if you prefer docker, see the Docker Setup section
 1. `bundle install`
 1. `cp config/database.example.yml config/database.yml`
 1. `cp config/application.example.yml config/application.yml`
-1. `rake db:test:prepare` Now you can write and run tests! You can skip the other setup steps until you want to run arooo locally. :)
-1. `bundle exec rake spec # runs tests` 
-1. `bundle exec standardrb --fix # auto-fix linting issues (optional)` [more linter info](https://github.com/testdouble/standard)
-1. `bundle exec rake db:setup # requires running local postgres`
-1. `rails db:migrate`
-1. `bundle exec rake populate:users # Populate data in your local database - optional`
-1. `bundle exec rails server` # run server
-1. `bundle exec rails console` # run console (useful for looking at and changing your local data)
+1. `bundle exec rake db:setup`
+1. `bundle exec rake db:test:prepare`
+1. `bundle exec rake spec` 
+
+#### Steps to run arooo server locally
+
+1. `bundle exec rake populate:users` Set up data
+1. `bundle exec rails server`
+1. `bundle exec rails console` Optional - useful for looking at and changing your local data)
 
 #### Docker setup (optional)
 
@@ -92,6 +98,10 @@ Do the below OR if you prefer docker, see the Docker Setup section
 #### Common errors
 
 1. If you see the error `FATAL: role “postgres” does not exist`, if you are on OSX with brew run `/usr/local/Cellar/postgresql/<version>/bin/createuser -s postgres`
+
+#### Linting
+
+`bundle exec standardrb --fix # auto-fix linting issues (optional)` [more linter info](https://github.com/testdouble/standard)
 
 ### Tests
 
@@ -217,7 +227,7 @@ Note: Only maintainers have heroku access and can deploy.
 
 ### Email
 
-This app sends emails, but who is our email provider? TODO
+This app sends emails via AWS: TODO more info here
 
 
 #### Staging
