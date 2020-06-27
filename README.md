@@ -1,6 +1,30 @@
 # Arooo - A Room Of One's Own
 [![Build Status](https://travis-ci.org/doubleunion/arooo.svg)](https://travis-ci.org/doubleunion/arooo)
 [![Open Source Helpers](https://www.codetriage.com/doubleunion/arooo/badges/users.svg)](https://www.codetriage.com/doubleunion/arooo)
+- [Arooo - A Room Of One's Own](#arooo---a-room-of-ones-own)
+  - [Welcome :rocket::rocket::rocket:✨✨](#welcome-rocketrocketrocket)
+    - [What does arooo do?](#what-does-arooo-do)
+  - [How to Contribute](#how-to-contribute)
+    - [Github flow](#github-flow)
+    - [Development setup](#development-setup)
+      - [Steps to get set up to develop and run tests](#steps-to-get-set-up-to-develop-and-run-tests)
+      - [Steps to run arooo server locally](#steps-to-run-arooo-server-locally)
+      - [Docker setup (optional)](#docker-setup-optional)
+      - [Set up an application for local OAuth:](#set-up-an-application-for-local-oauth)
+      - [Common errors and gotchas](#common-errors-and-gotchas)
+      - [Linting](#linting)
+    - [Tests](#tests)
+    - [User states](#user-states)
+      - [Manually changing a user's state](#manually-changing-a-users-state)
+  - [Production maintainer / SRE guide](#production-maintainer--sre-guide)
+    - [Rails console - heroku](#rails-console---heroku)
+    - [Bugsnag](#bugsnag)
+    - [Deploying and Heroku access](#deploying-and-heroku-access)
+    - [Email](#email)
+      - [Staging](#staging)
+    - [Email](#email-1)
+  - [Security](#security)
+  - [License](#license)
 
 ## Welcome :rocket::rocket::rocket:✨✨
 
@@ -33,7 +57,7 @@ To check out a couple of screenshots, [see our Arooo announcement post](https://
 
 We use [GitHub issues](https://github.com/doubleunion/arooo/issues) for feature development and bug tracking.
 
-Anyone is welcome to make an issue or a pull request. We would *love* for first-time contributors to pick one of our [good first issue](https://github.com/doubleunion/arooo/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) issues :) 
+Anyone is welcome to make an issue or a pull request. We would *love* for first-time contributors to pick one of our [good first issue](https://github.com/doubleunion/arooo/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) issues :)
 
 We have a mailing list! Feel free to ask any question, including basic git and ruby questions etc :) https://groups.google.com/a/doubleunion.org/forum/#!forum/public-du-code
 
@@ -44,7 +68,7 @@ If you are new to GitHub, you can [use this guide](http://railsbridge.github.io/
 
 ### Development setup
 
-Do the below OR if you prefer docker, see the Docker Setup section 
+Do the below OR if you prefer docker, see the Docker Setup section
 
 #### Steps to get set up to develop and run tests
 
@@ -58,7 +82,7 @@ Do the below OR if you prefer docker, see the Docker Setup section
 1. `cp config/application.example.yml config/application.yml`
 1. `bundle exec rake db:setup`
 1. `bundle exec rake db:test:prepare`
-1. `bundle exec rake spec` 
+1. `bundle exec rake spec`
 
 #### Steps to run arooo server locally
 
@@ -73,16 +97,16 @@ Do the below OR if you prefer docker, see the Docker Setup section
 1. Duplicate db config
 ```cp config/database.docker.yml config/database.yml```
 
-1. build 
+1. build
 ```docker-compose build```
 
-1. build 
+1. build
 ```docker-compose run --rm app bash -c bundle```
 
 1. setup DB
 ```docker-compose run --rm app bundle exec rake db:setup```
 
-#### Set up an application for local OAuth: 
+#### Set up an application for local OAuth:
 
 1. Github
     * http://github.com/settings/applications/new
@@ -93,11 +117,12 @@ Do the below OR if you prefer docker, see the Docker Setup section
       Client Secret from your Github application
     * Don't forget to restart your Rails server so it can see your shiny new GitHub key & secret
 1. Google
-    * TODO: figure this out and write it down 
+    * TODO: figure this out and write it down
 
-#### Common errors
+#### Common errors and gotchas
 
 1. If you see the error `FATAL: role “postgres” does not exist`, if you are on OSX with brew run `/usr/local/Cellar/postgresql/<version>/bin/createuser -s postgres`
+2. Arooo depends on a fork of the `state_machine` gem, because the original gem is no longer maintained. Fork is at https://github.com/compwron/state_machine, original gem is https://rubygems.org/gems/state_machine_deuxito .
 
 #### Linting
 
@@ -105,7 +130,7 @@ Do the below OR if you prefer docker, see the Docker Setup section
 
 ### Tests
 
-Tests, also known as specs, are great! Adding tests is a great pull request all on its own. Please try to write tests when you add or change functionality. 
+Tests, also known as specs, are great! Adding tests is a great pull request all on its own. Please try to write tests when you add or change functionality.
 
 Run `rake db:test:prepare` after you pull or make any changes to the app, generally.
 
@@ -232,7 +257,7 @@ This app sends emails via AWS: TODO more info here
 
 #### Staging
 
-Currently neither github nor google auth works on staging- we should get this working again so we can actually test. 
+Currently neither github nor google auth works on staging- we should get this working again so we can actually test.
 
 The basic-auth login is found in https://dashboard.heroku.com/apps/doubleunion-staging/settings under BASIC_AUTH_NAME/BASIC_AUTH_PASSWORD
 
