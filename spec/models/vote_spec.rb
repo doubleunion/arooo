@@ -44,4 +44,37 @@ describe Vote do
     expect(invalid.valid?).to be_falsey
     expect(invalid).to have_at_least(1).error_on(:user_id)
   end
+
+  describe "no? yes?" do
+    describe "vote no" do
+      let(:vote) { create(:vote, :no) }
+      it "is accurate" do
+        expect(vote.no?).to eq(true)
+        expect(vote.yes?).to eq(false)
+      end
+    end
+    describe "vote yes" do
+      let(:vote) { create(:vote, :yes) }
+      it "is accurate" do
+        expect(vote.no?).to eq(false)
+        expect(vote.yes?).to eq(true)
+      end
+    end
+  end
+
+  describe "display_value" do
+    let(:vote) { build(:vote, :yes) }
+    it "is yes" do
+      expect(vote.display_value).to eq("yes")
+    end
+  end
+
+  describe "user_is_not_applicant" do
+    let(:application) { create :application }
+    let(:user) { application.user}
+
+    it "does not allow user to vote on their own application" do
+      expect { user.vote_for(application) }.to raise_error('???')
+    end
+  end
 end
