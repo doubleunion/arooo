@@ -17,5 +17,9 @@ AWS_REGION: us-west-2
 
 
 # Be sure to include a space between the colon and the key/secret!
-GITHUB_CLIENT_KEY: 
-GITHUB_CLIENT_SECRET: 
+GITHUB_CLIENT_KEY:
+GITHUB_CLIENT_SECRET:
+
+# For Google OAuth
+GOOGLE_CLIENT_ID:
+GOOGLE_CLIENT_SECRET:

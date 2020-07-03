@@ -1,30 +1,30 @@
-# Arooo - A Room Of One's Own
+# Arooo - A Room Of One's Own <!-- omit in toc -->
 [![Build Status](https://travis-ci.org/doubleunion/arooo.svg)](https://travis-ci.org/doubleunion/arooo)
 [![Open Source Helpers](https://www.codetriage.com/doubleunion/arooo/badges/users.svg)](https://www.codetriage.com/doubleunion/arooo)
-- [Arooo - A Room Of One's Own](#arooo---a-room-of-ones-own)
-  - [Welcome :rocket::rocket::rocket:✨✨](#welcome-rocketrocketrocket)
-    - [What does arooo do?](#what-does-arooo-do)
-  - [How to Contribute](#how-to-contribute)
-    - [Github flow](#github-flow)
-    - [Development setup](#development-setup)
-      - [Steps to get set up to develop and run tests](#steps-to-get-set-up-to-develop-and-run-tests)
-      - [Steps to run arooo server locally](#steps-to-run-arooo-server-locally)
-      - [Docker setup (optional)](#docker-setup-optional)
-      - [Set up an application for local OAuth:](#set-up-an-application-for-local-oauth)
-      - [Common errors and gotchas](#common-errors-and-gotchas)
-      - [Linting](#linting)
-    - [Tests](#tests)
-    - [User states](#user-states)
-      - [Manually changing a user's state](#manually-changing-a-users-state)
-  - [Production maintainer / SRE guide](#production-maintainer--sre-guide)
-    - [Rails console - heroku](#rails-console---heroku)
-    - [Bugsnag](#bugsnag)
-    - [Deploying and Heroku access](#deploying-and-heroku-access)
-    - [Email](#email)
-      - [Staging](#staging)
-    - [Email](#email-1)
-  - [Security](#security)
-  - [License](#license)
+
+- [Welcome :rocket::rocket::rocket:✨✨](#welcome-rocketrocketrocket)
+  - [What does arooo do?](#what-does-arooo-do)
+- [How to Contribute](#how-to-contribute)
+  - [Github flow](#github-flow)
+  - [Development setup](#development-setup)
+    - [Steps to get set up to develop and run tests](#steps-to-get-set-up-to-develop-and-run-tests)
+    - [Steps to run arooo server locally](#steps-to-run-arooo-server-locally)
+    - [Docker setup (optional)](#docker-setup-optional)
+    - [Set up an application for local OAuth:](#set-up-an-application-for-local-oauth)
+    - [Common errors and gotchas](#common-errors-and-gotchas)
+    - [Linting](#linting)
+  - [Tests](#tests)
+  - [User states](#user-states)
+    - [Manually changing a user's state](#manually-changing-a-users-state)
+- [Production maintainer / SRE guide](#production-maintainer--sre-guide)
+  - [Rails console - heroku](#rails-console---heroku)
+  - [Bugsnag](#bugsnag)
+  - [Deploying and Heroku access](#deploying-and-heroku-access)
+  - [Email](#email)
+    - [Staging](#staging)
+  - [Email](#email-1)
+- [Security](#security)
+- [License](#license)
 
 ## Welcome :rocket::rocket::rocket:✨✨
 
@@ -117,12 +117,32 @@ Do the below OR if you prefer docker, see the Docker Setup section
       Client Secret from your Github application
     * Don't forget to restart your Rails server so it can see your shiny new GitHub key & secret
 1. Google
-    * TODO: figure this out and write it down
+    * Create a new set of Google OAuth credentials for your local server:
+      * Go to the Google developers console > APIs & Services > Credentials (https://console.developers.google.com/apis/credentials)
+      * Click on: Create credentials > OAuth Client ID
+      * (If you're prompted to "Configure the consent screen", do that first. You should be able to enter "local server testing" as the application name,
+        and leave all the other stuff blank.)
+      * On the Create OAuth client ID screen:
+        * Set Application type to "Web application"
+        * Add http://localhost:3000/auth/google_oauth2/callback to "Authorized redirect URIs"
+      * Hit "Create", and copy the client id and client secret
+    * Copy the client ID and client secret from your OAuth credentials into your local `config/application.yml` file, as the values for `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
+    * For more details, see Google's instructions at https://developers.google.com/identity/protocols/oauth2/web-server#creatingcred
 
 #### Common errors and gotchas
 
 1. If you see the error `FATAL: role “postgres” does not exist`, if you are on OSX with brew run `/usr/local/Cellar/postgresql/<version>/bin/createuser -s postgres`
 2. Arooo depends on a fork of the `state_machine` gem, because the original gem is no longer maintained. Fork is at https://github.com/compwron/state_machine, original gem is https://rubygems.org/gems/state_machine_deuxito .
+3. If during `bundle install` you run into errors installing `libv8` or `therubyracer`, on Mac you can solve that with the commands below (also, see other options discussed in [this gist](https://gist.github.com/fernandoaleman/868b64cd60ab2d51ab24e7bf384da1ca)):
+```bash
+# Get the version numbers from your error output. At the time of this writing, I used:
+# libv8: '3.16.14.19'
+# therubyracer: '0.12.3'
+$ brew install v8@3.15
+$ gem install libv8 -v 'YOUR_VERSION' -- --with-system-v8
+$ gem install therubyracer -v 'YOUR_VERSION' -- --with-v8-dir=$(brew --prefix v8@3.15)
+$ bundle install
+```
 
 #### Linting
 
