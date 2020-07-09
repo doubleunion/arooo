@@ -1,5 +1,5 @@
 class Admin::MembershipsController < ApplicationController
-  before_filter :ensure_admin
+  before_action :ensure_admin
 
   def index
     @all_members = User.all_members.includes(:profile).order_by_state
