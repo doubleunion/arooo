@@ -17,7 +17,7 @@ gem "kaminari"
 gem "actionpack-action_caching"
 gem "rails_autolink"
 gem "redcarpet"
-# gem "configurable_engine"
+gem "configurable_engine" # this gem was design for Rails 5, consider removing or replacing it
 gem "bugsnag"
 gem "stripe", "~> 3" # TODO upgrade this! Carefully...
 gem "stripe_event"
