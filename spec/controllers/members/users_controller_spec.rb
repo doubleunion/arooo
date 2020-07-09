@@ -18,7 +18,7 @@ describe Members::UsersController do
   end
 
   describe "GET show" do
-    subject { get :show, id: someone_cool.id }
+    subject { get :show, params: { id: someone_cool.id } }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
     it_should_behave_like "allow members", [:member, :voting_member]
@@ -30,7 +30,7 @@ describe Members::UsersController do
   end
 
   describe "GET edit" do
-    subject { get :edit, id: someone_cool.id }
+    subject { get :edit, params: { id: someone_cool.id } }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
     it_should_behave_like "allow members", [:member, :voting_member]
@@ -42,7 +42,7 @@ describe Members::UsersController do
   end
 
   describe "POST update" do
-    subject { post :update, id: someone_cool.id, user: {id: someone_cool.id} }
+    subject { post :update, params: { id: someone_cool.id, user: {id: someone_cool.id} } }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
     it_should_behave_like "allow members", [:member, :voting_member]
@@ -57,10 +57,13 @@ describe Members::UsersController do
         it "updates name and email" do
           user = login_as(:member, name: "Foo Bar", email: "someone@foo.bar")
 
-          post :update, id: user.id, user: {
-            name: "FooBar TooBar",
-            email: "someone2@foo.bar",
-            profile_attributes: {skills: "writing awesome tests"}
+          post :update, params: {
+            id: user.id,
+            user: {
+              name: "FooBar TooBar",
+              email: "someone2@foo.bar",
+              profile_attributes: {skills: "writing awesome tests"}
+            }
           }
 
           expect(response).to render_template :edit
@@ -75,7 +78,10 @@ describe Members::UsersController do
         it "updates your own info instead of theirs" do
           member = login_as(:member)
 
-          post :update, id: someone_cool.id, user: {name: "Little Bobby Tables Was Here"}
+          post :update, params: {
+            id: someone_cool.id,
+            user: {name: "Little Bobby Tables Was Here"}
+          }
 
           expect(someone_cool.name).to eq(someone_cool.reload.name)
           expect(member.name).to eq("Little Bobby Tables Was Here")
@@ -85,7 +91,7 @@ describe Members::UsersController do
   end
 
   describe "GET setup" do
-    subject { get :setup, user_id: someone_cool.id }
+    subject { get :setup, params: { user_id: someone_cool.id } }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
     it_should_behave_like "allow members", [:member, :voting_member]
@@ -97,16 +103,19 @@ describe Members::UsersController do
   end
 
   describe "PATCH finalize" do
-    subject { patch :finalize, user_id: someone_cool.id, user: {dues_pledge: 25} }
+    subject { patch :finalize, params: { user_id: someone_cool.id, user: {dues_pledge: 25} } }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
 
     it "updates Google email and dues pledge if logged in" do
       user = login_as(:member, name: "Foo Bar", email: "someone@foo.bar")
 
-      patch :finalize, user_id: user.id, user: {
-        dues_pledge: 25,
-        email_for_google: "googly-eyes@example.com"
+      patch :finalize, params: {
+        user_id: user.id,
+        user: {
+          dues_pledge: 25,
+          email_for_google: "googly-eyes@example.com"
+        }
       }
 
       expect(response).to render_template "setup"

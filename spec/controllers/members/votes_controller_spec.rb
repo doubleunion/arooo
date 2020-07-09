@@ -12,7 +12,7 @@ describe Members::VotesController do
       }
     }
 
-    subject { post :create, params }
+    subject { post :create, params: params }
 
     before do
       login_as(member)
@@ -50,7 +50,7 @@ describe Members::VotesController do
   end
 
   describe "DELETE destroy" do
-    subject { delete :destroy, params }
+    subject { delete :destroy, params: params }
 
     before do
       login_as(member)

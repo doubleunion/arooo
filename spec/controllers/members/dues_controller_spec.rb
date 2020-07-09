@@ -6,7 +6,7 @@ describe Members::DuesController do
   let(:member) { create(:member) }
 
   describe "GET show" do
-    subject { get :show, user_id: member.id }
+    subject { get :show, params: { user_id: member.id } }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
     it_should_behave_like "allow members", [:member, :voting_member]
@@ -26,7 +26,7 @@ describe Members::DuesController do
       }
     end
 
-    subject(:cancel_dues) { delete :cancel, params }
+    subject(:cancel_dues) { delete :cancel, params: params }
 
     context "when the user does not have a Stripe ID" do
       it "sets the flash and redirects to the manage dues page" do
@@ -118,7 +118,7 @@ describe Members::DuesController do
 
     let!(:user) { login_as(:member, name: "Foo Bar", email: "someone@foo.bar") }
 
-    subject(:post_dues) { post :update, params }
+    subject(:post_dues) { post :update, params: params }
 
     context "when the user is coming from the account setup page" do
       # Must set referrer so that DuesController#redirect_target works
@@ -181,7 +181,7 @@ describe Members::DuesController do
   describe "POST scholarship_request" do
     let(:params) { {"user_id" => member.id, "reason" => "Lemurs are pretty great animals."} }
 
-    subject { post :scholarship_request, params }
+    subject { post :scholarship_request, params: params }
 
     context "logged in as a member" do
       before { login_as member }

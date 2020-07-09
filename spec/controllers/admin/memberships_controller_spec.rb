@@ -48,7 +48,7 @@ describe Admin::MembershipsController do
   end
 
   describe "PUT update" do
-    subject { put :update, params }
+    subject { put :update, params: params }
 
     before { login_as(:voting_member, is_admin: true) }
 
@@ -63,7 +63,7 @@ describe Admin::MembershipsController do
   end
 
   describe "PATCH change_membership_state" do
-    subject { patch :change_membership_state, params }
+    subject { patch :change_membership_state, params: params }
 
     context "logged in as a non-admin" do
       let(:member) { create :member }
@@ -157,7 +157,7 @@ describe Admin::MembershipsController do
   end
 
   describe "PATCH make_admin" do
-    subject { patch :make_admin, params }
+    subject { patch :make_admin, params: params }
 
     context "logged in as an admin" do
       before { login_as(:voting_member, is_admin: true) }
@@ -192,7 +192,7 @@ describe Admin::MembershipsController do
   end
 
   describe "PATCH unmake_admin" do
-    subject { patch :unmake_admin, params }
+    subject { patch :unmake_admin, params: params }
 
     context "logged in as an admin" do
       before { login_as(:voting_member, is_admin: true) }

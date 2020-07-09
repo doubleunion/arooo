@@ -31,7 +31,7 @@ describe SessionsController do
       request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
     end
 
-    subject { get :create, provider: "github" }
+    subject { get :create, params: { provider: "github" } }
 
     describe "for a new user" do
       it "redirects to email confirmation step" do
@@ -126,7 +126,7 @@ describe SessionsController do
     describe "with an existing, logged-in user" do
       let(:user) { create_with_omniauth(OmniAuth.config.mock_auth[:github]) }
 
-      subject { get :create, provider: "google_oauth2" }
+      subject { get :create, params: { provider: "google_oauth2" } }
 
       before do
         log_in(user)
@@ -161,7 +161,7 @@ describe SessionsController do
       session[:uid] = "12345"
     end
 
-    subject { post :confirm_email, email: email }
+    subject { post :confirm_email, params: { email: email } }
 
     context "with valid params" do
       let(:email) { "someone@foo.bar" }
