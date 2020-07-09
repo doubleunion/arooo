@@ -16,7 +16,7 @@ describe Members::VotingMembersController do
 
       it "allows members to load the status edit form" do
         subject
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response).to render_template :edit
       end
     end

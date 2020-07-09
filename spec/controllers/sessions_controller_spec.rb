@@ -6,7 +6,7 @@ describe SessionsController do
 
   describe "GET login" do
     it "succeeds" do
-      expect(get(:login)).to be_success
+      expect(get(:login)).to be_successful
     end
 
     it "renders the page" do

@@ -13,7 +13,7 @@ shared_examples "allow members" do |folks|
     it "should allow members" do
       login_as(folk)
       subject
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 end
