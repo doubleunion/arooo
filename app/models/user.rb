@@ -79,7 +79,7 @@ class User < ApplicationRecord
   }
 
   scope :order_by_state, -> {
-                           order(<<-EOS
+                           order(Arel.sql(<<-EOS
     CASE state
     WHEN 'voting_member' THEN 1
     WHEN 'key_member'    THEN 2
@@ -89,7 +89,7 @@ class User < ApplicationRecord
     ELSE                      6
     END
                            EOS
-                             .squish)
+                             .squish))
                          }
 
   state_machine :state, initial: :visitor do
