@@ -16,8 +16,21 @@ ActiveRecord::Schema.define(version: 20170110040726) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-# Could not dump table "applications" because of following FrozenError
-#   can't modify frozen String: "false"
+  create_table "applications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "state",                               null: false
+    t.boolean  "agreement_terms",     default: false, null: false
+    t.boolean  "agreement_policies",  default: false, null: false
+    t.boolean  "agreement_female",    default: false, null: false
+    t.datetime "submitted_at"
+    t.datetime "processed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "stale_email_sent_at"
+  end
+
+  add_index "applications", ["state"], name: "index_applications_on_state", using: :btree
+  add_index "applications", ["user_id"], name: "index_applications_on_user_id", using: :btree
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "user_id"
@@ -46,8 +59,26 @@ ActiveRecord::Schema.define(version: 20170110040726) do
 
   add_index "configurables", ["name"], name: "index_configurables_on_name", using: :btree
 
-# Could not dump table "profiles" because of following FrozenError
-#   can't modify frozen String: "false"
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id",                                        null: false
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "website"
+    t.string   "linkedin"
+    t.string   "blog"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "show_name_on_site",              default: false, null: false
+    t.string   "gravatar_email"
+    t.string   "summary",           limit: 2000
+    t.string   "reasons",           limit: 2000
+    t.string   "projects",          limit: 2000
+    t.string   "skills",            limit: 2000
+    t.string   "feminism",          limit: 2000
+    t.string   "pronouns"
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "sponsorships", force: :cascade do |t|
     t.integer  "application_id"
@@ -56,8 +87,24 @@ ActiveRecord::Schema.define(version: 20170110040726) do
     t.datetime "updated_at"
   end
 
-# Could not dump table "users" because of following FrozenError
-#   can't modify frozen String: "false"
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
+    t.string   "state",                                        null: false
+    t.datetime "last_logged_in_at"
+    t.string   "email_for_google"
+    t.integer  "dues_pledge"
+    t.boolean  "is_admin",                     default: false
+    t.boolean  "setup_complete"
+    t.text     "membership_note"
+    t.string   "stripe_customer_id"
+    t.datetime "last_stripe_charge_succeeded"
+    t.boolean  "is_scholarship",               default: false
+    t.boolean  "voting_policy_agreement",      default: false
+  end
 
   create_table "votes", force: :cascade do |t|
     t.integer  "user_id",        null: false
