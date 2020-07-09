@@ -1,3 +1,7 @@
+// Override icon-font-path to prevent error:
+// ActionController::RoutingError (No route matches [GET] "/fonts/bootstrap/glyphicons-halflings-regular.ttf")
+$icon-font-path: "bootstrap/";
+
 @import "bootstrap";
 @import "mixins";
 body {
