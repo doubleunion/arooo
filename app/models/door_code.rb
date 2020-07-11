@@ -1,4 +1,8 @@
 class DoorCode < ApplicationRecord
+  belongs_to :user
+
+  validates :code, presence: true
+  validates_uniqueness_of :code, case_sensitive: false
 end
 
 # == Schema Information
