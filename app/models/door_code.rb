@@ -1,6 +1,9 @@
 class DoorCode < ApplicationRecord
   belongs_to :user
 
+  validates :user, presence: true
+  validates_uniqueness_of :user
+
   validates :code, presence: true
   validates_uniqueness_of :code, case_sensitive: false
 end
@@ -14,9 +17,10 @@ end
 #  enabled    :boolean          default(FALSE), not null
 #  created_at :datetime
 #  updated_at :datetime
-#  user_id    :integer
+#  user_id    :integer          not null
 #
 # Indexes
 #
-#  index_door_codes_on_code  (code) UNIQUE
+#  index_door_codes_on_code     (code) UNIQUE
+#  index_door_codes_on_user_id  (user_id) UNIQUE
 #

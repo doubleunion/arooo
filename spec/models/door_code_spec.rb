@@ -2,13 +2,16 @@ require "spec_helper"
 
 describe DoorCode do
   subject { create(:door_code) }
+
+  describe "associations" do
+    it { is_expected.to belong_to(:user) }
+  end
+
   describe "validations" do
     it { is_expected.to validate_presence_of(:code) }
     it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
-  end
-
-  describe "#user" do
-    it { is_expected.to belong_to(:user) }
+    it { is_expected.to validate_presence_of(:user) }
+    it { is_expected.to validate_uniqueness_of(:user).case_insensitive }
   end
 
   describe "#enabled" do

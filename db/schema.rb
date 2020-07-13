@@ -56,12 +56,13 @@ ActiveRecord::Schema.define(version: 2020_07_09_004913) do
   end
 
   create_table "door_codes", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.string "code", null: false
     t.boolean "enabled", default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["code"], name: "index_door_codes_on_code", unique: true
+    t.index ["user_id"], name: "index_door_codes_on_user_id", unique: true
   end
 
   create_table "profiles", id: :serial, force: :cascade do |t|
