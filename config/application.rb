@@ -23,6 +23,7 @@ module Doubleunion
     # explicitly loading locales so they will be available in the initializers
     I18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
 
+    config.eager_load_paths += %W[#{config.root}/lib]
     config.autoload_paths += %W[#{config.root}/lib]
 
     # CORS – this allows doubleunion.org to request the api from javascript
