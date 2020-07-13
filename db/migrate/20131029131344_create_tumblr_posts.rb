@@ -1,4 +1,4 @@
-class CreateTumblrPosts < ActiveRecord::Migration
+class CreateTumblrPosts < ActiveRecord::Migration[4.2]
   def change
     create_table :tumblr_posts do |t|
       t.integer :tumblr_id, null: false, limit: 8

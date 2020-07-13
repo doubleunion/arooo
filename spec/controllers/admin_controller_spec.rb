@@ -21,7 +21,7 @@ describe AdminController do
         it "should approve the relevant application" do
           login_as(:voting_member, is_admin: true)
           expect {
-            patch :approve, application_params
+            patch :approve, params: application_params
           }.to change { an_application.reload.state }.from("submitted").to("approved")
         end
       end
@@ -33,7 +33,7 @@ describe AdminController do
       it "should reject the relevant application" do
         login_as(:voting_member, is_admin: true)
         expect {
-          patch :reject, application_params
+          patch :reject, params: application_params
         }.to change { an_application.reload.state }.from("submitted").to("rejected")
       end
     end
@@ -50,7 +50,7 @@ describe AdminController do
       let!(:member) { create(:member) }
       let(:params) { {user: {id: member.id}} }
 
-      subject { post :setup_complete, params }
+      subject { post :setup_complete, params: params }
 
       before do
         member.update(email_for_google: "bananas@example.com")
@@ -70,7 +70,7 @@ describe AdminController do
       it "allows the admin to make notes on the new user" do
         login_as(:voting_member, is_admin: true)
         expect {
-          post :save_membership_note, params
+          post :save_membership_note, params: params
         }.to change { member.reload.membership_note }.from(nil).to("beeeep")
       end
     end

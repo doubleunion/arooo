@@ -30,7 +30,7 @@ describe ApiController do
 
     it "succeeds" do
       subject
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it "returns a list of public members" do
@@ -55,7 +55,7 @@ describe ApiController do
 
     it "returns the configurations" do
       subject
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response.body).to eq config_json.to_json
     end
   end

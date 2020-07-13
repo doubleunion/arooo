@@ -1,4 +1,4 @@
-class PopulateEssayQuestionsOnProfile < ActiveRecord::Migration
+class PopulateEssayQuestionsOnProfile < ActiveRecord::Migration[4.2]
   def up
     execute "UPDATE profiles p SET summary = a.summary FROM applications a WHERE p.user_id = a.user_id"
     execute "UPDATE profiles p SET reasons = a.reasons FROM applications a WHERE p.user_id = a.user_id"

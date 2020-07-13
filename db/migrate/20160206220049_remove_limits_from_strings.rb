@@ -1,4 +1,4 @@
-class RemoveLimitsFromStrings < ActiveRecord::Migration
+class RemoveLimitsFromStrings < ActiveRecord::Migration[4.2]
   def up
     change_column :applications, :state, :string, limit: nil
     change_column :authentications, :provider, :string, limit: nil

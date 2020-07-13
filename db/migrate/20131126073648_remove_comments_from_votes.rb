@@ -1,4 +1,4 @@
-class RemoveCommentsFromVotes < ActiveRecord::Migration
+class RemoveCommentsFromVotes < ActiveRecord::Migration[4.2]
   def up
     remove_column :votes, :comments
   end

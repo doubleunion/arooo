@@ -1,4 +1,6 @@
-class Application < ActiveRecord::Base
+require "state_machine" # from gem state_machine_deuxito
+
+class Application < ApplicationRecord
   belongs_to :user
 
   has_many :votes, dependent: :destroy

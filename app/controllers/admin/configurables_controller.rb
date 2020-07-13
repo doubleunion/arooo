@@ -1,4 +1,4 @@
 class Admin::ConfigurablesController < ApplicationController
   include ConfigurableEngine::ConfigurablesController
-  before_filter :ensure_admin
+  before_action :ensure_admin
 end
