@@ -96,4 +96,9 @@ FactoryBot.define do
     body { "comment body" }
     created_at { 1.day.ago }
   end
+
+  factory :door_code do
+    association :user, factory: :member
+    sequence(:code) { |n| "#{1000+n}" }
+  end
 end

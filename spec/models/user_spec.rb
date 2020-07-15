@@ -121,4 +121,15 @@ describe User do
       expect { subject }.to change { member.state }.from("key_member").to("voting_member")
     end
   end
+
+  describe "#door_code" do
+    subject { create(:user) }
+
+    it { is_expected.to have_one(:door_code) }
+
+    it "defaults to nil" do
+      new_user = User.create!(name: "Kay Doke", email: "k@example.com", username: "k")
+      expect(new_user.door_code).to be_nil
+    end
+  end
 end
