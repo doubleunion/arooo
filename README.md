@@ -210,13 +210,19 @@ Thank you to Bugsnag for their [OSS program](https://www.bugsnag.com/open-source
 
 ### Deploying and Heroku access
 
-This section only pertains if you have heroku & deployment access
+This section only pertains if you have heroku & deployment access. Only maintainers have heroku access and can deploy.
 
 If you are a DU member, see https://docs.google.com/document/d/19LbIYB2RDy-17UXuQx6wLgKp2EdLdqj-pg1cm3EpSb8/edit for more information on getting permission.
 
-1. Add Heroku remotes to your `.git/config` (type `git remote --help` for more instructions on how to configure git remote.)
+Both `staging` and `production` Heroku environments are connected to this GitHub repo, making it possible to deploy directly through the Heroku UI. To deploy:
+* Staging: Merge to `master`, and your code will be automatically deployed to `staging` as soon as Travis CI goes geen.
+* Poduction: Log into Heroku, and select the production Aroo app from your dashboard. Click on "Deploy", and scroll to the bottom. There will be a place to select a branch to deploy, and a button that you can click to deploy.
 
-Note: Only maintainers have heroku access and can deploy.
+Database migrations will run automatically during the release process on Heroku. This is controlled by the `release` directive in our [Procfile](Procfile).
+
+If you prefer to do deploys from the command line, here are the steps:
+
+1. Add Heroku remotes to your `.git/config` (type `git remote --help` for more instructions on how to configure git remote.)
 
   ```
   [remote "production"]
