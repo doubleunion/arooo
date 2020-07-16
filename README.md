@@ -216,7 +216,7 @@ If you are a DU member, see https://docs.google.com/document/d/19LbIYB2RDy-17UXu
 
 Both `staging` and `production` Heroku environments are connected to this GitHub repo, making it possible to deploy directly through the Heroku UI. To deploy:
 * Staging: Merge to `master`, and your code will be automatically deployed to `staging` as soon as Travis CI goes geen.
-* Poduction: Log into Heroku, and select the production Aroo app from your dashboard. Click on "Deploy", and scroll to the bottom. There will be a place to select a branch to deploy, and a button that you can click to deploy.
+* Production: Log into Heroku, and select the production Aroo app from your dashboard. Click on "Deploy", and scroll to the bottom. There will be a place to select a branch to deploy, and a button that you can click to deploy.
 
 Database migrations will run automatically during the release process on Heroku. This is controlled by the `release` directive in our [Procfile](Procfile).
 
