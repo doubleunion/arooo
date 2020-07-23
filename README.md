@@ -15,6 +15,7 @@
   - [Tests](#tests)
   - [User states](#user-states)
     - [Manually changing a user's state](#manually-changing-a-users-state)
+  - [Programmatic doorbell](#programmatic-doorbell)
 - [Production maintainer / SRE guide](#production-maintainer--sre-guide)
   - [Rails console - heroku](#rails-console---heroku)
   - [Bugsnag](#bugsnag)
@@ -70,6 +71,7 @@ Do the below OR if you prefer docker, see the Docker Setup section
 1. `gem install bundler`
 1. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/)
 1. Make sure that postgres is installed [brew install postgres](https://wiki.postgresql.org/wiki/Homebrew) OR brew postgresql-upgrade-database (if you have an older version of postgres)
+1. If you want to run the doorbell code locally, you will need to have a local instance of [Redis](https://redis.io/). You can install it on mac with `brew install redis`.
 1. `bundle install`
 1. `cp config/database.example.yml config/database.yml`
 1. `cp config/application.example.yml config/application.yml`
@@ -188,6 +190,10 @@ Now you can update any user:
 ```
 
 If you need to make or unmake an admin, have a current admin click the un/make admin button on a member in the Member Admin View. Admins can accept/reject applications, update any member's status, see current member's dues, open and close applications, and manage new member setup.
+
+### Programmatic doorbell
+
+Arooo includes code to handle incoming voice calls and text messages from an intercom system. This allows members to enter a personalized door code to open the door to our space. This bulk of this code is a Twilio TwiML app that lives in the [DoorbellController](app/controllers/doorbell_controller.rb).
 
 ## Production maintainer / SRE guide
 
