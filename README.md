@@ -20,9 +20,9 @@
   - [Rails console - heroku](#rails-console---heroku)
   - [Bugsnag](#bugsnag)
   - [Deploying and Heroku access](#deploying-and-heroku-access)
+  - [Environment variable configuration](#environment-variable-configuration)
   - [Email](#email)
-    - [Staging](#staging)
-  - [Email](#email-1)
+  - [Staging](#staging)
 - [Security](#security)
 - [License](#license)
 
@@ -71,7 +71,7 @@ Do the below OR if you prefer docker, see the Docker Setup section
 1. `gem install bundler`
 1. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/)
 1. Make sure that postgres is installed [brew install postgres](https://wiki.postgresql.org/wiki/Homebrew) OR brew postgresql-upgrade-database (if you have an older version of postgres)
-1. If you want to run the doorbell code locally, you will need to have a local instance of [Redis](https://redis.io/). You can install it on mac with `brew install redis`.
+1. If you want to run the doorbell code locally, you will need to have a local instance of [Redis](https://redis.io/). You can install it on mac with `brew install redis`. If your local Redis instance is running on a non-standard port, you can set `REDIS_URL` in your local `config/application.yaml`.
 1. `bundle install`
 1. `cp config/database.example.yml config/database.yml`
 1. `cp config/application.example.yml config/application.yml`
@@ -275,21 +275,55 @@ If you prefer to do deploys from the command line, here are the steps:
 1. If needed, perform rake tasks or set ENV variable settings on `production`
 
 
+### Environment variable configuration
+
+As of July 2020, the environment variables set in Arooo's production environment are:
+
+```
+AWS_ACCESS_KEY_ID
+AWS_REGION
+AWS_SECRET_ACCESS_KEY
+BUGSNAG_KEY
+CANONICAL_HOST: app.doubleunion.org
+DATABASE_URL
+GITHUB_CLIENT_KEY
+GITHUB_CLIENT_SECRET
+GOOGLE_CLIENT_ID
+GOOGLE_CLIENT_SECRET
+HEROKU_POSTGRESQL_CYAN_URL
+HEROKU_POSTGRESQL_RED_URL
+HOST_URL: app.doubleunion.org
+LANG: en_US.UTF-8
+MANDRILL_API_KEY
+MANDRILL_USERNAME
+NEW_RELIC_KEY
+NEW_RELIC_LICENSE_KEY
+NEW_RELIC_LOG
+RACK_ENV: production
+RAILS_ENV: production
+REDIS_URL
+SECRET_TOKEN
+STRIPE_PUBLISHABLE_KEY
+STRIPE_SECRET_KEY
+STRIPE_SIGNING_SECRET
+```
+
+You can get the current values from Heroku, either via the web UI, under Settings > Reveal Config Vars, or using the Heroku CLI: `heroku config --app du-aroo`.
+
+In your local development environment, you can set these variables in `config/application.yaml`.
+
+TODO: It would be great to document these variables further, and figure out which ones are still needed.
+
 ### Email
 
-This app sends emails via AWS: TODO more info here
+This app sends emails via AWS: TODO more info here (we also have env variables set for Mandrill, are these still needed?)
 
 
-#### Staging
+### Staging
 
 Currently neither github nor google auth works on staging- we should get this working again so we can actually test.
 
 The basic-auth login is found in https://dashboard.heroku.com/apps/doubleunion-staging/settings under BASIC_AUTH_NAME/BASIC_AUTH_PASSWORD
-
-### Email
-
-This app sends emails, but who is our email provider? TODO
-
 
 ## Security
 
