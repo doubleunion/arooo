@@ -22,6 +22,24 @@ class DoorbellController < ApplicationController
     render xml: response.to_xml
   end
 
+ def sms
+    response = Twilio::TwiML::MessagingResponse.new do |r|
+      keycode = params['Body'].strip
+      member = get_user_by_code(keycode)
+      if member
+        # TODO: In the original code, this name was a version of the name that was intended to be pronounceable by
+        # Twilio robot. Right now we don't have a place in the database for this "pronounceable name", so we are using
+        # the full name instead (which the robot will likely mangle).
+        record_authorized_member member.name
+        r.message body: 'Access granted. Dial 111 on the keypad now to unlock the door.'
+      else
+        r.message body: 'Due to the shelter in place order for the city of San Francisco, Double Union is closed until April 7th. Email board@doubleunion.org if you have any questions.'
+        # r.message body: 'Invalid code. Please text your six-digit access code.'
+      end
+    end
+    render xml: response.to_xml
+  end
+
   private
   # records the last authorized member for 2 minutes, or until the door is opened
   def record_authorized_member(member)
@@ -35,5 +53,14 @@ class DoorbellController < ApplicationController
     member = redis.get('member')
     redis.del('member') if member
     member
+  end
+
+  # Gets a User object based on a keycode.
+  # Returns nil if no matching code was found.
+  def get_user_by_code(keycode)
+    door_code = DoorCode.find_by(code: keycode)
+    return nil unless door_code
+
+    return door_code.user
   end
 end

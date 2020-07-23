@@ -67,7 +67,7 @@ Rails.application.routes.draw do
 
   scope path: "doorbell", as: "doorbell", defaults: { format: "xml" } do
     root to: "doorbell#welcome"
-    # get "sms" => "doorbell#sms"
+    get "sms" => "doorbell#sms"
     # get "gather-ismember" => "doorbell#gather_ismember"
     # get "gather-keycode" => "doorbell#gather_keycode"
   end
