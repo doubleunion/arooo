@@ -197,6 +197,11 @@ Arooo includes code to handle incoming voice calls and text messages from an int
 
 This code is a [Twilio TwiML](https://www.twilio.com/docs/voice/twiml) app that lives in the [DoorbellController](app/controllers/doorbell_controller.rb).
 
+You can test the doorbell endpoints directly from a browser or using CURL. You can pass parameters to each endpoint direclty as query params. For example, to manually test the SMS endpoint:
+```
+http://localhost:3000/doorbell/sms?Body=123456
+```
+
 ## Production maintainer / SRE guide
 
 ### Rails console - heroku
