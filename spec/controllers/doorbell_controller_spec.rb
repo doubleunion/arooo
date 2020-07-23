@@ -108,5 +108,36 @@ describe DoorbellController do
         expect(xml.at("Gather").attribute("action").value).to eq(doorbell_gather_keycode_path)
       end
     end
-   end
+  end
+
+  describe "#gather_keycode" do
+    let(:door_code) { create(:door_code) }
+    let(:key_code) { door_code.code }
+
+    subject { get :gather_keycode, params: { SpeechResult: key_code } }
+
+    context "with valid keycode" do
+      it "welcomes the member" do
+        subject
+        xml = Nokogiri::XML(response.body)
+        expect(xml.search("Say").first.text).to include(door_code.user.name)
+      end
+
+      it "plays the digit 9" do
+        subject
+        xml = Nokogiri::XML(response.body)
+        expect(xml.at("Play").attribute("digits").value).to eq("9")
+      end
+    end
+
+    context "with invalid keycode" do
+      let(:key_code) { "what is this i can't even" }
+
+      it "redirects to gather keycode" do
+        subject
+        xml = Nokogiri::XML(response.body)
+        expect(xml.at("Gather").attribute("action").value).to eq(doorbell_gather_keycode_path)
+      end
+    end
+  end
 end

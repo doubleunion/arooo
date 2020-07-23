@@ -59,6 +59,25 @@ class DoorbellController < ApplicationController
   end
 
   def gather_keycode
+    keycode = params['SpeechResult'].gsub(' ','')
+
+    member = get_user_by_code(keycode)
+    if member
+      # they are a key member, let them in
+      response = Twilio::TwiML::VoiceResponse.new do |r|
+        r.say message: "Welcome #{member.name}!", voice: 'alice'
+        r.play digits: '9'
+      end
+    else
+      # invalid code, try again
+      response = Twilio::TwiML::VoiceResponse.new do |r|
+        r.gather(input: 'speech', numDigits: '6', hints: '1, 2, 3, 4, 5, 6, 7, 8, 9, 0',
+                 speechModel: 'numbers_and_commands', action: doorbell_gather_keycode_path, method: 'get') do |g|
+          g.say message: 'I’m sorry, I didn’t quite get that. Please say your code again.', voice: 'alice'
+        end
+      end
+    end
+    render xml: response.to_xml
   end
 
   private
