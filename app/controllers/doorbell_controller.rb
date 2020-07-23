@@ -40,6 +40,27 @@ class DoorbellController < ApplicationController
     render xml: response.to_xml
   end
 
+  def gather_ismember
+    # only 1 or 2 is a valid selection
+    redirect_to action: "welcome" and return unless %w[guest member].include?(params['SpeechResult'])
+    if params['SpeechResult'] == 'guest'
+      # they are a guest, just call the landline
+      response = redirect_call_response('Calling the landline.')
+    elsif params['SpeechResult'] == 'member'
+      # they are a member, ask for a code
+      response = Twilio::TwiML::VoiceResponse.new do |r|
+        r.gather(input: 'speech', hints: '1, 2, 3, 4, 5, 6, 7, 8, 9, 0', speechTimeout: 'auto',
+                 speechModel: 'numbers_and_commands', action: doorbell_gather_keycode_path, method: 'get') do |g|
+          g.say message: 'Please say your Double Union keycode.', voice: 'alice'
+        end
+      end
+    end
+    render xml: response.to_xml
+  end
+
+  def gather_keycode
+  end
+
   private
   # records the last authorized member for 2 minutes, or until the door is opened
   def record_authorized_member(member)
@@ -53,6 +74,16 @@ class DoorbellController < ApplicationController
     member = redis.get('member')
     redis.del('member') if member
     member
+  end
+
+  # returns a response object that redirects the call to the DU landline
+  def redirect_call_response(explanation)
+    response = Twilio::TwiML::VoiceResponse.new do |r|
+      r.say message: explanation, voice: 'alice'
+      r.dial number: '+14154890104'
+      r.say message: 'The call failed. Please try again.', voice: 'alice'
+    end
+    response
   end
 
   # Gets a User object based on a keycode.

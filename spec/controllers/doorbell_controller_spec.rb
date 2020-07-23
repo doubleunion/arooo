@@ -21,8 +21,8 @@ describe DoorbellController do
       end
     end
 
-    context "with a recently authorized member name" do
-      let!(:member_name) { "Ariel" }
+    context "with a recently authorized member" do
+      let!(:member_name) { "Ariel Jones" }
 
       before do
         allow(redis_double).to receive(:get).and_return(member_name)
@@ -76,4 +76,37 @@ describe DoorbellController do
       end
     end
   end
+
+  describe "#gather_ismember" do
+    let(:selected_option) { "guest" }
+    subject { get :gather_ismember, params: { SpeechResult: selected_option } }
+
+    context "with an invalid selection" do
+      let(:selected_option) { "bogus_stuff" }
+
+      it "redirects to doorbell welcome message" do
+        expect(subject).to redirect_to(action: :welcome)
+      end
+    end
+
+    context "with a guest selection" do
+      let(:selected_option) { "guest" }
+
+      it "redirects to calling the landline" do
+        subject
+        xml = Nokogiri::XML(response.body)
+        expect(xml.at("Dial").text).not_to be_empty
+      end
+    end
+
+    context "with a member selection" do
+      let(:selected_option) { "member" }
+
+      it "redirects to the gather-keycode action" do
+        subject
+        xml = Nokogiri::XML(response.body)
+        expect(xml.at("Gather").attribute("action").value).to eq(doorbell_gather_keycode_path)
+      end
+    end
+   end
 end
