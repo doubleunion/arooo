@@ -193,7 +193,9 @@ If you need to make or unmake an admin, have a current admin click the un/make a
 
 ### Programmatic doorbell
 
-Arooo includes code to handle incoming voice calls and text messages from an intercom system. This allows members to enter a personalized door code to open the door to our space. This bulk of this code is a Twilio TwiML app that lives in the [DoorbellController](app/controllers/doorbell_controller.rb).
+Arooo includes code to handle incoming voice calls and text messages from an intercom system. This allows members to enter a personalized door code to open the door to our space.
+
+This code is a [Twilio TwiML](https://www.twilio.com/docs/voice/twiml) app that lives in the [DoorbellController](app/controllers/doorbell_controller.rb).
 
 ## Production maintainer / SRE guide
 
