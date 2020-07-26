@@ -43,7 +43,7 @@ describe DoorbellController do
   end
 
   describe "#sms" do
-    let(:door_code) { create(:door_code) }
+    let(:door_code) { create(:door_code, enabled: true) }
     let(:key_code) { door_code.code }
 
     subject { get :sms, params: { Body: key_code } }
@@ -73,6 +73,21 @@ describe DoorbellController do
         subject
         xml = Nokogiri::XML(response.body)
         expect(xml.at("Message").text).to include("Dial 111")
+      end
+    end
+
+    context "with a valid, but disabled keycode" do
+      let(:door_code) { create(:door_code, enabled: false)}
+
+      it "responds with a generic message" do
+        subject
+        xml = Nokogiri::XML(response.body)
+        expect(xml.at("Message").text).to include("is closed")
+      end
+
+      it "does not record any authorized member in Redis" do
+        expect(redis_double).not_to receive(:set)
+        subject
       end
     end
   end
@@ -111,7 +126,7 @@ describe DoorbellController do
   end
 
   describe "#gather_keycode" do
-    let(:door_code) { create(:door_code) }
+    let(:door_code) { create(:door_code, enabled: true) }
     let(:key_code) { door_code.code }
 
     subject { get :gather_keycode, params: { SpeechResult: key_code } }
@@ -132,6 +147,16 @@ describe DoorbellController do
 
     context "with invalid keycode" do
       let(:key_code) { "what is this i can't even" }
+
+      it "redirects to gather keycode" do
+        subject
+        xml = Nokogiri::XML(response.body)
+        expect(xml.at("Gather").attribute("action").value).to eq(doorbell_gather_keycode_path)
+      end
+    end
+
+    context "with disabled keycode" do
+      let(:door_code) { create(:door_code, enabled: false) }
 
       it "redirects to gather keycode" do
         subject

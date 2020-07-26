@@ -6,6 +6,8 @@ class DoorCode < ApplicationRecord
 
   validates :code, presence: true
   validates_uniqueness_of :code, case_sensitive: false
+
+  scope :enabled, -> { where(enabled: true) }
 end
 
 # == Schema Information

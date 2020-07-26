@@ -108,7 +108,7 @@ class DoorbellController < ApplicationController
   # Gets a User object based on a keycode.
   # Returns nil if no matching code was found.
   def get_user_by_code(keycode)
-    door_code = DoorCode.find_by(code: keycode)
+    door_code = DoorCode.enabled.find_by(code: keycode)
     return nil unless door_code
 
     return door_code.user
