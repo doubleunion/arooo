@@ -16,6 +16,7 @@
   - [User states](#user-states)
     - [Manually changing a user's state](#manually-changing-a-users-state)
   - [Programmatic doorbell](#programmatic-doorbell)
+    - [Manual doorbell testing](#manual-doorbell-testing)
 - [Production maintainer / SRE guide](#production-maintainer--sre-guide)
   - [Rails console - heroku](#rails-console---heroku)
   - [Bugsnag](#bugsnag)
@@ -193,9 +194,18 @@ If you need to make or unmake an admin, have a current admin click the un/make a
 
 ### Programmatic doorbell
 
-Arooo includes code to handle incoming voice calls and text messages from an intercom system. This allows members to enter a personalized door code to open the door to our space.
+Arooo includes code to handle incoming voice calls and text messages from an intercom system, allowing members to enter a personalized door code to open the door to our space. It is implemented as a [Twilio TwiML](https://www.twilio.com/docs/voice/twiml) app that lives in the [DoorbellController](app/controllers/doorbell_controller.rb).
 
-This code is a [Twilio TwiML](https://www.twilio.com/docs/voice/twiml) app that lives in the [DoorbellController](app/controllers/doorbell_controller.rb).
+A door code is represented by the [DoorCode](app/models/door_code.rb) model, which has to be associated to a `User` in the database. Typically, the `User` should have state `key_member`.
+
+For exceptional cases (e.g. package delivery) that don't fit the "one door code per member" model, you can associate a `DoorCode` to a dummy `User` object that is in the `visitor` state. You'll have to create the dummy `User` object and doorcode through the Rails console.
+
+#### Manual doorbell testing
+
+You can test the doorbell endpoints directly from a browser or using CURL. You can pass parameters to each endpoint direclty as query params. For example, to manually test the SMS endpoint:
+```
+http://localhost:3000/doorbell/sms?Body=123456
+```
 
 ## Production maintainer / SRE guide
 
@@ -212,9 +222,9 @@ Production: `$ heroku run rails console --remote production`
 
 ### Bugsnag
 [www.bugsnag.com](https://www.bugsnag.com) is a heroku plugin that records errors in the production app. This is helpful for debugging. For bugsnag access, ask someone with access to the board@ section of 1Password to log into bugsnag and send you an email invite to create an account.
-Thank you to Bugsnag for their [OSS program](https://www.bugsnag.com/open-source) :) ![bugsnag logo](https://global-uploads.webflow.com/5c741219fd0819540590e785/5c741219fd0819856890e790_asset%2039.svg)
+Thank you to Bugsnag for their [OSS program](https://www.bugsnag.com/open-source) :)
 
-
+<img src="https://global-uploads.webflow.com/5c741219fd0819540590e785/5c741219fd0819856890e790_asset%2039.svg" width="250" />
 
 ### Deploying and Heroku access
 

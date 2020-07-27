@@ -20,4 +20,17 @@ describe DoorCode do
       expect(new_door_code.enabled).to be false
     end
   end
+
+  describe ".enabled" do
+    let!(:disabled_code) { create(:door_code, enabled: false)}
+    let!(:enabled_code) { create(:door_code, enabled: true)}
+
+    it "includes enabled doorcodes" do
+      expect(DoorCode.enabled).to include(enabled_code)
+    end
+
+    it "does not include disabled doorcodes" do
+      expect(DoorCode.enabled).to_not include(disabled_code)
+    end
+  end
 end
