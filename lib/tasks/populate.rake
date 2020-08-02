@@ -14,6 +14,11 @@ namespace :populate do
       user.state = states.sample
 
       user.save
+
+      # Some parts of the app expect members to have an application with a valid processed_at date.
+      if %w[member key_member voting_member].include? user.state
+        user.application.processed_at = (1 + rand(5)).days.ago
+      end
     end
   end
   task :user, [:username, :name, :email, :state] => :environment do |t, args|
