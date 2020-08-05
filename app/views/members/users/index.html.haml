@@ -10,7 +10,7 @@
 
 - if current_user.key_member?
   - if current_user.door_code
-    %p Your door code is: #{current_user.door_code.code} 🔑
+    %p Your door code is: #{current_user.door_code.code} #{current_user.door_code.enabled? ? "(enabled)" : "(disabled)"}
   - else
     %p
       You don't seem to have a door code set. Please contact
