@@ -14,6 +14,32 @@ describe DoorCode do
     it { is_expected.to validate_uniqueness_of(:user).case_insensitive }
   end
 
+  describe ".new_for_user" do
+    let(:member) { create(:member) }
+
+    it "returns a persisted door code" do
+      expect(DoorCode.new_for_user(member).persisted?).to eq(true)
+    end
+
+    it "is assigned to the given user" do
+      expect(DoorCode.new_for_user(member).user).to eq(member)
+    end
+
+    it "has a 6-digit code" do
+      expect(DoorCode.new_for_user(member).code.length).to eq(6)
+    end
+  end
+
+  describe ".make_random_code" do
+    it "returns a string" do
+      expect(DoorCode.make_random_code()).to be_a String
+    end
+
+    it "returns a string of the requested length" do
+      expect(DoorCode.make_random_code(digits: 16).length).to eq(16)
+    end
+  end
+
   describe "#enabled" do
     it "is false by default" do
       new_door_code = DoorCode.create!(user: create(:user), code: "12345")

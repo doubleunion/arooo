@@ -16,4 +16,11 @@ class Admin::DoorCodeController < ApplicationController
     flash[:message] = "#{door_code.user.name}'s door code is now enabled."
     redirect_to admin_memberships_path
   end
+
+  def generate_new_for_user
+    user = User.find(params[:id])
+    door_code = DoorCode.new_for_user(user)
+    flash[:message] = "A door code was generated for #{user.name}."
+    redirect_to admin_memberships_path
+  end
 end

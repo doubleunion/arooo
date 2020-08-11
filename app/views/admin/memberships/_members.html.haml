@@ -46,13 +46,16 @@
             - if user.door_code.enabled
               = form_for user.door_code, url: admin_disable_door_code_path(user.door_code) do |f|
                 = f.hidden_field(:id)
-                = f.submit "Disable doorcode", class: "btn", data: { confirm: "Are you sure? This keycode will no longer work." }
+                = f.submit "Disable door code", class: "btn", data: { confirm: "Are you sure? This keycode will no longer work." }
             - else
               = form_for user.door_code, url: admin_enable_door_code_path(user.door_code) do |f|
                 = f.hidden_field(:id)
-                = f.submit "Enable doorcode", class: "btn", data: { confirm: "Are you sure? This keycode will be enabled." }
+                = f.submit "Enable door code", class: "btn", data: { confirm: "Are you sure? This keycode will be enabled." }
           - else
             = "Keycode not set."
+            = form_for user, url: admin_generate_door_code_path(user) do |f|
+              = f.hidden_field(:id)
+              = f.submit "Generate new door code", class: "btn", data: { confirm: "Do you want to generate a door code for #{user.name}?" }
 
         %td
           = form_for :user, url: admin_save_membership_note_path, remote: true, html: { class: "js-membership-note js-membership-note-#{user.id}" } do |f|
