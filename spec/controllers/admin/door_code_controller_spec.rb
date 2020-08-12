@@ -55,4 +55,30 @@ describe Admin::DoorCodeController do
       end
     end
   end
+
+  describe 'PATCH generate_new_for_user' do
+    let(:key_member) { create(:key_member) }
+
+    subject { patch :generate_new_for_user, params: { id: key_member.id } }
+
+    context 'logged in as a non-admin member' do
+      before { login_as(:member) }
+
+      it 'redirects to root' do
+        subject
+        expect(response).to redirect_to :root
+      end
+    end
+
+    context 'logged in as an admin' do
+      before { login_as(:voting_member, is_admin: true) }
+
+      it 'creates a new door code for the user' do
+        expect(key_member.door_code).to be_nil
+        expect { subject }.to change { DoorCode.count }.by(1)
+        key_member.reload
+        expect(key_member.door_code).to_not be_nil
+      end
+    end
+  end
 end

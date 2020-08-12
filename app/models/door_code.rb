@@ -8,6 +8,25 @@ class DoorCode < ApplicationRecord
   validates_uniqueness_of :code, case_sensitive: false
 
   scope :enabled, -> { where(enabled: true) }
+
+  class << self
+    # @param user [User] User to assign the new doorcode to.
+    # @return [DoorCode] a newly created doorcode, assigned to the given user
+    def new_for_user(user)
+      # Find a new unused random code.
+      code = make_random_code()
+      while DoorCode.find_by(code: code)
+        code = make_random_code()
+      end
+      # Assign this random code to the user.
+      DoorCode.create!(code: code, user: user)
+    end
+
+    # @return [String] A randomly generated number of the requested length, as a string. May be zero-padded.
+    def make_random_code(digits: 6)
+      (1..digits).map{ "0123456789".chars.to_a.sample }.join
+    end
+  end
 end
 
 # == Schema Information
