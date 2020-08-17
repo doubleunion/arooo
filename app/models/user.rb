@@ -118,6 +118,10 @@ class User < ApplicationRecord
       user.update(voting_policy_agreement: false)
     end
 
+    after_transition on: all - [:key_member] do |user, _|
+      user.door_code.update!(enabled: false) if user.door_code
+    end
+
     state :visitor
     state :applicant
     state :member

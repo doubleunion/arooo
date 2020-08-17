@@ -70,6 +70,14 @@ describe User do
     it "should transition from member to former_member" do
       expect { subject }.to change { member.state }.from("member").to("former_member")
     end
+
+    context "when member had enabled door code" do
+      let(:door_code) { create(:door_code, enabled: true, user: member) }
+
+      it "disables the door code" do
+        expect { subject }.to change { door_code.enabled }.from(true).to(false)
+      end
+    end
   end
 
   describe "#make_member" do
@@ -86,6 +94,15 @@ describe User do
 
       it "should remove voting member agreement status" do
         expect { subject }.to change { member.voting_policy_agreement }.from(true).to(false)
+      end
+    end
+
+    context "with a key member" do
+      let(:member) { create(:key_member) }
+      let(:door_code) { create(:door_code, enabled: true, user: member) }
+
+      it "disables their door code" do
+        expect { subject }.to change { door_code.enabled }.from(true).to(false)
       end
     end
   end
