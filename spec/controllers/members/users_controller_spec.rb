@@ -62,6 +62,7 @@ describe Members::UsersController do
             user: {
               name: "FooBar TooBar",
               email: "someone2@foo.bar",
+              pronounceable_name: "Mouse",
               profile_attributes: {skills: "writing awesome tests"}
             }
           }
@@ -70,6 +71,7 @@ describe Members::UsersController do
 
           expect(user.name).to eq("FooBar TooBar")
           expect(user.email).to eq("someone2@foo.bar")
+          expect(user.pronounceable_name).to eq("Mouse")
           expect(user.profile.skills).to eq("writing awesome tests")
         end
       end

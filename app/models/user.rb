@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   EMAIL_PATTERN = /\A.+@.+\Z/
 
-  attr_accessible :username, :name, :email, :profile_attributes,
+  attr_accessible :username, :name, :email, :profile_attributes, :pronounceable_name,
     :application_attributes, :email_for_google, :dues_pledge, :is_scholarship, :voting_policy_agreement
 
   validates :state, presence: true
@@ -216,6 +216,7 @@ end
 #  last_stripe_charge_succeeded :datetime
 #  membership_note              :text
 #  name                         :string
+#  pronounceable_name           :string
 #  setup_complete               :boolean
 #  state                        :string           not null
 #  username                     :string

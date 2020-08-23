@@ -27,10 +27,7 @@ class DoorbellController < ApplicationController
       keycode = params['Body'].strip
       member = get_user_by_code(keycode)
       if member
-        # TODO: In the original code, this name was a version of the name that was intended to be pronounceable by
-        # Twilio robot. Right now we don't have a place in the database for this "pronounceable name", so we are using
-        # the full name instead (which the robot will likely mangle).
-        record_authorized_member member.name
+        record_authorized_member get_name_to_say(member)
         r.message body: 'Access granted. Dial 111 on the keypad now to unlock the door.'
       else
         r.message body: 'Due to the shelter in place order for the city of San Francisco, Double Union is closed until April 7th. Email board@doubleunion.org if you have any questions.'
@@ -112,5 +109,12 @@ class DoorbellController < ApplicationController
     return nil unless door_code
 
     return door_code.user
+  end
+
+  # @return [String] The user's pronounceable name, if they have one, or their full name.
+  def get_name_to_say(user)
+    return user.pronounceable_name if user.pronounceable_name
+
+    user.name
   end
 end

@@ -64,7 +64,14 @@ describe DoorbellController do
     end
 
     context "with a valid keycode" do
-      it "records the authorized member in Redis" do
+      it "records the authorized member's pronounceable name in Redis" do
+        door_code.user.update!(pronounceable_name: "Cee Jay")
+        expect(redis_double).to receive(:set).with("member", door_code.user.reload.pronounceable_name, ex: 120)
+        subject
+      end
+
+      it "records the member name in Redis if they don't have a pronounceable name" do
+        door_code.user.update!(pronounceable_name: nil)
         expect(redis_double).to receive(:set).with("member", door_code.user.name, ex: 120)
         subject
       end

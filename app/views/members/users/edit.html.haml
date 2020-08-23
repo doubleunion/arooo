@@ -6,13 +6,13 @@
   Profile fields are only visible to members by default and are totally
   optional.
 
-= form_for @user, url: members_user_path(@user) do |f|
+= form_for @user, url: members_user_path(@user) do |user_f|
 
-  = f.fields_for :profile do |fields|
+  = user_f.fields_for :profile do |fields|
     = fields.hidden_field :id
 
     %fieldset
-      = f.submit 'Save profile'
+      = user_f.submit 'Save profile'
 
     %fieldset
       = fields.check_box :show_name_on_site
@@ -21,16 +21,20 @@
         class: 'checkbox-label'
 
     %fieldset
-      %legend= f.label :name
-      = f.text_field :name
+      %legend= user_f.label :name
+      = user_f.text_field :name
+
+    %fieldset
+      %legend= user_f.label :pronounceable_name
+      = user_f.text_field :pronounceable_name
 
     %fieldset
       %legend= fields.label :pronouns, 'Pronouns'
       = fields.text_field :pronouns
 
     %fieldset
-      %legend= f.label :email, 'Email'
-      = f.text_field :email
+      %legend= user_f.label :email, 'Email'
+      = user_f.text_field :email
 
     %fieldset
       %legend= fields.label :twitter, 'Twitter username'
@@ -74,4 +78,4 @@
       %small * override email for #{link_to 'Gravatar', 'http://gravatar.com'}
 
   %fieldset
-    = f.submit 'Save profile'
+    = user_f.submit 'Save profile'
