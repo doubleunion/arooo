@@ -38,7 +38,7 @@ class Members::UsersController < Members::MembersController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email,
+    params.require(:user).permit(:name, :email, :pronounceable_name,
       :email_for_google, :dues_pledge,
       profile_attributes: profile_attributes)
   end
