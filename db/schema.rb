@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_004913) do
+ActiveRecord::Schema.define(version: 2020_08_23_002316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_004913) do
     t.datetime "last_stripe_charge_succeeded"
     t.boolean "is_scholarship", default: false
     t.boolean "voting_policy_agreement", default: false
+    t.string "pronounceable_name"
   end
 
   create_table "votes", id: :serial, force: :cascade do |t|

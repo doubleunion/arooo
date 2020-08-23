@@ -216,6 +216,7 @@ end
 #  last_stripe_charge_succeeded :datetime
 #  membership_note              :text
 #  name                         :string
+#  pronounceable_name           :string
 #  setup_complete               :boolean
 #  state                        :string           not null
 #  username                     :string
