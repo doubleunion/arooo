@@ -2,8 +2,8 @@ source "https://rubygems.org"
 
 ruby "2.7.1"
 
-gem "rails", "~>5.0"
-gem "jquery-rails"
+gem "rails", "~> 5.2", ">= 5.2.4.4"
+gem "jquery-rails", ">= 4.3.5"
 gem "turbolinks"
 gem "jbuilder"
 gem "figaro"
@@ -13,23 +13,23 @@ gem "omniauth-google-oauth2"
 gem "pg", "0.21" # to move to v1, must upgrade activesupport
 gem "state_machine_deuxito", require: 'state_machine'
 gem "protected_attributes_continued" # works w rails 5
-gem "kaminari"
-gem "actionpack-action_caching"
-gem "rails_autolink"
+gem "kaminari", ">= 1.2.1"
+gem "actionpack-action_caching", ">= 1.2.0"
+gem "rails_autolink", ">= 1.1.6"
 gem "redcarpet"
-gem "configurable_engine" # this gem was design for Rails 5, consider removing or replacing it
+gem "configurable_engine" , ">= 0.5.0" # this gem was design for Rails 5, consider removing or replacing it
 gem "bugsnag"
 gem "stripe", "~> 3" # TODO upgrade this! Carefully...
 gem "stripe_event"
 gem "rack-canonical-host"
-gem "aws-sdk-rails"
+gem "aws-sdk-rails", ">= 2.1.0"
 gem "rack-cors"
-gem "haml-rails"
-gem "sass-rails"
+gem "haml-rails", ">= 1.0.0"
+gem "sass-rails", ">= 5.0.7"
 gem "uglifier"
-gem "coffee-rails"
+gem "coffee-rails", ">= 4.2.2"
 gem "bootstrap-sass"
-gem "jquery-datatables-rails"
+gem "jquery-datatables-rails", ">= 3.4.0"
 gem "bigdecimal", "1.4.4" # specify this directly to get around the error NoMethodError: undefined method `new' for BigDecimal:Class
 gem "twilio-ruby"
 gem "redis" # Used to store recently-authorized doorbell member
@@ -47,7 +47,7 @@ group :development do
 end
 
 group :development, :test do
-  gem "rspec-rails"
+  gem "rspec-rails", ">= 4.0.0"
   gem "thin"
   gem "faker"
   gem "rack_session_access"
@@ -68,12 +68,12 @@ group :test do
   gem "webdrivers"
   gem "database_cleaner"
   gem "email_spec"
-  gem "factory_bot_rails"
+  gem "factory_bot_rails", ">= 4.11.1"
   gem "launchy"
   gem "rspec-collection_matchers"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
   gem "stripe-ruby-mock", require: "stripe_mock"
   gem "simplecov"
-  gem "rails-controller-testing"
+  gem "rails-controller-testing", ">= 1.0.5"
 end
