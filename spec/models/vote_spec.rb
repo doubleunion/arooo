@@ -44,4 +44,37 @@ describe Vote do
     expect(invalid.valid?).to be_falsey
     expect(invalid).to have_at_least(1).error_on(:user_id)
   end
+
+  it "should validate user is not applicant" do
+    applicant = create(:user, state: :applicant)
+    application = create(:application, user: applicant)
+    invalid = Vote.new(application: application,
+                       user: applicant,
+                       value: true)
+    expect(invalid.valid?).to be_falsey
+    expect(invalid).to have_at_least(1).error_on(:user)
+  end
+
+  describe "vote no" do
+    let(:vote) { create(:vote, :no) }
+    it "is accurate" do
+      expect(vote.no?).to eq(true)
+      expect(vote.yes?).to eq(false)
+    end
+  end
+
+  describe "vote yes" do
+    let(:vote) { create(:vote, :yes) }
+    it "is accurate" do
+      expect(vote.no?).to eq(false)
+      expect(vote.yes?).to eq(true)
+    end
+  end
+
+  describe "#display_value" do
+    let(:vote) { build(:vote, :yes) }
+    it "shows the vote display value" do
+      expect(vote.display_value).to eq("yes")
+    end
+  end
 end
