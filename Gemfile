@@ -45,7 +45,6 @@ end
 
 group :development, :test do
   gem "rspec-rails", ">= 4.0.0"
-  gem "thin"
   gem "faker"
   gem "rack_session_access"
   gem "pry-rails"
