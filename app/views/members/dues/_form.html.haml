@@ -8,7 +8,7 @@
     "$25.00 USD Monthly" => "medium_monthly",
     "$20.00 USD Monthly" => "20_monthly",
     "$15.00 USD Monthly" => "15_monthly",
-    "$10.00 USD Monthly" => "small_monthly" }, "30_monthly")
+    "$10.00 USD Monthly" => "small_monthly" }, @current_plan || "30_monthly")
 
 = form_tag members_user_dues_path(@user), method: "patch", :id => "dues-form" do
   = select_tag :plan, options
