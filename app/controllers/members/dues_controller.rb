@@ -5,6 +5,7 @@ class Members::DuesController < Members::MembersController
     if current_user.stripe_customer_id
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
       @subscription = customer.subscriptions.first
+      @current_plan = plans[@subscription.plan.amount]
     end
   end
 
@@ -73,5 +74,19 @@ class Members::DuesController < Members::MembersController
     else
       members_user_dues_path(current_user)
     end
+  end
+
+  def plans
+    { 10000 => "extra_large_monthly",
+      7500 => "75_monthly",
+      5000 => "large_monthly",
+      4500 => "45_monthly",
+      4000 => "40_monthly",
+      3500 => "35_monthly",
+      3000 => "30_monthly",
+      2500 => "medium_monthly",
+      2000 => "20_monthly",
+      1500 => "15_monthly",
+      1000 => "small_monthly" }
   end
 end
