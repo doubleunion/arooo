@@ -6,6 +6,8 @@ class AccountSetupReminder
   def send_emails
     @users.each do |user|
       processed_at = user.application.processed_at
+      next unless processed_at
+
       if processed_at < 2.days.ago && processed_at > 4.days.ago
         NewMembersMailer.three_day_reminder(user).deliver_now
       elsif processed_at < 6.days.ago && processed_at > 8.days.ago

@@ -65,5 +65,17 @@ describe AccountSetupReminder do
         expect(deliveries.count).to eq 1
       end
     end
+
+    context "with one nil processed at" do
+      before do
+        member.application.update_column(:processed_at, nil)
+        other_member.application.update_column(:processed_at, nil)
+      end
+
+      it "sends no emails" do
+        subject
+        expect(deliveries.count).to eq 0
+      end
+    end
   end
 end
