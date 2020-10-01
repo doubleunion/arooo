@@ -32,7 +32,7 @@ class AdminController < ApplicationController
   end
 
   def new_members
-    @new_members = User.new_members
+    @new_members = User.new_members.reorder(:last_stripe_charge_succeeded)
   end
 
   def setup_complete
