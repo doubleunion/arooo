@@ -39,11 +39,8 @@ group :development do
   gem "better_errors" # Provides a better error page for Rails and other Rack apps
   gem "binding_of_caller" # Retrieve the binding of a method's caller
   gem "html2haml"
-  # gem "quiet_assets" # turns off Rails asset pipeline log; disabled because of Rails 5 upgrade shenanigans
   gem "awesome_print"
   gem "execjs" # last updated 2016
-  gem "therubyracer" # Call JavaScript code and manipulate JavaScript objects from Ruby
-  # gem 'rails_upgrader'
 end
 
 group :development, :test do

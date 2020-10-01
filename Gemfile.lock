@@ -178,7 +178,6 @@ GEM
     kgio (2.11.2)
     launchy (2.5.0)
       addressable (~> 2.7)
-    libv8 (3.16.14.19)
     loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -283,7 +282,6 @@ GEM
       ffi (~> 1.0)
     redcarpet (3.4.0)
     redis (4.2.1)
-    ref (2.0.0)
     regexp_parser (1.7.1)
     rexml (3.2.4)
     rspec-collection_matchers (1.2.0)
@@ -364,9 +362,6 @@ GEM
       activesupport (>= 3.1)
       stripe (>= 2.8, < 6)
     temple (0.8.2)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -457,7 +452,6 @@ DEPENDENCIES
   stripe (~> 3)
   stripe-ruby-mock
   stripe_event
-  therubyracer
   thin
   timecop
   turbolinks
