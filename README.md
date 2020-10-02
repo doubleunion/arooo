@@ -129,16 +129,6 @@ Do the below OR if you prefer docker, see the Docker Setup section
 
 1. If you see the error `FATAL: role “postgres” does not exist`, if you are on OSX with brew run `/usr/local/Cellar/postgresql/<version>/bin/createuser -s postgres`
 2. Arooo depends on a fork of the `state_machine` gem, because the original gem is no longer maintained. Fork is at https://github.com/compwron/state_machine, original gem is https://rubygems.org/gems/state_machine_deuxito .
-3. If during `bundle install` you run into errors installing `libv8` or `therubyracer`, on Mac you can solve that with the commands below (also, see other options discussed in [this gist](https://gist.github.com/fernandoaleman/868b64cd60ab2d51ab24e7bf384da1ca)):
-```bash
-# Get the version numbers from your error output. At the time of this writing, I used:
-# libv8: '3.16.14.19'
-# therubyracer: '0.12.3'
-$ brew install v8@3.15
-$ gem install libv8 -v 'YOUR_VERSION' -- --with-system-v8
-$ gem install therubyracer -v 'YOUR_VERSION' -- --with-v8-dir=$(brew --prefix v8@3.15)
-$ bundle install
-```
 
 #### Linting
 
