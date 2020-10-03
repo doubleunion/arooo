@@ -68,7 +68,7 @@ Do the below OR if you prefer docker, see the Docker Setup section
 #### Steps to get set up to develop and run tests
 
 1. install a ruby version manager: [rvm](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv)
-1. when you cd into the project diretory, let your version manager install the ruby version in `.ruby-version`
+1. when you cd into the project directory, let your version manager install the ruby version in `.ruby-version`
 1. `gem install bundler`
 1. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/)
 1. Make sure that postgres is installed [brew install postgres](https://wiki.postgresql.org/wiki/Homebrew) OR brew postgresql-upgrade-database (if you have an older version of postgres)
@@ -223,7 +223,7 @@ This section only pertains if you have heroku & deployment access. Only maintain
 If you are a DU member, see https://docs.google.com/document/d/19LbIYB2RDy-17UXuQx6wLgKp2EdLdqj-pg1cm3EpSb8/edit for more information on getting permission.
 
 Both `staging` and `production` Heroku environments are connected to this GitHub repo, making it possible to deploy directly through the Heroku UI. To deploy:
-* Staging: Merge to `master`, and your code will be automatically deployed to `staging` as soon as Travis CI goes geen.
+* Staging: Merge to `master`, and your code will be automatically deployed to `staging` as soon as Travis CI goes green.
 * Production: Log into Heroku, and select the production Aroo app from your dashboard. Click on "Deploy", and scroll to the bottom. There will be a place to select a branch to deploy, and a button that you can click to deploy.
 
 Database migrations will run automatically during the release process on Heroku. This is controlled by the `release` directive in our [Procfile](Procfile).
