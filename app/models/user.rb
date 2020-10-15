@@ -43,6 +43,8 @@ class User < ApplicationRecord
 
   scope :all_members, -> { where(state: %w[member key_member voting_member]) }
 
+  scope :all_admins, -> { where(is_admin: true) }
+
   scope :no_stripe_dues, -> {
     all_members
       .where(stripe_customer_id: nil)
