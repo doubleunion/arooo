@@ -5,6 +5,9 @@ class Members::UsersController < Members::MembersController
     @all_members = User.all_members
       .includes(:profile)
       .order_by_state
+    @all_admins = User.all_admins
+      .includes(:profile)
+      .order_by_state
   end
 
   def show
