@@ -6,6 +6,13 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
+
+  def redirect_https
+    return true if Rails.env.test?
+    redirect_to :protocol => "https://" unless request.ssl?
+    return true
+  end
+
   private
 
   def current_user
