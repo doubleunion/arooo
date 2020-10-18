@@ -39,6 +39,11 @@ class ApplicationsController < ApplicationController
     redirect_to action: :edit, id: @user.application.id
   end
 
+  def redirect_https
+    redirect_to :protocol => "https://" unless request.ssl?
+    return true
+  end
+
   private
 
   def set_user
