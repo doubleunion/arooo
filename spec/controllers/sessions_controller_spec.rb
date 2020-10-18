@@ -6,12 +6,10 @@ describe SessionsController do
 
   describe "GET login" do
     it "succeeds" do
-      request.env['HTTPS'] = 'on'
       expect(get(:login)).to be_successful
     end
 
     it "renders the page" do
-      request.env['HTTPS'] = 'on'
       expect(get(:login)).to render_template :login
     end
   end
