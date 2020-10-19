@@ -5,7 +5,7 @@ class Members::DuesController < Members::MembersController
     if current_user.stripe_customer_id
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
       @subscription = customer.subscriptions.first
-      @current_plan = amount_plan_name.fetch(@subscription.plan.amount, nil)
+      @current_plan = amount_plan_name.fetch(@subscription.plan.amount, nil) if @subscription
     end
   end
 
