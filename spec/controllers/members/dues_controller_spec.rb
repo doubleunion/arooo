@@ -15,6 +15,36 @@ describe Members::DuesController do
       subject
       expect(response).to redirect_to :root
     end
+
+    context "when a member has an associated Stripe account without a subscription" do
+      let(:current_user) do
+         login_as(
+           :member,
+           name: "Foo Bar",
+           email: "someone@example.com",
+           stripe_customer_id: 'stripe-user-id-abc123'
+         )
+      end
+
+      before do
+        StripeMock.start
+
+        Stripe::Customer.create(
+          subscriptions: [],
+          id: current_user.stripe_customer_id
+        )
+      end
+
+      after do
+        StripeMock.stop
+      end
+
+      it "renders ok" do
+        subject
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
   end
 
   describe "DELETE cancel" do
