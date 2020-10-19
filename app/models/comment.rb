@@ -2,8 +2,6 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :application
 
-  attr_accessible :body, :application_id
-
   validates :user_id, :application_id, presence: true
 
   validates :body, presence: true
