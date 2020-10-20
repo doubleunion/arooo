@@ -29,7 +29,9 @@ class Admin::MembershipsController < ApplicationController
   def change_membership_state
     user = User.find(params[:id])
 
-    flash[:message] = if user.send("make_#{params[:user][:updated_state]}")
+    action_method = user.method("make_#{params.dig(:user, :updated_state)}") rescue raise(NoMethodError)
+
+    flash[:message] = if action_method.call
       "#{user.name} is now a #{user.state.humanize.downcase}."
     else
       "Whoops! #{user.errors.full_messages.to_sentence}"
