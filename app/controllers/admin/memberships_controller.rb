@@ -2,7 +2,11 @@ class Admin::MembershipsController < ApplicationController
   before_action :ensure_admin
 
   def index
-    @all_members = User.all_members.includes(:profile).order_by_state
+    @all_members = User
+      .all_members
+      .includes(:profile)
+      .includes(:door_code)
+      .order_by_state
 
     respond_to do |format|
       format.html
