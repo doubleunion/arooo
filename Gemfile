@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.7.1"
 
-gem "rails", "~> 5.2", ">= 5.2.4.4"
+gem "rails", "~> 6.0", ">= 6.0.3.4"
 gem "jquery-rails", ">= 4.3.5"
 gem "turbolinks"
 gem "jbuilder"
@@ -64,7 +64,7 @@ group :test do
   gem "webdrivers"
   gem "database_cleaner"
   gem "email_spec"
-  gem "factory_bot_rails", ">= 4.11.1"
+  gem "factory_bot_rails", ">= 6.1.0"
   gem "launchy"
   gem "rspec-collection_matchers"
   gem "selenium-webdriver"
