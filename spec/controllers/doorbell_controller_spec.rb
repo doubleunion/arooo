@@ -97,6 +97,14 @@ describe DoorbellController do
         subject
       end
     end
+    
+   context "without a doorcode" do
+      subject { get :sms }
+
+      it "should raise a NoMethodError with clearer error message" do
+        expect { subject }.to raise_error.with_message(/Required doorcode was not provided/)
+     end
+   end
   end
 
   describe "#gather_ismember" do

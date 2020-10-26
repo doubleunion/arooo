@@ -23,6 +23,8 @@ class DoorbellController < ApplicationController
   end
 
  def sms
+    raise NoMethodError, 'Required doorcode was not provided' unless params['Body'].present?
+  
     response = Twilio::TwiML::MessagingResponse.new do |r|
       keycode = params['Body'].strip
       member = get_user_by_code(keycode)
