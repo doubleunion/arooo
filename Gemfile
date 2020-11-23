@@ -40,7 +40,6 @@ group :development do
   gem "binding_of_caller" # Retrieve the binding of a method's caller
   gem "html2haml"
   gem "awesome_print"
-  gem "execjs" # last updated 2016
 end
 
 group :development, :test do
