@@ -34,27 +34,13 @@
     %td= external_auto_link(@user.profile.linkedin)
 
   %tr
-    %td.left Blog url
-    %td= external_auto_link(@user.profile.blog)
-
-  %tr
-    %td.left Tell us a little about yourself!
-    %td= markdown(@user.profile.summary)
-
-  %tr
     %td.left Why are you interested in joining Double Union?
     %td= markdown(@user.profile.reasons)
 
   %tr
-    %td.left Tell us about your feminism! (especially how it relates to intersectionality)
+    %td.left Tell us about your feminism!
     %td= markdown(@user.profile.feminism)
 
   %tr
-    %td.left What would you like to work on in the space?
-    %td= markdown(@user.profile.projects)
-
-  %tr
-    %td.left
-      What skills are you most interested in learning, improving, and/or
-      teaching?
-    %td= markdown(@user.profile.skills)
+    %td.left Have you been to DU events or met DU members?
+    %td= markdown(@user.profile.attendance)
