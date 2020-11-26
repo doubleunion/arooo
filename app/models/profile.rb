@@ -33,6 +33,7 @@ end
 # Table name: profiles
 #
 #  id                :integer          not null, primary key
+#  attendance        :string(2000)
 #  blog              :string
 #  facebook          :string
 #  feminism          :string(2000)
