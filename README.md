@@ -67,22 +67,39 @@ Do the below OR if you prefer docker, see the Docker Setup section
 
 #### Steps to get set up to develop and run tests
 
-1. install a ruby version manager: [rvm](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv)
-1. when you cd into the project directory, let your version manager install the ruby version in `.ruby-version`
-1. `gem install bundler`
-1. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/)
-1. Make sure that postgres is installed [brew install postgres](https://wiki.postgresql.org/wiki/Homebrew) OR brew postgresql-upgrade-database (if you have an older version of postgres)
-1. If you want to run the doorbell code locally, you will need to have a local instance of [Redis](https://redis.io/). You can install it on mac with `brew install redis`. If your local Redis instance is running on a non-standard port, you can set `REDIS_URL` in your local `config/application.yaml`.
-1. `bundle install`
-1. `cp config/database.example.yml config/database.yml`
-1. `cp config/application.example.yml config/application.yml`
-1. `bundle exec rake db:setup`
-1. `bundle exec rake db:test:prepare`
-1. `bundle exec rake spec`
+1. Install Ruby. We use the version specified in [`.ruby-version`](.ruby-version).
+   * Optionally, if you frequently work with Ruby and want to easily switch between versions, you might want to use a ruby version manager: [rvm](https://rvm.io/), [rbenv](https://github.com/rbenv/rbenv), or [chruby](https://github.com/postmodern/chruby)
+   * If you installed a Ruby version manager, when you cd into the project directory, let your version manager install the ruby version in `.ruby-version`
+3. Install the `bundler` package managers:
+```
+gem install bundler
+```
+4. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/)
+5. Install or start postgres. On Mac, with Homebrew, you can [`brew install postgres`](https://wiki.postgresql.org/wiki/Homebrew), or `brew postgresql-upgrade-database` (if you have an older version of postgres).
+   * Rails relies on the `postgres` role existing, but this role is not always created in a Postgres installation. If you run into connection errors complaining that the `postgres` role is missing, you can create it with the command: `createuser -s -r postgres`
+   * If you used Homebrew to install Postgresql, you can start / stop / restart the database using the `brew services` command, for example, to start the database service: `brew services start postgresql`
+6. Install all dependencies (including Rails):
+```
+$ bundle install
+```
+7. Copy the configuration example files into their final locations:
+```
+$ cp config/database.example.yml config/database.yml
+$ cp config/application.example.yml config/application.yml
+```
+8.  Set up the database:
+```
+$ bundle exec rake db:test:prepare
+```
+9.  Now you should be able to run tests locally:
+```
+$ bundle exec rake spec
+```
+10. Optionally, if you want to run the doorbell code locally, you will need to have a local instance of [Redis](https://redis.io/). You can install it on mac with `brew install redis`. If your local Redis instance is running on a non-standard port, you can set `REDIS_URL` in your local `config/application.yaml`.
 
 #### Steps to run arooo server locally
 
-1. `bundle exec rake populate:users` Set up data
+1. `bundle exec rake populate:users` to set up dummy data
 1. `bundle exec rails server`
 1. `bundle exec rails console` Optional - useful for looking at and changing your local data)
 
@@ -101,6 +118,8 @@ Do the below OR if you prefer docker, see the Docker Setup section
 
 1. setup DB
 ```docker-compose run --rm app bundle exec rake db:setup```
+
+Note: If you are on Linux and get a `Permission denied` error when running `docker-compose`, you can try using `sudo docker-compose`.
 
 #### Set up an application for local OAuth:
 
@@ -124,6 +143,8 @@ Do the below OR if you prefer docker, see the Docker Setup section
       * Hit "Create", and copy the client id and client secret
     * Copy the client ID and client secret from your OAuth credentials into your local `config/application.yml` file, as the values for `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
     * For more details, see Google's instructions at https://developers.google.com/identity/protocols/oauth2/web-server#creatingcred
+
+Note that the callback URL you enter in GitHub or Google must match the URL you use to access your local server on. If you enter a callback URL of `localhost:3000` and then access your local server on 127.0.0.1:3000, you will get a redirect callback mismatch error.
 
 #### Common errors and gotchas
 

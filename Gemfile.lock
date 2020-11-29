@@ -420,7 +420,6 @@ DEPENDENCIES
   configurable_engine (>= 0.5.0)
   database_cleaner
   email_spec
-  execjs
   factory_bot_rails (>= 6.1.0)
   faker
   figaro
