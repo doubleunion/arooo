@@ -26,12 +26,17 @@ class ApplicationsController < ApplicationController
 
     case commit_action
     when :submit
-      begin
-        @user.application.submit!
-        flash[:notice] = "Application submitted!"
-      rescue StateMachine::InvalidTransition
-        errors = @user.application.errors.full_messages.to_sentence
-        flash[:error] = "Application not submitted: #{errors}"
+      if @user.application.submitted?
+        flash[:notice] = "Application already submitted!"
+      else
+        begin
+          @user.application.submit!
+          flash[:notice] = "Application submitted!"
+        rescue StandardError => e
+          errors = @user.application.errors.full_messages.to_sentence
+          errors = e.inspect if errors.empty?
+          flash[:error] = "Application not submitted: #{errors}"
+        end
       end
     when :save
       flash[:notice] = "Application saved"
