@@ -7,7 +7,7 @@
 %p Please make sure you've read through the following documents before filling out this form:
 
 %ul
-  %li= link_to "DU voting member policies", Configurable[:voting_member_policy_doc], target: "_blank"
+  %li= link_to "DU voting members policy", Configurable[:voting_member_policy_doc], target: "_blank"
   %li= link_to "DU confidentiality policy", POLICIES_URL, target: "_blank"
 
 = form_tag members_user_voting_members_path(current_user.id), method: "patch" do
@@ -17,11 +17,11 @@
 
   %p
     = check_box_tag "agreements[policy_agreement]", 1, false, required: true
-    = label_tag "agreements[policy_agreement]", "I have read and agree to uphold the #{ link_to "voting member policy document", Configurable[:voting_member_policy_doc], target: "_blank" }.".html_safe
+    = label_tag "agreements[policy_agreement]", "I have read and agree to uphold the #{ link_to "voting members policy", Configurable[:voting_member_policy_doc], target: "_blank" }.".html_safe
 
   %p
     = check_box_tag "agreements[voting_principles]", 1, false, required: true
-    = label_tag "agreements[voting_principles]", "I agree to vote on applications according to the criteria laid out in the #{ link_to "voting member policy", Configurable[:voting_member_policy_doc] }.".html_safe
+    = label_tag "agreements[voting_principles]", "I agree to vote on applications according to the criteria laid out in the #{ link_to "voting members policy", Configurable[:voting_member_policy_doc] }.".html_safe
 
   %p
     = check_box_tag "agreements[attended_training]", 1, false, required: true
@@ -29,10 +29,10 @@
 
   %p
     = check_box_tag "agreements[time_commitment]", 1, false, required: true
-    = label_tag "agreements[time_commitment]", "I am able to dedicate 3-4 hours per week to voting during the membership drive."
+    = label_tag "agreements[time_commitment]", "I am able to dedicate 30-60 minutes per week to voting."
 
   %p
     = check_box_tag "agreements[hard_conversations]", 1, false, required: true
-    = label_tag "agreements[hard_conversations]", "I am open to having uncomfortable discussions during the course of voting on applications."
+    = label_tag "agreements[hard_conversations]", "During the course of voting on applications, I am willing to discuss difficult topics in a respectful and thoughtful way."
 
   = submit_tag "Submit", class: "btn"
