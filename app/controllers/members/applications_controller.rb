@@ -6,7 +6,7 @@ class Members::ApplicationsController < Members::MembersController
 
   def show
     @application = Application.find(params.require(:id))
-    @comments = @application.comments.order(:created_at)
+    @comments = visible_comments(@application)
 
     unless @application.submitted?
       flash[:error] = "This application is not currently visible."
@@ -46,5 +46,19 @@ class Members::ApplicationsController < Members::MembersController
 
   def application_params
     params.require(:application_id)
+  end
+
+  # Only voting members can see all comments.
+  # Non-voting general members can see only comments they themselves authored.
+  # For details, see: https://github.com/doubleunion/arooo/issues/486
+  # TODO: Is this the right place for this? Maybe turn this into a scope on model.
+  def visible_comments(application)
+    scope = if current_user.voting_member?
+      application.comments
+    else
+      application.comments.where(user_id: current_user.id)
+    end
+
+    return scope.order(:created_at)
   end
 end
