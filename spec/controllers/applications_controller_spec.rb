@@ -198,6 +198,33 @@ describe ApplicationsController do
             expect { subject }.not_to change { application.state }.from("started")
           end
         end
+
+        context "with an already-submitted application state" do
+          before do
+            application.update(state: "submitted")
+          end
+
+          it "does not show an error" do
+            subject
+            expect(flash[:error]).to eq(nil)
+          end
+
+          it "shows an 'already submitted' notice" do
+            subject
+            expect(flash[:notice]).to include "already submitted"
+          end
+        end
+
+        context "with an unexpected error" do
+          before do
+            allow(application).to receive(:submit).and_raise("a very unexpected error")
+          end
+
+          it "shows an error message" do
+            subject
+            expect(flash[:error]).to include "very unexpected error"
+          end
+        end
       end
     end
   end

@@ -75,18 +75,26 @@ Do the below OR if you prefer docker, see the Docker Setup section
 gem install bundler
 ```
 4. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/)
-5. Install or start postgres. On Mac, with Homebrew, you can [`brew install postgres`](https://wiki.postgresql.org/wiki/Homebrew), or `brew postgresql-upgrade-database` (if you have an older version of postgres).
+5. Install or start postgres.
+   * On Mac, with Homebrew: [`brew install postgres`](https://wiki.postgresql.org/wiki/Homebrew). You can use the `brew services` command to start/stop/restart the database service, for exaple: `brew services restart postgresql`.
+   * On Ubuntu: `sudo apt-get install libpq-dev`. To restart the database: `sudo service postgresql restart`. To query database service status: `sudo service postgresql status`.
    * Rails relies on the `postgres` role existing, but this role is not always created in a Postgres installation. If you run into connection errors complaining that the `postgres` role is missing, you can create it with the command: `createuser -s -r postgres`
-   * If you used Homebrew to install Postgresql, you can start / stop / restart the database using the `brew services` command, for example, to start the database service: `brew services start postgresql`
 6. Install all dependencies (including Rails):
 ```
 $ bundle install
 ```
+  * If you get errors about not being able to install the `pg` gem, you are likely missing postgres development libraries. To install those:
+    * On Mac, with Homebrew: `brew install postgres`
+    * On Ubuntu: `sudo apt-get install libpq-dev`
 7. Copy the configuration example files into their final locations:
 ```
 $ cp config/database.example.yml config/database.yml
 $ cp config/application.example.yml config/application.yml
 ```
+  * The configuration in `database.yml` sets a blank password to connect to the
+    local database. If your local postgres user has a different password, make
+    sure to change that in the `development` and `test` sections of
+    `database.yml`
 8.  Set up the database:
 ```
 $ bundle exec rake db:test:prepare
