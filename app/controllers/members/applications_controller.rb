@@ -15,7 +15,7 @@ class Members::ApplicationsController < Members::MembersController
 
     @user = @application.user
     @vote = current_user.vote_for(@application) || Vote.new
-    @sponsorship = current_user.sponsor(@application)
+    @sponsorship = current_user.sponsorship(@application)
   end
 
   def sponsor
@@ -26,8 +26,10 @@ class Members::ApplicationsController < Members::MembersController
 
       if sponsorship.save
         vote(application_params, true) if current_user.voting_member?
+      elsif current_user.sponsorship(application)
+        flash[:notice] = "You are already sponsoring this application!"
       else
-        flash[:error] = "Sorry, something went wrong!"
+          flash[:error] = "Sorry, something went wrong!"
       end
     else
       Sponsorship.where(user_id: current_user, application_id: application).destroy_all

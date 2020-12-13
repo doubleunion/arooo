@@ -187,7 +187,7 @@ class User < ApplicationRecord
     end
   end
 
-  def sponsor(application)
+  def sponsorship(application)
     Sponsorship.where(application: application, user: self).first
   end
 
