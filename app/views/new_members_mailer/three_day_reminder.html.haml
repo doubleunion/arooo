@@ -1,11 +1,12 @@
 %p
   Hi #{@user.name}!
 
-%p We are so excited for you to be a member of Double Union. Before things are official, though, we need you to confirm your membership. As soon as possible, log into #{ link_to "the site", EXTERNAL_SITE_URL } ("Log in" is at top right) and confirm your membership #{ link_to "on this page", members_user_setup_url(@user.id) }.
+%p We are so excited for you to be a member of Double Union. Before things are official, though, we need you to set up your dues and tell us a Google-friendly email address we should use for your access. As soon as possible, log into #{ link_to "the site", EXTERNAL_SITE_URL } ("Log in" is at top right) and confirm your membership #{ link_to "on this page", members_user_setup_url(@user.id) }.
+
+%p (If you've already submitted a request for a dues scholarship and filled out your Google-friendly email address, you can ignore this email - it'll resolve itself when your request is approved.)
 
 %p
   If you have any questions, email the membership coordinators at #{ mail_to MEMBERSHIP_EMAIL }!
-
 
 %p
   All the best,
