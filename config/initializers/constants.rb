@@ -10,7 +10,10 @@ KEYS_EMAIL = "keys@doubleunion.org"
 SCHOLARSHIP_EMAIL = "scholarship@doubleunion.org"
 
 TUMBLR_BASE = "doubleunion.tumblr.com"
-TUMBLR_URL = "http://#{TUMBLR_BASE}"
+TUMBLR_URL = "https://#{TUMBLR_BASE}"
+
+FACEBOOK_URL = "https://www.facebook.com/doubleunion"
+INSTAGRAM_URL = "https://www.instagram.com/doubleunionsf/"
 
 MAILING_LIST_GENERAL = "https://groups.google.com/a/doubleunion.org/forum/#!forum/public"
 GOOGLE_ANALYTICS_ID = "UA-47411942-1"
