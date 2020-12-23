@@ -11,7 +11,7 @@ describe "Members home" do
     it "if they have no door code, tells them to email membership@" do
       visit members_root_path
       expect(page).to have_content "don't seem to have a door code"
-      expect(page).to have_content "membership@doubleunion.com"
+      expect(page).to have_content "membership@doubleunion.org"
     end
 
     it "if they have a door code, it is shown" do

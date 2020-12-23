@@ -13,13 +13,13 @@
     %p Your door code is: #{current_user.door_code.code} #{current_user.door_code.enabled? ? "(enabled)" : "(disabled)"}
   - else
     %p
-      You don't seem to have a door code set. Please contact
-      =mail_to "membership@doubleunion.com"
+      You don't seem to have a door code set. If you need one, contact
+      =mail_to MEMBERSHIP_EMAIL
       for help.
 
 - if @all_admins.any?
   %h3 Admins
-  %p This internal DU app is administered by DU Membership Coordinators (membership@doubleunion.org) and Board Members (board@doubleunion.org), and it many also have Web App committee members supporting it. Members with admin access: 
+  %p This internal DU app is administered by Membership Coordinators (#{ mail_to MEMBERSHIP_EMAIL }) and Board Members (#{ mail_to BOARD_EMAIL }), and it may also have Web App committee members supporting it. Members with admin access: 
   = render partial: 'list', locals: { users: @all_admins }
 
 - if @all_members.any?
