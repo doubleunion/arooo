@@ -17,7 +17,7 @@
     %fieldset
       = fields.check_box :show_name_on_site
       = fields.label :show_name_on_site,
-        "Show name/website/gravatar on #{link_to 'public site', EXTERNAL_SITE_URL + "/membership#current-members"}?".html_safe,
+        "Show name, website, and #{link_to 'Gravatar', "https://en.gravatar.com/support/what-is-gravatar/" } on #{link_to 'DU public website', EXTERNAL_SITE_URL + "/membership#current-members"}?".html_safe,
         class: 'checkbox-label'
 
     %fieldset
