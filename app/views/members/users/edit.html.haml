@@ -17,7 +17,7 @@
     %fieldset
       = fields.check_box :show_name_on_site
       = fields.label :show_name_on_site,
-        "Show name/website/gravatar on #{link_to 'public site', EXTERNAL_SITE_URL + "/membership"}?".html_safe,
+        "Show name/website/gravatar on #{link_to 'public site', EXTERNAL_SITE_URL + "/membership#current-members"}?".html_safe,
         class: 'checkbox-label'
 
     %fieldset
@@ -25,7 +25,7 @@
       = user_f.text_field :name
 
     %fieldset
-      %legend= user_f.label :pronounceable_name
+      %legend= user_f.label :pronounceable_name, 'How to pronounce your name (used by automated voice for door entry system)'
       = user_f.text_field :pronounceable_name
 
     %fieldset
@@ -41,19 +41,19 @@
       = fields.text_field :twitter
 
     %fieldset
-      %legend= fields.label :facebook, 'Facebook url'
+      %legend= fields.label :facebook, 'Facebook URL'
       = fields.text_field :facebook
 
     %fieldset
-      %legend= fields.label :website, 'Website url'
+      %legend= fields.label :website, 'Website URL'
       = fields.text_field :website
 
     %fieldset
-      %legend= fields.label :linkedin, 'LinkedIn url'
+      %legend= fields.label :linkedin, 'LinkedIn URL'
       = fields.text_field :linkedin
 
     %fieldset
-      %legend= fields.label :blog, 'Blog url'
+      %legend= fields.label :blog, 'Blog URL'
       = fields.text_field :blog
 
     %fieldset
