@@ -59,7 +59,7 @@ describe Members::DuesController do
     subject(:cancel_dues) { delete :cancel, params: params }
 
     context "when the user does not have a Stripe ID" do
-      it "sets the flash and redirects to the manage dues page" do
+      it "sets the flash and redirects to the Manage Membership page" do
         expect(subject).to redirect_to members_user_dues_path(user)
         expect(flash[:notice]).to include "You don't have an active membership dues subscription"
       end
@@ -178,7 +178,7 @@ describe Members::DuesController do
           expect(subscription.plan.id).to eq("test_plan")
         end
 
-        it "redirects to the manage dues page" do
+        it "redirects to the Manage Membership page" do
           expect(subject).to redirect_to members_user_dues_path(user)
         end
       end
