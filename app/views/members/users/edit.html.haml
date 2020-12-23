@@ -17,7 +17,7 @@
     %fieldset
       = fields.check_box :show_name_on_site
       = fields.label :show_name_on_site,
-        "Show name, website, and #{link_to 'Gravatar', "https://en.gravatar.com/support/what-is-gravatar/" } on #{link_to 'DU public website', EXTERNAL_SITE_URL + "/membership#current-members"}?".html_safe,
+        "Show name, website, and #{link_to 'Gravatar', "https://en.gravatar.com/support/what-is-gravatar/" } (if you've set up a Gravatar) on #{link_to 'DU public website', EXTERNAL_SITE_URL + "/membership#current-members"}?".html_safe,
         class: 'checkbox-label'
 
     %fieldset
@@ -33,8 +33,10 @@
       = fields.text_field :pronouns
 
     %fieldset
-      %legend= user_f.label :email, 'Email'
+      %legend= user_f.label :email, 'Email displayed on member profile'
       = user_f.text_field :email
+    
+    %p If you need to also change your "Google-friendly" email address that DU uses for your Google Drive, Google Calendar, and Google Groups access (for example, if you've lost access to that Google account or are switching to using a new Google account), please email the Membership Coordinators (#{ mail_to MEMBERSHIP_EMAIL }). They will need to manually update your account in those systems.
 
     %fieldset
       %legend= fields.label :twitter, 'Twitter username'
