@@ -3,11 +3,18 @@
 
 %h2 Manage Membership
 
+%ul
+  %li #{ link_to "Update Membership Dues", "#update-membership-dues" }
+  %li #{ link_to "Apply for a Scholarship", "#apply-for-a-scholarship" }
+  %li #{ link_to "Cancel Your Membership", "#cancel-your-membership" }
+
+%h3#update-membership-dues Update Membership Dues
+
 %p Membership dues payments are handled via Stripe, which will charge your credit or debit card on the same date each month.
 
 %p If you need to change your dues payment, just fill in the form again and it will be updated. (If you switch your dues to a lower level, our dues system automatically pro-rates your next payments, so you may get charged a lower partial amount [or nothing] on your next scheduled dues payment date. This is ok!)
 
-%h3 Current Dues Status
+%h4#your-dues-status Your Current Dues Status
 
 - if @subscription
   %p
@@ -27,10 +34,10 @@
 = render 'form', action: "Update"
 
 
-%h3 Apply for a Scholarship
+%h3#apply-for-a-scholarship Apply for a Scholarship
 
 = render "scholarship_request"
 
 .cancel-membership
-  %h3 Cancel your Membership
+  %h3#cancel-your-membership Cancel Your Membership
   %p If you'd like to cancel your Double Union membership, click #{link_to "here", members_user_cancel_path, method: :delete, id: "cancel-btn", data: { confirm: "Are you sure? Clicking yes will cancel your payments, and inform the membership coordinator to remove you from all mailing lists." } }. If you have other questions about dues and membership, please email #{ mail_to MEMBERSHIP_EMAIL } to reach out to the membership coordinators.
