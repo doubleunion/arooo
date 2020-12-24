@@ -17,7 +17,7 @@
     %fieldset
       = fields.check_box :show_name_on_site
       = fields.label :show_name_on_site,
-        "Show name/website/gravatar on #{link_to 'public site', EXTERNAL_SITE_URL + "/membership"}?".html_safe,
+        "Show name, website, and #{link_to 'Gravatar', "https://en.gravatar.com/support/what-is-gravatar/" } (if you've set up a Gravatar) on #{link_to 'DU public website', EXTERNAL_SITE_URL + "/membership#current-members"}?".html_safe,
         class: 'checkbox-label'
 
     %fieldset
@@ -25,7 +25,7 @@
       = user_f.text_field :name
 
     %fieldset
-      %legend= user_f.label :pronounceable_name
+      %legend= user_f.label :pronounceable_name, 'How to pronounce your name (used by automated voice for door entry system)'
       = user_f.text_field :pronounceable_name
 
     %fieldset
@@ -33,27 +33,31 @@
       = fields.text_field :pronouns
 
     %fieldset
-      %legend= user_f.label :email, 'Email'
+      %legend= user_f.label :email, 'Email displayed on member profile'
       = user_f.text_field :email
+
+    %strong Google-friendly email
+    %div #{@user.email_for_google}
+    %p If you need to also change the "Google-friendly" email address that DU uses for your Google Drive, Google Calendar, and Google Groups access (for example, if you've lost access to that Google account or are switching to using a new Google account), please email the Membership Coordinators (#{ mail_to MEMBERSHIP_EMAIL }). They will need to manually update your account in those systems.
 
     %fieldset
       %legend= fields.label :twitter, 'Twitter username'
       = fields.text_field :twitter
 
     %fieldset
-      %legend= fields.label :facebook, 'Facebook url'
+      %legend= fields.label :facebook, 'Facebook URL'
       = fields.text_field :facebook
 
     %fieldset
-      %legend= fields.label :website, 'Website url'
+      %legend= fields.label :website, 'Website URL'
       = fields.text_field :website
 
     %fieldset
-      %legend= fields.label :linkedin, 'LinkedIn url'
+      %legend= fields.label :linkedin, 'LinkedIn URL'
       = fields.text_field :linkedin
 
     %fieldset
-      %legend= fields.label :blog, 'Blog url'
+      %legend= fields.label :blog, 'Blog URL'
       = fields.text_field :blog
 
     %fieldset
