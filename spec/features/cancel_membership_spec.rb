@@ -56,8 +56,8 @@ describe "canceling dues", js: true do
       .with(member.stripe_customer_id)
       .and_return(customer)
 
-    click_on "Manage Dues"
-    expect(page).to have_content "Manage Your Double Union Dues"
+    click_on "Manage Membership"
+    expect(page).to have_content "Manage Membership"
     message = accept_alert {
       click_link "here"
     }
