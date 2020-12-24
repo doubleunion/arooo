@@ -35,8 +35,10 @@
     %fieldset
       %legend= user_f.label :email, 'Email displayed on member profile'
       = user_f.text_field :email
-    
-    %p If you need to also change your "Google-friendly" email address that DU uses for your Google Drive, Google Calendar, and Google Groups access (for example, if you've lost access to that Google account or are switching to using a new Google account), please email the Membership Coordinators (#{ mail_to MEMBERSHIP_EMAIL }). They will need to manually update your account in those systems.
+
+    %strong Google-friendly email
+    %div #{@user.email_for_google}
+    %p If you need to also change the "Google-friendly" email address that DU uses for your Google Drive, Google Calendar, and Google Groups access (for example, if you've lost access to that Google account or are switching to using a new Google account), please email the Membership Coordinators (#{ mail_to MEMBERSHIP_EMAIL }). They will need to manually update your account in those systems.
 
     %fieldset
       %legend= fields.label :twitter, 'Twitter username'
