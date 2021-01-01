@@ -18,6 +18,11 @@ describe AdminController do
       describe "with good params" do
         let(:application_params) { {application: {id: an_application.id}} }
 
+        before do
+          # Shortcircuit actually mailing the approval email
+          allow(ApplicationsMailer).to receive_message_chain(:approved, :deliver_now)
+        end
+
         it "should approve the relevant application" do
           login_as(:voting_member, is_admin: true)
           expect {

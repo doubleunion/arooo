@@ -23,7 +23,6 @@ EXTERNAL_SITE_URL = "https://www.doubleunion.org"
 BASE_ASSUMPTIONS_URL = EXTERNAL_SITE_URL + "/base_assumptions"
 POLICIES_URL = EXTERNAL_SITE_URL + "/policies"
 MEMBERSHIP_URL = EXTERNAL_SITE_URL + "/membership"
-ORIENTATION_SIGNUP_URL = "https://www.eventbrite.com/e/new-member-orientation-summer-2019-tickets-63172051306"
 
 KEY_PICKUP_DOC = "https://docs.google.com/document/d/1RYzqGjmA3lLhv9eQzHBg82NVNjik4w_kxi8sKP5ivaY/edit?usp=sharing"
 LOCK_UP_DOC = "https://docs.google.com/document/d/1rFoyl5FJjDdr0LqiVacQPuKyj_rsmPpOnAGc77cWTAQ/edit?usp=sharing"

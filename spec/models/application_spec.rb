@@ -24,6 +24,11 @@ describe Application do
 
     subject { application.approve }
 
+    before do
+      # We need to have an orientation_signup configured for emails to work
+      Configurable[:orientation_signup] = "http://fake.orientation"
+    end
+
     it "sends an email to the applicant" do
       expect { subject }.to change(ActionMailer::Base.deliveries, :count).by(1)
     end
