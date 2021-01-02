@@ -81,6 +81,12 @@
   = succeed "." do
     %strong= link_to "here's how to send your comment", COMMENTING_DOC, target: "_blank"
   Thanks!
+%p
+  If you are a voting member, please remember to keep all comments confidential within
+  the voting member circle. General member comments are only visible to voting members.
+%p
+  If you are not a voting member, you will only be able to see here your own comments.
+  Voting members, however, can see all comments.
 
 %hr
 
@@ -102,6 +108,5 @@
     = f.hidden_field :application_id, value: @application.id
     = f.text_area :body, rows: 3, class: "form-control"
     %fieldset= f.submit 'Add comment', class: "btn btn-primary pull-right"
-
 
 %p= link_to "Back to Applications Overview", members_applications_path
