@@ -43,4 +43,21 @@ describe Comment do
     comment.user = create(:user, state: :member)
     expect(comment.save).to be_truthy
   end
+
+  describe "scope visible_to" do
+    let(:member) { create(:member) }
+    let(:voting_member) { create(:voting_member) }
+    let!(:voting_member_comment) { create(:comment, user: voting_member) }
+    let!(:member_comment) { create(:comment, user: member) }
+
+    it "returns all comments for a voting member" do
+      expect(Comment.visible_to(voting_member).count).to eq(2)
+    end
+
+    it "returns only own comments for non-voting member" do
+      expect(Comment.visible_to(member).count).to eq(1)
+      expect(Comment.visible_to(member)).to include(member_comment)
+      expect(Comment.visible_to(member)).to_not include(voting_member_comment)
+    end
+  end
 end
