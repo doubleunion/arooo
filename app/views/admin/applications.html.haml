@@ -7,7 +7,9 @@
       %li Fewer than 2 no votes
       %li 1+ sponsor(s)
 
-    %p Clicking "Approve" makes the person a member, sends them an email notifying them, and moves them into the New Member page, where the new member coordinators help get them set up.
+    %p Clicking "Approve" makes the person a member, sends them an email notifying them*, and moves them into the New Member page, where the membership coordinators help get them set up.
+    
+    %p <em>*You need to #{ link_to "configure an orientation signup link", admin_configurable_path }! The automated email gives the new member that link to sign up for an orientation session. If that link is blank, the email won't get sent.</em>
 
     %p Clicking "Reject" marks the person's application as rejected, but doesn't do anything else. Rejection emails are still a manual process from the membership@ email address.
 
