@@ -8,6 +8,13 @@ class Comment < ApplicationRecord
 
   validate :user_is_general_member
 
+  # Voting members can see all application comments.
+  # All other members can only see their own comments.
+  # For details, see: https://github.com/doubleunion/arooo/issues/48
+  scope :visible_to, ->(user) {
+    where(user_id: user.id) if !user.voting_member?
+  }
+
   def user_is_general_member
     unless user&.general_member?
       errors.add(:user, "is not a member")

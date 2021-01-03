@@ -22,6 +22,6 @@ POLICIES_URL = EXTERNAL_SITE_URL + "/policies"
 MEMBERSHIP_URL = EXTERNAL_SITE_URL + "/membership"
 
 VOTING_CRITERIA_DOC = "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.w83btzy2bttc"
-COMMENTING_DOC = "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.ti79qe36hzgp"
+COMMENTING_DOC = "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.qmgkosbaknlv"
 VOTING_PROCESS_DOC = "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.y6eimvxrwzvf"
 PRONOUNS_GUIDE_URL = "https://www.brynmawr.edu/sites/default/files/asking-for-name-and-pronouns.pdf"
