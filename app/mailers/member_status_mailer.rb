@@ -5,7 +5,7 @@ class MemberStatusMailer < ActionMailer::Base
     @user = user
 
     mail(
-      to: [MEMBERSHIP_EMAIL, KEYS_EMAIL],
+      to: [MEMBERSHIP_EMAIL],
       cc: [user.email],
       subject: "#{user.name} is now a key member!"
     )

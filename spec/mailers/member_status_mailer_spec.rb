@@ -10,7 +10,6 @@ describe MemberStatusMailer do
       it "is sent to the correct addresses" do
         expect(mail.cc).to include member.email
         expect(mail.to).to include MEMBERSHIP_EMAIL
-        expect(mail.to).to include KEYS_EMAIL
       end
 
       it "includes their name" do
