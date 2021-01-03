@@ -7,6 +7,7 @@ assignees: ''
 
 ---
 
+
 **What type of user is this for? (applicant/member/voting member/admin)**
 
 
@@ -14,4 +15,5 @@ assignees: ''
 
 
 **Screenshots of current behavior, if any**
+
 
