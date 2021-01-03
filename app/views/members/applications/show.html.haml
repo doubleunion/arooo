@@ -72,12 +72,12 @@
 
 %h3 Comments
 %p
-  As a helpful reference, here's our
+  You can help voting members decide on applications by writing comments! Here's our
   %strong= link_to "criteria for prospective members", VOTING_CRITERIA_DOC, target: "_blank"
   to consider when commenting, sponsoring, and voting.
+%p Your comment will be visible to yourself and current voting members. Voting members can see all member comments.
 %p
-  For members who aren't voting members during this round: if you'd like to send a comment
-  directly to the voting members or the board (such as a concern),
+  If you have a concern about an applicant that you want to report privately,
   = succeed "." do
     %strong= link_to "here's how to send your comment", COMMENTING_DOC, target: "_blank"
   Thanks!
@@ -102,6 +102,5 @@
     = f.hidden_field :application_id, value: @application.id
     = f.text_area :body, rows: 3, class: "form-control"
     %fieldset= f.submit 'Add comment', class: "btn btn-primary pull-right"
-
 
 %p= link_to "Back to Applications Overview", members_applications_path

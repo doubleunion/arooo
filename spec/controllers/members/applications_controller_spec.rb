@@ -67,6 +67,38 @@ describe Members::ApplicationsController do
         get :show, params: { id: application.id }
         expect(response).to redirect_to members_root_path
       end
+
+      context "when viewed by a voting member" do
+        let(:submitted_application) { create(:application, state: "submitted") }
+        let!(:comments) { create_list(:comment, 2, application: submitted_application) }
+
+        before do
+          login_as(:voting_member)
+        end
+
+        it "shows all the comments" do
+          get :show, params: { id: submitted_application.id }
+          expect(response).to render_template :show
+          expect(assigns(:comments)).to eq(comments)
+        end
+      end
+
+      context "when viewed by a non-voting member" do
+        let(:member) { create(:member) }
+        let!(:comment_by_self) { create(:comment, user: member, application: submitted_application) }
+        let!(:comment_by_someone_else) { create(:comment, application: submitted_application) }
+        let(:submitted_application) { create(:application, state: "submitted") }
+
+        before do
+          login_as(member)
+        end
+
+        it "shows only comments authored by the current logged in member" do
+          get :show, params: { id: submitted_application.id }
+          expect(assigns(:comments)).to include(comment_by_self)
+          expect(assigns(:comments)).to_not include(comment_by_someone_else)
+        end
+      end
     end
 
     describe "for submitted application" do
