@@ -29,7 +29,7 @@
 
 ## Welcome :rocket::rocket::rocket:✨✨
 
-This is a membership application app written by members of [Double Union](http://doubleunion.org/), a feminist hacker/makerspace for women in San Francisco.
+This is a membership application app written by members of [Double Union](http://doubleunion.org/), a feminist hacker/makerspace for nonbinary people and women in San Francisco.
 
 This app is named after a famous Virginia Woolf essay, A Room of One's Own. You can learn more about it [on Wikipedia](http://en.wikipedia.org/wiki/A_Room_of_One's_Own)!
 
@@ -58,12 +58,12 @@ We use [GitHub issues](https://github.com/doubleunion/arooo/issues) for feature 
 
 Anyone is welcome to make an issue or a pull request. We would *love* for first-time contributors to pick one of our [good first issue](https://github.com/doubleunion/arooo/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) issues :)
 
-We have a mailing list! Feel free to ask any question, including basic git and ruby questions etc :) https://groups.google.com/a/doubleunion.org/forum/#!forum/public-du-code
+Most contributors are DU members who collaborate in an internal Slack channel, but we also welcome non-member contributors! To support that, we have a public mailing list. Feel free to ask any question, including basic git and Ruby questions etc :) https://groups.google.com/a/doubleunion.org/forum/#!forum/public-du-code
 
 
 ### Development setup
 
-Do the below OR if you prefer docker, see the Docker Setup section
+Do the below OR if you prefer Docker, see the Docker Setup section
 
 #### Steps to get set up to develop and run tests
 
@@ -356,7 +356,7 @@ The basic-auth login is found in https://dashboard.heroku.com/apps/doubleunion-s
 
 ## Security
 
-If you find a security vulnerability with Arooo, please let us know at admin@doubleunion.org. Thank you!
+To report a security vulnerability with Arooo, see [SECURITY.md](SECURITY.md). Thank you!
 
 ## License
 
