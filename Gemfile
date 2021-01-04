@@ -34,6 +34,9 @@ gem "bigdecimal", "1.4.4" # specify this directly to get around the error NoMeth
 gem "twilio-ruby"
 gem "redis" # Used to store recently-authorized doorbell member
 
+# Avoid low-severity security issue: https://github.com/advisories/GHSA-vr8q-g5c7-m54m
+gem "nokogiri", ">= 1.11.0.rc4"
+
 group :development do
   gem "annotate" # Show db schema as comments in models
   gem "better_errors" # Provides a better error page for Rails and other Rack apps
