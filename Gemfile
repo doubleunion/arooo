@@ -14,7 +14,7 @@ gem "pg", "0.21" # to move to v1, must upgrade activesupport
 gem "state_machine_deuxito", require: 'state_machine'
 gem "protected_attributes_continued" # works w rails 5
 gem "kaminari", ">= 1.2.1"
-gem "actionpack-action_caching", ">= 1.2.0"
+gem "actionpack-action_caching", ">= 1.2.1"
 gem "rails_autolink", ">= 1.1.6"
 gem "redcarpet"
 gem "configurable_engine" , ">= 0.5.0" # this gem was design for Rails 5, consider removing or replacing it
@@ -24,21 +24,21 @@ gem "stripe_event"
 gem "rack-canonical-host"
 gem "aws-sdk-rails", ">= 2.1.0"
 gem "rack-cors"
-gem "haml-rails", ">= 1.0.0"
-gem "sass-rails", ">= 5.0.7"
+gem "haml-rails", ">= 2.0.1"
+gem "sass-rails", ">= 6.0.0"
 gem "uglifier"
-gem "coffee-rails", ">= 4.2.2"
+gem "coffee-rails", ">= 5.0.0"
 gem "bootstrap-sass"
 gem "jquery-datatables-rails", ">= 3.4.0"
 gem "bigdecimal", "1.4.4" # specify this directly to get around the error NoMethodError: undefined method `new' for BigDecimal:Class
-gem "twilio-ruby"
+gem "twilio-ruby", ">= 5.39.2"
 gem "redis" # Used to store recently-authorized doorbell member
 
 group :development do
   gem "annotate" # Show db schema as comments in models
   gem "better_errors" # Provides a better error page for Rails and other Rack apps
   gem "binding_of_caller" # Retrieve the binding of a method's caller
-  gem "html2haml"
+  gem "html2haml", ">= 2.2.0"
   gem "awesome_print"
 end
 
@@ -59,8 +59,8 @@ group :production do
 end
 
 group :test do
-  gem "capybara"
-  gem "webdrivers"
+  gem "capybara", ">= 3.33.0"
+  gem "webdrivers", ">= 4.3.0"
   gem "database_cleaner"
   gem "email_spec"
   gem "factory_bot_rails", ">= 6.1.0"
