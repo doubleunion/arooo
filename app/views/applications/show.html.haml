@@ -1,4 +1,7 @@
-%h2 View application
+- if logged_in_as?(@user)
+  %h2 Your application
+- else
+  %h2 View application
 
 - if logged_in_as?(@user)
   %p= link_to 'Edit application', edit_application_path(@user.application)
