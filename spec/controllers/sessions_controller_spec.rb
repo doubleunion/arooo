@@ -18,13 +18,6 @@ describe SessionsController do
       get(:login)
       expect(response).to redirect_to members_root_path
     end
-
-    it "redirects applicant to editing application" do
-      applicant = create(:user, state: :applicant)
-      login_as(applicant)
-      get(:login)
-      expect(response).to redirect_to edit_application_path(applicant.application)
-    end
   end
 
   describe "GET github" do

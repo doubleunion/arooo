@@ -1,11 +1,21 @@
-- if Configurable[:accepting_applications]
-  %h2 Members and Applicants Sign In
+- if current_user.try(:applicant?)
+  %h2 Welcome, applicant!
+  - if Configurable[:accepting_applications]
+    %p= link_to 'Edit your application', edit_application_path(current_user.application)
+  - else
+    %p Double Union isn't currently accepting applications. Join the general interest mailing list linked from
+    =link_to "doubleunion.org/membership", "https://doubleunion.org/membership"
+    to be notified when applications open.
+
 - else
-  %h2 Members Sign In
+  - if Configurable[:accepting_applications]
+    %h2 Members and Applicants Sign In
+  - else
+    %h2 Members Sign In
 
-%p.ib= link_to 'Sign in with GitHub', github_login_path, class: 'btn btn-primary btn-lg mr-20'
-%p.ib= link_to 'Sign in with Google', google_login_path, class: 'btn btn-primary btn-lg'
+  %p.ib= link_to 'Sign in with GitHub', github_login_path, class: 'btn btn-primary btn-lg mr-20'
+  %p.ib= link_to 'Sign in with Google', google_login_path, class: 'btn btn-primary btn-lg'
 
-- if Configurable[:accepting_applications]
-  %p To start an application, first authenticate with Google or GitHub. If you have any questions, email us at #{ mail_to JOIN_EMAIL }.
+  - if Configurable[:accepting_applications]
+    %p To start an application, first authenticate with Google or GitHub. If you have any questions, email us at #{ mail_to JOIN_EMAIL }.
 
