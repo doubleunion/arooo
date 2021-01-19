@@ -1,5 +1,5 @@
 - if current_user.try(:applicant?)
-  %h2 Welcome, applicant!
+  %h2 Welcome!
   - if Configurable[:accepting_applications]
     %p= link_to 'Edit your application', edit_application_path(current_user.application)
   - else
