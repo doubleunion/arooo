@@ -12,6 +12,12 @@ describe SessionsController do
     it "renders the page" do
       expect(get(:login)).to render_template :login
     end
+
+    it "redirects member to members home" do
+      login_as(:key_member)
+      get(:login)
+      expect(response).to redirect_to members_root_path
+    end
   end
 
   describe "GET github" do
