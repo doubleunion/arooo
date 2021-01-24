@@ -10,7 +10,7 @@ gem "figaro"
 gem "omniauth"
 gem "omniauth-github"
 gem "omniauth-google-oauth2"
-gem "pg", "0.21" # to move to v1, must upgrade activesupport
+gem "pg"
 gem "state_machine_deuxito", require: 'state_machine'
 gem "protected_attributes_continued" # works w rails 5
 gem "kaminari", ">= 1.2.1"
