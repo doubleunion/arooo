@@ -3,14 +3,14 @@ name: standardrb lint
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - 'docs/**'
       - '*.md'
       - 'bin/*'
   pull_request:
     branches:
-      - master
+      - main
     paths-ignore:
       - 'docs/**'
       - '*.md'
