@@ -9,6 +9,25 @@ describe Members::ApplicationsController do
     @applicant = create(:user, state: :applicant)
   end
 
+  describe "GET index" do
+    before :each do
+      login_as(:voting_member)
+    end
+
+    it "returns a local with a list of not sponsored applicant emails" do
+      unsponsored_application = create(:application)
+      get :index
+      expect(assigns(:emails_with_no_sponsors)).to eq([unsponsored_application.user.email])
+    end
+
+    it "returns a local with a list of sponsored applicant emails" do
+      sponsored_application = create(:application)
+      create(:sponsorship, application: sponsored_application)
+      get :index
+      expect(assigns(:emails_with_sponsors)).to eq([sponsored_application.user.email])
+    end
+  end
+
   describe "GET show" do
     it "redirects if not logged in" do
       get :show, params: { id: @applicant.application.id }

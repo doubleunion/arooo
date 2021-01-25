@@ -1,7 +1,16 @@
 class Members::ApplicationsController < Members::MembersController
   def index
-    @applicants_submitted = User.with_submitted_application
+    @applicants_submitted = User.with_submitted_application.includes(:application).includes(:sponsorships)
     @applicants_started = User.with_started_application
+    @emails_with_no_sponsors = []
+    @emails_with_sponsors = []
+    @applicants_submitted.each do |applicant|
+      if applicant.application.sponsorships.size > 0
+        @emails_with_sponsors << applicant.email
+      else
+        @emails_with_no_sponsors << applicant.email
+      end
+    end
   end
 
   def show
