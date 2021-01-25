@@ -53,7 +53,11 @@
     %a{"data-toggle" => "collapse" , "href" => "#collapseEmails"} Applicant Email Addresses <b class="caret"></b>
   %div.collapse.out#collapseEmails
     %p Don't spam people! Just invite them to DU things :D
+    %h4 Applicants with no sponsors
     %ul.list-unstyled
-      - @applicants_submitted.each do |applicant|
-        - if applicant.email.present?
-          %li= applicant.email
+      - @emails_with_no_sponsors.each do |email|
+        %li= email
+    %h4 Applicants with sponsors
+    %ul.list-unstyled
+      - @emails_with_sponsors.each do |email|
+        %li= email
