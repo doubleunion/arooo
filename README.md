@@ -4,7 +4,7 @@
 
 - [Welcome :rocket::rocket::rocket:✨✨](#welcome-rocketrocketrocket)
   - [What does arooo do?](#what-does-arooo-do)
-- [How to Contribute](#how-to-contribute)
+- [How to run it and contribute](#how-to-run-it-and-contribute)
 - [Production maintainer / SRE guide](#production-maintainer--sre-guide)
   - [Rails console - heroku](#rails-console---heroku)
   - [Bugsnag](#bugsnag)
@@ -40,9 +40,9 @@ The application supports three levels of membership: members, key members, and v
 You can see screenshots of the system here: [see our Arooo announcement post](https://doubleunion.tumblr.com/post/101099822404/meet-arooo-a-open-source-membership-management).
 
 
-## How to Contribute
+## How to run it and contribute
 
-We welcome contributions from anyone! Please see our [Contributing Guide](https://github.com/doubleunion/arooo/blob/main/CONTRIBUTING.md) for an overview of how to help.
+We welcome contributions from anyone! Please see our [Contributing Guide](https://github.com/doubleunion/arooo/blob/main/CONTRIBUTING.md) for an overview of how to help, including how to set up your development environment and run the application.
 
 ## Production maintainer / SRE guide
 
