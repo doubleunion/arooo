@@ -149,7 +149,7 @@ describe Admin::MembershipsController do
           let(:updated_state) { "bananas" }
 
           it "raises an error" do
-            expect { subject }.to raise_error(NoMethodError)
+            expect { subject }.to raise_error(ArgumentError)
           end
         end
       end
