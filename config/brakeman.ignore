@@ -1,0 +1,26 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 119,
+      "fingerprint": "ef1c4300c0a300955957eb072b9a8097b4a1c39700fcecc797b6ab70b191fabf",
+      "check_name": "UnsafeReflectionMethods",
+      "message": "Unsafe reflection method `method` called with model attribute",
+      "file": "app/controllers/admin/memberships_controller.rb",
+      "line": 38,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "User.find(params[:id]).method(\"make_#{User.state_machine.states.map(&:name).find do\n (allowed.to_s == params.dig(:user, :updated_state))\n end}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Admin::MembershipsController",
+        "method": "change_membership_state"
+      },
+      "user_input": "User.state_machine.states",
+      "confidence": "Medium",
+      "note": ""
+    }
+  ],
+  "updated": "2021-02-21 16:02:10 -0800",
+  "brakeman_version": "5.0.0"
+}

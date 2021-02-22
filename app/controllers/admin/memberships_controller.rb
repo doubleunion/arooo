@@ -29,7 +29,13 @@ class Admin::MembershipsController < ApplicationController
   def change_membership_state
     user = User.find(params[:id])
 
-    action_method = user.method("make_#{params.dig(:user, :updated_state)}") rescue raise(NoMethodError)
+    allowed_updated_state = User.state_machine.states.map(&:name).find do |allowed|
+      allowed.to_s == params.dig(:user, :updated_state)
+    end
+    unless allowed_updated_state
+      raise ArgumentError.new("Unrecognized user state: #{params.dig(:user, :updated_state)}")
+    end
+    action_method = user.method("make_#{allowed_updated_state}")
 
     flash[:message] = if action_method.call
       "#{user.name} is now a #{user.state.humanize.downcase}."
