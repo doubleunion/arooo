@@ -7,7 +7,7 @@ describe Sponsorship do
   end
 
   describe "relationships" do
-    let(:user) { create :user }
+    let(:user) { create :applicant }
     let(:application) { create :application, user: user }
     let(:sponsorship) { create :sponsorship, user: user, application: application }
 
