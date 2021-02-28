@@ -92,10 +92,10 @@
         %td
           = profile_fields.label :reasons, "Why are you interested in joining Double Union?"
           %p.small
-            = "We ask this because we'd like to learn about how your interests relate to DU. For example, what would you like to work on here, or what would you like to learn or share here?"
+            = "We ask this because we'd like to learn about how your interests relate to DU. For example, what would you like to work on here, or what would you like to learn or share here? What about DU’s community appeals to you?"
           %p.small
             = "Required — 2000 character maximum."
-        %td= profile_fields.text_area :reasons, rows: 10
+        %td= profile_fields.text_area :reasons, rows: 15
 
       %tr
         %td
@@ -103,18 +103,20 @@
           %p.small
             = "DU works toward being a feminist space, and it’s important to us that new members care about this too."
           %p.small
-            = "To help us understand your view, we'd like to hear your thoughts or experiences around your own feminism. It's ok if you don't have a formal or academic way of talking about this! For example, what has feminism meant to you in your life? What has justice or equality meant for you in your life?"
+            = "To help us understand your view, we'd like to hear your thoughts or experiences around your own feminism. It's ok if you don't have a formal or academic way of talking about this! You can also answer with stories or memories."
           %p.small
-            = "As another example, how does your feminism include transgender people and nonbinary people?"
+            = "For example, what has feminism meant to you in your life? Or as another example, what has justice or equality meant for you in your life?"
           %p.small
-            = "Or, for example, if you’re white, how do you incorporate race and class into your feminism?"
+            = "How does your feminism include transgender people and nonbinary people?"
           %p.small
-            = "As another example, have you had frustrations with people who call themselves feminists but continue to be oppressive or harmful?"
+            = "Or, for example, if you’re white, how do you incorporate race into your feminism? How do you incorporate class into your feminism?"
+          %p.small
+            = "As another example, have you had frustrations with people who call themselves feminists but continue to be oppressive or harmful, and how does that inform your perspective on feminism?"
           %p.small
             = "Part of being a feminist space is not expecting everyone to know everything all the time. None of us are perfect! We do expect everyone to treat people at DU with respect."
           %p.small
             = "Required — 2000 character maximum."
-        %td= profile_fields.text_area :feminism, rows: 12
+        %td= profile_fields.text_area :feminism, rows: 20
 
       %tr
         %td
@@ -123,7 +125,7 @@
             = "This is not needed to send in an application, but it helps us remember if we’ve met you! Please include people’s names if you can (it’s completely ok if you can’t). Or let us know if you're planning to attend an upcoming event, so we can say hi to you."
           %p.small
             = "Required — 2000 character maximum."
-        %td= profile_fields.text_area :attendance, rows: 8
+        %td= profile_fields.text_area :attendance, rows: 10
 
       %tr.nested-table
         %td{ colspan: 2 }
