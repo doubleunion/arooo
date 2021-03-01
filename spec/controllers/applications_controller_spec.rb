@@ -171,7 +171,7 @@ describe ApplicationsController do
         let(:profile_params) {
           {
             summary: "lemurs!", reasons: "lemurs!",
-            projects: "lemurs!", skills: "lemurs!", feminism: "lemurs!"
+            projects: "lemurs!", skills: "lemurs!", feminism: "lemurs!", attendance: "oh yeah"
           }
         }
 
@@ -186,8 +186,21 @@ describe ApplicationsController do
           end
         end
 
-        context "missing required fields" do
+        context "missing required application fields" do
           let(:application_params) { {id: application.id, agreement_terms: true} }
+
+          it "should add an error to the flash" do
+            subject
+            expect(flash[:error]).to include "Application not submitted"
+          end
+
+          it "should not submit the application" do
+            expect { subject }.not_to change { application.state }.from("started")
+          end
+        end
+
+        context "missing required profile fields" do
+          let(:profile_params) { { summary: "lemurs!", reasons: "lemur reasonss!" } }
 
           it "should add an error to the flash" do
             subject
