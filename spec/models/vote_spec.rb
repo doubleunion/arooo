@@ -17,7 +17,7 @@ describe Vote do
     vote = Vote.new
 
     vote.user = create(:user, state: :member)
-    vote.application = create(:application, user: create(:user, state: :applicant))
+    vote.application = create(:application)
     vote.value = true
     expect(vote.valid?).to be_falsey
     expect(vote).to have_at_least(1).errors_on(:user)
@@ -27,14 +27,13 @@ describe Vote do
     vote = Vote.new
 
     vote.user = create(:user, state: :voting_member)
-    vote.application = create(:application, user: create(:user, state: :applicant))
+    vote.application = create(:application)
     vote.value = true
     expect(vote.valid?).to be_truthy
   end
 
   it "should validate uniqueness per user and application" do
-    applicant = create(:user, state: :applicant)
-    application = create(:application, user: applicant)
+    application = create(:application)
     voter = create(:user, state: :voting_member)
     create(:vote, application: application, user: voter)
 
@@ -46,10 +45,9 @@ describe Vote do
   end
 
   it "should validate user is not applicant" do
-    applicant = create(:user, state: :applicant)
-    application = create(:application, user: applicant)
+    application = create(:application)
     invalid = Vote.new(application: application,
-                       user: applicant,
+                       user: application.user,
                        value: true)
     expect(invalid.valid?).to be_falsey
     expect(invalid).to have_at_least(1).error_on(:user)

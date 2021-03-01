@@ -33,6 +33,10 @@ FactoryBot.define do
 
     factory :applicant do
       state { "applicant" }
+      after(:create) do |applicant|
+        # Set required profile fields for a submitted application
+        applicant.profile.update!(reasons: "reasons", feminism: "feminism", attendance: "attendance")
+      end
     end
 
     factory :admin do
