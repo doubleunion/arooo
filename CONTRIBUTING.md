@@ -37,6 +37,7 @@ gem install bundler
    * On Mac, with Homebrew: [`brew install postgres`](https://wiki.postgresql.org/wiki/Homebrew). You can use the `brew services` command to start/stop/restart the database service, for exaple: `brew services restart postgresql`.
    * On Ubuntu: `sudo apt-get install libpq-dev`. To restart the database: `sudo service postgresql restart`. To query database service status: `sudo service postgresql status`.
    * Rails relies on the `postgres` role existing, but this role is not always created in a Postgres installation. If you run into connection errors complaining that the `postgres` role is missing, you can create it with the command: `createuser -s -r postgres`
+   * See this article if you get stuck on Ubuntu: https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-14-04
 6. Install all dependencies (including Rails):
 ```
 $ bundle install
@@ -53,11 +54,17 @@ $ cp config/application.example.yml config/application.yml
     local database. If your local postgres user has a different password, make
     sure to change that in the `development` and `test` sections of
     `database.yml`
+    It's important that host is set to localhost in `database.yml`
 8.  Set up the database:
 ```
 $ bundle exec rake db:test:prepare
 ```
-9.  Now you should be able to run tests locally:
+
+If this step fails on Ubuntu, make sure that your postgres db is up and running 
+and that you only have one postgres instance up: try `sudo lsof -i:5432`. 
+You may need to use sudo to set your `/etc/postgresql/11/main/pg_hba.conf` file. 
+IPv4 local connections should say `localhost` under ADDRESS and `trust` under METHOD.
+9.  Now you should be able to run tests locally, and they should all pass:
 ```
 $ bundle exec rake spec
 ```
@@ -66,7 +73,7 @@ $ bundle exec rake spec
 ### Steps to run arooo server locally
 
 1. `bundle exec rake populate:users` to set up dummy data
-1. `bundle exec rails server`
+1. `bundle exec rails server` don't forget to use http://localhost:3000 and not https
 1. `bundle exec rails console` Optional - useful for looking at and changing your local data)
 
 ### Docker setup (optional)
@@ -84,8 +91,6 @@ $ bundle exec rake spec
 
 1. setup DB
 ```docker-compose run --rm app bundle exec rake db:setup```
-
-Note: If you are on Linux and get a `Permission denied` error when running `docker-compose`, you can try using `sudo docker-compose`.
 
 ### Set up an application for local OAuth:
 
