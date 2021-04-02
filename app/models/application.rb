@@ -77,9 +77,11 @@ class Application < ApplicationRecord
       application.touch :submitted_at
       ApplicationsMailer.confirmation(application).deliver_now
 
-      member_emails = User.all_members.pluck(:email).compact
-      (member_emails << JOIN_EMAIL).each do |email|
-        ApplicationsMailer.notify_member_of_application(application, email).deliver_now
+      if Configurable[:send_new_application_emails]
+        member_emails = User.all_members.pluck(:email).compact
+        (member_emails << JOIN_EMAIL).each do |email|
+          ApplicationsMailer.notify_member_of_application(application, email).deliver_now
+        end
       end
     end
 
