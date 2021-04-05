@@ -67,6 +67,9 @@
     %fieldset
       %legend= fields.label :reasons, 'Why are you interested in joining Double Union?'
       = fields.text_area :reasons, rows: 6
+      %br
+      = fields.check_box :show_reasons
+      = fields.label :show_reasons, "Check this if you want it to show up on your profile.", class: "checkbox-label"
 
     %fieldset
       %legend= fields.label :projects, 'What would you like to work on in the space?'
