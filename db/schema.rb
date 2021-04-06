@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_213123) do
+ActiveRecord::Schema.define(version: 2021_04_05_194551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_213123) do
     t.string "pronouns"
     t.string "attendance", limit: 2000
     t.boolean "show_reasons", default: false, null: false
+    t.boolean "show_projects", default: false, null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

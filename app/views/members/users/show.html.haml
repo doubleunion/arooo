@@ -51,7 +51,7 @@
   %h4 Why are you interested in joining Double Union?
   %div= markdown(profile.reasons)
 
-- if profile.projects.present?
+- if profile.projects.present? && profile.show_projects
   %h4 What would you like to work on in the space?
   %div= markdown(profile.projects)
 
