@@ -49,7 +49,7 @@ class Members::UsersController < Members::MembersController
   def profile_attributes
     [:id, :twitter, :facebook, :website, :linkedin, :blog,
      :summary, :reasons, :projects, :pronouns, :skills,
-     :show_name_on_site, :gravatar_email, :show_reasons, :show_projects]
+     :show_name_on_site, :gravatar_email, :show_reasons, :show_projects, :show_skills]
   end
 
   def set_user

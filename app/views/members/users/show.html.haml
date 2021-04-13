@@ -55,6 +55,6 @@
   %h4 What would you like to work on in the space?
   %div= markdown(profile.projects)
 
-- if profile.skills.present?
+- if profile.skills.present? && profile.show_skills
   %h4 What skills are you most interested in learning, improving, and/or teaching?
   %div= markdown(profile.skills)

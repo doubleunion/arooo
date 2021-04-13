@@ -81,6 +81,9 @@
     %fieldset
       %legend= fields.label :skills, 'What skills are you most interested in learning, improving, and/or teaching?'
       = fields.text_area :skills, rows: 6
+      %br
+      = fields.check_box :show_skills
+      = fields.label :show_skills, "Check this if you want it to show up on your profile.", class: "checkbox-label"
 
     %fieldset
       %legend= fields.label :gravatar_email, 'Gravatar email*'
