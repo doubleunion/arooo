@@ -67,14 +67,23 @@
     %fieldset
       %legend= fields.label :reasons, 'Why are you interested in joining Double Union?'
       = fields.text_area :reasons, rows: 6
+      %br
+      = fields.check_box :show_reasons
+      = fields.label :show_reasons, "Check this if you want it to show up on your profile.", class: "checkbox-label"
 
     %fieldset
       %legend= fields.label :projects, 'What would you like to work on in the space?'
       = fields.text_area :projects, rows: 6
+      %br
+      = fields.check_box :show_projects
+      = fields.label :show_projects, "Check this if you want it to show up on your profile.", class: "checkbox-label"
 
     %fieldset
       %legend= fields.label :skills, 'What skills are you most interested in learning, improving, and/or teaching?'
       = fields.text_area :skills, rows: 6
+      %br
+      = fields.check_box :show_skills
+      = fields.label :show_skills, "Check this if you want it to show up on your profile.", class: "checkbox-label"
 
     %fieldset
       %legend= fields.label :gravatar_email, 'Gravatar email*'
