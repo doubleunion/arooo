@@ -16,6 +16,18 @@ describe Application do
       }.to change(ActionMailer::Base.deliveries, :count).by(2)
       expect(application.reload.submitted_at).to be_present
     end
+
+    context "when new application emails are turned off" do
+      before do
+        Configurable[:send_new_application_emails] = false
+      end
+
+      it "only sends an email to the applicant" do
+        expect {
+          application.submit
+        }.to change(ActionMailer::Base.deliveries, :count).by(1)
+      end
+    end
   end
 
   describe "#approve" do
