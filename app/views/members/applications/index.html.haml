@@ -49,7 +49,10 @@
           %td= application.yes_votes.size
           %td= application.no_votes.size
           %td= application.not_voted_count
-          %td= "#{(application.age/ 1.day).floor} days"
+          -age_in_days = (application.age/ 1.day).floor
+          %td= "#{age_in_days} days"
+          -if age_in_days > 2.months
+            %td.overdue-highlighted
 
 
   %h3
