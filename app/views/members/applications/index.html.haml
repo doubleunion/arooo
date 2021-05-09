@@ -50,9 +50,10 @@
           %td= application.no_votes.size
           %td= application.not_voted_count
           -age_in_days = (application.age/ 1.day).floor
-          %td= "#{age_in_days} days"
-          -if age_in_days > 2.months
-            %td.overdue-highlighted
+          %td{:class => ("overdue-highlighted" if application.age > 2.months)}
+            = "#{age_in_days} days"
+
+
 
 
   %h3
