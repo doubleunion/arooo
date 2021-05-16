@@ -2,9 +2,13 @@ module MembershipApplicationHelper
 
   def choose_highlight_class(age)
     if age >= 7.weeks && age < 2.months
-      "almost-due-highlighted"
+      "bg-info"
     elsif age > 2.months
-      "overdue-highlighted"
+      "bg-danger"
     end
+  end
+
+  def age_in_days(age)
+    (age/ 1.day).floor
   end
 end

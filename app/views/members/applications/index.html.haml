@@ -49,9 +49,8 @@
           %td= application.yes_votes.size
           %td= application.no_votes.size
           %td= application.not_voted_count
-          -age_in_days = (application.age/ 1.day).floor
           %td{:class => choose_highlight_class(application.age)}
-            = "#{age_in_days} days"
+            = "#{age_in_days(application.age)} days"
 
 
 
