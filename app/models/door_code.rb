@@ -9,7 +9,10 @@ class DoorCode < ApplicationRecord
     formerly_assigned_in_lock: 'formerly_assigned_in_lock',
     # This code was previously assigned to a user, and is no longer in the lock.
     # We keep such codes around to avoid code re-use.
-    formerly_assigned_not_in_lock: 'formerly_assigned_not_in_lock'
+    formerly_assigned_not_in_lock: 'formerly_assigned_not_in_lock',
+    # Blacklisted (assumed to not be in the lock).
+    # Used for disallowing easily guessable codes.
+    blacklisted: 'blacklisted'
   }
 
   # A code without a user is available for assigning to a member
