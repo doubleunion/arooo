@@ -121,7 +121,7 @@ class User < ApplicationRecord
     end
 
     after_transition on: all - [:key_member] do |user, _|
-      user.door_code.update!(enabled: false) if user.door_code
+      user.door_code.unassign if user.door_code.present?
     end
 
     state :visitor

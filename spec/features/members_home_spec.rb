@@ -20,12 +20,6 @@ describe "Members home" do
       expect(page).to have_content "Your door code"
       expect(page).to have_content door_code.code
     end
-
-    it "shows if the door code is disabled" do
-      door_code = create(:door_code, user: member, enabled: false)
-      visit members_root_path
-      expect(page).to have_content "#{door_code.code} (disabled)"
-     end
   end
 
   context "when logged in as a non-key-member" do

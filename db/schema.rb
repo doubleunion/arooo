@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_06_011624) do
+ActiveRecord::Schema.define(version: 2021_12_06_014929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,9 +56,8 @@ ActiveRecord::Schema.define(version: 2021_12_06_011624) do
   end
 
   create_table "door_codes", id: :serial, force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.string "code", null: false
-    t.boolean "enabled", default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "status", default: "not_in_lock", null: false

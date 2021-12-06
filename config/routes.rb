@@ -34,9 +34,6 @@ Rails.application.routes.draw do
     patch "memberships/:id/change_membership_state" => "memberships#change_membership_state", :as => "change_membership_state"
     patch "memberships/:id/make_admin" => "memberships#make_admin", :as => "make_admin"
     patch "memberships/:id/unmake_admin" => "memberships#unmake_admin", :as => "unmake_admin"
-    patch "door_codes/:id/disable_door_code" => "door_code#disable_door_code", :as => "disable_door_code"
-    patch "door_codes/:id/enable_door_code" => "door_code#enable_door_code", :as => "enable_door_code"
-    patch "users/:id/generate_door_code" => "door_code#generate_new_for_user", :as => "generate_door_code"
   end
 
   get "admin/new_members" => "admin#new_members"
