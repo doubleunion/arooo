@@ -10,7 +10,6 @@ describe DoorCode do
   describe "validations" do
     it { is_expected.to validate_presence_of(:code) }
     it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
-    it { is_expected.to validate_presence_of(:user) }
     it { is_expected.to validate_uniqueness_of(:user).case_insensitive }
   end
 
@@ -57,6 +56,13 @@ describe DoorCode do
 
     it "does not include disabled doorcodes" do
       expect(DoorCode.enabled).to_not include(disabled_code)
+    end
+  end
+
+  describe "#status" do
+    it "defaults to not_in_lock" do
+      new_door_code = DoorCode.create!(user: create(:user), code: "12345")
+      expect(new_door_code.not_in_lock?).to be true
     end
   end
 end

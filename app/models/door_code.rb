@@ -1,4 +1,10 @@
 class DoorCode < ApplicationRecord
+  # We don't need an "assigned to user" status: can use the user_id field to check if a code belongs to a user
+  enum status: {
+    not_in_lock: 'not_in_lock',
+    in_lock: 'in_lock'
+  }
+
   belongs_to :user
 
   validates :user, presence: true
@@ -36,6 +42,7 @@ end
 #  id         :integer          not null, primary key
 #  code       :string           not null
 #  enabled    :boolean          default(FALSE), not null
+#  status     :string           default(NULL), not null
 #  created_at :datetime
 #  updated_at :datetime
 #  user_id    :integer          not null
