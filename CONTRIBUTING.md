@@ -6,18 +6,19 @@ Anyone is welcome to make an issue or a pull request. We would *love* for first-
 
 Most contributors are DU members who collaborate in an internal Slack channel, but we also welcome non-member contributors! To support that, we have a public mailing list. Feel free to ask any question, including basic git and Ruby questions etc :) https://groups.google.com/a/doubleunion.org/forum/#!forum/public-du-code
 
-- [Development setup](#development-setup)
-  - [Steps to get set up to develop and run tests](#steps-to-get-set-up-to-develop-and-run-tests)
-  - [Steps to run arooo server locally](#steps-to-run-arooo-server-locally)
-  - [Docker setup (optional)](#docker-setup-optional)
-  - [Set up an application for local OAuth:](#set-up-an-application-for-local-oauth)
-  - [Common errors and gotchas](#common-errors-and-gotchas)
-  - [Linting](#linting)
-- [Tests](#tests)
-- [User states](#user-states)
-  - [Manually changing a user's state](#manually-changing-a-users-state)
-- [Programmatic doorbell](#programmatic-doorbell)
-  - [Manual doorbell testing](#manual-doorbell-testing)
+- [Contributing Guide](#contributing-guide)
+  - [Development setup](#development-setup)
+    - [Steps to get set up to develop and run tests](#steps-to-get-set-up-to-develop-and-run-tests)
+    - [Steps to run arooo server locally](#steps-to-run-arooo-server-locally)
+    - [Docker setup (optional)](#docker-setup-optional)
+    - [Set up an application for local OAuth:](#set-up-an-application-for-local-oauth)
+    - [Common errors and gotchas](#common-errors-and-gotchas)
+    - [Linting](#linting)
+  - [Tests](#tests)
+  - [User states](#user-states)
+    - [Manually changing a user's state](#manually-changing-a-users-state)
+  - [Programmatic doorbell](#programmatic-doorbell)
+    - [Manual doorbell testing](#manual-doorbell-testing)
 
 ## Development setup
 
@@ -60,9 +61,9 @@ $ cp config/application.example.yml config/application.yml
 $ bundle exec rake db:test:prepare
 ```
 
-If this step fails on Ubuntu, make sure that your postgres db is up and running 
-and that you only have one postgres instance up: try `sudo lsof -i:5432`. 
-You may need to use sudo to set your `/etc/postgresql/11/main/pg_hba.conf` file. 
+If this step fails on Ubuntu, make sure that your postgres db is up and running
+and that you only have one postgres instance up: try `sudo lsof -i:5432`.
+You may need to use sudo to set your `/etc/postgresql/11/main/pg_hba.conf` file.
 IPv4 local connections should say `localhost` under ADDRESS and `trust` under METHOD.
 9.  Now you should be able to run tests locally, and they should all pass:
 ```
@@ -132,7 +133,7 @@ Tests, also known as specs, are great! Adding tests is a great pull request all 
 
 Run `rake db:test:prepare` after you pull or make any changes to the app, so make sure that your test database has the correct database schema
 
-Make sure `bundle exec rake spec` passes before pushing your changes. (Our TravisCI integration will double-check before we merge code, so it's ok if you forget sometimes) :)
+Make sure `bundle exec rake spec` passes before pushing your changes.
 
 ## User states
 
