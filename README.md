@@ -1,5 +1,4 @@
 # Arooo - A Room Of One's Own <!-- omit in toc -->
-[![Build Status](https://travis-ci.org/doubleunion/arooo.svg)](https://travis-ci.org/doubleunion/arooo)
 [![Open Source Helpers](https://www.codetriage.com/doubleunion/arooo/badges/users.svg)](https://www.codetriage.com/doubleunion/arooo)
 
 - [Welcome :rocket::rocket::rocket:✨✨](#welcome-rocketrocketrocket)
@@ -70,7 +69,7 @@ This section only pertains if you have heroku & deployment access. Only maintain
 If you are a DU member, see https://docs.google.com/document/d/19LbIYB2RDy-17UXuQx6wLgKp2EdLdqj-pg1cm3EpSb8/edit for more information on getting permission.
 
 Both `staging` and `production` Heroku environments are connected to this GitHub repo, making it possible to deploy directly through the Heroku UI. To deploy:
-* Staging: Merge to `master`, and your code will be automatically deployed to `staging` as soon as Travis CI goes green.
+* Staging: Merge to `master`, and your code will be automatically deployed to `staging` as soon as CI goes green.
 * Production: Log into Heroku, and select the production Aroo app from your dashboard. Click on "Deploy", and scroll to the bottom. There will be a place to select a branch to deploy, and a button that you can click to deploy.
 
 Database migrations will run automatically during the release process on Heroku. This is controlled by the `release` directive in our [Procfile](Procfile).
@@ -95,7 +94,7 @@ If you prefer to do deploys from the command line, here are the steps:
   git pull --rebase origin master
   ```
 
-1. If Travis CI tests are passing, push to the `staging` environment
+1. If CI tests are passing, push to the `staging` environment
 
   ```
   git checkout master
