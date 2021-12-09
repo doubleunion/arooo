@@ -110,7 +110,10 @@ FactoryBot.define do
   end
 
   factory :door_code do
-    association :user, factory: :member
     sequence(:code) { |n| "#{1000+n}" }
+
+    trait :assigned do
+      association :user, factory: :key_member
+    end
   end
 end
