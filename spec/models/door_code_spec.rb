@@ -6,6 +6,14 @@ describe DoorCode do
   describe "validations" do
     it { is_expected.to validate_presence_of(:code) }
     it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
+
+    it "rejects non-numeric codes" do
+      expect(DoorCode.new(code: "asdf").valid?).to be false
+    end
+
+    it "rejects too-short codes" do
+      expect(DoorCode.new(code: "12345").valid?).to be false
+    end
   end
 
   describe ".make_random_code" do
@@ -20,7 +28,7 @@ describe DoorCode do
 
   describe "#status" do
     it "defaults to not_in_lock" do
-      new_door_code = DoorCode.create!(user: create(:user), code: "12345")
+      new_door_code = DoorCode.create!(user: create(:user), code: "123456")
       expect(new_door_code.not_in_lock?).to be true
     end
   end

@@ -19,6 +19,8 @@ class DoorCode < ApplicationRecord
   belongs_to :user, optional: true
 
   validates :code, presence: true
+  validates :code, numericality: { only_integer: true }
+  validates :code, length: { minimum: 6 }
   validates_uniqueness_of :code, case_sensitive: false
 
   class << self
