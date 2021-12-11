@@ -1,0 +1,34 @@
+<h1>Manage Door Codes</h1>
+
+<%= link_to 'Add New Codes', new_admin_door_code_path() , class: "btn btn-primary" %>
+
+<h2>Existing Door Codes</h2>
+
+<% if @door_codes.empty? %>
+  There are no door codes in the database yet!
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Status</th>
+      <th>Assigned To</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @door_codes.each do |door_code| %>
+      <tr>
+        <td>
+          <%= door_code.code %>
+        </td>
+        <td>
+          <%= door_code.status %>
+        </td>
+        <td>
+          <%= door_code.user_id.present? ? door_code.user.name : "unassigned"  %>
+        </td>
+      </tr>
+    <% end %>
+  <tbody>
+</table>
