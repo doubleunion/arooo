@@ -195,6 +195,12 @@ class User < ApplicationRecord
     general_member? && application.processed_at.present? && application.processed_at <= 14.days.ago
   end
 
+  class << self
+    def all_members_for_dropdown
+      User.all_members.order(name: :asc).collect { |u| ["#{u.name} (#{u.email})", u.id] }
+    end
+  end
+
   private
 
   def gravatar_email
