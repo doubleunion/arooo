@@ -72,13 +72,14 @@ describe User do
     end
 
     context "when member had a door code" do
-      let!(:door_code) { create(:door_code, user: member) }
+      let!(:door_code) { create(:door_code, user: member, status: :in_lock) }
 
       it "unassigns the door code" do
         subject
         door_code.reload
         expect(door_code.user_id).to eq(nil)
         expect(door_code.is_assigned?).to be false
+        expect(door_code.status).to eq("formerly_assigned_in_lock")
       end
     end
   end

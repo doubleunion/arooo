@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   has_one :application, dependent: :destroy
-  has_one :door_code, dependent: :destroy
+  has_one :door_code
   has_many :authentications, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
