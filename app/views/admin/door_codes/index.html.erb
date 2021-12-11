@@ -1,0 +1,42 @@
+<h1>Manage Door Codes</h1>
+
+<%= link_to 'Add New Door Code', new_admin_door_code_path(), class: "btn btn-primary" %>
+
+<%= form_with url: generate_new_admin_door_codes_path(), method: :post, local: true do |form| %>
+  <%= form.submit "Autogenerate New Door Codes", class: "btn btn-primary" %>
+<% end %>
+
+<h2>Existing Door Codes</h2>
+
+<% if @door_codes.empty? %>
+  There are no door codes in the database yet!
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Status</th>
+      <th>Assigned To</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @door_codes.each do |door_code| %>
+      <tr>
+        <td>
+          <%= door_code.code %>
+        </td>
+        <td>
+          <%= door_code.status %>
+        </td>
+        <td>
+          <%= door_code.user_id.present? ? door_code.user.name : "unassigned"  %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_admin_door_code_path(door_code), class: "btn btn-primary"  %>
+        </td>
+      </tr>
+    <% end %>
+  <tbody>
+</table>
