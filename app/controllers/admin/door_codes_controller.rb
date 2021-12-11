@@ -2,7 +2,6 @@ class Admin::DoorCodesController < ApplicationController
   before_action :ensure_admin
 
   def index
-    @door_codes = DoorCode.all.includes(:user).order(created_at: :asc)
   end
 
   def new
@@ -51,5 +50,13 @@ class Admin::DoorCodesController < ApplicationController
 
   helper_method def door_code
     @door_code ||= params.key?(:id) ? DoorCode.find(params[:id]) : DoorCode.new(door_code_params)
+  end
+
+  helper_method def door_codes
+    @door_codes ||= DoorCode.all.includes(:user).order("users.name")
+  end
+
+  helper_method def door_codes_by_status
+    @door_codes_by_status ||= door_codes.group_by(&:status)
   end
 end
