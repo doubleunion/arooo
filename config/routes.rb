@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :door_codes, only: [:index, :new, :create]
+    resources :door_codes, only: [:index, :new, :create, :edit, :update]
     resource :exceptions, only: :show
     resources :memberships, only: [:index, :update]
     patch "memberships/:id/change_membership_state" => "memberships#change_membership_state", :as => "change_membership_state"

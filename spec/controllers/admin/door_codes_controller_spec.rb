@@ -53,7 +53,23 @@ describe Admin::DoorCodesController do
       it "doesn't save a duplicated door code" do
         expect {
           post :create, params: { door_code: { code: existing_door_code.code, status: "in_lock" } }
-        }.to_not change(DoorCode, :count)
+        }.not_to change(DoorCode, :count)
+      end
+    end
+  end
+
+  describe "PATCH :update" do
+    context "when logged in as an admin" do
+      let!(:member) { create(:member) }
+      let!(:door_code) { create(:door_code) }
+
+      before { login_as(:voting_member, is_admin: true) }
+
+      it "updates the door code" do
+        expect {
+          patch :update, params: { id: door_code.id, door_code: { user_id: member.id } }
+        }.not_to change(DoorCode, :count)
+        expect(door_code.reload.user.id).to eq(member.id)
       end
     end
   end

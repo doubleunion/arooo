@@ -14,6 +14,7 @@
       <th>Code</th>
       <th>Status</th>
       <th>Assigned To</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +28,9 @@
         </td>
         <td>
           <%= door_code.user_id.present? ? door_code.user.name : "unassigned"  %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_admin_door_code_path(door_code), class: "btn btn-primary"  %>
         </td>
       </tr>
     <% end %>
