@@ -1,0 +1,22 @@
+<div class="container small bg-info">
+  <h4>What door code statuses mean</h4>
+  <ul>
+    <li>
+      not_in_lock: code exists in the database, but not in the physical door lock
+    </li>
+    <li>
+      in_lock: code exists in the lock
+    </li>
+    <li>
+      formerly_assigned_in_lock: code used to be assigned to a member, but is no longer assigned;
+      this code exists in the lock (we probably want to remove it!)
+    </li>
+    <li>
+      formerly_assigned_not_in_lock: code used to be assigned to a member, and is not in the lock;
+      we keep it in the database to prevent code reuse
+    </li>
+    <li>
+      denylisted: we don't allow this code to be used
+    </li>
+  </ul>
+</div>
