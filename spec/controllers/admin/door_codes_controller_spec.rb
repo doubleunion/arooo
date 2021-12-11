@@ -73,4 +73,16 @@ describe Admin::DoorCodesController do
       end
     end
   end
+
+  describe "POST :generate_new" do
+    context "when logged in as an admin" do
+      before { login_as(:voting_member, is_admin: true) }
+
+      it "updates the door code" do
+        expect {
+          post :generate_new
+        }.to change(DoorCode, :count).by(10)
+      end
+    end
+  end
 end

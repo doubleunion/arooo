@@ -1,6 +1,10 @@
 <h1>Manage Door Codes</h1>
 
-<%= link_to 'Add New Codes', new_admin_door_code_path() , class: "btn btn-primary" %>
+<%= link_to 'Add New Codes', new_admin_door_code_path(), class: "btn btn-primary" %>
+
+<%= form_with url: generate_new_admin_door_codes_path(), method: :post, local: true do |form| %>
+  <%= form.submit "Autogenerate New Door Codes", class: "btn btn-primary" %>
+<% end %>
 
 <h2>Existing Door Codes</h2>
 
