@@ -18,7 +18,7 @@
 
   <div class="form-group">
     <%= door_code_form.label :user_id %>
-    <%= door_code_form.select :user_id, User.all.collect { |u| [u.name, u.id] }, { include_blank: true} %>
+    <%= door_code_form.select :user_id, User.all_members_for_dropdown, { include_blank: true} %>
     <p class="help-block">Optional. Use only if you want to assign this code to an existing user.</p>
   </div>
 
