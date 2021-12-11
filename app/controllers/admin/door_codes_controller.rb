@@ -5,7 +5,11 @@ class Admin::DoorCodesController < ApplicationController
     @door_codes = DoorCode.all.includes(:user).order(created_at: :asc)
   end
 
-  def new ; end
+  def new
+  end
+
+  def edit
+  end
 
   def create
     if door_code.save
@@ -15,9 +19,6 @@ class Admin::DoorCodesController < ApplicationController
       flash[:warning] = "Errors saving code. See details below."
       render :new
     end
-  end
-
-  def edit
   end
 
   def update
