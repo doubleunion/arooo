@@ -1,4 +1,7 @@
 # Arooo - A Room Of One's Own <!-- omit in toc -->
+[![Ruby CI](https://github.com/doubleunion/arooo/actions/workflows/ci.yml/badge.svg)](https://github.com/doubleunion/arooo/actions/workflows/ci.yml)
+[![Ruby lint](https://github.com/doubleunion/arooo/actions/workflows/ruby_lint.yml/badge.svg)](https://github.com/doubleunion/arooo/actions/workflows/ruby_lint.yml)
+[![Ruby lint](https://github.com/doubleunion/arooo/actions/workflows/security.yml/badge.svg)](https://github.com/doubleunion/arooo/actions/workflows/security.yml)
 [![Open Source Helpers](https://www.codetriage.com/doubleunion/arooo/badges/users.svg)](https://www.codetriage.com/doubleunion/arooo)
 
 - [Welcome :rocket::rocket::rocket:✨✨](#welcome-rocketrocketrocket)
