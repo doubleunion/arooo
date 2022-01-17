@@ -175,17 +175,6 @@ Now you can update any user:
 
 If you need to make or unmake an admin, have a current admin click the un/make admin button on a member in the Member Admin View. Admins can accept/reject applications, update any member's status, see current member's dues, open and close applications, and manage new member setup.
 
-## Programmatic doorbell
+## Door codes
 
-Arooo includes code to handle incoming voice calls and text messages from an intercom system, allowing members to enter a personalized door code to open the door to our space. It is implemented as a [Twilio TwiML](https://www.twilio.com/docs/voice/twiml) app that lives in the [DoorbellController](app/controllers/doorbell_controller.rb).
-
-A door code is represented by the [DoorCode](app/models/door_code.rb) model, which has to be associated to a `User` in the database. Typically, the `User` should have state `key_member`.
-
-For exceptional cases (e.g. package delivery) that don't fit the "one door code per member" model, you can associate a `DoorCode` to a dummy `User` object that is in the `visitor` state. You'll have to create the dummy `User` object and doorcode through the Rails console.
-
-### Manual doorbell testing
-
-You can test the doorbell endpoints directly from a browser or using CURL. You can pass parameters to each endpoint direclty as query params. For example, to manually test the SMS endpoint:
-```
-http://localhost:3000/doorbell/sms?Body=123456
-```
+In our new 2022 physical space, we use `user.door_code` (manually programmed into the physical door lock, then assigned to users via the app) 
