@@ -7,7 +7,7 @@
 
 %h3 Space Access
 - if current_user.door_code.present?
-  %p Your door code is #{current_user.door_code.code}
+  %p Your door code is #{current_user.door_code.code}*
 - elsif current_user.key_member?
   %p
     You are a key member, but you don't seem to have a door code set. If you need one, contact
