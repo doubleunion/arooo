@@ -60,7 +60,7 @@ describe Members::KeyMembersController do
         let(:params) {
           {
             "user_id" => member.id,
-            "agreements" => {"lock_up" => "1", "take_action" => "1"}
+            "agreements" => {"lock_up" => "0", "take_action" => "1"}
           }
         }
 

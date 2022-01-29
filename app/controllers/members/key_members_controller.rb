@@ -24,7 +24,7 @@ class Members::KeyMembersController < Members::MembersController
     return true if params[:agreements].nil?
 
     agreements = params[:agreements]
-    !(agreements.keys == %w[attended_events kick_out lock_up take_action] && agreements.values.all? { |x| x == "1" })
+    !(agreements.values.all?("1"))
   end
 
   def send_keymember_email
