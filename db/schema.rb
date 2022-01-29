@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_06_014929) do
+ActiveRecord::Schema.define(version: 2022_01_29_183750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2021_12_06_014929) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "status", default: "not_in_lock", null: false
+    t.integer "index_number"
     t.index ["code"], name: "index_door_codes_on_code", unique: true
     t.index ["user_id"], name: "index_door_codes_on_user_id", unique: true
   end
