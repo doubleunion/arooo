@@ -23,7 +23,7 @@
 
 - if @all_admins.any?
   %h3 Admins
-  %p This internal DU app is administered by Membership Coordinators (#{ mail_to MEMBERSHIP_EMAIL }) and Board Members (#{ mail_to BOARD_EMAIL }), and it may also have Web App committee members supporting it. Members with admin access:
+  %p This internal DU app is administered by Membership Coordinators (#{ mail_to MEMBERSHIP_EMAIL }) and Board Members (#{ mail_to BOARD_EMAIL }). Members with admin access:
   = render partial: 'list', locals: { users: @all_admins }
 
 - if @all_members.any?
