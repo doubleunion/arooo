@@ -1,18 +1,21 @@
 %h1 Become a key member!
 
 %p
-  Key members receive a door code that enables you to access Double Union whenever you want to (24/7), host events, and bring guests of any gender. 
-
-%p To become a key member, first complete a 
-  #{ link_to "Key Membership Orientation for 77 Falmouth", "https://docs.google.com/presentation/d/1ygUBN_4SqZSjDi3Sx8MPviAXQz5KdI6_IOstW9qtWzQ/edit#slide=id.g111195ab4e6_0_0", target: "_blank" }
-  .
-  
-%p You can also learn more in the
-  #{ link_to "Members Handbook section on key membership", "https://docs.google.com/document/d/1yYXAj8rzQMiYt2xFdzm2xEOe0LCHohWNrMWzad-4mtQ/edit#heading=h.lsg2zdao236h", target: "_blank" }
-  .
+  Key members receive a door code that enables you to access Double Union
+  whenever you want to (24/7), host events, and bring guests of any gender.
 
 %p
-  When you submit this form, you will receive a randomly-assigned key code. You can email the Membership Coordinator at membership@doubleunion.org with any questions.
+  To become a key member, first complete a
+  #{ link_to "Key Membership Orientation for 77 Falmouth", "https://docs.google.com/presentation/d/1ygUBN_4SqZSjDi3Sx8MPviAXQz5KdI6_IOstW9qtWzQ/edit#slide=id.g111195ab4e6_0_0", target: "_blank" }.
+
+%p
+  You can also learn more in the
+  #{ link_to "Members Handbook section on key membership", "https://docs.google.com/document/d/1yYXAj8rzQMiYt2xFdzm2xEOe0LCHohWNrMWzad-4mtQ/edit#heading=h.lsg2zdao236h", target: "_blank" }.
+
+%p
+  When you submit this form, you will receive a randomly-assigned key code. You
+  can email the Membership Coordinator at membership@doubleunion.org with any
+  questions.
 
 = form_tag members_user_key_members_path(current_user.id), method: "patch" do
   %p
@@ -21,11 +24,7 @@
 
   %p
     = check_box_tag "agreements[kick_out]", 1, false, required: true
-    = label_tag "agreements[kick_out]", "I will do my best to ensure that my guests and other visitors I host follow our 
-    #{ link_to "Code of Conduct", POLICIES_URL} 
-    and 
-    #{ link_to "COVID-19 Reopening Policy", "https://docs.google.com/document/d/1Y8XEMxkTDqSNvtPbq6YSS4B1S3kE-K9dJOf3Jv0aLwI/edit#heading=h.ndiq3zp5lt8f", target: "_blank" }
-    . If I notice somebody causing issues for others in our space in some way, I will try to remind them of our policies, ask them to stop or leave, send a note to the Code of Conduct Committee, or otherwise take action.".html_safe
+    = label_tag "agreements[kick_out]", "I will do my best to ensure that my guests and other visitors I host follow our #{ link_to "Code of Conduct", POLICIES_URL} and #{ link_to "COVID-19 Reopening Policy", "https://docs.google.com/document/d/1Y8XEMxkTDqSNvtPbq6YSS4B1S3kE-K9dJOf3Jv0aLwI/edit#heading=h.ndiq3zp5lt8f", target: "_blank" }. If I notice somebody causing issues for others in our space in some way, I will try to remind them of our policies, ask them to stop or leave, send a note to the Code of Conduct Committee, or otherwise take action.".html_safe
 
   %p
     = check_box_tag "agreements[take_action]", 1, false, required: true
