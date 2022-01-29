@@ -71,11 +71,15 @@ describe User do
       expect { subject }.to change { member.state }.from("member").to("former_member")
     end
 
-    context "when member had enabled door code" do
-      let(:door_code) { create(:door_code, enabled: true, user: member) }
+    context "when member had a door code" do
+      let!(:door_code) { create(:door_code, user: member, status: :in_lock) }
 
-      it "disables the door code" do
-        expect { subject }.to change { door_code.enabled }.from(true).to(false)
+      it "unassigns the door code" do
+        subject
+        door_code.reload
+        expect(door_code.user_id).to eq(nil)
+        expect(door_code.is_assigned?).to be false
+        expect(door_code.status).to eq("formerly_assigned_in_lock")
       end
     end
   end
@@ -99,10 +103,13 @@ describe User do
 
     context "with a key member" do
       let(:member) { create(:key_member) }
-      let(:door_code) { create(:door_code, enabled: true, user: member) }
+      let!(:door_code) { create(:door_code, user: member) }
 
       it "disables their door code" do
-        expect { subject }.to change { door_code.enabled }.from(true).to(false)
+        subject
+        door_code.reload
+        expect(door_code.user_id).to eq(nil)
+        expect(door_code.is_assigned?).to be false
       end
     end
   end

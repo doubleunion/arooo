@@ -1,0 +1,33 @@
+<%= form_with(model: [:admin, door_code], local: true) do |door_code_form| %>
+  <p class="bg-danger">
+    <% door_code.errors.messages.each do |field, msgs| %>
+      <strong><%= field.to_s.humanize %>:</strong>
+      <%= msgs.join(', ') %>
+    <% end %>
+  </p>
+
+  <div class="form-group">
+    <%= door_code_form.label :code %>
+    <%= door_code_form.text_field :code %>
+  </div>
+
+  <div class="form-group">
+    <%= door_code_form.label "Index #" %>
+    <%= door_code_form.number_field :index_number %>
+  </div>
+
+  <div class="form-group">
+    <%= door_code_form.label :status %>
+    <%= door_code_form.select :status, DoorCode.statuses.keys.to_a %>
+  </div>
+
+  <div class="form-group">
+    <%= door_code_form.label :user_id %>
+    <%= door_code_form.select :user_id, User.all_members_for_dropdown, { include_blank: true} %>
+    <p class="help-block">Optional. Use only if you want to assign this code to an existing user.</p>
+  </div>
+
+  <div>
+    <%= door_code_form.submit %>
+  </div>
+<% end %>

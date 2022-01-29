@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_040111) do
+ActiveRecord::Schema.define(version: 2022_01_29_183750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,11 +56,12 @@ ActiveRecord::Schema.define(version: 2020_11_24_040111) do
   end
 
   create_table "door_codes", id: :serial, force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.string "code", null: false
-    t.boolean "enabled", default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "status", default: "not_in_lock", null: false
+    t.integer "index_number"
     t.index ["code"], name: "index_door_codes_on_code", unique: true
     t.index ["user_id"], name: "index_door_codes_on_user_id", unique: true
   end
@@ -83,6 +84,9 @@ ActiveRecord::Schema.define(version: 2020_11_24_040111) do
     t.string "feminism", limit: 2000
     t.string "pronouns"
     t.string "attendance", limit: 2000
+    t.boolean "show_reasons", default: false, null: false
+    t.boolean "show_projects", default: false, null: false
+    t.boolean "show_skills", default: false, null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

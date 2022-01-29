@@ -1,25 +1,29 @@
 - if current_user.member? || current_user.key_member?
   .mt-20
-    - if current_user.member?
-      = link_to "Become a key member", edit_members_user_key_members_path(current_user), class: "btn btn-default"
-
     - unless current_user.voting_policy_agreement
       = link_to "Become a voting member", edit_members_user_voting_members_path(current_user), class: "btn btn-default"
 
 = render 'bookmarks'
 
-- if current_user.key_member?
-  - if current_user.door_code
-    %p Your door code is: #{current_user.door_code.code} #{current_user.door_code.enabled? ? "(enabled)" : "(disabled)"}
-  - else
-    %p
-      You don't seem to have a door code set. If you need one, contact
-      =mail_to MEMBERSHIP_EMAIL
-      for help.
+%h3 Space Access
+- if current_user.door_code.present?
+  %p Your door code is #{current_user.door_code.code}*
+- elsif current_user.key_member?
+  %p
+    You are a key member, but you don't seem to have a door code set. If you need one, contact
+    =mail_to MEMBERSHIP_EMAIL
+    for help.
+- elsif current_user.member?
+  %p
+    You are not a key member.
+    = link_to "Become a key member", edit_members_user_key_members_path(current_user), class: "btn btn-default"
+- else
+  %p
+    Only members can become key_members with access to the physical space.
 
 - if @all_admins.any?
   %h3 Admins
-  %p This internal DU app is administered by Membership Coordinators (#{ mail_to MEMBERSHIP_EMAIL }) and Board Members (#{ mail_to BOARD_EMAIL }), and it may also have Web App committee members supporting it. Members with admin access: 
+  %p This internal DU app is administered by Membership Coordinators (#{ mail_to MEMBERSHIP_EMAIL }) and Board Members (#{ mail_to BOARD_EMAIL }), and it may also have Web App committee members supporting it. Members with admin access:
   = render partial: 'list', locals: { users: @all_admins }
 
 - if @all_members.any?

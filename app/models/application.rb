@@ -21,6 +21,7 @@ class Application < ApplicationRecord
   validates :user_id, presence: true
   validates :state, presence: true
   validate :validate_agreed, if: :submitted?
+  validate :validate_required_profile_fields, if: :submitted?
 
   scope :for_applicant, -> {
     includes(:user)
@@ -76,9 +77,11 @@ class Application < ApplicationRecord
       application.touch :submitted_at
       ApplicationsMailer.confirmation(application).deliver_now
 
-      member_emails = User.all_members.pluck(:email).compact
-      (member_emails << JOIN_EMAIL).each do |email|
-        ApplicationsMailer.notify_member_of_application(application, email).deliver_now
+      if Configurable[:send_new_application_emails]
+        member_emails = User.all_members.pluck(:email).compact
+        (member_emails << JOIN_EMAIL).each do |email|
+          ApplicationsMailer.notify_member_of_application(application, email).deliver_now
+        end
       end
     end
 
@@ -139,6 +142,18 @@ class Application < ApplicationRecord
   def validate_agreed
     unless agreed_to_all?
       errors.add(:base, "Please agree to all terms")
+    end
+  end
+
+  def validate_required_profile_fields
+    unless user.profile.reasons.present?
+      errors.add(:base, "Please share why are you interested in joining Double Union")
+    end
+    unless user.profile.feminism.present?
+      errors.add(:base, "Please share your definition of your feminism")
+    end
+    unless user.profile.attendance.present?
+      errors.add(:base, "Please tell us if you've been to DU events or met members")
     end
   end
 

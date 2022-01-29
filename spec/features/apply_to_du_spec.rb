@@ -14,6 +14,8 @@ describe "applying to double union" do
 
     fill_in "Twitter username", with: "@beepboopbeep"
     fill_in "Pronouns", with: "They/Them"
+    fill_in "user_profile_attributes_reasons", with: "42"
+    fill_in "user_profile_attributes_feminism", with: "it's pretty rad"
     fill_in "user_profile_attributes_attendance", with: "I went to the cool thing"
     check "user_application_attributes_agreement_terms"
     check "user_application_attributes_agreement_policies"
@@ -49,6 +51,9 @@ describe "applying to double union" do
 
     fill_in "Pronouns", with: "They/Them"
     fill_in "Twitter username", with: "@beepboopbeep"
+    fill_in "user_profile_attributes_reasons", with: "42"
+    fill_in "user_profile_attributes_feminism", with: "it's pretty rad"
+    fill_in "user_profile_attributes_attendance", with: "I went to the cool thing"
     check "user_application_attributes_agreement_terms"
     check "user_application_attributes_agreement_policies"
     check "user_application_attributes_agreement_female"

@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   has_one :application, dependent: :destroy
-  has_one :door_code, dependent: :destroy
+  has_one :door_code
   has_many :authentications, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -121,7 +121,7 @@ class User < ApplicationRecord
     end
 
     after_transition on: all - [:key_member] do |user, _|
-      user.door_code.update!(enabled: false) if user.door_code
+      user.door_code.unassign if user.door_code.present?
     end
 
     state :visitor
@@ -193,6 +193,12 @@ class User < ApplicationRecord
 
   def mature?
     general_member? && application.processed_at.present? && application.processed_at <= 14.days.ago
+  end
+
+  class << self
+    def all_members_for_dropdown
+      User.all_members.order(name: :asc).collect { |u| ["#{u.name} (#{u.email})", u.id] }
+    end
   end
 
   private
