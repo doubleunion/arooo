@@ -44,12 +44,13 @@ end
 #
 # Table name: door_codes
 #
-#  id         :integer          not null, primary key
-#  code       :string           not null
-#  status     :string           default("not_in_lock"), not null
-#  created_at :datetime
-#  updated_at :datetime
-#  user_id    :integer
+#  id           :integer          not null, primary key
+#  code         :string           not null
+#  index_number :integer
+#  status       :string           default("not_in_lock"), not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#  user_id      :integer
 #
 # Indexes
 #
