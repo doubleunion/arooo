@@ -6,6 +6,8 @@
 = render 'bookmarks'
 
 %h3 Space Access
+- if current_user.member?
+  = link_to "Become a key member", edit_members_user_key_members_path(current_user), class: "btn btn-default"
 - if current_user.door_code.present?
   %p Your door code is #{current_user.door_code.code}*
 - elsif current_user.key_member?
@@ -13,13 +15,6 @@
     You are a key member, but you don't seem to have a door code set. If you need one, contact
     =mail_to MEMBERSHIP_EMAIL
     for help.
-- elsif current_user.member?
-  %p
-    You are not a key member.
-    = link_to "Become a key member", edit_members_user_key_members_path(current_user), class: "btn btn-default"
-- else
-  %p
-    Only members can become key_members with access to the physical space.
 
 - if @all_admins.any?
   %h3 Admins
