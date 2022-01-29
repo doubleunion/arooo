@@ -45,7 +45,7 @@ class Admin::DoorCodesController < ApplicationController
   def door_code_params
     return {} unless params.key?(:door_code)
 
-    params.require(:door_code).permit(:code, :status, :user_id, :id)
+    params.require(:door_code).permit(:code, :index_number, :status, :user_id, :id)
   end
 
   helper_method def door_code

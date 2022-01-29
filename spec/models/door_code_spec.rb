@@ -6,6 +6,7 @@ describe DoorCode do
   describe "validations" do
     it { is_expected.to validate_presence_of(:code) }
     it { is_expected.to validate_uniqueness_of(:code).case_insensitive }
+    it { is_expected.to validate_uniqueness_of(:index_number) }
 
     it "rejects non-numeric codes" do
       expect(DoorCode.new(code: "asdf").valid?).to be false

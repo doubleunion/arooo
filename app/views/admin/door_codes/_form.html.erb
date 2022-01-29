@@ -12,6 +12,11 @@
   </div>
 
   <div class="form-group">
+    <%= door_code_form.label "Index #" %>
+    <%= door_code_form.number_field :index_number %>
+  </div>
+
+  <div class="form-group">
     <%= door_code_form.label :status %>
     <%= door_code_form.select :status, DoorCode.statuses.keys.to_a %>
   </div>

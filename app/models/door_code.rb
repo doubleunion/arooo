@@ -22,6 +22,7 @@ class DoorCode < ApplicationRecord
   validates :code, numericality: { only_integer: true }
   validates :code, length: { minimum: 6 }
   validates_uniqueness_of :code, case_sensitive: false
+  validates_uniqueness_of :index_number, if: -> { index_number.present? }
 
   class << self
     # @return [String] A randomly generated number of the requested length, as a string. May be zero-padded.
