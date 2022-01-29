@@ -1,4 +1,6 @@
 test:
   adapter:  postgresql
   database: doubleunion_test
+  host:     localhost
   username: postgres
+  password: postgres

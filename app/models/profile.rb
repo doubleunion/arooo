@@ -43,6 +43,9 @@ end
 #  pronouns          :string
 #  reasons           :string(2000)
 #  show_name_on_site :boolean          default(FALSE), not null
+#  show_projects     :boolean          default(FALSE), not null
+#  show_reasons      :boolean          default(FALSE), not null
+#  show_skills       :boolean          default(FALSE), not null
 #  skills            :string(2000)
 #  summary           :string(2000)
 #  twitter           :string

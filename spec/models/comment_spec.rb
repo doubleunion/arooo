@@ -38,8 +38,7 @@ describe Comment do
 
   it "should be saved for member" do
     comment = Comment.new(body: "hello")
-    user = create(:user, state: :applicant)
-    comment.application = create(:application, user: user)
+    comment.application = create(:application)
     comment.user = create(:user, state: :member)
     expect(comment.save).to be_truthy
   end

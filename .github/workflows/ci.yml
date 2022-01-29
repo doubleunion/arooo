@@ -1,0 +1,54 @@
+name: Ruby CI
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - '*.md'
+      - 'bin/*'
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - '*.md'
+      - 'bin/*'
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+
+    - name: Bundle install
+      run: |
+        bundle install --jobs 4 --retry 3
+
+    - name: Setup CI database.yml
+      run: cp config/database.github-actions.yml config/database.yml
+
+    - name: Setup DB, Run tests
+      env:
+        RAILS_ENV: test
+      run: |
+        bundle exec rails db:create db:schema:load
+        bundle exec rspec

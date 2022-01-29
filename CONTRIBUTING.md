@@ -6,18 +6,19 @@ Anyone is welcome to make an issue or a pull request. We would *love* for first-
 
 Most contributors are DU members who collaborate in an internal Slack channel, but we also welcome non-member contributors! To support that, we have a public mailing list. Feel free to ask any question, including basic git and Ruby questions etc :) https://groups.google.com/a/doubleunion.org/forum/#!forum/public-du-code
 
-- [Development setup](#development-setup)
-  - [Steps to get set up to develop and run tests](#steps-to-get-set-up-to-develop-and-run-tests)
-  - [Steps to run arooo server locally](#steps-to-run-arooo-server-locally)
-  - [Docker setup (optional)](#docker-setup-optional)
-  - [Set up an application for local OAuth:](#set-up-an-application-for-local-oauth)
-  - [Common errors and gotchas](#common-errors-and-gotchas)
-  - [Linting](#linting)
-- [Tests](#tests)
-- [User states](#user-states)
-  - [Manually changing a user's state](#manually-changing-a-users-state)
-- [Programmatic doorbell](#programmatic-doorbell)
-  - [Manual doorbell testing](#manual-doorbell-testing)
+- [Contributing Guide](#contributing-guide)
+  - [Development setup](#development-setup)
+    - [Steps to get set up to develop and run tests](#steps-to-get-set-up-to-develop-and-run-tests)
+    - [Steps to run arooo server locally](#steps-to-run-arooo-server-locally)
+    - [Docker setup (optional)](#docker-setup-optional)
+    - [Set up an application for local OAuth:](#set-up-an-application-for-local-oauth)
+    - [Common errors and gotchas](#common-errors-and-gotchas)
+    - [Linting](#linting)
+  - [Tests](#tests)
+  - [User states](#user-states)
+    - [Manually changing a user's state](#manually-changing-a-users-state)
+  - [Programmatic doorbell](#programmatic-doorbell)
+    - [Manual doorbell testing](#manual-doorbell-testing)
 
 ## Development setup
 
@@ -37,6 +38,7 @@ gem install bundler
    * On Mac, with Homebrew: [`brew install postgres`](https://wiki.postgresql.org/wiki/Homebrew). You can use the `brew services` command to start/stop/restart the database service, for exaple: `brew services restart postgresql`.
    * On Ubuntu: `sudo apt-get install libpq-dev`. To restart the database: `sudo service postgresql restart`. To query database service status: `sudo service postgresql status`.
    * Rails relies on the `postgres` role existing, but this role is not always created in a Postgres installation. If you run into connection errors complaining that the `postgres` role is missing, you can create it with the command: `createuser -s -r postgres`
+   * See this article if you get stuck on Ubuntu: https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-14-04
 6. Install all dependencies (including Rails):
 ```
 $ bundle install
@@ -53,11 +55,17 @@ $ cp config/application.example.yml config/application.yml
     local database. If your local postgres user has a different password, make
     sure to change that in the `development` and `test` sections of
     `database.yml`
+    It's important that host is set to localhost in `database.yml`
 8.  Set up the database:
 ```
 $ bundle exec rake db:test:prepare
 ```
-9.  Now you should be able to run tests locally:
+
+If this step fails on Ubuntu, make sure that your postgres db is up and running
+and that you only have one postgres instance up: try `sudo lsof -i:5432`.
+You may need to use sudo to set your `/etc/postgresql/11/main/pg_hba.conf` file.
+IPv4 local connections should say `localhost` under ADDRESS and `trust` under METHOD.
+9.  Now you should be able to run tests locally, and they should all pass:
 ```
 $ bundle exec rake spec
 ```
@@ -66,7 +74,7 @@ $ bundle exec rake spec
 ### Steps to run arooo server locally
 
 1. `bundle exec rake populate:users` to set up dummy data
-1. `bundle exec rails server`
+1. `bundle exec rails server` don't forget to use http://localhost:3000 and not https
 1. `bundle exec rails console` Optional - useful for looking at and changing your local data)
 
 ### Docker setup (optional)
@@ -84,8 +92,6 @@ $ bundle exec rake spec
 
 1. setup DB
 ```docker-compose run --rm app bundle exec rake db:setup```
-
-Note: If you are on Linux and get a `Permission denied` error when running `docker-compose`, you can try using `sudo docker-compose`.
 
 ### Set up an application for local OAuth:
 
@@ -127,7 +133,7 @@ Tests, also known as specs, are great! Adding tests is a great pull request all 
 
 Run `rake db:test:prepare` after you pull or make any changes to the app, so make sure that your test database has the correct database schema
 
-Make sure `bundle exec rake spec` passes before pushing your changes. (Our TravisCI integration will double-check before we merge code, so it's ok if you forget sometimes) :)
+Make sure `bundle exec rake spec` passes before pushing your changes.
 
 ## User states
 
@@ -169,17 +175,6 @@ Now you can update any user:
 
 If you need to make or unmake an admin, have a current admin click the un/make admin button on a member in the Member Admin View. Admins can accept/reject applications, update any member's status, see current member's dues, open and close applications, and manage new member setup.
 
-## Programmatic doorbell
+## Door codes
 
-Arooo includes code to handle incoming voice calls and text messages from an intercom system, allowing members to enter a personalized door code to open the door to our space. It is implemented as a [Twilio TwiML](https://www.twilio.com/docs/voice/twiml) app that lives in the [DoorbellController](app/controllers/doorbell_controller.rb).
-
-A door code is represented by the [DoorCode](app/models/door_code.rb) model, which has to be associated to a `User` in the database. Typically, the `User` should have state `key_member`.
-
-For exceptional cases (e.g. package delivery) that don't fit the "one door code per member" model, you can associate a `DoorCode` to a dummy `User` object that is in the `visitor` state. You'll have to create the dummy `User` object and doorcode through the Rails console.
-
-### Manual doorbell testing
-
-You can test the doorbell endpoints directly from a browser or using CURL. You can pass parameters to each endpoint direclty as query params. For example, to manually test the SMS endpoint:
-```
-http://localhost:3000/doorbell/sms?Body=123456
-```
+In our new 2022 physical space, we use `user.door_code` (manually programmed into the physical door lock, then assigned to users via the app) 

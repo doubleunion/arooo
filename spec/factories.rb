@@ -33,6 +33,10 @@ FactoryBot.define do
 
     factory :applicant do
       state { "applicant" }
+      after(:create) do |applicant|
+        # Set required profile fields for a submitted application
+        applicant.profile.update!(reasons: "reasons", feminism: "feminism", attendance: "attendance")
+      end
     end
 
     factory :admin do
@@ -106,7 +110,10 @@ FactoryBot.define do
   end
 
   factory :door_code do
-    association :user, factory: :member
-    sequence(:code) { |n| "#{1000+n}" }
+    sequence(:code) { |n| "#{100000+n}" }
+
+    trait :assigned do
+      association :user, factory: :key_member
+    end
   end
 end
