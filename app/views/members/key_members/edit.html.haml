@@ -21,7 +21,10 @@
 
   %p
     = check_box_tag "agreements[kick_out]", 1, false, required: true
-    = label_tag "agreements[kick_out]", "I will do my best to ensure that my guests and other visitors I host follow our #{ link_to "Code of Conduct", POLICIES_URL} and #{ link_to "COVID-19 Reopening Policy", "https://docs.google.com/document/d/1Y8XEMxkTDqSNvtPbq6YSS4B1S3kE-K9dJOf3Jv0aLwI/edit#heading=h.ndiq3zp5lt8f", target: "_blank" }. If I notice somebody causing issues for others in our space in some way, I will try to remind them of our policies, ask them to stop or leave, send a note to the Code of Conduct Committee, or otherwise take action.".html_safe
+    = label_tag "agreements[kick_out]", "I will do my best to ensure that my guests and other visitors I host follow our 
+    #{ link_to "Code of Conduct", POLICIES_URL} 
+    and 
+    #{ link_to "COVID-19 Reopening Policy", "https://docs.google.com/document/d/1Y8XEMxkTDqSNvtPbq6YSS4B1S3kE-K9dJOf3Jv0aLwI/edit#heading=h.ndiq3zp5lt8f", target: "_blank" }. If I notice somebody causing issues for others in our space in some way, I will try to remind them of our policies, ask them to stop or leave, send a note to the Code of Conduct Committee, or otherwise take action.".html_safe
 
   %p
     = check_box_tag "agreements[take_action]", 1, false, required: true
