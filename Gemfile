@@ -51,7 +51,7 @@ group :development, :test do
   gem "rack_session_access"
   gem "pry-rails"
   gem "pry"
-  gem "puma", "~> 4.3"
+  gem "puma", "~> 5.6"
   gem "standard"
   gem "timecop"
 end
