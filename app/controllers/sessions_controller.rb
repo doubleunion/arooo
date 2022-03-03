@@ -2,9 +2,6 @@ class SessionsController < ApplicationController
 
   def login
     redirect_to members_root_path if current_user.try(:general_member?)
-    if current_user && current_user.applicant?
-      #redirect_to(edit_application_path(current_user.application))
-    end
   end
 
   def github
