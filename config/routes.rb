@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     end
     resource :exceptions, only: :show
     resources :memberships, only: [:index, :update]
+    resource :configurable, only: [:show, :update]
     patch "memberships/:id/change_membership_state" => "memberships#change_membership_state", :as => "change_membership_state"
     patch "memberships/:id/make_admin" => "memberships#make_admin", :as => "make_admin"
     patch "memberships/:id/unmake_admin" => "memberships#unmake_admin", :as => "unmake_admin"
