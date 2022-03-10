@@ -63,12 +63,4 @@ Rails.application.routes.draw do
   get "configurations" => "api#configurations"
 
   mount StripeEvent::Engine => "/stripe"
-
-  # Programmatic doorbell handling routes. Scoped under /doorbell path.
-  scope path: "doorbell", as: "doorbell", defaults: { format: "xml" } do
-    root to: "doorbell#welcome"
-    get "sms" => "doorbell#sms"
-    get "gather-ismember" => "doorbell#gather_ismember"
-    get "gather-keycode" => "doorbell#gather_keycode"
-  end
 end
