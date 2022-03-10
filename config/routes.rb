@@ -22,10 +22,6 @@ Rails.application.routes.draw do
       post "sponsor" => "applications#sponsor"
     end
     resources :comments, only: :index
-
-    resources :caches, only: :index do
-      post :expire, on: :collection
-    end
   end
 
   namespace :admin do
