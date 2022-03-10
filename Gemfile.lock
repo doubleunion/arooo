@@ -112,8 +112,8 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.9)
-    configurable_engine (0.5.0)
-      rails (> 4.2.0)
+    configurable_engine (2.0.2)
+      rails (> 5.2.0)
     crass (1.0.6)
     dante (0.2.0)
     database_cleaner (2.0.1)
