@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     end
     resource :exceptions, only: :show
     resources :memberships, only: [:index, :update]
+    resource :configurable, only: [:show, :update]
     patch "memberships/:id/change_membership_state" => "memberships#change_membership_state", :as => "change_membership_state"
     patch "memberships/:id/make_admin" => "memberships#make_admin", :as => "make_admin"
     patch "memberships/:id/unmake_admin" => "memberships#unmake_admin", :as => "unmake_admin"
@@ -63,12 +64,4 @@ Rails.application.routes.draw do
   get "configurations" => "api#configurations"
 
   mount StripeEvent::Engine => "/stripe"
-
-  # Programmatic doorbell handling routes. Scoped under /doorbell path.
-  scope path: "doorbell", as: "doorbell", defaults: { format: "xml" } do
-    root to: "doorbell#welcome"
-    get "sms" => "doorbell#sms"
-    get "gather-ismember" => "doorbell#gather_ismember"
-    get "gather-keycode" => "doorbell#gather_keycode"
-  end
 end
