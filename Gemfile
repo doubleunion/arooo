@@ -31,7 +31,6 @@ gem "coffee-rails", ">= 4.2.2"
 gem "bootstrap-sass"
 gem "jquery-datatables-rails", ">= 3.4.0"
 gem "bigdecimal", "3.1.2" # specify this directly to get around the error NoMethodError: undefined method `new' for BigDecimal:Class
-gem "twilio-ruby"
 gem "redis" # Used to store recently-authorized doorbell member
 
 # Avoid low-severity security issue: https://github.com/advisories/GHSA-vr8q-g5c7-m54m
