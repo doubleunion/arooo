@@ -14,7 +14,6 @@ gem "pg"
 gem "state_machine_deuxito", require: 'state_machine'
 gem "protected_attributes_continued" # works w rails 5
 gem "kaminari", ">= 1.2.1"
-gem "actionpack-action_caching", ">= 1.2.0"
 gem "rails_autolink", ">= 1.1.6"
 gem "redcarpet"
 gem "configurable_engine" , ">= 0.5.0" # this gem was design for Rails 5, consider removing or replacing it
