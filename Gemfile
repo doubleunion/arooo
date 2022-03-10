@@ -19,7 +19,7 @@ gem "rails_autolink", ">= 1.1.6"
 gem "redcarpet"
 gem "configurable_engine" , ">= 0.5.0" # this gem was design for Rails 5, consider removing or replacing it
 gem "bugsnag"
-gem "stripe", "~> 3" # TODO upgrade this! Carefully...
+gem "stripe", "~> 5" # TODO upgrade this! Carefully...
 gem "stripe_event"
 gem "rack-canonical-host"
 gem "aws-sdk-rails", ">= 2.1.0"
