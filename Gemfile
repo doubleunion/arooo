@@ -16,7 +16,7 @@ gem "protected_attributes_continued" # works w rails 5
 gem "kaminari", ">= 1.2.1"
 gem "rails_autolink", ">= 1.1.6"
 gem "redcarpet"
-gem "configurable_engine" , ">= 0.5.0" # this gem was design for Rails 5, consider removing or replacing it
+gem "configurable_engine" , "~> 1"
 gem "bugsnag"
 gem "stripe", "~> 3" # TODO upgrade this! Carefully...
 gem "stripe_event"
