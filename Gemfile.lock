@@ -125,7 +125,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.9)
+    concurrent-ruby (1.1.10)
     configurable_engine (2.0.2)
       rails (> 5.2.0)
     crass (1.0.6)
@@ -388,9 +388,9 @@ GEM
       dante (>= 0.2.0)
       multi_json (~> 1.0)
       stripe (>= 2.0.3)
-    stripe_event (2.3.2)
+    stripe_event (2.4.0)
       activesupport (>= 3.1)
-      stripe (>= 2.8, < 6)
+      stripe (>= 2.8, < 7)
     temple (0.8.2)
     thor (1.2.1)
     thread_safe (0.3.6)
