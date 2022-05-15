@@ -153,8 +153,10 @@ GEM
       railties (>= 5.0.0)
     faker (2.13.0)
       i18n (>= 1.6, < 2)
-    faraday (0.17.5)
-      multipart-post (>= 1.2, < 3)
+    faraday (2.3.0)
+      faraday-net_http (~> 2.0)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (2.0.2)
     ffi (1.13.1)
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
@@ -218,7 +220,6 @@ GEM
     minitest (5.15.0)
     multi_json (1.15.0)
     multi_xml (0.6.0)
-    multipart-post (2.1.1)
     nio4r (2.5.8)
     nokogiri (1.13.4)
       mini_portile2 (~> 2.8.0)
@@ -347,6 +348,7 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.5)
     ruby_parser (3.15.0)
       sexp_processor (~> 4.9)
     rubyzip (2.3.0)
@@ -382,8 +384,7 @@ GEM
       rubocop (= 1.25.1)
       rubocop-performance (= 1.13.2)
     state_machine_deuxito (0.0.1)
-    stripe (3.31.1)
-      faraday (~> 0.10)
+    stripe (5.55.0)
     stripe-ruby-mock (2.5.8)
       dante (>= 0.2.0)
       multi_json (~> 1.0)
@@ -471,7 +472,7 @@ DEPENDENCIES
   simplecov
   standard
   state_machine_deuxito
-  stripe (~> 3)
+  stripe (~> 5)
   stripe-ruby-mock
   stripe_event
   timecop
