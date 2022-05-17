@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.7.1"
 
-gem "rails", "~> 6.0"
+gem "rails", "~> 7.0"
 gem "jquery-rails", ">= 4.3.5"
 gem "turbolinks"
 gem "jbuilder"
