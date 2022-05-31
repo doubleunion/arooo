@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.7.1"
 
-gem "rails", "~> 6.0"
+gem "rails", "~> 6.1"
 gem "jquery-rails", ">= 4.3.5"
 gem "turbolinks"
 gem "jbuilder"
@@ -21,7 +21,7 @@ gem "bugsnag"
 gem "stripe", "~> 3" # TODO upgrade this! Carefully...
 gem "stripe_event"
 gem "rack-canonical-host"
-gem "aws-sdk-rails", ">= 2.1.0"
+gem "aws-sdk-rails", "~> 3"
 gem "rack-cors"
 gem "haml-rails", ">= 1.0.0"
 gem "sass-rails", ">= 5.0.7"
