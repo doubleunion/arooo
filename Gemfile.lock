@@ -429,7 +429,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   awesome_print
-  aws-sdk-rails (>= 2.1.0)
+  aws-sdk-rails (~> 3)
   better_errors
   binding_of_caller
   bootstrap-sass
