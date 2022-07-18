@@ -47,6 +47,12 @@ class SessionsController < ApplicationController
     if new_user?
       user = User.create(username: session[:username], email: params[:email])
 
+      # If a new user logged in with Google, set email_for_google to the
+      # email address they used to log in.
+      if session[:email_for_google]
+        user.email_for_google = session[:email_for_google]
+      end
+
       if user.save
         make_auth(user)
         user.make_applicant!
@@ -92,6 +98,9 @@ class SessionsController < ApplicationController
     session[:provider] = omniauth.provider
     session[:uid] = omniauth.uid
     session[:username] = omniauth.try(:username) || omniauth.try(:email)
+    if omniauth.is_a?(GoogleAuth)
+      session[:email_for_google] = omniauth.try(:email)
+    end
   end
 
   def add_auth_and_redirect(omniauth)
