@@ -37,13 +37,13 @@
     %tr
       %td
         = f.label :name, "Full name"
-        %small #{"required"}
+        %small #{"(required)"}
       %td= f.text_field :name, required: true
 
     %tr
       %td
         = f.label :email, "Email"
-        %small #{"required"}
+        %small #{"(required)"}
       %td= f.text_field :email, required: true
 
     = f.fields_for :profile do |profile_fields|
@@ -52,6 +52,7 @@
       %tr
         %td
           = profile_fields.label :pronouns, ("pronouns").capitalize
+          %small #{"(optional)"}
 
           %p.small
             = ("What ")
