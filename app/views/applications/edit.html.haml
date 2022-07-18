@@ -42,9 +42,21 @@
 
     %tr
       %td
-        = f.label :email, "Email"
+        = f.label :email, "Contact email"
         %small #{"(required)"}
+
+        %p.small
+          = "We will contact you using this email, and we will add this email to the DU mailing list if you get accepted as a member."
       %td= f.text_field :email, required: true
+
+    %tr
+      %td
+        = f.label :email_for_google, "Google account email"
+        %small #{"(optional)"}
+
+        %p.small
+          = "We use Google Drive and Google Calendar for internal coordination for members. We will use this email to add you to those resources if you get accepted as a member."
+      %td= f.text_field :email_for_google
 
     = f.fields_for :profile do |profile_fields|
       = profile_fields.hidden_field :id
