@@ -126,7 +126,7 @@ describe ApplicationsController do
           id: application.id,
           user:
           {
-            email_for_google: :email_for_google,
+            email_for_google: email_for_google,
             application_attributes: application_params,
             profile_attributes: profile_params
           }
@@ -144,6 +144,7 @@ describe ApplicationsController do
 
         it "should update the user's application" do
           expect { subject }.to change { application.agreement_terms }.from(false).to(true)
+                            .and change { user.email_for_google }.from(nil).to("lemurs@gmail.com")
           expect(response).to redirect_to edit_application_path(application)
         end
 
@@ -187,7 +188,7 @@ describe ApplicationsController do
         }
 
         context "with all required fields" do
-          it "should add an notice to the flash" do
+          it "should add a notice to the flash" do
             subject
             expect(flash[:notice]).to include "Application submitted"
           end
@@ -200,7 +201,7 @@ describe ApplicationsController do
         context "missing optional email for Google" do
           let(:email_for_google) { "" }
 
-          it "should add an notice to the flash" do
+          it "should add a notice to the flash" do
             subject
             expect(flash[:notice]).to include "Application submitted"
           end
