@@ -65,7 +65,7 @@ class ApplicationsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email,
+    params.require(:user).permit(:name, :email, :email_for_google,
       profile_attributes: profile_attributes,
       application_attributes: application_attributes)
   end

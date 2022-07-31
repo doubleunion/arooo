@@ -57,7 +57,7 @@ describe ApplicationsController do
         expect(response).to render_template :show
       end
 
-      it "should not render application of another user" do
+      it "should redirect to root for another user's application" do
         get :show, params: { id: other_user.application.id }
         expect(response).to redirect_to :root
       end
@@ -126,11 +126,13 @@ describe ApplicationsController do
           id: application.id,
           user:
           {
+            email_for_google: email_for_google,
             application_attributes: application_params,
             profile_attributes: profile_params
           }
         }
       }
+      let(:email_for_google) { "lemurs@gmail.com" }
       let(:profile_params) { {summary: "lemurs!"} }
 
       subject { post :update, params: params }
@@ -142,10 +144,20 @@ describe ApplicationsController do
 
         it "should update the user's application" do
           expect { subject }.to change { application.agreement_terms }.from(false).to(true)
+                            .and change { user.email_for_google }.from(nil).to("lemurs@gmail.com")
           expect(response).to redirect_to edit_application_path(application)
         end
 
-        context "missing required fields" do
+        context "missing optional email for Google" do
+          let(:email_for_google) { "" }
+
+          it "should update the user's application" do
+            expect { subject }.to change { application.agreement_terms }.from(false).to(true)
+            expect(response).to redirect_to edit_application_path(application)
+          end
+        end
+
+        context "missing required contact email" do
           before { params.merge!(user: {email: ""}) }
 
           it "should not update the user" do
@@ -176,7 +188,20 @@ describe ApplicationsController do
         }
 
         context "with all required fields" do
-          it "should add an notice to the flash" do
+          it "should add a notice to the flash" do
+            subject
+            expect(flash[:notice]).to include "Application submitted"
+          end
+
+          it "should submit the application" do
+            expect { subject }.to change { application.state }.from("started").to("submitted")
+          end
+        end
+
+        context "missing optional email for Google" do
+          let(:email_for_google) { "" }
+
+          it "should add a notice to the flash" do
             subject
             expect(flash[:notice]).to include "Application submitted"
           end
