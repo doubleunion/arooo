@@ -75,34 +75,6 @@
 
       %tr
         %td
-          = profile_fields.label :twitter, "Twitter username"
-          %small
-            = "(optional)"
-        %td= profile_fields.text_field :twitter
-
-      %tr
-        %td
-          = profile_fields.label :facebook, "Facebook URL"
-          %small
-            = "(optional)"
-        %td= profile_fields.text_field :facebook
-
-      %tr
-        %td
-          = profile_fields.label :website, "Website URL"
-          %small
-            = "(optional)"
-        %td= profile_fields.text_field :website
-
-      %tr
-        %td
-          = profile_fields.label :linkedin, "LinkedIn URL"
-          %small
-            = "(optional)"
-        %td= profile_fields.text_field :linkedin
-
-      %tr
-        %td
           = profile_fields.label :reasons, "Why are you interested in joining Double Union?"
           %p.small
             = "We ask this because we'd like to learn about how your interests relate to DU. For example, what would you like to work on here, or what would you like to learn or share here? What about DU’s community appeals to you?"
@@ -140,7 +112,39 @@
             = "Required — 2000 character maximum."
         %td= profile_fields.text_area :attendance, rows: 10
 
-      %tr.nested-table
+      %tr
+        %td{ colspan: 2 }
+          %table
+            %tr
+              %td
+                %p.bold= "Social media or website links"
+                %p.small= "Completely optional and only for us to get to know you better. Feel free to share all, some, or none of these links."
+            %tr
+              %td
+                = profile_fields.label :twitter, "Twitter username"
+                %small #{"(optional)"}
+              %td
+                = profile_fields.text_field :twitter
+            %tr
+              %td
+                = profile_fields.label :facebook, "Facebook URL"
+                %small #{"(optional)"}
+              %td
+                = profile_fields.text_field :facebook
+            %tr
+              %td
+                = profile_fields.label :website, "Website URL"
+                %small #{"(optional)"}
+              %td
+                = profile_fields.text_field :website
+            %tr
+              %td
+                = profile_fields.label :linkedin, "LinkedIn URL"
+                %small #{"(optional)"}
+              %td
+                = profile_fields.text_field :linkedin
+
+      %tr
         %td{ colspan: 2 }
           %table
             = f.fields_for :application do |app_fields|

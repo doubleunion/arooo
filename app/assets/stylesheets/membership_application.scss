@@ -11,15 +11,6 @@ body.applications.edit, body.applications.update {
     }
   }
 
-  tr.nested-table {
-    > td {
-      padding-left: 0;
-      padding-right: 0;
-    }
-    table td {
-      border: 0;
-    }
-  }
   .checkbox-label {
     cursor: pointer;
     font-weight: normal;
