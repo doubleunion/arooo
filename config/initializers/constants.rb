@@ -20,6 +20,7 @@ EXTERNAL_SITE_URL = "https://www.doubleunion.org"
 BASE_ASSUMPTIONS_URL = EXTERNAL_SITE_URL + "/base_assumptions"
 POLICIES_URL = EXTERNAL_SITE_URL + "/policies"
 MEMBERSHIP_URL = EXTERNAL_SITE_URL + "/membership"
+MEMBERSHIP_BENEFITS_RESPONSIBILITIES_URL = MEMBERSHIP_URL + "/#membership-benefits-and-responsibilities"
 
 VOTING_CRITERIA_DOC = "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.w83btzy2bttc"
 COMMENTING_DOC = "https://docs.google.com/document/d/12R7utXAiyCK55XEP8cPscUqu2CXAj-hL5jXE-MaJdgE/edit#heading=h.qmgkosbaknlv"
