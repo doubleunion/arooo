@@ -6,15 +6,7 @@
   #{ mail_to JOIN_EMAIL }.
 
 %p
-  = "You can save this application at any time before you submit it. Once submitted, the content will be readable by all current Double Union members. No part of this application will ever be public."
-
-%p
-  = "A small tip: The paragraph questions are parsed as markdown! "
-  #{ link_to "Here's a", "https://caleorourke.gitbooks.io/redcarpet-syntax/content/cheatsheet/index.html", target: "_blank"}
-  = " markdown syntax cheatsheet."
-  = "That means that you can also just type in sentences or paragraphs and it'll look fine, too. You can also "
-  #{ link_to "preview your application", application_path(@user.application), target: "_blank"}
-  = " before or after submitting it."
+  = "You can save this application at any time before you submit it. Once you submit your application, it will be visible to all current Double Union members while it is open, then hidden once it is accepted or rejected. No part of your application will ever be public."
 
 %p
   = "If this application looks blanker than you left it, double check that you logged in with the same service as before by logging out and trying the other one (GitHub or Google)."
@@ -178,9 +170,6 @@
       = "Submit"
     %p
       = "When you're done with your application, submit it with the button below. You will be able to edit it any time before the membership drive closes."
-    %p
-      = "If you're curious what your application will look like to us, you can "
-      #{ link_to "check it out here", application_path(@user.application), target: "_blank"}.
 
     %fieldset
       = f.submit "Submit application", name: 'submit', class: "btn btn-primary"
