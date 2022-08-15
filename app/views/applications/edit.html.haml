@@ -144,7 +144,7 @@
 
               %tr
                 %td.pt-10= app_fields.check_box :agreement_terms
-                %td.pt-10.pl-10= app_fields.label :agreement_terms, "#{"I understand the"} #{link_to "privileges and responsibilities", MEMBERSHIP_URL, target: "_blank"} #{"that come with Double Union membership."}".html_safe, class: 'checkbox-label'
+                %td.pt-10.pl-10= app_fields.label :agreement_terms, "#{"I have read the"} #{link_to "base assumptions", BASE_ASSUMPTIONS_URL, target: "_blank"} #{"for Double Union and the list of"} #{link_to "benefits and responsibilities", MEMBERSHIP_BENEFITS_RESPONSIBILITIES_URL, target: "_blank"} #{"that come with Double Union membership."} ".html_safe, class: 'checkbox-label'
 
               %tr
                 %td.pt-10= app_fields.check_box :agreement_policies
