@@ -115,18 +115,6 @@ describe User do
   end
 
   describe "#make_key_member" do
-    let(:member) { create :voting_member }
-
-    subject { member.make_key_member }
-
-    it "should transition from voting_member to member" do
-      expect { subject }.to change { member.state }.from("voting_member").to("key_member")
-    end
-
-    it "should remove voting member agreement status" do
-      expect { subject }.to change { member.voting_policy_agreement }.from(true).to(false)
-    end
-
     context "with an applicant" do
       let(:member) { create :applicant }
 
@@ -138,6 +126,17 @@ describe User do
     context "voting member with a key_code" do
       let(:member) { create :voting_member }
       let!(:door_code) { create(:door_code, user: member) }
+
+      subject { member.make_key_member }
+
+      it "should transition from voting_member to member" do
+        expect { subject }.to change { member.state }.from("voting_member").to("key_member")
+      end
+
+      it "should remove voting member agreement status" do
+        expect { subject }.to change { member.voting_policy_agreement }.from(true).to(false)
+      end
+
       it "transition to key_member does not disable their door code; key code should still be assigned" do
         subject
         door_code.reload
