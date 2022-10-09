@@ -144,6 +144,18 @@ describe User do
     it "should transition from key member to voting member" do
       expect { subject }.to change { member.state }.from("key_member").to("voting_member")
     end
+
+    context "was a key member" do
+      let(:member) { create(:key_member) }
+      let!(:door_code) { create(:door_code, user: member) }
+
+      it "does not disable their door code; key code should still be assigned" do
+        subject
+        door_code.reload
+        expect(door_code.user_id).not_to eq(nil)
+        expect(door_code.is_assigned?).to be true
+      end
+    end
   end
 
   describe "#door_code" do
