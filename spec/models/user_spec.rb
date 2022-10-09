@@ -115,6 +115,15 @@ describe User do
   end
 
   describe "#make_key_member" do
+    context "as a member" do
+      let(:member) { create :member }
+      subject { member.make_key_member }
+
+      it "should transition from member to key_member" do
+        expect { subject }.to change { member.state }.from("member").to("key_member")
+      end
+    end
+
     context "with an applicant" do
       let(:member) { create :applicant }
 
@@ -129,7 +138,7 @@ describe User do
 
       subject { member.make_key_member }
 
-      it "should transition from voting_member to member" do
+      it "should transition from voting_member to key_member" do
         expect { subject }.to change { member.state }.from("voting_member").to("key_member")
       end
 
