@@ -120,7 +120,7 @@ class User < ApplicationRecord
       user.update(voting_policy_agreement: false)
     end
 
-    after_transition on: all - [:key_member, :make_voting_member] do |user, _|
+    after_transition on: all - [:make_key_member, :make_voting_member] do |user, _|
       user.door_code.unassign if user.door_code.present?
     end
 

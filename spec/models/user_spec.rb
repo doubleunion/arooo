@@ -134,6 +134,17 @@ describe User do
         expect { subject }.not_to change { member.state }
       end
     end
+
+    context "voting member with a key_code" do
+      let(:member) { create :voting_member }
+      let!(:door_code) { create(:door_code, user: member) }
+      it "transition to key_member does not disable their door code; key code should still be assigned" do
+        subject
+        door_code.reload
+        expect(door_code.user_id).not_to eq(nil)
+        expect(door_code.is_assigned?).to be true
+      end
+    end
   end
 
   describe "#make_voting_member" do
@@ -146,7 +157,6 @@ describe User do
     end
 
     context "was a key member" do
-      let(:member) { create(:key_member) }
       let!(:door_code) { create(:door_code, user: member) }
 
       it "does not disable their door code; key code should still be assigned" do
