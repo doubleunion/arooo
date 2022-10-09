@@ -116,7 +116,7 @@ class User < ApplicationRecord
       transition [:member, :voting_member, :key_member] => :former_member
     end
 
-    after_transition on: [:make_member, :make_key_member, :make_former_member] do |user, _|
+    after_transition on: all - [:make_voting_member] do |user, _|
       user.update(voting_policy_agreement: false)
     end
 
