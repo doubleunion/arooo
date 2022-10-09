@@ -115,16 +115,13 @@ describe User do
   end
 
   describe "#make_key_member" do
-    let(:member) { create :voting_member }
+    context "as a member" do
+      let(:member) { create :member }
+      subject { member.make_key_member }
 
-    subject { member.make_key_member }
-
-    it "should transition from voting_member to member" do
-      expect { subject }.to change { member.state }.from("voting_member").to("key_member")
-    end
-
-    it "should remove voting member agreement status" do
-      expect { subject }.to change { member.voting_policy_agreement }.from(true).to(false)
+      it "should transition from member to key_member" do
+        expect { subject }.to change { member.state }.from("member").to("key_member")
+      end
     end
 
     context "with an applicant" do
@@ -132,6 +129,28 @@ describe User do
 
       it "should not transition from applicant to key member" do
         expect { subject }.not_to change { member.state }
+      end
+    end
+
+    context "voting member with a key_code" do
+      let(:member) { create :voting_member }
+      let!(:door_code) { create(:door_code, user: member) }
+
+      subject { member.make_key_member }
+
+      it "should transition from voting_member to key_member" do
+        expect { subject }.to change { member.state }.from("voting_member").to("key_member")
+      end
+
+      it "should remove voting member agreement status" do
+        expect { subject }.to change { member.voting_policy_agreement }.from(true).to(false)
+      end
+
+      it "transition to key_member does not disable their door code; key code should still be assigned" do
+        subject
+        door_code.reload
+        expect(door_code.user_id).not_to eq(nil)
+        expect(door_code.is_assigned?).to be true
       end
     end
   end
@@ -143,6 +162,17 @@ describe User do
 
     it "should transition from key member to voting member" do
       expect { subject }.to change { member.state }.from("key_member").to("voting_member")
+    end
+
+    context "was a key member" do
+      let!(:door_code) { create(:door_code, user: member) }
+
+      it "does not disable their door code; key code should still be assigned" do
+        subject
+        door_code.reload
+        expect(door_code.user_id).not_to eq(nil)
+        expect(door_code.is_assigned?).to be true
+      end
     end
   end
 
