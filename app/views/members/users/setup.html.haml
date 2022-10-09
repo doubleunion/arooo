@@ -26,13 +26,33 @@
 
 %p
   Most DU members pay monthly dues, which supports the existence of the space.
-  This is on a sliding scale from $10-$100 — you pay the amount that is right for you, and you can change it at any time (up or down) if your financial situation changes. $25 is about average.
+  This is on a sliding scale from $10-$100 — you pay the amount that is right for you, and you can change it at any time (up or down) if your financial situation changes.
 
 %p
-  We also gladly welcome and support members who can't afford to pay membership dues!
+  We gladly welcome and support members who can't afford to pay membership dues!
   Any member can request a scholarship due to financial need at any time.
   To apply for a scholarship, go to #{ link_to "Manage Membership", members_user_dues_path(@user) } and fill out the form.
 
+%table{}
+  %tr
+    %th Income
+    %th Suggested range (but it's up to you)
+  %tr
+    %td Below $50,000
+    %td $0 - $10
+  %tr
+    %td $50,000-$100,000
+    %td $15-$25
+  %tr 
+    %td $100,000-$150,000
+    %td $30-50
+  %tr 
+    %td $150,000-$200,000
+    %td $75
+  %tr 
+    %td $200,000+
+    %td $100
+    
 = render 'members/dues/form', action: "Set Up"
 
 %p Email #{ mail_to MEMBERSHIP_EMAIL } if you have any questions or concerns about dues.
