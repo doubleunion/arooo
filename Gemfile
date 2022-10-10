@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-ruby "2.7.1"
+ruby "2.7.5"
 
-gem "rails", "~>6.0"
+gem "rails", "~>6.1"
 gem "jquery-rails", ">= 4.3.5"
 gem "turbolinks"
 gem "jbuilder"
