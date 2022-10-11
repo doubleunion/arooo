@@ -28,14 +28,36 @@
             Not set
         %td= user.display_state
         %td
-          = user.is_scholarship ? "Yes" : "No"
-          = form_for user, url: admin_membership_path(user) do |f|
+          -# 'No' if no request or scholarship status.  Button for enabling
+          -# 'Requested/Approved/Checkin' dates if any status.  Buttons for continuing or removing
+          - if not user.requested_scholarship.present? and not user.scholarship_since.present?
+            = "No"
+          - else
+            %table
+              %tr
+                %td
+                  = "Requested:"
+                %td
+                  = "#{user.requested_scholarship.present? ? user.requested_scholarship.try(:strftime, '%Y-%m-%d') : '---'}"
+              %tr
+                %td
+                  = "Approved:"
+                %td
+                  = "#{user.scholarship_since.present? ? user.scholarship_since.try(:strftime, '%Y-%m-%d') : '---'}"
+              %tr
+                %td
+                  = "Last Checkin:"
+                %td
+                  = "#{user.scholarship_last_checkin.try(:strftime, '%Y-%m-%d')}"
+
+          = form_for user, url: admin_approve_or_continue_scholarship_path(user) do |f|
             = f.hidden_field(:id)
-            = f.hidden_field(:is_scholarship, value: !user.is_scholarship)
-            - if user.is_scholarship
+            = f.submit "#{user.scholarship_since.present? ? 'Continue scholarship' : 'Allow scholarship'}", class: "btn", data: { confirm: "Are you sure? Note: This does not change the member's dues in Stripe."}
+
+          - if user.requested_scholarship.present? or user.scholarship_since.present?
+            = form_for user, url: admin_remove_scholarship_path(user) do |f|
+              = f.hidden_field(:id)
               = f.submit "Remove scholarship", class: "btn", data: { confirm: "Are you sure? Note: This does not change the member's dues in Stripe." }
-            - else
-              = f.submit "Mark as on scholarship", class: "btn", data: { confirm: "Are you sure? Note: This does not change the member's dues in Stripe." }
 
         %td= user.last_stripe_charge_succeeded.strftime('%b %d %Y') if user.last_stripe_charge_succeeded
 

@@ -47,17 +47,51 @@ describe Admin::MembershipsController do
     end
   end
 
-  describe "PUT update" do
-    subject { put :update, params: params }
+  describe "PATCH approve_scholarship" do
+    subject { patch :approve_or_continue_scholarship, params: params }
+    before { login_as(:member, is_admin: true) }
 
-    before { login_as(:voting_member, is_admin: true) }
-
-    context "marking a member as on scholarship" do
+    context "mark any member not on scholarship as on scholarship" do
       let(:member) { create :member }
-      let(:params) { {id: member.id, user: {is_scholarship: true}} }
+      let(:params) { {id: member.id} }
 
-      it "should mark scholarship as true" do
-        expect { subject }.to change { member.reload.is_scholarship }.from(false).to(true)
+      it "should set scholarship_since and last_checkin" do
+        expect { subject }.to change { member.reload.scholarship_since }.from(nil).to be_within(1.second).of Time.now
+        expect(member.scholarship_last_checkin).to be_within(1.second).of Time.now
+      end
+    end
+
+    context "mark a scholarship member as continuing scholarship" do
+      let(:member) { create :member, scholarship_since: Time.now }
+      let(:params) { {id: member.id} }
+
+      it "should set scholarship_since and last_checkin" do
+        expect { subject }.not_to change { member.reload.scholarship_since }
+        expect(member.scholarship_last_checkin).to be_within(1.second).of Time.now
+      end
+    end
+  end
+
+  describe "PATCH remove_scholarship" do
+    subject { patch :remove_scholarship, params: params }
+    before { login_as(:member, is_admin: true) }
+
+    context "mark member requesting scholarship as rejected" do
+      let(:member) { create :member, requested_scholarship: Time.now}
+      let(:params) { {id: member.id} }
+
+      it "should remove scholarship request" do
+        expect { subject }.to change { member.reload.requested_scholarship }.to be_nil
+      end
+    end
+
+    context "marking a member as not on scholarship" do
+      let(:member) { create :member, scholarship_since: Time.now}
+      let(:params) { {id: member.id} }
+
+      it "should mark scholarship as false" do
+        expect { subject }.to change { member.reload.scholarship_since }.to be_nil
+        expect(member.scholarship_last_checkin).to be_nil
       end
     end
   end
