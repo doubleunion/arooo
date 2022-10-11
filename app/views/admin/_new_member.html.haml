@@ -12,7 +12,7 @@
   .col-md-4
     %ul.list-unstyled
       %li
-        %b Approved on #{ new_member.application.processed_at.strftime("%b %-d") }
+        %b Approved on #{ new_member.application.processed_at? ? new_member.application.processed_at.strftime("%b %-d") : '---' }
       %li
         - if new_member.email_for_google
           %b Google email:
@@ -21,12 +21,11 @@
           .admin-warning
             No Google email
       %li
-        - if new_member.last_stripe_charge_succeeded
-          %b Stripe Payment Made On:
-          = new_member.last_stripe_charge_succeeded
+        - if new_member.last_stripe_charge_succeeded or new_member.scholarship_since?
+          Stripe charge succeeded OR Scholarship approved
         - else
           .admin-warning
-            Dues Not Set Up
+            Dues Not Set Up or Waiting on Scholarship
   .col-md-4
     = form_for :user, url: admin_save_membership_note_path do |f|
       = f.hidden_field :id, value: new_member.id

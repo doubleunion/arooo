@@ -166,6 +166,10 @@ class User < ApplicationRecord
     )
   end
 
+  def request_scholarship
+    touch :requested_scholarship
+  end
+
   def display_state
     state.tr("_", " ")
   end
