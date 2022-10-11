@@ -22,7 +22,7 @@
     %b
       #{number_to_currency (@subscription.plan.amount / 100)}
     per #{@subscription.plan.interval}, and your status is <b>#{@subscription.status}</b>.
-- elsif current_user.is_scholarship?
+- elsif current_user.scholarship_since.present?
   %p You are receiving a scholarship for your dues payments.
 - else
   %p You don't have a Stripe subscription yet, or it may have been canceled. Please add your credit or debit card, or request a scholarship below! <3
