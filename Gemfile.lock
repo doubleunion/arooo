@@ -314,7 +314,6 @@ GEM
     raindrops (0.20.0)
     rake (13.0.6)
     redcarpet (3.5.1)
-    redis (4.7.1)
     regexp_parser (2.5.0)
     rexml (3.2.5)
     rspec-collection_matchers (1.2.0)
@@ -472,7 +471,6 @@ DEPENDENCIES
   rails_12factor
   rails_autolink (>= 1.1.6)
   redcarpet
-  redis
   rspec-collection_matchers
   rspec-rails (>= 4.0.0)
   sass-rails (>= 5.0.7)

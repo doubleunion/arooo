@@ -17,8 +17,6 @@ Most contributors are DU members who collaborate in an internal Slack channel, b
   - [Tests](#tests)
   - [User states](#user-states)
     - [Manually changing a user's state](#manually-changing-a-users-state)
-  - [Programmatic doorbell](#programmatic-doorbell)
-    - [Manual doorbell testing](#manual-doorbell-testing)
 
 ## Development setup
 
@@ -69,7 +67,6 @@ IPv4 local connections should say `localhost` under ADDRESS and `trust` under ME
 ```
 $ bundle exec rake spec
 ```
-10. Optionally, if you want to run the doorbell code locally, you will need to have a local instance of [Redis](https://redis.io/). You can install it on mac with `brew install redis`. If your local Redis instance is running on a non-standard port, you can set `REDIS_URL` in your local `config/application.yaml`.
 
 ### Steps to run arooo server locally
 

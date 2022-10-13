@@ -29,7 +29,6 @@ gem "uglifier"
 gem "coffee-rails", ">= 4.2.2"
 gem "bootstrap-sass"
 gem "jquery-datatables-rails", ">= 3.4.0"
-gem "redis" # Used to store recently-authorized doorbell member
 
 # Avoid low-severity security issue: https://github.com/advisories/GHSA-vr8q-g5c7-m54m
 gem "nokogiri", ">= 1.11.0.rc4"
