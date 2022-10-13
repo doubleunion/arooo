@@ -51,7 +51,7 @@
     %td
       - if @application.sponsorships.any?
         - @application.sponsorships.each do |sponsor|
-          = link_to sponsor.user.username, members_user_path(sponsor.user)
+          = link_to sponsor.user.name, members_user_path(sponsor.user)
       - else
         none, yet
   %tr
@@ -59,7 +59,7 @@
     %td
       - if @application.yes_votes.any?
         - @application.yes_votes.each do |vote|
-          = link_to vote.user.username, members_user_path(vote.user)
+          = link_to vote.user.name, members_user_path(vote.user)
           <br />
       - else
         \--
