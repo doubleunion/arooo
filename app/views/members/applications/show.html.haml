@@ -37,6 +37,9 @@
 - else
   %p You'll be able to sponsor applicants once you've been a member for 2 weeks!
 
+- if @user.former_member?
+  %p <strong>#{@user.name}</strong> is a former member of Double Union
+
 %h3 Status
 
 %table.table
