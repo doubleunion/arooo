@@ -36,7 +36,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :profile, :application
 
   scope :visitors, -> { where(state: "visitor") }
-  scope :applicants, -> { where(state: "applicant") }
+  scope :applicants, -> { where(state: %w[applicant former_member]) }
   scope :members, -> { where(state: "member") }
   scope :key_members, -> { where(state: "key_member") }
   scope :voting_members, -> { where(state: "voting_member") }
@@ -101,7 +101,7 @@ class User < ApplicationRecord
     end
 
     event :make_member do
-      transition [:applicant, :voting_member, :key_member] => :member
+      transition [:applicant, :voting_member, :key_member, :former_member] => :member
     end
 
     event :make_key_member do

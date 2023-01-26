@@ -34,8 +34,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_applicant_user
-    require_user_with_state("applicant")
+  def require_nonmember
+    require_user_with_state(["applicant", "former_member"])
   end
 
   def require_general_member

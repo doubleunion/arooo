@@ -75,8 +75,12 @@ class SessionsController < ApplicationController
     if user.applicant?
       redirect_to(edit_application_path(user.application)) && return
     elsif user.former_member?
-      flash[:message] = "As a former member, you can no longer access the members sections."
-      redirect_to(root_path) && return
+      if Configurable[:accepting_applications]
+        redirect_to(edit_application_path(user.application)) && return
+      else
+        flash[:message] = "As a former member, you can no longer access the members sections."
+        redirect_to(root_path) && return
+      end
     elsif user.general_member?
       redirect_to(members_root_path) && return
     else

@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :ensure_accepting_applications
-  before_action :require_applicant_user
+  before_action :require_nonmember
 
   before_action :set_user, only: [:show, :edit, :update]
   before_action :ensure_own_application, only: [:show, :edit, :update]
