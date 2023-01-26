@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.7.1"
+ruby "2.7.6"
 
 gem "rails", "~>6.0"
 gem "jquery-rails", ">= 4.3.5"
