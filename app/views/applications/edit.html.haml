@@ -76,24 +76,33 @@
 
       %tr
         %td
-          = profile_fields.label :feminism, "What is your definition of your feminism?"
+          = profile_fields.label :feminism, "Tell us about your feminism?"
           %p.small
             = "DU works toward being a feminist space, and it’s important to us that new members care about this too."
           %p.small
-            = "To help us understand your view, we'd like to hear your thoughts or experiences around your own feminism. It's ok if you don't have a formal or academic way of talking about this! You can also answer with stories or memories."
-          %p.small
-            = "For example, what has feminism meant to you in your life? Or as another example, what has justice or equality meant for you in your life?"
-          %p.small
-            = "How does your feminism include transgender people and nonbinary people?"
-          %p.small
-            = "Or, for example, if you’re white, how do you incorporate race into your feminism? How do you incorporate class into your feminism?"
-          %p.small
-            = "As another example, have you had frustrations with people who call themselves feminists but continue to be oppressive or harmful, and how does that inform your perspective on feminism?"
+            = "To help us understand your view, we'd like to hear your thoughts or experiences around your own feminism. It's ok if you don't have a formal or academic way of talking about this! You can also answer with stories or memories. You can pick one of these questions or make up your own:"
+          %ul
+            %li.small
+              = "How do you define your feminism?"
+            %li.small
+              = "How does feminism inform your perspective on the world?"
+            %li.small
+              = "What has feminism meant to you in your life?"
+            %li.small
+              = "What have justice or equality meant for you in your life?"
+            %li.small
+              = "How does your feminism include transgender people and nonbinary people?"
+            %li.small
+              = "If you’re white, how do you incorporate race into your feminism?"
+            %li.small
+              = "How do you incorporate class into your feminism?"
+            %li.small
+              = "Have you had frustrations with people who call themselves feminists but continue to be oppressive or harmful, and how does that inform your perspective on feminism?"
           %p.small
             = "Part of being a feminist space is not expecting everyone to know everything all the time. None of us are perfect! We do expect everyone to treat people at DU with respect."
           %p.small
             = "Required — 2000 character maximum."
-        %td= profile_fields.text_area :feminism, rows: 20
+        %td= profile_fields.text_area :feminism, rows: 15
 
       %tr
         %td
