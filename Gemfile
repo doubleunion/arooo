@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.7.6"
+ruby File.read(".ruby-version").strip
 
 gem "rails", "~>6.0"
 gem "jquery-rails", ">= 4.3.5"

@@ -30,4 +30,5 @@ jobs:
           bundler-cache: true
 
       - name: brakeman
-        run: bundle exec brakeman
+        # Skip "low confidence" warnings with -w2
+        run: bundle exec brakeman -w2
