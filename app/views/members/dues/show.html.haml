@@ -27,11 +27,13 @@
 - else
   %p You don't have a Stripe subscription yet, or it may have been canceled. Please add your credit or debit card, or request a scholarship below! <3
 
-  %p On average members give $30 / month, but please select whatever you can afford. Your dues go directly towards sustaining the space, such as paying for rent, buying supplies, and maintaining our tools.
+  %p Your dues go directly towards sustaining the space, such as paying for rent, buying supplies, and maintaining our tools.
 
 = render 'form', action: "Update"
 
 %h4 Suggestions
+
+%p Our #{ link_to "monthly expenses", "https://docs.google.com/spreadsheets/d/1qkbssNK_u8PnT1jK0eE4isaHkaHBSjiMHFIRlKet22g/edit#gid=1934044271", target: "_blank" } are about $2900.
 
 %table{:width=>"100%"}
   %tr
