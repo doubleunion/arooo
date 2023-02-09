@@ -52,16 +52,28 @@ describe "marking members as on scholarship" do
       it "allows members to be marked as on scholarship" do
         visit admin_memberships_path
         within(".user-#{member.id}") do
-          click_button "Mark as on scholarship"
+          click_button "Allow scholarship"
         end
 
         within(".user-#{member.id}") do
-          expect(page).to have_content "Yes"
+          expect(page).to have_content "Approved"
+          expect(page).to have_content "Last Checkin"
         end
       end
 
       context "with a scholarship member" do
-        before { member.update_attributes(is_scholarship: true) }
+        before { member.update_attributes(scholarship_since: Time.now) }
+
+        it "allows members to be marked as continuing scholarship" do
+          visit admin_memberships_path
+          within(".user-#{member.id}") do
+            click_button "Continue scholarship"
+          end
+
+          within(".user-#{member.id}") do
+            expect(page).to have_content "Last Checkin:"
+          end
+        end
 
         it "allows members to be marked as not on scholarship" do
           visit admin_memberships_path

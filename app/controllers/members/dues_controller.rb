@@ -61,6 +61,7 @@ class Members::DuesController < Members::MembersController
   end
 
   def scholarship_request
+    current_user.request_scholarship
     DuesMailer.scholarship_requested(current_user, params[:reason]).deliver_now
 
     redirect_to members_user_dues_path, notice: "Your scholarship request has been submitted"

@@ -60,9 +60,29 @@ class Admin::MembershipsController < ApplicationController
     redirect_to admin_memberships_path
   end
 
+  # updating scholarship status
+  #if requested --> approve (approve=true), revoke (approve=false)
+  #if approved --> revoke (approve=true), continue (approve=true)
+  #if not-requested --> approve
+  def approve_or_continue_scholarship
+    user = User.find(params[:id])
+    if user.scholarship_since?
+      user.scholarship_continued
+    else
+      user.scholarship_approved
+    end
+    redirect_to admin_memberships_path
+  end
+
+  def remove_scholarship
+    user = User.find(params[:id])
+    user.scholarship_rejected_or_revoked
+    redirect_to admin_memberships_path
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:is_scholarship)
+    params.require(:user)
   end
 end

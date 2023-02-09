@@ -14,4 +14,18 @@ module AdminUser
     self.is_admin = false
     save!
   end
+
+  def scholarship_approved
+    update_attributes!({scholarship_since: DateTime.now, scholarship_last_checkin: DateTime.now})
+  end
+
+  def scholarship_rejected_or_revoked
+    update_attributes!({requested_scholarship: nil, scholarship_since: nil, scholarship_last_checkin: nil})
+  end
+
+  def scholarship_continued
+    return unless scholarship_since?
+
+    touch :scholarship_last_checkin
+  end
 end

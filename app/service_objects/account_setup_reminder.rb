@@ -8,6 +8,9 @@ class AccountSetupReminder
       processed_at = user.application.processed_at
       next unless processed_at
 
+      # if member requested a scholarship and it hasn't been approved yet, then don't send emails
+      next if user.requested_scholarship.present? and not user.scholarship_since.present?
+
       if processed_at < 2.days.ago && processed_at > 4.days.ago
         NewMembersMailer.three_day_reminder(user).deliver_now
       elsif processed_at < 6.days.ago && processed_at > 8.days.ago
