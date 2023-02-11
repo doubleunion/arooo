@@ -40,7 +40,6 @@ describe ApplicationsMailer do
 
   describe "when someone is accepted" do
     before do
-      Configurable[:orientation_signup] = "http://fake.orientation"
       application.approve
     end
 
@@ -48,10 +47,6 @@ describe ApplicationsMailer do
 
     it "is sent to the applicant" do
       expect(mail.to).to include(application.user.email)
-    end
-
-    it "includes a link to orientiation signup" do
-      expect(mail.body).to include("http://fake.orientation")
     end
   end
 

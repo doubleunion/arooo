@@ -7,7 +7,7 @@
 
       %p In order to confirm your membership, log into #{ link_to "the site", EXTERNAL_SITE_URL } ("Log in" is at top right) and complete the setup #{ link_to "on this page", members_user_setup_url(@user.id) }. This is where you'll give us your Google-friendly email address for our calendar and mailing list, and set up dues (or apply for a scholarship). (After you’ve done this, a membership coordinator will subscribe you to the mailing list and invite you to Slack. Feel free to start a thread introducing yourself and jump into conversations right away!)
 
-      %p Please also sign up for a #{ link_to "New Member Orientation", Configurable[:orientation_signup] } so we can get you set up with your own access to the space!
+      %p The membership coordinator will reach out to schedule a new member orientation for you, so we can get you set up with your own access to the space! Feel free to email the membership coordinator at #{ mail_to MEMBERSHIP_EMAIL } if you do not hear from them soon.
 
       %p When you're a new member, you can visit when other people are already in the space (such as during events announced on the mailing list). When you attend a new member orientation, you’ll have the option to become a key member. As a key member you’d be able to enter the space even when other members are not already in the space. There are a number of responsibilities you would accept as a key member, which will be explained in the new member orientation.
 
@@ -19,7 +19,7 @@
         %li Give you access to the Double Union Mailing List
         %li Give you access to the Double Union Google Drive folder and Google Calendar
         %li Give you access to the Double Union Slack chat
-        %li Tell you when the new member orientation meetings will be
+        %li Schedule a new member orientation for you
 
       %p If you have any questions, email the membership coordinator at #{ mail_to MEMBERSHIP_EMAIL }.
 
