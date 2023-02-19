@@ -14,6 +14,13 @@ describe Members::CommentsController do
   end
 
   describe "POST create" do
+    let(:params) {
+      {
+        user_id: member.id,
+        application_id: application.id
+      }
+    }
+
     subject { post :create, params: params }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
