@@ -151,7 +151,7 @@ GOOGLE_CLIENT_SECRET
 # Same as DATABASE_URL
 HEROKU_POSTGRESQL_RED_URL
 
-# To receive due payments via Stripe
+# To receive dues payments via Stripe
 STRIPE_PUBLISHABLE_KEY
 STRIPE_SECRET_KEY
 STRIPE_SIGNING_SECRET
@@ -174,6 +174,8 @@ TODO: It would be great to document these variables further, and figure out whic
 ### Email
 
 This app sends emails via the Amazon SES service. Look for the `config.action_mailer.delivery_method` in [production.rb](config/environments/production.rb) for the precise configuration details.
+
+If you need more information about our AWS setup, board members have AWS Console access.
 
 ### Staging
 
