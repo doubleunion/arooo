@@ -126,34 +126,43 @@ If you prefer to do deploys from the command line, here are the steps:
 
 ### Environment variable configuration
 
-As of July 2020, the environment variables set in Arooo's production environment are:
+As of February 2023, the environment variables set in Arooo's production environment are:
 
 ```
+# Amazon credentials. Used for email sending, and possibly other stuff.
 AWS_ACCESS_KEY_ID
 AWS_REGION
 AWS_SECRET_ACCESS_KEY
+
+# Error reporting
 BUGSNAG_KEY
-CANONICAL_HOST: app.doubleunion.org
+
+# Postgres database
 DATABASE_URL
+
+# For GitHub OAuth
 GITHUB_CLIENT_KEY
 GITHUB_CLIENT_SECRET
+
+# For Google OAuth
 GOOGLE_CLIENT_ID
 GOOGLE_CLIENT_SECRET
-HEROKU_POSTGRESQL_CYAN_URL
+
+# Same as DATABASE_URL
 HEROKU_POSTGRESQL_RED_URL
-HOST_URL: app.doubleunion.org
-LANG: en_US.UTF-8
-MANDRILL_API_KEY
-MANDRILL_USERNAME
-NEW_RELIC_KEY
-NEW_RELIC_LICENSE_KEY
-NEW_RELIC_LOG
-RACK_ENV: production
-RAILS_ENV: production
-SECRET_TOKEN
+
+# To receive due payments via Stripe
 STRIPE_PUBLISHABLE_KEY
 STRIPE_SECRET_KEY
 STRIPE_SIGNING_SECRET
+
+# General Rails and Heroku configuration
+CANONICAL_HOST: app.doubleunion.org
+HOST_URL: app.doubleunion.org
+LANG: en_US.UTF-8
+RACK_ENV: production
+RAILS_ENV: production
+SECRET_TOKEN
 ```
 
 You can get the current values from Heroku, either via the web UI, under Settings > Reveal Config Vars, or using the Heroku CLI: `heroku config --app du-aroo`.
@@ -164,8 +173,7 @@ TODO: It would be great to document these variables further, and figure out whic
 
 ### Email
 
-This app sends emails via AWS: TODO more info here (we also have env variables set for Mandrill, are these still needed?)
-
+This app sends emails via the Amazon SES service. Look for the `config.action_mailer.delivery_method` in [production.rb](config/environments/production.rb) for the precise configuration details.
 
 ### Staging
 
