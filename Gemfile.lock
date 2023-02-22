@@ -153,7 +153,7 @@ GEM
       railties (>= 5.0.0)
     faker (2.23.0)
       i18n (>= 1.8.11, < 2)
-    faraday (0.17.5)
+    faraday (0.17.6)
       multipart-post (>= 1.2, < 3)
     ffi (1.13.1)
     figaro (1.2.0)
@@ -221,7 +221,7 @@ GEM
     minitest (5.17.0)
     multi_json (1.15.0)
     multi_xml (0.6.0)
-    multipart-post (2.2.3)
+    multipart-post (2.3.0)
     nio4r (2.5.8)
     nokogiri (1.14.1)
       mini_portile2 (~> 2.8.0)
@@ -394,9 +394,9 @@ GEM
       dante (>= 0.2.0)
       multi_json (~> 1.0)
       stripe (>= 2.0.3)
-    stripe_event (2.6.0)
+    stripe_event (2.7.0)
       activesupport (>= 3.1)
-      stripe (>= 2.8, < 8)
+      stripe (>= 2.8, < 9)
     temple (0.8.2)
     thor (1.2.1)
     thread_safe (0.3.6)
@@ -423,7 +423,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.6)
+    zeitwerk (2.6.7)
 
 PLATFORMS
   ruby
