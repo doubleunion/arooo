@@ -72,7 +72,7 @@ This section only pertains if you have heroku & deployment access. Only maintain
 If you are a DU member, see https://docs.google.com/document/d/19LbIYB2RDy-17UXuQx6wLgKp2EdLdqj-pg1cm3EpSb8/edit for more information on getting permission.
 
 Both `staging` and `production` Heroku environments are connected to this GitHub repo, making it possible to deploy directly through the Heroku UI. To deploy:
-* Staging: Merge to `master`, and your code will be automatically deployed to `staging` as soon as CI goes green.
+* Staging: Merge to `main`, and your code will be automatically deployed to `staging` as soon as CI goes green.
 * Production: Log into Heroku, and select the production Aroo app from your dashboard. Click on "Deploy", and scroll to the bottom. There will be a place to select a branch to deploy, and a button that you can click to deploy.
 
 Database migrations will run automatically during the release process on Heroku. This is controlled by the `release` directive in our [Procfile](Procfile).
@@ -90,19 +90,19 @@ If you prefer to do deploys from the command line, here are the steps:
      fetch = +refs/heads/*:refs/remotes/heroku/*
   ```
 
-1. Pull down the latest code from `master`
+1. Pull down the latest code from `main`
 
   ```
-  git checkout master
-  git pull --rebase origin master
+  git checkout main
+  git pull --rebase origin main
   ```
 
 1. If CI tests are passing, push to the `staging` environment
 
   ```
-  git checkout master
-  git pull --rebase origin master
-  git push staging master
+  git checkout main
+  git pull --rebase origin main
+  git push staging main
   ```
 
 1. If needed, perform rake tasks or set ENV variable settings on `staging`
@@ -116,9 +116,9 @@ If you prefer to do deploys from the command line, here are the steps:
 1. After confirming that the code works on `staging`, push it to `production`!
 
   ```
-  git checkout master
-  git pull --rebase origin master
-  git push production master
+  git checkout main
+  git pull --rebase origin main
+  git push production main
   ```
 
 1. If needed, perform rake tasks or set ENV variable settings on `production`
