@@ -4,7 +4,9 @@ We use [GitHub issues](https://github.com/doubleunion/arooo/issues) for feature 
 
 Anyone is welcome to make an issue or a pull request. We would *love* for first-time contributors to pick one of our [good first issue](https://github.com/doubleunion/arooo/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) issues :)
 
-Most contributors are DU members who collaborate in an internal Slack channel, but we also welcome non-member contributors! To support that, we have a public mailing list. Feel free to ask any question, including basic git and Ruby questions etc :) https://groups.google.com/a/doubleunion.org/forum/#!forum/public-du-code
+Most contributors are DU members who collaborate in an internal Slack channel (#du-app), but we also welcome non-member contributors! To support that, we have a public mailing list. Feel free to ask any question: https://groups.google.com/a/doubleunion.org/forum/#!forum/public-du-code
+
+If you're a DU member who would like access to [Stripe test API keys](https://stripe.com/docs/test-mode) for development, contact board@doubleunion.org.
 
 - [Contributing Guide](#contributing-guide)
   - [Development setup](#development-setup)
