@@ -125,6 +125,10 @@ class Application < ApplicationRecord
     enough_yes || !few_nos
   end
 
+  def age
+    Time.now - submitted_at
+  end
+
   def self.to_approve
     all.map { |x| x if x.approvable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
   end
