@@ -57,6 +57,11 @@ Rails.application.routes.draw do
   get "get_email" => "sessions#get_email"
   post "confirm_email" => "sessions#confirm_email"
 
+  if Rails.env.development?
+    get "impersonate" => "sessions#impersonate"
+    post "impersonate_login" => "sessions#impersonate_login"
+  end
+
   post "add_github_auth" => "authentications#add_github_auth"
   post "add_google_auth" => "authentications#add_google_auth"
 
