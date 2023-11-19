@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       delete "cancel" => "dues#cancel"
       post "scholarship_request" => "dues#scholarship_request"
 
+      get "access_control_token" => "access#token"
+
       resource :key_members, only: [:edit, :update]
       resource :voting_members, only: [:edit, :update]
     end

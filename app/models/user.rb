@@ -136,6 +136,10 @@ class User < ApplicationRecord
     member? || key_member? || voting_member?
   end
 
+  def space_access?
+    key_member? || voting_member?
+  end
+
   def gravatar_url(size = 200)
     email = gravatar_email || self.email
     hash = email ? Digest::MD5.hexdigest(email.downcase) : nil

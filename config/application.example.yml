@@ -9,6 +9,15 @@
 #
 SECRET_TOKEN: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
+# If you want to test the access control system, you'll need to populate the
+# signing key and local URI here.
+ACCESS_CONTROL_SIGNING_KEY:
+ACCESS_CONTROL_URI:
+ACCESS_CONTROL_UNLOCK_SECONDS: '10'
+
+WIFI_NETWORK_NAME: wifinetwork
+WIFI_NETWORK_PASSWORD: wifipassword
+
 # If you want to try sending email locally, you'll need make an AWS account and populate these values
 # It's easier to just use Mailcatcher and Mailer previews, though!
 AWS_ACCESS_KEY_ID:
