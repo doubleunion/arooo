@@ -1,20 +1,41 @@
+:javascript
+  window.userId = #{current_user.id};
+  window.accessControlUri = '#{ENV["ACCESS_CONTROL_URI"]}';
+  window.accessControlUnlockSeconds = #{ENV["ACCESS_CONTROL_UNLOCK_SECONDS"]};
+
+= content_for :js do
+  = javascript_include_tag :door
+
 - if current_user.member? || current_user.key_member?
   .mt-20
     - unless current_user.voting_policy_agreement
       = link_to "Become a voting member", edit_members_user_voting_members_path(current_user), class: "btn btn-default"
 
-= render 'bookmarks'
-
 %h3 Space Access
-- if current_user.member?
-  = link_to "Become a key member", edit_members_user_key_members_path(current_user), class: "btn btn-default"
-- if current_user.door_code.present?
-  %p Your door code is #{current_user.door_code.code}*
-- elsif current_user.key_member?
+- if current_user.space_access?
+  %p Click the button below to unlock the door and access the space.
+  %p The door will automatically re-lock after #{ENV["ACCESS_CONTROL_UNLOCK_SECONDS"]} seconds.
+  #unlock-door.btn.btn-default.disabled Unlock Door
+  #unlock-success.hidden.bold
+    %p The door was unlocked!
+  #unlock-error.hidden
+    %p#error-text.text-danger.bold
   %p
-    You are a key member, but you don't seem to have a door code set. If you need one, contact
-    =mail_to MEMBERSHIP_EMAIL
-    for help.
+    %i Note:
+    You must be at the space and connected to the Wi-Fi to unlock the door.
+  %table
+    %tr
+      %td.bold.text-right
+        ssid:&nbsp;
+      %td= ENV["WIFI_NETWORK_NAME"]
+    %tr
+      %td.bold.text-right
+        password:&nbsp;
+      %td= ENV["WIFI_NETWORK_PASSWORD"]
+- elsif current_user.member?
+  = link_to "Become a key member", edit_members_user_key_members_path(current_user), class: "btn btn-default"
+
+= render 'bookmarks'
 
 - if @all_admins.any?
   %h3 Admins

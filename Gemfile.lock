@@ -450,6 +450,7 @@ DEPENDENCIES
   jbuilder
   jquery-datatables-rails (>= 3.4.0)
   jquery-rails (>= 4.3.5)
+  jwt
   kaminari (>= 1.2.1)
   launchy
   nokogiri (>= 1.11.0.rc4)
