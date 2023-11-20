@@ -8,26 +8,18 @@ describe "Members home" do
   context "when logged in as a key member" do
     let(:member) { create :key_member }
 
-    it "if they have no door code, tells them to email membership@" do
+    it "it allows them to unlock the door" do
       visit members_root_path
-      expect(page).to have_content "don't seem to have a door code"
-      expect(page).to have_content "membership@doubleunion.org"
-    end
-
-    it "if they have a door code, it is shown" do
-      door_code = create(:door_code, user: member)
-      visit members_root_path
-      expect(page).to have_content "Your door code"
-      expect(page).to have_content door_code.code
+      expect(page).to have_content "Click the button below to unlock the door and access the space"
     end
   end
 
   context "when logged in as a non-key-member" do
     let(:member) { create :member }
 
-    it "does not show content about the door code" do
+    it "does not show content about unlocking the door" do
       visit members_root_path
-      expect(page).to_not have_content "door code"
+      expect(page).to_not have_content "unlock the door"
     end
   end
 end
