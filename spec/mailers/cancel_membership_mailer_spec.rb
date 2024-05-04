@@ -16,7 +16,7 @@ describe CancelMembershipMailer do
     end
 
     it "has the correct information" do
-      expect(mail.body).to eq "Please remove #{member.name} from all mailing lists."
+      expect(mail.body).to eq "Please remove #{member.name} from DU mailing lists and Slack."
     end
   end
 end
