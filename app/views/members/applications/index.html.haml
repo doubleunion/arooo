@@ -22,6 +22,7 @@
         %th Yes
         %th No
         %th ?
+        %th Age
     %tbody
       - @applicants_submitted.each do |applicant|
         - application = applicant.application
@@ -48,6 +49,11 @@
           %td= application.yes_votes.size
           %td= application.no_votes.size
           %td= application.not_voted_count
+          %td{:class => choose_highlight_class(application.age)}
+            = "#{age_in_days(application.age)} days"
+
+
+
 
   %h3
     %a{"data-toggle" => "collapse" , "href" => "#collapseEmails"} Applicant Email Addresses <b class="caret"></b>
