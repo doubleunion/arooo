@@ -6,6 +6,7 @@ class Vote < ApplicationRecord
   validates :application_id, presence: true
 
   validates :value, inclusion: {in: [true, false]}
+  enum vote_value: %w(yes no not_sure).mirror_hash
 
   validates :user_id, uniqueness: {scope: :application_id}
 
@@ -43,6 +44,7 @@ end
 #
 #  id             :integer          not null, primary key
 #  value          :boolean          not null
+#  vote_role      :string           
 #  created_at     :datetime
 #  updated_at     :datetime
 #  application_id :integer          not null
