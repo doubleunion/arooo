@@ -17,7 +17,7 @@ $(document).ready(() => {
 
     $("#unlock-door").click(async () => {
         if ($("#unlock-door").hasClass('disabled')) {
-            alert('Door control not accessible. Are you on the space Wi-Fi?');
+            alert('Door control not accessible. Are you on the space Wi-Fi? If yes, do you have a VPN or iCloud Private Relay enabled?');
             return;
         }
 
