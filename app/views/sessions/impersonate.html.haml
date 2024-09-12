@@ -1,0 +1,5 @@
+%h2 (DEV) Impersonate User
+
+= form_tag impersonate_login_path, class: "form", method: :post do |f|
+  = select_tag :user, users_grouped_by_role_for_select(@all_users)
+  = submit_tag "Impersonate", class: "btn btn-primary"
