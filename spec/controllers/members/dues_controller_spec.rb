@@ -216,10 +216,12 @@ describe Members::DuesController do
     context "logged in as a member" do
       before { login_as member }
 
-      it "sends an email" do
+      it "sends an email and marks as requested scholarship" do
         expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(1)
         expect(ActionMailer::Base.deliveries.last.to).to eq(["scholarship@doubleunion.org", member.email])
         expect(ActionMailer::Base.deliveries.last.body).to include "Lemurs are pretty great"
+        expect(member.reload.requested_scholarship).not_to be_nil
+        expect(member.reload.requested_scholarship).to be_within(1.second).of Time.now
       end
     end
   end

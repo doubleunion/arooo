@@ -4,7 +4,9 @@ class User < ApplicationRecord
   EMAIL_PATTERN = /\A.+@.+\Z/
 
   attr_accessible :username, :name, :email, :profile_attributes, :pronounceable_name,
-    :application_attributes, :email_for_google, :dues_pledge, :is_scholarship, :voting_policy_agreement
+    :application_attributes, :email_for_google, :dues_pledge,
+    :requested_scholarship, :scholarship_since, :scholarship_last_checkin,
+    :voting_policy_agreement
 
   validates :state, presence: true
 
@@ -168,6 +170,10 @@ class User < ApplicationRecord
     )
   end
 
+  def request_scholarship
+    touch :requested_scholarship
+  end
+
   def display_state
     state.tr("_", " ")
   end
@@ -223,12 +229,14 @@ end
 #  email                        :string
 #  email_for_google             :string
 #  is_admin                     :boolean          default(FALSE)
-#  is_scholarship               :boolean          default(FALSE)
 #  last_logged_in_at            :datetime
 #  last_stripe_charge_succeeded :datetime
 #  membership_note              :text
 #  name                         :string
 #  pronounceable_name           :string
+#  requested_scholarship        :datetime
+#  scholarship_last_checkin     :datetime
+#  scholarship_since            :datetime
 #  setup_complete               :boolean
 #  state                        :string           not null
 #  username                     :string
