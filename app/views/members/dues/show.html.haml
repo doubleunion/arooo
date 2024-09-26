@@ -12,7 +12,7 @@
 
 %p Membership dues payments are handled via Stripe, which will charge your credit or debit card on the same date each month.
 
-%p If you need to change your dues payment, just fill in the form again and it will be updated. (If you switch your dues to a lower level, our dues system automatically pro-rates your next payments, so you may get charged a lower partial amount [or nothing] on your next scheduled dues payment date. This is ok!)
+%p If you need to change your dues payment, fill in the form again and it will be updated. (If you switch your dues to a lower level, our dues system automatically pro-rates your next payments, so you may get charged a lower partial amount [or nothing] on your next scheduled dues payment date. This is ok!)
 
 %h4#your-dues-status Your Current Dues Status
 
@@ -27,13 +27,15 @@
 - else
   %p You don't have a Stripe subscription yet, or it may have been canceled. Please add your credit or debit card, or request a scholarship below! <3
 
-  %p On average members give $30 / month, but please select whatever you can afford. Your dues go directly towards sustaining the space, such as paying for rent, buying supplies, and maintaining our tools.
+  %p Your dues go directly towards sustaining the space, such as paying for rent, buying supplies, and maintaining our tools.
 
 = render 'form', action: "Update"
 
 %p Note: If you would like to update the card that is on file without changing your dues amount, leave the dues amount dropdown where it is and click the "Update Dues" button. A Stripe popup will appear where you can enter new card information.
 
 %h4 Suggestions
+
+%p Our #{ link_to "monthly expenses", "https://docs.google.com/spreadsheets/d/1qkbssNK_u8PnT1jK0eE4isaHkaHBSjiMHFIRlKet22g/edit#gid=1934044271", target: "_blank" } are about $2900.
 
 %table{:width=>"100%"}
   %tr
