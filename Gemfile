@@ -1,6 +1,11 @@
 source "https://rubygems.org"
 
 ruby File.read(".ruby-version").strip
+gem 'concurrent-ruby', '1.3.4'
+gem 'mutex_m'
+gem 'drb'
+gem 'benchmark'
+gem 'ostruct'
 
 gem "rails", "~>6.0"
 gem "jquery-rails", ">= 4.3.5"
@@ -30,6 +35,7 @@ gem "coffee-rails", ">= 4.2.2"
 gem "bootstrap-sass"
 gem "jquery-datatables-rails", ">= 3.4.0"
 gem 'jwt'
+gem "rubyzip", "~> 2.4.1"
 
 # Avoid low-severity security issue: https://github.com/advisories/GHSA-vr8q-g5c7-m54m
 gem "nokogiri", ">= 1.11.0.rc4"
@@ -59,6 +65,7 @@ group :production do
 end
 
 group :test do
+  gem "minitest", ">= 5.22.0"
   gem "capybara"
   gem "webdrivers"
   gem "database_cleaner"

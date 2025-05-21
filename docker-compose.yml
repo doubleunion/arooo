@@ -1,34 +1,75 @@
-version: "3"
+version: "3.8"
+
 services:
   db:
-    image: postgres:10.6-alpine
-    ports:
-      - 5432:5432
+    image: postgres:14-alpine
     volumes:
       - pg_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password # Change this for production!
+      POSTGRES_DB: arooo_development # Optional: creates DB on init
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d arooo_development"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   app:
-    build: .
-    depends_on:
-      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/app # Mounts the current directory to /app in the container for live code changes
+      - bundle_cache:/usr/local/bundle # Persists installed gems
     ports:
-      - 3000:3000
-    command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      RAILS_ENV: development
+      DATABASE_HOST: db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password # Should match POSTGRES_PASSWORD in db service
+      # For Figaro, you might use these if your database.yml expects them via Figaro.env
+      # DB_HOST: db 
+      # DB_USERNAME: postgres
+      # DB_PASSWORD: password 
+      FIGARO_APPLICATION_YML_PATH: "config/application.yml" # If you want to point Figaro to it
+      SECRET_KEY_BASE: "your_development_secret_key_base_here_if_not_using_credentials_or_figaro_for_it" # Ensure this is set
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/sh -c "bundle exec rake db:create db:schema:load && bundle exec rspec"
     volumes:
       - .:/app
-      - bundle_cache:/bundle
+      - bundle_cache:/usr/local/bundle
+    depends_on:
+      db:
+        condition: service_healthy
     environment:
-      - BUNDLE_PATH=/bundle/vendor
-      - RAILS_ENV=development
-      - PSQL_USERNAME=postgres
-      - PSQL_PASSWORD=password
-      - PSQL_HOST=db
-      - SECRET_TOKEN=development
-    tty: true
-    stdin_open: true
+      RAILS_ENV: test
+      DATABASE_HOST: db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password
+      # Ensure your config/database.yml for the 'test' environment is configured to use these variables.
+      # For example:
+      # test:
+      #   adapter: postgresql
+      #   encoding: unicode
+      #   database: arooo_test # Or read from ENV
+      #   host: <%= ENV['DATABASE_HOST'] %>
+      #   username: <%= ENV['DATABASE_USERNAME'] %>
+      #   password: <%= ENV['DATABASE_PASSWORD'] %>
+      #   pool: 5
+      FIGARO_APPLICATION_YML_PATH: "config/application.yml" # If test db config is in application.yml
+      RAILS_MASTER_KEY: "dummy_master_key_for_tests_if_needed" # if using encrypted credentials and they are needed for tests
+      SECRET_KEY_BASE: "your_test_secret_key_base_here" # Ensure this is set for test env
 
 volumes:
-  bundle_cache:
-  pg_data:
+  pg_data: # Persists PostgreSQL data
+  bundle_cache: # Persists gems
