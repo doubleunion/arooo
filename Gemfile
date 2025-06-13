@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby File.read(".ruby-version").strip
 
-gem "rails", "~>6.0"
+gem "rails", "~> 8.0.2"
 gem "jquery-rails", ">= 4.3.5"
 gem "turbolinks"
 gem "jbuilder"
