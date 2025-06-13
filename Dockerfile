@@ -17,7 +17,7 @@ RUN apt-get update -qq && \
 WORKDIR /app
 
 # Copy Gemfile and Gemfile.lock to leverage Docker cache
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile Gemfile.lock .ruby-version ./
 
 # Install Bundler. Use a version compatible with your Gemfile.lock (e.g., if BUNDLED WITH is 2.6.9, this covers it)
 RUN gem install bundler -v '~> 2.4' --conservative --minimal-deps
