@@ -1,3 +1,5 @@
+require 'stripe_event_handlers/stripe_event_helper'
+
 Rails.configuration.stripe = {
   event_signing_secret: ENV["STRIPE_SIGNING_SECRET"],
   publishable_key: ENV["STRIPE_PUBLISHABLE_KEY"],
