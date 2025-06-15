@@ -12,7 +12,6 @@ gem "omniauth-github"
 gem "omniauth-google-oauth2"
 gem "pg"
 gem "state_machine_deuxito", require: 'state_machine'
-gem "protected_attributes_continued" # works w rails 5
 gem "kaminari", ">= 1.2.1"
 gem "rails_autolink", ">= 1.1.6"
 gem "redcarpet"
