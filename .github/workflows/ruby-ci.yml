@@ -1,0 +1,25 @@
+name: Ruby CI
+
+on:
+  push:
+    branches: [ '**' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2.8'
+        bundler-cache: true # runs 'bundle install' and caches installed gems
+    - name: Set up database
+      run: |
+        cp config/database.github-actions.yml config/database.yml
+        bundle exec rails db:create
+        bundle exec rails db:schema:load --trace
+    - name: Run tests
+      run: bundle exec rspec
