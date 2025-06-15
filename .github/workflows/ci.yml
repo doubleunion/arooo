@@ -3,14 +3,14 @@ name: Ruby CI
 on:
   push:
     branches:
-      - main
+      - '**'
     paths-ignore:
       - 'docs/**'
       - '*.md'
       - 'bin/*'
   pull_request:
     branches:
-      - main
+      - '**'
     paths-ignore:
       - 'docs/**'
       - '*.md'
@@ -32,7 +32,7 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
