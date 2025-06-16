@@ -144,7 +144,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.3.5)
+    concurrent-ruby (1.3.4)
     configurable_engine (2.0.2)
       rails (> 5.2.0)
     connection_pool (2.5.3)
@@ -254,6 +254,7 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.4.1)
+    mutex_m (0.3.0)
     net-imap (0.5.8)
       date
       net-protocol
@@ -287,6 +288,7 @@ GEM
     omniauth-oauth2 (1.7.2)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
+    ostruct (0.6.1)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
@@ -294,8 +296,6 @@ GEM
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
-    protected_attributes_continued (1.8.2)
-      activemodel (>= 5.0)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -412,7 +412,7 @@ GEM
     ruby-progressbar (1.11.0)
     ruby_parser (3.19.1)
       sexp_processor (~> 4.16)
-    rubyzip (2.3.2)
+    rubyzip (2.4.1)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.0.1)
@@ -499,6 +499,7 @@ DEPENDENCIES
   annotate
   awesome_print
   aws-sdk-rails (~> 3)
+  benchmark
   better_errors
   binding_of_caller
   bootstrap-sass
@@ -506,8 +507,10 @@ DEPENDENCIES
   bugsnag
   capybara
   coffee-rails (>= 4.2.2)
+  concurrent-ruby (= 1.3.4)
   configurable_engine (~> 2)
   database_cleaner
+  drb
   email_spec
   factory_bot_rails (>= 6.1.0)
   faker
@@ -520,12 +523,14 @@ DEPENDENCIES
   jwt
   kaminari (>= 1.2.1)
   launchy
+  minitest (>= 5.22.0)
+  mutex_m
   nokogiri (>= 1.11.0.rc4)
   omniauth
   omniauth-github
   omniauth-google-oauth2
+  ostruct
   pg
-  protected_attributes_continued
   pry
   pry-rails
   puma (~> 5.6)
@@ -539,6 +544,7 @@ DEPENDENCIES
   redcarpet
   rspec-collection_matchers
   rspec-rails (>= 4.0.0)
+  rubyzip (~> 2.4.1)
   sass-rails (>= 5.0.7)
   selenium-webdriver
   shoulda-matchers
@@ -555,7 +561,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.2.8p263
+   ruby 3.4.3p32
 
 BUNDLED WITH
-   2.1.4
+   2.6.9
