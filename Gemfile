@@ -6,6 +6,7 @@ gem 'mutex_m'
 gem 'drb'
 gem 'benchmark'
 gem 'ostruct'
+gem 'observer'
 
 gem "rails", "~> 8.0.2"
 gem "jquery-rails", ">= 4.3.5"
