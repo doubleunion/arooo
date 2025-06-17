@@ -14,7 +14,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.2.8'
+        ruby-version: '3.4.3'
         bundler-cache: true # runs 'bundle install' and caches installed gems
     - name: Set up database
       run: |
