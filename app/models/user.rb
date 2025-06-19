@@ -53,7 +53,7 @@ class User < ApplicationRecord
   scope :show_public, -> {
     all_members
       .includes(:profile)
-      .where('profiles.show_name_on_site': true)
+      .where("profiles.show_name_on_site": true)
       .where("name IS NOT NULL")
       .order_by_state
   }
@@ -62,7 +62,7 @@ class User < ApplicationRecord
     applicants
       .includes(:profile)
       .includes(:application)
-      .where('applications.state': "submitted")
+      .where("applications.state": "submitted")
       .order("applications.submitted_at DESC")
   }
 
@@ -70,7 +70,7 @@ class User < ApplicationRecord
     applicants
       .includes(:profile)
       .includes(:application)
-      .where('applications.state': "started")
+      .where("applications.state": "started")
       .order("applications.submitted_at DESC")
   }
 
@@ -187,7 +187,7 @@ class User < ApplicationRecord
   def number_applications_needing_vote
     if voting_member?
       n = Application.where(state: "submitted").count - Application.joins("JOIN votes ON votes.application_id = applications.id AND applications.state = 'submitted' AND votes.user_id = #{id}").count
-      n == 0 ? nil : n
+      (n == 0) ? nil : n
     end
   end
 

@@ -25,7 +25,7 @@ class Application < ApplicationRecord
 
   scope :for_applicant, -> {
     includes(:user)
-      .where('users.state': "applicant")
+      .where("users.state": "applicant")
   }
 
   scope :submitted, -> {
@@ -49,9 +49,7 @@ class Application < ApplicationRecord
   end
 
   def not_voted_count
-    @_not_voted_count ||= begin
-      User.voting_members.count - votes.size
-    end
+    @_not_voted_count ||= User.voting_members.count - votes.size
   end
 
   def stale?
@@ -126,15 +124,15 @@ class Application < ApplicationRecord
   end
 
   def self.to_approve
-    all.map { |x| x if x.approvable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
+    all.select { |x| x.approvable? && x.state == "submitted" }.sort_by { |x| x.submitted_at }
   end
 
   def self.to_reject
-    all.map { |x| x if x.rejectable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
+    all.select { |x| x.rejectable? && x.state == "submitted" }.sort_by { |x| x.submitted_at }
   end
 
   def self.not_enough_info
-    all.map { |x| x if !x.rejectable? && !x.approvable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
+    all.select { |x| !x.rejectable? && !x.approvable? && x.state == "submitted" }.sort_by { |x| x.submitted_at }
   end
 
   private

@@ -35,7 +35,7 @@ class Admin::MembershipsController < ApplicationController
     unless allowed_updated_state
       raise ArgumentError.new("Unrecognized user state: #{params.dig(:user, :updated_state)}")
     end
-    action_method = user.method("make_#{allowed_updated_state}")
+    action_method = user.method(:"make_#{allowed_updated_state}")
 
     flash[:message] = if action_method.call
       "#{user.name} is now a #{user.state.humanize.downcase}."

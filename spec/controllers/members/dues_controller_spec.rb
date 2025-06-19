@@ -6,7 +6,7 @@ describe Members::DuesController do
   let(:member) { create(:member) }
 
   describe "GET show" do
-    subject { get :show, params: { user_id: member.id } }
+    subject { get :show, params: {user_id: member.id} }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
     it_should_behave_like "allow members", [:member, :voting_member]
@@ -22,7 +22,7 @@ describe Members::DuesController do
            :member,
            name: "Foo Bar",
            email: "someone@example.com",
-           stripe_customer_id: 'stripe-user-id-abc123'
+           stripe_customer_id: "stripe-user-id-abc123"
          )
       end
 
