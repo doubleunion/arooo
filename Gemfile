@@ -46,7 +46,7 @@ group :development do
   gem "binding_of_caller" # Retrieve the binding of a method's caller
   gem "html2haml"
   gem "awesome_print"
-end
+  end
 
 group :development, :test do
   gem "rspec-rails", ">= 4.0.0"
@@ -54,7 +54,7 @@ group :development, :test do
   gem "rack_session_access"
   gem "pry-rails"
   gem "pry"
-  gem "puma", "~> 5.6"
+  gem "brakeman", "~> 7.0", :require => false
   gem "standard"
   gem "timecop"
 end
@@ -80,4 +80,3 @@ group :test do
   gem "rails-controller-testing", ">= 1.0.5"
 end
 
-gem "brakeman"

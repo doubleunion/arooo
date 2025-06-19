@@ -123,7 +123,8 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
-    brakeman (5.4.0)
+    brakeman (7.0.2)
+      racc
     bugsnag (6.24.2)
       concurrent-ruby (~> 1.0)
     builder (3.3.0)
@@ -306,8 +307,6 @@ GEM
       date
       stringio
     public_suffix (4.0.7)
-    puma (5.6.5)
-      nio4r (~> 2.0)
     racc (1.8.1)
     rack (2.2.17)
     rack-canonical-host (1.1.0)
@@ -504,7 +503,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
-  brakeman
+  brakeman (~> 7.0)
   bugsnag
   capybara
   coffee-rails (>= 4.2.2)
@@ -535,7 +534,6 @@ DEPENDENCIES
   pg
   pry
   pry-rails
-  puma (~> 5.6)
   rack-canonical-host
   rack-cors
   rack_session_access
