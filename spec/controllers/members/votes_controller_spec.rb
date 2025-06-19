@@ -67,8 +67,8 @@ describe Members::VotesController do
       let(:params) { {id: application.id} }
       let(:vote) {
         Vote.where(application_id: application.id,
-                   user_id: member.id,
-                   value: true).first
+          user_id: member.id,
+          value: true).first
       }
 
       it "allows me to remove my vote" do

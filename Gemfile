@@ -41,11 +41,11 @@ gem "rubyzip", "~> 2.4.1"
 gem "nokogiri", ">= 1.11.0.rc4"
 
 group :development do
-    gem "annotate" # Show db schema as comments in models
-    gem "better_errors" # Provides a better error page for Rails and other Rack apps
-    gem "binding_of_caller" # Retrieve the binding of a method's caller
-    gem "html2haml"
-    gem "awesome_print"
+  gem "annotate" # Show db schema as comments in models
+  gem "better_errors" # Provides a better error page for Rails and other Rack apps
+  gem "binding_of_caller" # Retrieve the binding of a method's caller
+  gem "html2haml"
+  gem "awesome_print"
 end
 
 group :development, :test do
@@ -55,7 +55,7 @@ group :development, :test do
   gem "pry-rails"
   gem "pry"
   gem "brakeman", "~> 7.0", require: false
-  gem "standard", "~> 1.35.1"
+  gem "standard", "~> 1.39"
   gem "timecop"
 end
 

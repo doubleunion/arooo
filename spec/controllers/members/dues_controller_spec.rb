@@ -18,12 +18,12 @@ describe Members::DuesController do
 
     context "when a member has an associated Stripe account without a subscription" do
       let(:current_user) do
-         login_as(
-           :member,
-           name: "Foo Bar",
-           email: "someone@example.com",
-           stripe_customer_id: "stripe-user-id-abc123"
-         )
+        login_as(
+          :member,
+          name: "Foo Bar",
+          email: "someone@example.com",
+          stripe_customer_id: "stripe-user-id-abc123"
+        )
       end
 
       before do
@@ -72,11 +72,11 @@ describe Members::DuesController do
         # https://github.com/rebelidealist/stripe-ruby-mock/issues/209
         Stripe.api_key = "coolapikey"
         Stripe::Plan.create(id: "test_plan",
-                            amount: 5000,
-                            currency: "usd",
-                            interval: "month",
-                            product: "test product",
-                            name: "test plan")
+          amount: 5000,
+          currency: "usd",
+          interval: "month",
+          product: "test product",
+          name: "test plan")
 
         # Must set referrer so that DuesController#redirect_target works
         request.env["HTTP_REFERER"] = "http://example.com/members/users/x/dues"
@@ -121,11 +121,11 @@ describe Members::DuesController do
       # https://github.com/rebelidealist/stripe-ruby-mock/issues/209
       Stripe.api_key = "coolapikey"
       Stripe::Plan.create(id: "test_plan",
-                          amount: 5000,
-                          currency: "usd",
-                          interval: "month",
-                          product: "test product",
-                          name: "test plan")
+        amount: 5000,
+        currency: "usd",
+        interval: "month",
+        product: "test product",
+        name: "test plan")
 
       # Must set referrer so that DuesController#redirect_target works
       request.env["HTTP_REFERER"] = "http://example.com/members/users/x/dues"

@@ -144,7 +144,7 @@ describe ApplicationsController do
 
         it "should update the user's application" do
           expect { subject }.to change { application.agreement_terms }.from(false).to(true)
-                            .and change { user.email_for_google }.from(nil).to("lemurs@gmail.com")
+            .and change { user.email_for_google }.from(nil).to("lemurs@gmail.com")
           expect(response).to redirect_to edit_application_path(application)
         end
 

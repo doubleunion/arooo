@@ -44,19 +44,19 @@ describe "sponsoring an applicant" do
   end
 
   describe "someone who is already a sponsor" do
-     before do
-       page.set_rack_session(user_id: mature_member.id)
-       visit members_application_path(application)
-       check "is_sponsor"
-       click_button "Submit"
-     end
+    before do
+      page.set_rack_session(user_id: mature_member.id)
+      visit members_application_path(application)
+      check "is_sponsor"
+      click_button "Submit"
+    end
 
-     it "gets a meaningful message if they try to sponsor again" do
-       visit members_application_path(application)
-       check "is_sponsor"
-       expect { click_button "Submit" }.to_not change(Sponsorship, :count)
-       expect(page).to_not have_content "Sorry, something went wrong!"
-       expect(page).to have_content "You are already sponsoring"
-     end
+    it "gets a meaningful message if they try to sponsor again" do
+      visit members_application_path(application)
+      check "is_sponsor"
+      expect { click_button "Submit" }.to_not change(Sponsorship, :count)
+      expect(page).to_not have_content "Sorry, something went wrong!"
+      expect(page).to have_content "You are already sponsoring"
+    end
   end
 end
