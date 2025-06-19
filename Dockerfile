@@ -20,7 +20,7 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock .ruby-version ./
 
 # Install Bundler. Use a version compatible with your Gemfile.lock (e.g., if BUNDLED WITH is 2.6.9, this covers it)
-RUN gem install bundler -v '~> 2.4' --conservative --minimal-deps
+RUN gem install bundler -v '~> 2.6' --conservative --minimal-deps
 
 # Configure Bundler to install gems to /usr/local/bundle (shared volume via docker-compose)
 ENV BUNDLE_PATH /usr/local/bundle
