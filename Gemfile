@@ -55,7 +55,7 @@ group :development, :test do
   gem "pry-rails"
   gem "pry"
   gem "brakeman", "~> 7.0", :require => false
-  gem "standard"
+  gem "standard", "~> 1.35.1"
   gem "timecop"
 end
 
