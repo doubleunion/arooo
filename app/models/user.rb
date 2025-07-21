@@ -95,42 +95,42 @@ class User < ApplicationRecord
                              .squish))
                          }
 
-  state_machine :state, initial: :visitor do
-    event :make_applicant do
-      transition visitor: :applicant
-    end
-
-    event :make_member do
-      transition [:applicant, :voting_member, :key_member, :former_member] => :member
-    end
-
-    event :make_key_member do
-      transition [:member, :voting_member] => :key_member
-    end
-
-    event :make_voting_member do
-      transition [:member, :key_member] => :voting_member
-    end
-
-    event :make_former_member do
-      transition [:member, :voting_member, :key_member] => :former_member
-    end
-
-    after_transition on: all - [:make_voting_member] do |user, _|
-      user.update(voting_policy_agreement: false)
-    end
-
-    after_transition on: all - [:make_key_member, :make_voting_member] do |user, _|
-      user.door_code.unassign if user.door_code.present?
-    end
-
-    state :visitor
-    state :applicant
-    state :member
-    state :key_member
-    state :voting_member
-    state :former_member
-  end
+  # state_machine :state, initial: :visitor do
+  #   event :make_applicant do
+  #     transition visitor: :applicant
+  #   end
+  #
+  #   event :make_member do
+  #     transition [:applicant, :voting_member, :key_member, :former_member] => :member
+  #   end
+  #
+  #   event :make_key_member do
+  #     transition [:member, :voting_member] => :key_member
+  #   end
+  #
+  #   event :make_voting_member do
+  #     transition [:member, :key_member] => :voting_member
+  #   end
+  #
+  #   event :make_former_member do
+  #     transition [:member, :voting_member, :key_member] => :former_member
+  #   end
+  #
+  #   after_transition on: all - [:make_voting_member] do |user, _|
+  #     user.update(voting_policy_agreement: false)
+  #   end
+  #
+  #   after_transition on: all - [:make_key_member, :make_voting_member] do |user, _|
+  #     user.door_code.unassign if user.door_code.present?
+  #   end
+  #
+  #   state :visitor
+  #   state :applicant
+  #   state :member
+  #   state :key_member
+  #   state :voting_member
+  #   state :former_member
+  # end
 
   def general_member?
     member? || key_member? || voting_member?

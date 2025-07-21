@@ -243,6 +243,33 @@ These instructions outline how to set up and use the Docker-based environment fo
 *   [ ] **Post-Deployment Monitoring:**
     *   Closely monitor application logs, error tracking, and performance.
 
+## Debugging Upgrade Issues
+
+### `FrozenError: can't modify frozen Array`
+
+This error has been the primary blocker during the upgrade. It occurs during the Rails initialization process when running `rspec`.
+
+**Key Information:**
+*   **Ruby Version Upgrade:** From `2.7.7` to `3.4.3`.
+*   **Rails Version Upgrade:** From `~> 6.0` to `~> 8.0.2`.
+*   **Error Message:** `FrozenError: can't modify frozen Array: ["/Users/gonz/.asdf/installs/ruby/3.4.3/lib/ruby/gems/3.4.0/gems/actiontext-8.0.2/app/helpers", "/Users/gonz/.asdf/installs/ruby/3.4.3/lib/ruby/gems/3.4.0/gems/actiontext-8.0.2/app/models"]`
+
+**Investigation Log:**
+
+1.  **Disabled Gems:** The following gems were disabled as initial suspects for causing the `FrozenError`:
+    *   `state_machine_deuxito`
+    *   `configurable_engine`
+    *   `bugsnag`
+    *   **Result:** The error persisted after disabling each of these.
+
+2.  **`factory_bot_rails` Loading Order:** Investigated the possibility that `factory_bot_rails` was loading its definitions too early.
+    *   **Action:** Modified `Gemfile` to use `require: false` and added `FactoryBot.find_definitions` to the `spec_helper.rb` `before(:suite)` block.
+    *   **Result:** Error persisted, indicating this was not the root cause.
+
+3.  **`simplecov`:** Identified as a likely culprit because it loads before the Rails environment in `spec_helper.rb` and could interfere with the initialization process in newer Rails/Ruby versions.
+    *   **Action:** Commented out `simplecov` initialization in `spec_helper.rb`.
+    *   **Next Step:** Run the test suite to confirm if the `FrozenError` is resolved.
+
 ## Notes & Potential Issues
 
 *   [Add any project-specific notes, known problematic gems, or areas of concern here]
