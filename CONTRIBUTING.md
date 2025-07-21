@@ -76,6 +76,46 @@ $ bundle exec rake spec
 1. `bundle exec rails server` don't forget to use http://localhost:3000 and not https
 1. `bundle exec rails console` Optional - useful for looking at and changing your local data)
 
+### Development Container Setup (Recommended for VS Code Users)
+
+This project supports [VS Code Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers), which provides a fully configured development environment, including all necessary tools, extensions, and a running PostgreSQL database. This is the recommended way to get started if you use VS Code.
+
+**Prerequisites:**
+
+*   [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
+*   [Visual Studio Code](https://code.visualstudio.com/) installed.
+*   The [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) installed in VS Code.
+
+**Getting Started:**
+
+1.  **Clone the Repository:** If you haven't already, clone this repository to your local machine.
+    ```bash
+    git clone <your-fork-url>
+    cd arooo
+    ```
+2.  **Open in Dev Container:**
+    *   Open the cloned `arooo` directory in VS Code.
+    *   VS Code should automatically detect the `.devcontainer/devcontainer.json` file and show a notification in the bottom-right corner asking if you want to "Reopen in Container." Click it.
+    *   Alternatively, open the Command Palette (Cmd+Shift+P or Ctrl+Shift+P), type "Dev Containers: Reopen in Container", and select it.
+3.  **First-Time Setup:** The first time you open the project in the dev container, it will build the Docker image and set up the environment. This might take a few minutes. The `postCreateCommand` defined in `devcontainer.json` will automatically:
+    *   Copy `config/database.example.yml` to `config/database.yml` (if it doesn't exist).
+    *   Copy `config/application.example.yml` to `config/application.yml` (if it doesn't exist).
+    *   Run `bundle install` to install all gem dependencies.
+    *   Run `bundle exec rails db:prepare` to set up your development database.
+4.  **Start the Rails Server:** Once the container is ready and VS Code is connected, open a new terminal within VS Code (Terminal > New Terminal). This terminal is inside the dev container. Then, start the Rails server:
+    ```bash
+    bundle exec rails s -p 3000 -b '0.0.0.0'
+    ```
+5.  **Access the Application:** Open your web browser and navigate to [http://localhost:3000](http://localhost:3000).
+6.  **OAuth Setup (Manual Step):** For features requiring GitHub or Google OAuth (like login), you'll still need to manually:
+    *   Create OAuth applications on GitHub and Google as described in the "[Set up an application for local OAuth](#set-up-an-application-for-local-oauth)" section below.
+    *   Add your `CLIENT_ID` and `CLIENT_SECRET` to the `config/application.yml` file inside the dev container. (Remember, this file is created from `application.example.yml` if it didn't exist).
+    *   Restart the Rails server after updating `config/application.yml`.
+
+This setup provides a consistent environment matching the project's requirements, with Ruby, PostgreSQL, and necessary VS Code extensions pre-configured.
+
+---
+
 ### Docker setup (optional)
 
 1. Install docker and docker compose

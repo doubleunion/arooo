@@ -110,7 +110,7 @@ FactoryBot.define do
   end
 
   factory :door_code do
-    sequence(:code) { |n| "#{100000+n}" }
+    sequence(:code) { |n| (100000 + n).to_s }
     sequence(:index_number) { |n| n }
 
     trait :assigned do

@@ -1,4 +1,4 @@
-require 'jwt'
+require "jwt"
 
 class Members::AccessController < Members::MembersController
   def token
@@ -10,6 +10,6 @@ class Members::AccessController < Members::MembersController
       exp: Time.now.to_i + 30
     }
 
-    render json: { token: JWT.encode(payload, ENV['ACCESS_CONTROL_SIGNING_KEY'], 'HS256') }
+    render json: {token: JWT.encode(payload, ENV["ACCESS_CONTROL_SIGNING_KEY"], "HS256")}
   end
 end

@@ -1,4 +1,4 @@
-require "state_machine" # from gem state_machine_deuxito
+# require "state_machine" # from gem state_machine_deuxito
 
 class Application < ApplicationRecord
   belongs_to :user
@@ -25,7 +25,7 @@ class Application < ApplicationRecord
 
   scope :for_applicant, -> {
     includes(:user)
-      .where('users.state': "applicant")
+      .where("users.state": "applicant")
   }
 
   scope :submitted, -> {
@@ -49,9 +49,7 @@ class Application < ApplicationRecord
   end
 
   def not_voted_count
-    @_not_voted_count ||= begin
-      User.voting_members.count - votes.size
-    end
+    @_not_voted_count ||= User.voting_members.count - votes.size
   end
 
   def stale?
@@ -72,46 +70,46 @@ class Application < ApplicationRecord
     end
   end
 
-  state_machine :state, initial: :started do
-    after_transition started: :submitted do |application, _|
-      application.touch :submitted_at
-      ApplicationsMailer.confirmation(application).deliver_now
-
-      if Configurable[:send_new_application_emails]
-        member_emails = User.all_members.pluck(:email).compact
-        (member_emails << JOIN_EMAIL).each do |email|
-          ApplicationsMailer.notify_member_of_application(application, email).deliver_now
-        end
-      end
-    end
-
-    after_transition submitted: [:approved, :rejected] do |application, transition|
-      application.touch :processed_at
-    end
-
-    after_transition submitted: :approved do |application|
-      application.user.make_member
-      ApplicationsMailer.approved(application).deliver_now
-    end
-
-    event :submit do
-      transition started: :submitted
-      transition rejected: :submitted
-    end
-
-    event :approve do
-      transition submitted: :approved
-    end
-
-    event :reject do
-      transition submitted: :rejected
-    end
-
-    state :started
-    state :submitted
-    state :approved
-    state :rejected
-  end
+  # state_machine :state, initial: :started do
+  #   after_transition started: :submitted do |application, _|
+  #     application.touch :submitted_at
+  #     ApplicationsMailer.confirmation(application).deliver_now
+  #
+  #     if Configurable[:send_new_application_emails]
+  #       member_emails = User.all_members.pluck(:email).compact
+  #       (member_emails << JOIN_EMAIL).each do |email|
+  #         ApplicationsMailer.notify_member_of_application(application, email).deliver_now
+  #       end
+  #     end
+  #   end
+  #
+  #   after_transition submitted: [:approved, :rejected] do |application, transition|
+  #     application.touch :processed_at
+  #   end
+  #
+  #   after_transition submitted: :approved do |application|
+  #     application.user.make_member
+  #     ApplicationsMailer.approved(application).deliver_now
+  #   end
+  #
+  #   event :submit do
+  #     transition started: :submitted
+  #     transition rejected: :submitted
+  #   end
+  #
+  #   event :approve do
+  #     transition submitted: :approved
+  #   end
+  #
+  #   event :reject do
+  #     transition submitted: :rejected
+  #   end
+  #
+  #   state :started
+  #   state :submitted
+  #   state :approved
+  #   state :rejected
+  # end
 
   def approvable?
     enough_yes && few_nos && sponsored
@@ -126,15 +124,15 @@ class Application < ApplicationRecord
   end
 
   def self.to_approve
-    all.map { |x| x if x.approvable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
+    all.select { |x| x.approvable? && x.state == "submitted" }.sort_by { |x| x.submitted_at }
   end
 
   def self.to_reject
-    all.map { |x| x if x.rejectable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
+    all.select { |x| x.rejectable? && x.state == "submitted" }.sort_by { |x| x.submitted_at }
   end
 
   def self.not_enough_info
-    all.map { |x| x if !x.rejectable? && !x.approvable? && x.state == "submitted" }.compact.sort_by { |x| x.submitted_at }
+    all.select { |x| !x.rejectable? && !x.approvable? && x.state == "submitted" }.sort_by { |x| x.submitted_at }
   end
 
   private

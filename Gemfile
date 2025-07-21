@@ -1,8 +1,14 @@
 source "https://rubygems.org"
 
 ruby File.read(".ruby-version").strip
+gem "concurrent-ruby", "1.3.4"
+gem "mutex_m"
+gem "drb"
+gem "benchmark"
+gem "ostruct"
+gem "observer"
 
-gem "rails", "~>6.0"
+gem "rails", "~> 8.0.2"
 gem "jquery-rails", ">= 4.3.5"
 gem "turbolinks"
 gem "jbuilder"
@@ -11,25 +17,24 @@ gem "omniauth"
 gem "omniauth-github"
 gem "omniauth-google-oauth2"
 gem "pg"
-gem "state_machine_deuxito", require: 'state_machine'
-gem "protected_attributes_continued" # works w rails 5
+# # gem 'state_machine_deuxito', require: "state_machine"
 gem "kaminari", ">= 1.2.1"
 gem "rails_autolink", ">= 1.1.6"
 gem "redcarpet"
-gem "configurable_engine" , "~> 2"
-gem "bugsnag"
+# gem "configurable_engine", "~> 2"
+# gem "bugsnag"
 gem "stripe", "~> 3" # TODO upgrade this! Carefully...
 gem "stripe_event"
 gem "rack-canonical-host"
 gem "aws-sdk-rails", "~> 3"
+gem "twitter-bootstrap-rails", "~> 3"
 gem "rack-cors"
 gem "haml-rails", ">= 1.0.0"
-gem "sass-rails", ">= 5.0.7"
-gem "uglifier"
-gem "coffee-rails", ">= 4.2.2"
-gem "bootstrap-sass"
+gem "dartsass-rails"
+gem "bootstrap", "~> 5.3.3"
 gem "jquery-datatables-rails", ">= 3.4.0"
-gem 'jwt'
+gem "jwt"
+gem "rubyzip", "~> 2.4.1"
 
 # Avoid low-severity security issue: https://github.com/advisories/GHSA-vr8q-g5c7-m54m
 gem "nokogiri", ">= 1.11.0.rc4"
@@ -48,8 +53,8 @@ group :development, :test do
   gem "rack_session_access"
   gem "pry-rails"
   gem "pry"
-  gem "puma", "~> 5.6"
-  gem "standard"
+  gem "brakeman", "~> 7.0", require: false
+  gem "standard", "~> 1.39"
   gem "timecop"
 end
 
@@ -59,11 +64,12 @@ group :production do
 end
 
 group :test do
+  gem "minitest", ">= 5.22.0"
   gem "capybara"
   gem "webdrivers"
   gem "database_cleaner"
   gem "email_spec"
-  gem "factory_bot_rails", ">= 6.1.0"
+  gem "factory_bot_rails", ">= 6.1.0", require: false
   gem "launchy"
   gem "rspec-collection_matchers"
   gem "selenium-webdriver"
@@ -72,5 +78,3 @@ group :test do
   gem "simplecov"
   gem "rails-controller-testing", ">= 1.0.5"
 end
-
-gem "brakeman"

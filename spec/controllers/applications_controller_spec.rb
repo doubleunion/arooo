@@ -30,19 +30,19 @@ describe ApplicationsController do
 
   describe "GET show" do
     it "should redirect to root if not logged in" do
-      get :show, params: { id: 1 }
+      get :show, params: {id: 1}
       expect(response).to redirect_to :root
     end
 
     it "should redirect to root if logged in as visitor" do
       user = login_as(:visitor)
-      get :show, params: { id: user.application.id }
+      get :show, params: {id: user.application.id}
       expect(response).to redirect_to :root
     end
 
     it "should redirect to root if logged in as member" do
       user = login_as(:member)
-      get :show, params: { id: user.application.id }
+      get :show, params: {id: user.application.id}
       expect(response).to redirect_to :root
     end
 
@@ -53,12 +53,12 @@ describe ApplicationsController do
       before { log_in(user) }
 
       it "should render own application" do
-        get :show, params: { id: user.application.id }
+        get :show, params: {id: user.application.id}
         expect(response).to render_template :show
       end
 
       it "should redirect to root for another user's application" do
-        get :show, params: { id: other_user.application.id }
+        get :show, params: {id: other_user.application.id}
         expect(response).to redirect_to :root
       end
     end
@@ -66,19 +66,19 @@ describe ApplicationsController do
 
   describe "GET edit" do
     it "should redirect to root if not logged in" do
-      get :edit, params: { id: create(:user, state: :applicant).application.id }
+      get :edit, params: {id: create(:user, state: :applicant).application.id}
       expect(response).to redirect_to :root
     end
 
     it "should redirect to root if logged in as visitor" do
       user = login_as(:visitor)
-      get :edit, params: { id: user.application.id }
+      get :edit, params: {id: user.application.id}
       expect(response).to redirect_to :root
     end
 
     it "should redirect to root if logged in as member" do
       user = login_as(:member)
-      get :edit, params: { id: user.application.id }
+      get :edit, params: {id: user.application.id}
       expect(response).to redirect_to :root
     end
 
@@ -89,12 +89,12 @@ describe ApplicationsController do
       before { log_in(user) }
 
       it "should render edit for own application" do
-        get :edit, params: { id: user.application.id }
+        get :edit, params: {id: user.application.id}
         expect(response).to render_template :edit
       end
 
       it "should redirect to root for another user's application" do
-        get :edit, params: { id: other_user.application.id }
+        get :edit, params: {id: other_user.application.id}
         expect(response).to redirect_to :root
       end
     end
@@ -102,19 +102,19 @@ describe ApplicationsController do
 
   describe "POST update" do
     it "should redirect to root if not logged in" do
-      post :update, params: { id: create(:user, state: :applicant).application.id }
+      post :update, params: {id: create(:user, state: :applicant).application.id}
       expect(response).to redirect_to :root
     end
 
     it "should redirect to root if logged in as visitor" do
       user = login_as(:visitor)
-      post :update, params: { id: user.application.id }
+      post :update, params: {id: user.application.id}
       expect(response).to redirect_to :root
     end
 
     it "should redirect to root if logged in as member" do
       user = login_as(:member)
-      post :update, params: { id: user.application.id }
+      post :update, params: {id: user.application.id}
       expect(response).to redirect_to :root
     end
 
@@ -144,7 +144,7 @@ describe ApplicationsController do
 
         it "should update the user's application" do
           expect { subject }.to change { application.agreement_terms }.from(false).to(true)
-                            .and change { user.email_for_google }.from(nil).to("lemurs@gmail.com")
+            .and change { user.email_for_google }.from(nil).to("lemurs@gmail.com")
           expect(response).to redirect_to edit_application_path(application)
         end
 
@@ -225,7 +225,7 @@ describe ApplicationsController do
         end
 
         context "missing required profile fields" do
-          let(:profile_params) { { summary: "lemurs!", reasons: "lemur reasonss!" } }
+          let(:profile_params) { {summary: "lemurs!", reasons: "lemur reasonss!"} }
 
           it "should add an error to the flash" do
             subject

@@ -1,0 +1,48 @@
+{
+  "name": "Arooo Dockerized Dev",
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+  "service": "app",
+  "runServices": ["app", "db"],
+  "workspaceFolder": "/app",
+  // Features like node and postgres client are now handled by the Dockerfile for the 'app' service.
+  // We can keep common-utils if desired for the general container experience, or remove if not needed.
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "true",
+      "configureZshAsDefaultShell": "true",
+      "installOhMyZsh": "true"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Shopify.ruby-lsp",
+        "Shopify.rubocop-lsp",
+        "rebornix.Ruby",
+        "castwide.solargraph",
+        "KoichiSasada.vscode-rdbg",
+        "ms-azuretools.vscode-docker",
+        "GitHub.codespaces",
+        "GitHub.vscode-pull-request-github",
+        "standard.vscode-standard"
+      ],
+      "settings": {
+        // Since rbenv/rvm are not explicitly installed in the Dockerfile (it uses system ruby),
+        // 'none' is appropriate. If a version manager were added to Dockerfile, this might change.
+        "rubyLsp.rubyVersionManager": "none",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  // Ports are now forwarded by docker-compose.yml, but listing the primary app port here is good for Codespaces UI.
+  "forwardPorts": [3000],
+  // The Dockerfile and docker-compose setup should handle gem installation and user setup.
+  // postCreateCommand might still be useful for other setup, or could be removed/simplified.
+  // For example, ensuring the database is created if it's the first time.
+  "postCreateCommand": "cp -n config/database.example.yml config/database.yml && cp -n config/application.example.yml config/application.yml && bundle check || bundle install && bundle exec rails db:prepare",
+  // The user is defined in the Dockerfile and docker-compose.yml for the app service.
+  // Ensure this matches if not 'vscode', or remove if service user is different and correctly set.
+  "remoteUser": "vscode"
+}

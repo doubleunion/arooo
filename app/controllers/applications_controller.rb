@@ -32,7 +32,7 @@ class ApplicationsController < ApplicationController
         begin
           @user.application.submit!
           flash[:notice] = "Application submitted!"
-        rescue StandardError => e
+        rescue => e
           errors = @user.application.errors.full_messages.to_sentence
           errors = e.inspect if errors.empty?
           flash[:error] = "Application not submitted: #{errors}"

@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: . # Use the Dockerfile in the .devcontainer directory
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace:cached # Mount the project root (one level up) to /workspace in the container
+    ports:
+      - "3000:3000" # Map port 3000 on the host to port 3000 in the container
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://arooo_user:arooo_password@db:5432/arooo_development
+      - RAILS_ENV=development
+      - RACK_ENV=development
+      # Add any other necessary environment variables for the app service here
+      # e.g., GITHUB_CLIENT_KEY, GITHUB_CLIENT_SECRET, etc.
+      # These would ideally be sourced from a .env file or user secrets in Codespaces
+
+  db:
+    image: postgres:15 # Or your preferred PostgreSQL version
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persist PostgreSQL data
+    environment:
+      - POSTGRES_USER=arooo_user
+      - POSTGRES_PASSWORD=arooo_password
+      - POSTGRES_DB=arooo_development
+    ports:
+      - "5432:5432" # Optionally map PostgreSQL port to host (for external tools)
+
+volumes:
+  postgres_data: # Defines the named volume for data persistence

@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   def login
     redirect_to members_root_path if current_user.try(:general_member?)
   end

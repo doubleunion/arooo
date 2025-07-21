@@ -58,5 +58,5 @@ describe "sponsoring an applicant" do
       expect(page).to_not have_content "Sorry, something went wrong!"
       expect(page).to have_content "You are already sponsoring"
     end
-   end
+  end
 end
