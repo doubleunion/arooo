@@ -12,28 +12,7 @@
       = link_to "Become a voting member", edit_members_user_voting_members_path(current_user), class: "btn btn-default"
 
 %h3 Space Access
-- if current_user.space_access?
-  %p Click the button below to unlock the door and access the space.
-  %p The door will automatically re-lock after #{ENV["ACCESS_CONTROL_UNLOCK_SECONDS"]} seconds.
-  #unlock-door.btn.btn-default.disabled Unlock Door
-  #unlock-success.hidden.bold
-    %p The door was unlocked!
-  #unlock-error.hidden
-    %p#error-text.text-danger.bold
-  %p
-    %i Note:
-    You must be at the space and connected to the Wi-Fi to unlock the door.
-  %table
-    %tr
-      %td.bold.text-right
-        ssid:&nbsp;
-      %td= ENV["WIFI_NETWORK_NAME"]
-    %tr
-      %td.bold.text-right
-        password:&nbsp;
-      %td= ENV["WIFI_NETWORK_PASSWORD"]
-- elsif current_user.member?
-  = link_to "Become a key member", edit_members_user_key_members_path(current_user), class: "btn btn-default"
+  %p Please reach out to Admins below via Email or Slack to get your own door passcode, thanks!
 
 = render 'bookmarks'
 
