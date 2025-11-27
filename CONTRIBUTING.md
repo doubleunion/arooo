@@ -31,7 +31,7 @@ Do the below OR if you prefer Docker, see the Docker Setup section
    * If you installed a Ruby version manager, when you cd into the project directory, let your version manager install the ruby version in `.ruby-version`
 3. Install the `bundler` package managers:
 ```
-gem install bundler
+gem install bundler -v 2.4.22
 ```
 4. Fork the repo (click the Fork button above), and clone your fork to your local machine. [Here's a GitHub tutorial](https://help.github.com/articles/fork-a-repo/)
 5. Install or start postgres.
@@ -40,6 +40,13 @@ gem install bundler
    * Rails relies on the `postgres` role existing, but this role is not always created in a Postgres installation. If you run into connection errors complaining that the `postgres` role is missing, you can create it with the command: `createuser -s -r postgres`
    * See this article if you get stuck on Ubuntu: https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-14-04
 6. Install all dependencies (including Rails):
+
+allow less strict function pointier types so that things can compile
+```
+bundle config build.nio4r --with-cflags="-Wno-error=incompatible-function-pointer-types"
+```
+then
+
 ```
 $ bundle install
 ```
@@ -65,6 +72,12 @@ If this step fails on Ubuntu, make sure that your postgres db is up and running
 and that you only have one postgres instance up: try `sudo lsof -i:5432`.
 You may need to use sudo to set your `/etc/postgresql/11/main/pg_hba.conf` file.
 IPv4 local connections should say `localhost` under ADDRESS and `trust` under METHOD.
+
+If this step fails on a Mac with Apple Silicon (the M chips) with `TypeError: unable to resolve type 'size_t'` , update ffi:
+```
+bundle update ffi
+```
+
 9.  Now you should be able to run tests locally, and they should all pass:
 ```
 $ bundle exec rake spec
