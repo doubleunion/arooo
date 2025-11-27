@@ -86,8 +86,16 @@ $ bundle exec rake spec
 ### Steps to run arooo server locally
 
 1. `bundle exec rake populate:users` to set up dummy data
-1. `bundle exec rails server` don't forget to use http://localhost:3000 and not https
-1. `bundle exec rails console` Optional - useful for looking at and changing your local data)
+
+if you get `FATAL:  database "doubleunion_development" does not exist`, you need to create the database first:
+
+```
+  bundle exec rake db:create
+  bundle exec rake db:migrate
+```
+
+2. `bundle exec rails server` don't forget to use http://localhost:3000 and not https
+3. `bundle exec rails console` Optional - useful for looking at and changing your local data)
 
 ### Docker setup (optional)
 
