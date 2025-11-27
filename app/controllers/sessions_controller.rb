@@ -67,6 +67,23 @@ class SessionsController < ApplicationController
     end
   end
 
+  # Development Only
+
+  def impersonate
+    raise unless Rails.env.development?
+
+    @all_users = User.all
+  end
+
+  def impersonate_login
+    raise unless Rails.env.development?
+
+    user = User.find(params[:user])
+
+    reset_session
+    set_session_and_redirect_returning_users(user)
+  end
+
   private
 
   def set_session_and_redirect_returning_users(user)
