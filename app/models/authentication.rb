@@ -1,8 +1,6 @@
 class Authentication < ApplicationRecord
   AUTH_PROVIDERS = %w[github google_oauth2]
 
-  attr_accessible :provider, :uid
-
   belongs_to :user
 
   validates :user, :uid, :provider, presence: true

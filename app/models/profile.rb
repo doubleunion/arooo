@@ -8,8 +8,6 @@ class Profile < ApplicationRecord
   validates :skills, length: {maximum: 2000}
   validates :feminism, length: {maximum: 2000}
 
-  attr_protected :id
-
   def twitter_url
     twitter.present? ? "https://twitter.com/#{twitter.gsub(/@/, "")}" : nil
   end

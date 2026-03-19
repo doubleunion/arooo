@@ -16,8 +16,6 @@ class Application < ApplicationRecord
     User.voting_members.count / 2
   end
 
-  attr_protected :id
-
   validates :user_id, presence: true
   validates :state, presence: true
   validate :validate_agreed, if: :submitted?
