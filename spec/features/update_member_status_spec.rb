@@ -61,7 +61,7 @@ describe "marking members as on scholarship" do
       end
 
       context "with a scholarship member" do
-        before { member.update_attributes(is_scholarship: true) }
+        before { member.update(is_scholarship: true) }
 
         it "allows members to be marked as not on scholarship" do
           visit admin_memberships_path
