@@ -6,7 +6,7 @@ describe Members::VotingMembersController do
   let(:member) { create :member }
 
   describe "get edit" do
-    let(:subject) { get :edit, params: { user_id: member } }
+    let(:subject) { get :edit, params: {user_id: member} }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
     it_should_behave_like "allow members", [:member, :key_member]
@@ -23,7 +23,7 @@ describe Members::VotingMembersController do
   end
 
   describe "post update" do
-    let(:subject) { patch :update, params: { user_id: member } }
+    let(:subject) { patch :update, params: {user_id: member} }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
     it_should_behave_like "allow members", [:member, :key_member]

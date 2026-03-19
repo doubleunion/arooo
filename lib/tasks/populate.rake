@@ -17,7 +17,7 @@ namespace :populate do
 
       # Some parts of the app expect members to have an application with a valid processed_at date.
       if %w[member key_member voting_member].include? user.state
-        user.application.processed_at = (1 + rand(5)).days.ago
+        user.application.processed_at = rand(1..5).days.ago
         user.save!
       end
     end

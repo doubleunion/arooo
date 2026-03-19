@@ -2,37 +2,37 @@ class DoorCode < ApplicationRecord
   # We don't need an "assigned to user" status: can use the user_id field to check if a code belongs to a user
   enum status: {
     # This code is not entered in the physical lock.
-    not_in_lock: 'not_in_lock',
+    not_in_lock: "not_in_lock",
     # This code is entered in the physical lock.
-    in_lock: 'in_lock',
+    in_lock: "in_lock",
     # This code was previously assigned to a user and is still available in the lock.
-    formerly_assigned_in_lock: 'formerly_assigned_in_lock',
+    formerly_assigned_in_lock: "formerly_assigned_in_lock",
     # This code was previously assigned to a user, and is no longer in the lock.
     # We keep such codes around to avoid code re-use.
-    formerly_assigned_not_in_lock: 'formerly_assigned_not_in_lock',
+    formerly_assigned_not_in_lock: "formerly_assigned_not_in_lock",
     # Denylisted (assumed to not be in the lock).
     # Used for disallowing easily guessable codes.
-    denylisted: 'denylisted'
+    denylisted: "denylisted"
   }
 
   # A code without a user is available for assigning to a member
   belongs_to :user, optional: true
 
   validates :code, presence: true
-  validates :code, numericality: { only_integer: true }
-  validates :code, length: { minimum: 6 }
+  validates :code, numericality: {only_integer: true}
+  validates :code, length: {minimum: 6}
   validates_uniqueness_of :code, case_sensitive: false
   validates_uniqueness_of :index_number, if: -> { index_number.present? }
 
   class << self
     # @return [String] A randomly generated number of the requested length, as a string. May be zero-padded.
     def make_random_code(digits: 7)
-      (1..digits).map{ "0123456789".chars.to_a.sample }.join
+      (1..digits).map { "0123456789".chars.to_a.sample }.join
     end
   end
 
   def is_assigned?
-    return user.present?
+    user.present?
   end
 
   def unassign

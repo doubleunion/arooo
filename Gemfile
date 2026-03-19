@@ -12,11 +12,11 @@ gem "omniauth"
 gem "omniauth-github"
 gem "omniauth-google-oauth2"
 gem "pg"
-gem "state_machine_deuxito", require: 'state_machine'
+gem "state_machine_deuxito", require: "state_machine"
 gem "kaminari", ">= 1.2.1"
 gem "rails_autolink", ">= 1.1.6"
 gem "redcarpet"
-gem "configurable_engine" , "~> 2"
+gem "configurable_engine", "~> 2"
 gem "bugsnag"
 gem "stripe", "~> 3" # TODO upgrade this! Carefully...
 gem "stripe_event"
@@ -30,7 +30,7 @@ gem "uglifier"
 gem "coffee-rails", ">= 4.2.2"
 gem "bootstrap-sass"
 gem "jquery-datatables-rails", ">= 3.4.0"
-gem 'jwt'
+gem "jwt"
 
 # Avoid low-severity security issue: https://github.com/advisories/GHSA-vr8q-g5c7-m54m
 gem "nokogiri", ">= 1.11.0.rc4"

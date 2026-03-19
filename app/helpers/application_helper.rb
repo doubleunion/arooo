@@ -65,7 +65,7 @@ module ApplicationHelper
   end
 
   @@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(hard_wrap: true,
-                                                                   prettify: true),
+    prettify: true),
     no_intra_emphasis: true,
     tables: true,
     fenced_code_blocks: true,

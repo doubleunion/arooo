@@ -19,7 +19,7 @@ describe DoorCode do
 
   describe ".make_random_code" do
     it "returns a string" do
-      expect(DoorCode.make_random_code()).to be_a String
+      expect(DoorCode.make_random_code).to be_a String
     end
 
     it "returns a string of the requested length" do

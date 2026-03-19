@@ -38,8 +38,8 @@ describe Vote do
     create(:vote, application: application, user: voter)
 
     invalid = Vote.new(application: application,
-                       user: voter,
-                       value: true)
+      user: voter,
+      value: true)
     expect(invalid.valid?).to be_falsey
     expect(invalid).to have_at_least(1).error_on(:user_id)
   end
@@ -47,8 +47,8 @@ describe Vote do
   it "should validate user is not applicant" do
     application = create(:application)
     invalid = Vote.new(application: application,
-                       user: application.user,
-                       value: true)
+      user: application.user,
+      value: true)
     expect(invalid.valid?).to be_falsey
     expect(invalid).to have_at_least(1).error_on(:user)
   end
