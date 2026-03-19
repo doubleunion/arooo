@@ -16,7 +16,14 @@ class ApplicationsController < ApplicationController
   end
 
   def update
-    unless @user.update(user_params)
+    begin
+      update_result = @user.update(user_params)
+    rescue ArgumentError => e
+      Rails.logger.error "UPDATE FAILED: #{e.message}"
+      Rails.logger.error e.backtrace.first(20).join("\n")
+      raise
+    end
+    unless update_result
       app_errors = @user.application.errors.full_messages.to_sentence
       user_errors = @user.errors.full_messages.to_sentence
       errors = user_errors + app_errors
