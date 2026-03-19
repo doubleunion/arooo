@@ -178,6 +178,13 @@ Staging app: https://du-arooo-staging-896dffc852a3.herokuapp.com/
 
 The staging app (`du-arooo-staging`) runs on Heroku-22 and shares the production database.
 
+#### OAuth credentials
+
+- **GitHub (staging)**: OAuth app is under the `doubleunion` GitHub org, named `du-arooo-staging`. Managed at https://github.com/organizations/doubleunion/settings/applications
+- **GitHub (production)**: Also under the `doubleunion` GitHub org.
+- **Google (staging)**: OAuth client is under the `admin@doubleunion.org` Google Cloud account.
+- **Google (production)**: OAuth client is in Google Cloud project number `126259081035`. The owning account is unclear — possibly `doubleunionroot@gmail.com`.
+
 ## Security
 
 To report a security vulnerability with Arooo, see [SECURITY.md](SECURITY.md). Thank you!
