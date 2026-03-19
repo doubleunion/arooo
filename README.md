@@ -86,7 +86,7 @@ If you prefer to do deploys from the command line, here are the steps:
      url = git@heroku.com:du-arooo.git
      fetch = +refs/heads/*:refs/remotes/heroku/*
   [remote "staging"]
-     url = git@heroku.com:doubleunion-staging.git
+     url = git@heroku.com:du-arooo-staging.git
      fetch = +refs/heads/*:refs/remotes/heroku/*
   ```
 
@@ -106,12 +106,7 @@ If you prefer to do deploys from the command line, here are the steps:
   ```
 
 1. If needed, perform rake tasks or set ENV variable settings on `staging`
-1. Test [staging](http://doubleunion-staging.herokuapp.com/)!
-
-  ```
-  username: doubleunion
-  password: meritocracyisajoke
-  ```
+1. Test [staging](https://du-arooo-staging-896dffc852a3.herokuapp.com/)!
 
 1. After confirming that the code works on `staging`, push it to `production`!
 
@@ -179,9 +174,9 @@ If you need more information about our AWS setup, board members have AWS Console
 
 ### Staging
 
-Currently neither github nor google auth works on staging- we should get this working again so we can actually test.
+Staging app: https://du-arooo-staging-896dffc852a3.herokuapp.com/
 
-The basic-auth login is found in https://dashboard.heroku.com/apps/doubleunion-staging/settings under BASIC_AUTH_NAME/BASIC_AUTH_PASSWORD
+The staging app (`du-arooo-staging`) runs on Heroku-22 and shares the production database.
 
 ## Security
 
