@@ -1,10 +1,8 @@
 # Patch state_machine_deuxito for Rails 6.1 + Ruby 3.1 compatibility.
 #
-# Rails 6.1 changed ActiveRecord::Suppressor#save signature from save(*) to save(**).
-# The state_machine gem defines save(*) and calls super, which forwards positional
+# Rails 6.1 changed ActiveRecord::Suppressor#save from save(*) to save(**).
+# The state_machine gem defines save(*) and calls super, forwarding positional
 # args to a keyword-only method, causing ArgumentError in Ruby 3.0+.
-#
-# This patch changes the generated save/save! methods to use (**) instead of (*).
 
 module StateMachine
   module Integrations

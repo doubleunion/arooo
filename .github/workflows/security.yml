@@ -31,4 +31,4 @@ jobs:
 
       - name: brakeman
         # Skip "low confidence" warnings with -w2
-        run: bundle exec brakeman -w2 --skip-checks EOLRuby,EOLRails
+        run: bundle exec brakeman -w2 --except EOLRuby,EOLRails
