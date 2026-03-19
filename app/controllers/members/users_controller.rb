@@ -33,7 +33,7 @@ class Members::UsersController < Members::MembersController
   private
 
   def update_attrs_and_set_flash
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       flash[:notice] = "Successfully updated!"
     else
       flash[:error] = "Whoops, something went wrong: #{@user.errors.full_messages}"

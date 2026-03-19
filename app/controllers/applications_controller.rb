@@ -16,7 +16,7 @@ class ApplicationsController < ApplicationController
   end
 
   def update
-    unless @user.update_attributes(user_params)
+    unless @user.update(user_params)
       app_errors = @user.application.errors.full_messages.to_sentence
       user_errors = @user.errors.full_messages.to_sentence
       errors = user_errors + app_errors

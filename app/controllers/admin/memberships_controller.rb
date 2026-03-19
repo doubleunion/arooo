@@ -17,7 +17,7 @@ class Admin::MembershipsController < ApplicationController
   def update
     user = User.find(params[:id])
 
-    flash[:message] = if user.update_attributes!(user_params)
+    flash[:message] = if user.update!(user_params)
       "#{user.name} updated."
     else
       "Whoops! #{user.errors.full_messages.to_sentence}"
