@@ -38,7 +38,7 @@ class Members::ApplicationsController < Members::MembersController
       elsif current_user.sponsorship(application)
         flash[:notice] = "You are already sponsoring this application!"
       else
-          flash[:error] = "Sorry, something went wrong!"
+        flash[:error] = "Sorry, something went wrong!"
       end
     else
       Sponsorship.where(user_id: current_user, application_id: application).destroy_all

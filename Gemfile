@@ -2,7 +2,8 @@ source "https://rubygems.org"
 
 ruby File.read(".ruby-version").strip
 
-gem "rails", "~>6.0"
+gem "rails", "~>6.1"
+gem "logger", "~> 1.5.0"
 gem "jquery-rails", ">= 4.3.5"
 gem "turbolinks"
 gem "jbuilder"
@@ -11,25 +12,25 @@ gem "omniauth"
 gem "omniauth-github"
 gem "omniauth-google-oauth2"
 gem "pg"
-gem "state_machine_deuxito", require: 'state_machine'
-gem "protected_attributes_continued" # works w rails 5
+gem "state_machine_deuxito", require: "state_machine"
 gem "kaminari", ">= 1.2.1"
 gem "rails_autolink", ">= 1.1.6"
 gem "redcarpet"
-gem "configurable_engine" , "~> 2"
+gem "configurable_engine", "~> 2"
 gem "bugsnag"
 gem "stripe", "~> 3" # TODO upgrade this! Carefully...
 gem "stripe_event"
 gem "rack-canonical-host"
 gem "aws-sdk-rails", "~> 3"
 gem "rack-cors"
+gem "puma", "~> 5.6"
 gem "haml-rails", ">= 1.0.0"
 gem "sass-rails", ">= 5.0.7"
 gem "uglifier"
 gem "coffee-rails", ">= 4.2.2"
 gem "bootstrap-sass"
 gem "jquery-datatables-rails", ">= 3.4.0"
-gem 'jwt'
+gem "jwt"
 
 # Avoid low-severity security issue: https://github.com/advisories/GHSA-vr8q-g5c7-m54m
 gem "nokogiri", ">= 1.11.0.rc4"
@@ -48,13 +49,11 @@ group :development, :test do
   gem "rack_session_access"
   gem "pry-rails"
   gem "pry"
-  gem "puma", "~> 5.6"
   gem "standard"
   gem "timecop"
 end
 
 group :production do
-  gem "unicorn"
   gem "rails_12factor"
 end
 

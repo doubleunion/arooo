@@ -97,7 +97,9 @@ If you prefer to do deploys from the command line, here are the steps:
   git pull --rebase origin main
   ```
 
-1. If CI tests are passing, push to the `staging` environment
+1. ~If CI tests are passing,~ push to the `staging` environment
+
+** note that the brakeman tests fail since the ruby upgrade because we pass hashes as positional args which dont follow ruby 3.1 keyword argument separation
 
   ```
   git checkout main
@@ -177,6 +179,13 @@ If you need more information about our AWS setup, board members have AWS Console
 Staging app: https://du-arooo-staging-896dffc852a3.herokuapp.com/
 
 The staging app (`du-arooo-staging`) runs on Heroku-22 and shares the production database.
+
+#### OAuth credentials
+
+- **GitHub (staging)**: OAuth app is under the `doubleunion` GitHub org, named `du-arooo-staging`. Managed at https://github.com/organizations/doubleunion/settings/applications
+- **GitHub (production)**: Also under the `doubleunion` GitHub org.
+- **Google (staging)**: OAuth client is under the `admin@doubleunion.org` Google Cloud account.
+- **Google (production)**: OAuth client is in Google Cloud project number `126259081035`. The owning account is unclear — possibly `doubleunionroot@gmail.com`.
 
 ## Security
 

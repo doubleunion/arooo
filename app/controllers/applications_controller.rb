@@ -16,7 +16,7 @@ class ApplicationsController < ApplicationController
   end
 
   def update
-    unless @user.update_attributes(user_params)
+    unless @user.update(user_params)
       app_errors = @user.application.errors.full_messages.to_sentence
       user_errors = @user.errors.full_messages.to_sentence
       errors = user_errors + app_errors
@@ -32,7 +32,7 @@ class ApplicationsController < ApplicationController
         begin
           @user.application.submit!
           flash[:notice] = "Application submitted!"
-        rescue StandardError => e
+        rescue => e
           errors = @user.application.errors.full_messages.to_sentence
           errors = e.inspect if errors.empty?
           flash[:error] = "Application not submitted: #{errors}"

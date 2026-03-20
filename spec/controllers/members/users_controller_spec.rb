@@ -18,7 +18,7 @@ describe Members::UsersController do
   end
 
   describe "GET show" do
-    subject { get :show, params: { id: someone_cool.id } }
+    subject { get :show, params: {id: someone_cool.id} }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
     it_should_behave_like "allow members", [:member, :voting_member]
@@ -30,7 +30,7 @@ describe Members::UsersController do
   end
 
   describe "GET edit" do
-    subject { get :edit, params: { id: someone_cool.id } }
+    subject { get :edit, params: {id: someone_cool.id} }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
     it_should_behave_like "allow members", [:member, :voting_member]
@@ -42,7 +42,7 @@ describe Members::UsersController do
   end
 
   describe "POST update" do
-    subject { post :update, params: { id: someone_cool.id, user: {id: someone_cool.id} } }
+    subject { post :update, params: {id: someone_cool.id, user: {id: someone_cool.id}} }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
     it_should_behave_like "allow members", [:member, :voting_member]
@@ -93,7 +93,7 @@ describe Members::UsersController do
   end
 
   describe "GET setup" do
-    subject { get :setup, params: { user_id: someone_cool.id } }
+    subject { get :setup, params: {user_id: someone_cool.id} }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
     it_should_behave_like "allow members", [:member, :voting_member]
@@ -105,7 +105,7 @@ describe Members::UsersController do
   end
 
   describe "PATCH finalize" do
-    subject { patch :finalize, params: { user_id: someone_cool.id, user: {dues_pledge: 25} } }
+    subject { patch :finalize, params: {user_id: someone_cool.id, user: {dues_pledge: 25}} }
 
     it_should_behave_like "deny non-members", [:visitor, :applicant]
 

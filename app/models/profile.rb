@@ -8,8 +8,6 @@ class Profile < ApplicationRecord
   validates :skills, length: {maximum: 2000}
   validates :feminism, length: {maximum: 2000}
 
-  attr_protected :id
-
   def twitter_url
     twitter.present? ? "https://twitter.com/#{twitter.gsub(/@/, "")}" : nil
   end
@@ -18,7 +16,7 @@ class Profile < ApplicationRecord
     # hacks -- we set username as the auth provider's username, and didn't
     # store it on the auth. We should write a migration, instead, and remove
     # this once we're confident the data looks good.
-    return make_github_url(user.username) unless user.username.include?("@")
+    make_github_url(user.username) unless user.username.include?("@")
   end
 
   private

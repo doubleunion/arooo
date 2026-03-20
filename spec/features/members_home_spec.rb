@@ -8,9 +8,9 @@ describe "Members home" do
   context "when logged in as a key member" do
     let(:member) { create :key_member }
 
-    it "it allows them to unlock the door" do
+    it "shows space access information" do
       visit members_root_path
-      expect(page).to have_content "Click the button below to unlock the door and access the space"
+      expect(page).to have_content "Please reach out to Admins below via Email or Slack to get your own door passcode, thanks!"
     end
   end
 

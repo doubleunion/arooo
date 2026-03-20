@@ -8,7 +8,7 @@ describe User do
       let(:existing_user) { create :user }
       let(:new_user) { create :user }
 
-      subject { new_user.update_attributes(email: existing_user.email) }
+      subject { new_user.update(email: existing_user.email) }
 
       it "doesn't allow duplication email addresses" do
         subject
@@ -34,7 +34,7 @@ describe User do
   it "should accept nested attributes for profile" do
     user = create(:user)
     expect(user.profile.twitter).to be_nil
-    user.update_attributes!(profile_attributes: {
+    user.update!(profile_attributes: {
       id: user.profile.id,
       twitter: "Horse_ebooks"
     })
