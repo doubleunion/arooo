@@ -71,50 +71,40 @@ This section only pertains if you have heroku & deployment access. Only maintain
 
 If you are a DU member, see https://docs.google.com/document/d/19LbIYB2RDy-17UXuQx6wLgKp2EdLdqj-pg1cm3EpSb8/edit for more information on getting permission.
 
-Both `staging` and `production` Heroku environments are connected to this GitHub repo, making it possible to deploy directly through the Heroku UI. To deploy:
-* Staging: Merge to `main`, and your code will be automatically deployed to `staging` as soon as CI goes green.
-* Production: Log into Heroku, and select the production Aroo app from your dashboard. Click on "Deploy", and scroll to the bottom. There will be a place to select a branch to deploy, and a button that you can click to deploy.
+Deploys are done via the Heroku CLI using git push. Database migrations run automatically during the release process on Heroku, controlled by the `release` directive in our [Procfile](Procfile).
 
-Database migrations will run automatically during the release process on Heroku. This is controlled by the `release` directive in our [Procfile](Procfile).
-
-If you prefer to do deploys from the command line, here are the steps:
-
-1. Add Heroku remotes to your `.git/config` (type `git remote --help` for more instructions on how to configure git remote.)
+1. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and log in:
 
   ```
-  [remote "production"]
-     url = git@heroku.com:du-arooo.git
-     fetch = +refs/heads/*:refs/remotes/heroku/*
-  [remote "staging"]
-     url = git@heroku.com:du-arooo-staging.git
-     fetch = +refs/heads/*:refs/remotes/heroku/*
+  heroku login
   ```
 
-1. Pull down the latest code from `main`
+1. Add Heroku remotes (one-time setup):
+
+  ```
+  git remote add staging https://git.heroku.com/du-arooo-staging.git
+  git remote add production https://git.heroku.com/du-arooo.git
+  ```
+
+1. Pull down the latest code from `main`:
 
   ```
   git checkout main
-  git pull --rebase origin main
+  git pull origin main
   ```
 
-1. ~If CI tests are passing,~ push to the `staging` environment
-
-** note that the brakeman tests fail since the ruby upgrade because we pass hashes as positional args which dont follow ruby 3.1 keyword argument separation
+1. Deploy to staging:
 
   ```
-  git checkout main
-  git pull --rebase origin main
   git push staging main
   ```
 
 1. If needed, perform rake tasks or set ENV variable settings on `staging`
 1. Test [staging](https://du-arooo-staging-896dffc852a3.herokuapp.com/)!
 
-1. After confirming that the code works on `staging`, push it to `production`!
+1. After confirming that the code works on staging, deploy to production:
 
   ```
-  git checkout main
-  git pull --rebase origin main
   git push production main
   ```
 
