@@ -29,3 +29,26 @@ module StateMachine
     end
   end
 end
+
+# Rails 6.1 changed ActiveModel::Errors#add to use keyword arguments:
+#   def add(attribute, type = :invalid, **options)
+# The state_machine gem passes options as a positional hash argument.
+# Patch invalidate to splat options as keyword arguments.
+module StateMachine
+  module Integrations
+    module ActiveModel
+      def invalidate(object, attribute, message, values = [])
+        if supports_validations?
+          attribute = self.attribute(attribute)
+          options = values.inject({}) do |h, (key, value)|
+            h[key] = value
+            h
+          end
+
+          default_options = default_error_message_options(object, attribute, message)
+          object.errors.add(attribute, message, **options.merge(default_options))
+        end
+      end
+    end
+  end
+end

@@ -1,11 +1,8 @@
 require "spec_helper"
 require "stripe_mock"
 
-describe "canceling dues", js: true do
-  include UserWithOmniauth
-  include AuthHelper
-
-  let(:member) { create_with_omniauth(OmniAuth.config.mock_auth[:github]) }
+describe "canceling dues" do
+  let(:member) { create(:key_member, dues_pledge: 10, setup_complete: true, email_for_google: "member@example.com") }
   let(:stripe_customer_id) { "123abc" }
   let(:plan) {
     OpenStruct.new(
@@ -34,10 +31,9 @@ describe "canceling dues", js: true do
   }
 
   before do
-    member.update_attribute(:state, "key_member")
-    member.update_attribute(:dues_pledge, 10)
-    member.update_attribute(:stripe_customer_id, stripe_customer_id)
-    member.update_attribute(:setup_complete, true)
+    member.update_column(:stripe_customer_id, stripe_customer_id)
+
+    page.set_rack_session(user_id: member.id)
 
     StripeMock.start
     Stripe.api_key = "coolapikey"
@@ -48,20 +44,15 @@ describe "canceling dues", js: true do
   end
 
   it "a member can cancel their membership" do
-    visit root_path
-    click_on "Sign in with GitHub"
-    expect(page).to have_content "Bookmarks for Members"
-
     allow(Stripe::Customer).to receive(:retrieve)
       .with(member.stripe_customer_id)
       .and_return(customer)
 
-    click_on "Manage Membership"
+    visit members_user_dues_path(member)
     expect(page).to have_content "Manage Membership"
-    message = accept_alert {
-      click_link "here"
-    }
-    expect(message).to eq "Are you sure? Clicking yes will cancel your payments, and inform the membership coordinator to remove you from all mailing lists."
+    expect(page).to have_content "Cancel Your Membership"
+
+    page.driver.submit :delete, members_user_cancel_path(member), {}
 
     expect(page).to have_content "Your dues have now been canceled"
   end

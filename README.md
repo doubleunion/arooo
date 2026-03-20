@@ -97,7 +97,9 @@ If you prefer to do deploys from the command line, here are the steps:
   git pull --rebase origin main
   ```
 
-1. If CI tests are passing, push to the `staging` environment
+1. ~If CI tests are passing,~ push to the `staging` environment
+
+** note that the brakeman tests fail since the ruby upgrade because we pass hashes as positional args which dont follow ruby 3.1 keyword argument separation
 
   ```
   git checkout main
