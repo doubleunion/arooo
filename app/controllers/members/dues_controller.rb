@@ -77,16 +77,16 @@ class Members::DuesController < Members::MembersController
   end
 
   def amount_plan_name
-    {10000 => "extra_large_monthly",
+    {25000 => "250_monthly",
+     20000 => "200_monthly",
+     15000 => "150_monthly",
+     12500 => "125_monthly",
+     10000 => "extra_large_monthly",
      7500 => "75_monthly",
      5000 => "large_monthly",
      4500 => "45_monthly",
      4000 => "40_monthly",
      3500 => "35_monthly",
-     3000 => "30_monthly",
-     2500 => "medium_monthly",
-     2000 => "20_monthly",
-     1500 => "15_monthly",
-     1000 => "small_monthly"}
+     3000 => "30_monthly"}
   end
 end
