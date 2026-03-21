@@ -9,7 +9,7 @@
 
 %ul
   %li
-    We do not grant scholarships for reasons other than financial need. Financial need is defined as: paying $10/month would interfere with the member's ability to: pay for rent, food, medical care, transit, clothes, schooling, employment-related opportunities, and other important parts of life.
+    We do not grant scholarships for reasons other than financial need. Financial need is defined as: paying $30/month would interfere with the member's ability to: pay for rent, food, medical care, transit, clothes, schooling, employment-related opportunities, and other important parts of life.
   %li
     Examples of people who would qualify:
     %ul
@@ -28,6 +28,6 @@
 
 
 = form_tag members_user_scholarship_request_path, method: :post, class: "form mt-20" do
-  = label_tag :reason, "Paying $10/month would be a financial hardship for me because:"
+  = label_tag :reason, "Paying $30/month would be a financial hardship for me because:"
   = text_area_tag :reason, "", rows: 3, class: "form-control"
   = submit_tag "Submit", class: "btn btn-primary"
