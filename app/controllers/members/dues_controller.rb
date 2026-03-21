@@ -77,10 +77,10 @@ class Members::DuesController < Members::MembersController
   end
 
   def amount_plan_name
-    {25000 => "250_monthly",
-     20000 => "200_monthly",
-     15000 => "150_monthly",
-     12500 => "125_monthly",
+    {25000 => "price_1TDAoW4lidvXl27nh5genZoH",
+     20000 => "price_1TDAoG4lidvXl27nAsXQ7PS9",
+     15000 => "price_1TDAo64lidvXl27nksK2ruwq",
+     12500 => "price_1TDAnq4lidvXl27nKdQlOPFa",
      10000 => "extra_large_monthly",
      7500 => "75_monthly",
      5000 => "large_monthly",
