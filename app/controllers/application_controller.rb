@@ -75,6 +75,7 @@ class ApplicationController < ActionController::Base
     vote.application ||= application
     vote.user ||= current_user
     vote.value = vote_value
+    # vote.vote_value = vote_value # TODO Linda
 
     vote.save!
 
