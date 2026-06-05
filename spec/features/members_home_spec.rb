@@ -5,21 +5,30 @@ describe "Members home" do
     page.set_rack_session(user_id: member.id)
   end
 
-  context "when logged in as a key member" do
+  context "when logged in as a key member with a door code" do
     let(:member) { create :key_member }
 
-    it "shows space access information" do
+    before do
+      create :door_code, code: "123456", user: member
+    end
+
+    it "shows their door code" do
       visit members_root_path
-      expect(page).to have_content "Please reach out to Admins below via Email or Slack to get your own door passcode, thanks!"
+      expect(page).to have_content "Your door code is 123456*"
     end
   end
 
   context "when logged in as a non-key-member" do
     let(:member) { create :member }
 
-    it "does not show content about unlocking the door" do
+    it "shows a button to become a key member" do
       visit members_root_path
-      expect(page).to_not have_content "unlock the door"
+      expect(page).to have_link "Become a key member"
+    end
+
+    it "does not show a door code" do
+      visit members_root_path
+      expect(page).to_not have_content "Your door code is"
     end
   end
 end

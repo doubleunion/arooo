@@ -12,7 +12,10 @@
       = link_to "Become a voting member", edit_members_user_voting_members_path(current_user), class: "btn btn-default"
 
 %h2 Space Access
-%p Please reach out to Admins below via Email or Slack to get your own door passcode, thanks!
+- if current_user.door_code.present?
+  %p Your door code is #{current_user.door_code.code}*
+- elsif current_user.member?
+  = link_to "Become a key member", edit_members_user_key_members_path(current_user), class: "btn btn-default"
 
 = render 'bookmarks'
 
