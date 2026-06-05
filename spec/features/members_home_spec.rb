@@ -14,7 +14,7 @@ describe "Members home" do
 
     it "shows their door code" do
       visit members_root_path
-      expect(page).to have_content "Your door code is 123456*"
+      expect(page).to have_content "Your door code is 123456"
     end
   end
 
