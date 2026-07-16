@@ -17,6 +17,9 @@
     = f.hidden_field :application_id, value: @application.id
     = f.submit 'Yes', name: 'vote_yes', disabled: vote && vote.value
     = f.submit 'No',  name: 'vote_no',  disabled: vote && !vote.value
+    -# = f.submit 'Yes', name: 'vote_yes', disabled: vote&.yes?
+    -# = f.submit 'No',  name: 'vote_no',  disabled: vote&.no?
+    -# = f.submit 'Not Sure',  name: 'vote_not_sure',  disabled: vote&.not_sure?
 
   - if current_user.voted_on?(@application)
     #{ link_to 'Remove your vote', members_vote_path, method: :delete }
