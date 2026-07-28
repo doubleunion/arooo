@@ -8,7 +8,7 @@ class CancelMembershipMailer < ActionMailer::Base
       to: [MEMBERSHIP_EMAIL],
       cc: [user.email],
       subject: "#{user.name} is canceling their membership.",
-      body: "Please remove #{user.name} from all mailing lists."
+      body: "Please remove #{user.name} from DU mailing lists and Slack."
     )
   end
 end
