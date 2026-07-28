@@ -16,6 +16,9 @@
   %p.ib= link_to 'Sign in with GitHub', github_login_path, class: 'btn btn-primary btn-lg mr-20'
   %p.ib= link_to 'Sign in with Google', google_login_path, class: 'btn btn-primary btn-lg'
 
+- if Rails.env.development?
+  %p= link_to '(DEV) Impersonate User', impersonate_path, class: 'btn btn-default'
+
   - if Configurable[:accepting_applications]
     %p To start an application, first authenticate with GitHub or Google. If you have any questions, email us at #{ mail_to JOIN_EMAIL }.
 
